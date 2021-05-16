@@ -9,11 +9,14 @@
 ```shell
 MyUtil % tree ./
 ./
+├── Python # python関連をまとめるディレクトリ
+│   └── pandas # pandasをまとめるディレクトリ
+│       └── pandas_tuto.md
 ├── README.md
-└── RegExp  # 正規表現関連をまとめたディレクトリ
+└── RegExp # 正規表現関連をまとめたディレクトリ
     ├── regularExpression.html
     └── regularExpression.md
 
-1 directory, 3 files
+3 directories, 4 files
 
 ```
