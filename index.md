@@ -20,3 +20,9 @@ MyUtil % tree ./
 3 directories, 4 files
 
 ```
+
+---
+- リリース予定内容
+    - firewall,iptables周り
+    - tensorflow周り
+    - Cpp系(簡単に調べたことをまとめとく)
