@@ -21,8 +21,12 @@ MyUtil % tree ./
 
 ```
 
+- [pandas リンク](https://puppies-jp.github.io/MyUtils/Python/pandas/pandas_tuto)
+- [正規表現リンク](https://puppies-jp.github.io/MyUtils/RegExp/regularExpression)
+
 ---
+
 - リリース予定内容
-    - firewall,iptables周り
-    - tensorflow周り
-    - Cpp系(簡単に調べたことをまとめとく)
+  - firewall,iptables 周り
+  - tensorflow 周り
+  - Cpp 系(簡単に調べたことをまとめとく)

@@ -37,14 +37,14 @@ train_data.head()
 - data からサンプルを取り出す。
   (訓練用データとテストデータを分離できる)
 
-```
+```python
 train_dataset = dataset.sample(frac=0.8,random_state=0)
 test_dataset = dataset.drop(train_dataset.index)
 ```
 
 - 訓練用セットのいくつかの列の組み合わせの同時分布を確認する
 
-```
+```python
 import seaborn as sns
 sns.pairplot(train_dataset[["MPG", "Cylinders", "Displacement", "Weight"]], diag_kind="kde")
 
@@ -53,7 +53,7 @@ import seaborn as sns
 sns.pairplot(train_data_p[train_data_p.keys()],diag_kind="kde")
 ```
 
-```
+```python
 # key取得
 print(train_data_p.keys())
 print(data.keys())
