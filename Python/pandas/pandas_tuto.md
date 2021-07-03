@@ -12,16 +12,15 @@
 
 - csv ファイル読み込み
 
-```
+```python
 from pandas import read_csv
 # index_colを指定することでdataのindexを指定できる。
 train_data = read_csv("/kaggle/input/titanic/train.csv",index_col=0)
-
 ```
 
 - column の追加は下記のようにすることでできる(他にもあるかも)
 
-```
+```python
 test_data["Survived"] = gender_data["Survived"]
 
 # 下記のようにすることで Sex(column)がmaleのdataのみ取得できる。
@@ -30,13 +29,13 @@ train_data[train_data["Sex"] == "male"]
 
 - 不要な column の削除
 
-```
+```python
 # axis = 1とすることで指定したcolumnの削除となる？
 drop_col = ["Name",]
 train_data_p= train_data.drop(drop_col,axis=1)
 ```
 
-```
+```python
 # info確認
 train_data_p.info()
 # 先頭の数個のデータを表示
@@ -82,7 +81,6 @@ tmp.head()
 tmp["male"] = np.where(tmp["Sex"] == "male",1,0)
 tmp["female"] = np.where(tmp["Sex"] != "male",1,0)
 tmp.head()
-
 ```
 
 - datatable の要素に対して正規表現を適用する。
