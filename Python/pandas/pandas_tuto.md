@@ -65,6 +65,17 @@ print(ans.iloc[0:3])
 ```python
 cabin_one_hot=pd.get_dummies(train_data_p,columns=["Sex","Cabin","Embarked","Pclass"],)
 cabin_one_hot.head()
+
+# locを使った方法で分けることもできる(ただし条件がFalseだった側がFalseとなる。)
+tmp.loc[tmp["Sex"] == "male","male"]=1
+tmp.loc[tmp["Sex"] != "male","female"]=1
+tmp.head()
+
+# np.whereを使った方法(割と直感的でおすすめ)
+tmp["male"] = np.where(tmp["Sex"] == "male",1,0)
+tmp["female"] = np.where(tmp["Sex"] != "male",1,0)
+tmp.head()
+
 ```
 
 - datatable の要素に対して正規表現を適用する。
