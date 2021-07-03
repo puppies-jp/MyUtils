@@ -59,14 +59,21 @@ print(data.keys())
 print(ans.iloc[0:3])
 ```
 
+---
+
+## データクレンジングなどに使うやつ
+
 - one-hot 形式に datatable を変更する。
-  - `columns`を指定することで自動で one-hot 形式にしてくれる。(column 名は適当につけてくれる。)
+  - `get_dummies`を使った方法`columns`を指定することで自動で one-hot 形式にしてくれる。(column 名は適当につけてくれる。)
+  - loc を使った方法(条件 False が nan となる。)
+  - np.where を使った方法(条件の true/false で値を設定できる。)
 
 ```python
+# get_dummies を使った方法
 cabin_one_hot=pd.get_dummies(train_data_p,columns=["Sex","Cabin","Embarked","Pclass"],)
 cabin_one_hot.head()
 
-# locを使った方法で分けることもできる(ただし条件がFalseだった側がFalseとなる。)
+# locを使った方法で分けることもできる(ただし条件がFalseだった側がnanとなる。)
 tmp.loc[tmp["Sex"] == "male","male"]=1
 tmp.loc[tmp["Sex"] != "male","female"]=1
 tmp.head()
