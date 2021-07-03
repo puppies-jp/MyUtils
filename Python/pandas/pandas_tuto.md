@@ -2,6 +2,8 @@
 
 > このメモは Kaggle or ML にてデータクレンジングを行うためのメモです。
 
+`titanic/train.csv`を前提に作成した。(メジャーかつ取得しやすいので)
+
 [home](https://puppies-jp.github.io/MyUtils/)
 
 ---
@@ -61,4 +63,20 @@ print(train_data_p.keys())
 print(data.keys())
 # index指定取得
 print(ans.iloc[0:3])
+```
+
+- one-hot 形式に datatable を変更する。
+  - `columns`を指定することで自動で one-hot 形式にしてくれる。(column 名は適当につけてくれる。)
+
+```python
+cabin_one_hot=pd.get_dummies(train_data_p,columns=["Sex","Cabin","Embarked","Pclass"],)
+cabin_one_hot.head()
+```
+
+- datatable の要素に対して正規表現を適用する。
+  - 最初の一文字目だけを取得し、`Cabin`に上書きした。
+
+```python
+train_data_p["Cabin"] = train_data_p["Cabin"].str.extract('(?P<cabin>^.)',expand=False).fillna("no_data")
+train_data_p.head()
 ```
