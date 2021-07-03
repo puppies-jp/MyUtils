@@ -8,6 +8,8 @@
 
 ---
 
+## pandas の基本的な操作
+
 - csv ファイル読み込み
 
 ```
@@ -21,6 +23,9 @@ train_data = read_csv("/kaggle/input/titanic/train.csv",index_col=0)
 
 ```
 test_data["Survived"] = gender_data["Survived"]
+
+# 下記のようにすることで Sex(column)がmaleのdataのみ取得できる。
+train_data[train_data["Sex"] == "male"]
 ```
 
 - 不要な column の削除
@@ -46,17 +51,6 @@ train_dataset = dataset.sample(frac=0.8,random_state=0)
 test_dataset = dataset.drop(train_dataset.index)
 ```
 
-- 訓練用セットのいくつかの列の組み合わせの同時分布を確認する
-
-```python
-import seaborn as sns
-sns.pairplot(train_dataset[["MPG", "Cylinders", "Displacement", "Weight"]], diag_kind="kde")
-
-# 全てのキーで組み合わせ分布を作成してくれる
-import seaborn as sns
-sns.pairplot(train_data_p[train_data_p.keys()],diag_kind="kde")
-```
-
 ```python
 # key取得
 print(train_data_p.keys())
@@ -79,4 +73,26 @@ cabin_one_hot.head()
 ```python
 train_data_p["Cabin"] = train_data_p["Cabin"].str.extract('(?P<cabin>^.)',expand=False).fillna("no_data")
 train_data_p.head()
+```
+
+---
+
+## 割と便利な機能
+
+- 訓練用セットのいくつかの列の組み合わせの同時分布を確認する
+
+```python
+import seaborn as sns
+sns.pairplot(train_dataset[["MPG", "Cylinders", "Displacement", "Weight"]], diag_kind="kde")
+
+# 全てのキーで組み合わせ分布を作成してくれる
+import seaborn as sns
+sns.pairplot(train_data_p[train_data_p.keys()],diag_kind="kde")
+
+# sns.pairplot(cabin_one_hot[cabin_one_hot.keys()[0:6]],diag_kind="kde")
+#cabin_one_hot.hist()
+
+# indexを指定した組み合わせも作成できる。
+idx = pd.Index(["Survived","Age","Fare","Sex_male","Sex_female"])
+sns.pairplot(cabin_one_hot[idx],diag_kind="kde", kind='reg',hue="Survived")
 ```
