@@ -58,6 +58,11 @@ print(data.keys())
 print(ans.iloc[0:3])
 ```
 
+```python
+# index(数値で検索の掛け方)(他のcolumnの代わりにindexで指定するだけ)
+test_data_p[test_data_p.index > 891]
+```
+
 ---
 
 ## データクレンジングなどに使うやつ
