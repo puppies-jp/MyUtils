@@ -2,6 +2,8 @@
 
 > このメモは Kaggle or ML にてデータクレンジングを行うためのメモです。
 
+[home](https://puppies-jp.github.io/MyUtils/)
+
 ---
 
 - csv ファイル読み込み
