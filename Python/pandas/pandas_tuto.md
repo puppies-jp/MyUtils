@@ -88,6 +88,16 @@ tmp["female"] = np.where(tmp["Sex"] != "male",1,0)
 tmp.head()
 ```
 
+- `null`の検索での引っ掛け方
+  - こんな感じで ok
+
+```python
+# fix Age # Nan Value replace -1 and add columns Validate Age Flug
+total_data["ValAge"] = np.where((total_data.Age.isnull() == True), 1,0)
+total_data.Age = np.where(total_data.ValAge == 1, -1 ,total_data.Age)
+total_data.tail()
+```
+
 - datatable の要素に対して正規表現を適用する。
   - 最初の一文字目だけを取得し、`Cabin`に上書きした。
 

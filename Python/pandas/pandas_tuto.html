@@ -89,6 +89,17 @@ tmp<span class="token punctuation">[</span><span class="token string">&quot;male
 tmp<span class="token punctuation">[</span><span class="token string">&quot;female&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>where<span class="token punctuation">(</span>tmp<span class="token punctuation">[</span><span class="token string">&quot;Sex&quot;</span><span class="token punctuation">]</span> <span class="token operator">!=</span> <span class="token string">&quot;male&quot;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
 tmp<span class="token punctuation">.</span>head<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </pre><ul>
+<li><code>null</code>&#x306E;&#x691C;&#x7D22;&#x3067;&#x306E;&#x5F15;&#x3063;&#x639B;&#x3051;&#x65B9;
+<ul>
+<li>&#x3053;&#x3093;&#x306A;&#x611F;&#x3058;&#x3067; ok</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># fix Age # Nan Value replace -1 and add columns Validate Age Flug</span>
+total_data<span class="token punctuation">[</span><span class="token string">&quot;ValAge&quot;</span><span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>where<span class="token punctuation">(</span><span class="token punctuation">(</span>total_data<span class="token punctuation">.</span>Age<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span>
+total_data<span class="token punctuation">.</span>Age <span class="token operator">=</span> np<span class="token punctuation">.</span>where<span class="token punctuation">(</span>total_data<span class="token punctuation">.</span>ValAge <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">,</span>total_data<span class="token punctuation">.</span>Age<span class="token punctuation">)</span>
+total_data<span class="token punctuation">.</span>tail<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><ul>
 <li>datatable &#x306E;&#x8981;&#x7D20;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x6B63;&#x898F;&#x8868;&#x73FE;&#x3092;&#x9069;&#x7528;&#x3059;&#x308B;&#x3002;
 <ul>
 <li>&#x6700;&#x521D;&#x306E;&#x4E00;&#x6587;&#x5B57;&#x76EE;&#x3060;&#x3051;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3001;<code>Cabin</code>&#x306B;&#x4E0A;&#x66F8;&#x304D;&#x3057;&#x305F;&#x3002;</li>
