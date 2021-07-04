@@ -68,12 +68,12 @@ import re
 - shell 正規表現(uuid 1~2 桁目,3~4 番目抽出し/をつけて,結合するパターン)
 
 ```shell
-gimahirotaka@gimaMacBook WorkSpace % echo $tmp
+user@host WorkSpace % echo $tmp
 920e0776-e998-47d2-aac6-bd8962f3f811
-gimahirotaka@gimaMacBook WorkSpace % reg='s/(([0-9a-f]{2})([0-9a-f]{2})[0-9a-f]{4}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})/\2\/\3\/\1/g'
-gimahirotaka@gimaMacBook WorkSpace % echo  $tmp | sed -r $reg
+user@host WorkSpace % reg='s/(([0-9a-f]{2})([0-9a-f]{2})[0-9a-f]{4}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})/\2\/\3\/\1/g'
+user@host WorkSpace % echo  $tmp | sed -r $reg
 92/0e/920e0776-e998-47d2-aac6-bd8962f3f811
-gimahirotaka@gimaMacBook WorkSpace % pref_tmp=`echo  $tmp | sed -r $reg`
-gimahirotaka@gimaMacBook WorkSpace % echo $pref_tmp
+user@host WorkSpace % pref_tmp=`echo  $tmp | sed -r $reg`
+user@host WorkSpace % echo $pref_tmp
 92/0e/920e0776-e998-47d2-aac6-bd8962f3f811
 ```

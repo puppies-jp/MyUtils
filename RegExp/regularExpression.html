@@ -101,13 +101,13 @@ regexp <span class="token operator">=</span> <span class="token string">&quot;^(
 </pre><ul>
 <li>shell &#x6B63;&#x898F;&#x8868;&#x73FE;(uuid 1~2 &#x6841;&#x76EE;,3~4 &#x756A;&#x76EE;&#x62BD;&#x51FA;&#x3057;/&#x3092;&#x3064;&#x3051;&#x3066;,&#x7D50;&#x5408;&#x3059;&#x308B;&#x30D1;&#x30BF;&#x30FC;&#x30F3;)</li>
 </ul>
-<pre data-role="codeBlock" data-info="shell" class="language-shell">gimahirotaka@gimaMacBook WorkSpace % <span class="token builtin class-name">echo</span> <span class="token variable">$tmp</span>
+<pre data-role="codeBlock" data-info="shell" class="language-shell">user@host WorkSpace % <span class="token builtin class-name">echo</span> <span class="token variable">$tmp</span>
 920e0776-e998-47d2-aac6-bd8962f3f811
-gimahirotaka@gimaMacBook WorkSpace % <span class="token assign-left variable">reg</span><span class="token operator">=</span><span class="token string">&apos;s/(([0-9a-f]{2})([0-9a-f]{2})[0-9a-f]{4}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})/<span class="token entity" title="\2">\2</span>\/<span class="token entity" title="\3">\3</span>\/<span class="token entity" title="\1">\1</span>/g&apos;</span>
-gimahirotaka@gimaMacBook WorkSpace % <span class="token builtin class-name">echo</span>  <span class="token variable">$tmp</span> <span class="token operator">|</span> <span class="token function">sed</span> -r <span class="token variable">$reg</span>
+user@host WorkSpace % <span class="token assign-left variable">reg</span><span class="token operator">=</span><span class="token string">&apos;s/(([0-9a-f]{2})([0-9a-f]{2})[0-9a-f]{4}([-][0-9a-f]{4}){3}[-][0-9a-f]{12})/<span class="token entity" title="\2">\2</span>\/<span class="token entity" title="\3">\3</span>\/<span class="token entity" title="\1">\1</span>/g&apos;</span>
+user@host WorkSpace % <span class="token builtin class-name">echo</span>  <span class="token variable">$tmp</span> <span class="token operator">|</span> <span class="token function">sed</span> -r <span class="token variable">$reg</span>
 <span class="token number">92</span>/0e/920e0776-e998-47d2-aac6-bd8962f3f811
-gimahirotaka@gimaMacBook WorkSpace % <span class="token assign-left variable">pref_tmp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">echo</span>  $tmp <span class="token operator">|</span> <span class="token function">sed</span> -r $reg<span class="token variable">`</span></span>
-gimahirotaka@gimaMacBook WorkSpace % <span class="token builtin class-name">echo</span> <span class="token variable">$pref_tmp</span>
+user@host WorkSpace % <span class="token assign-left variable">pref_tmp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">echo</span>  $tmp <span class="token operator">|</span> <span class="token function">sed</span> -r $reg<span class="token variable">`</span></span>
+user@host WorkSpace % <span class="token builtin class-name">echo</span> <span class="token variable">$pref_tmp</span>
 <span class="token number">92</span>/0e/920e0776-e998-47d2-aac6-bd8962f3f811
 </pre></div></body></html>
     </div>
