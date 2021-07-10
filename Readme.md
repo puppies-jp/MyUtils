@@ -30,6 +30,5 @@ MyUtil % tree ./
 ---
 
 - リリース予定内容
-  - firewall,iptables 周り
   - tensorflow 周り
   - Cpp 系(簡単に調べたことをまとめとく)
