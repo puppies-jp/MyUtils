@@ -88,6 +88,45 @@ iptables -t filter -A INPUT -p tcp -j ACCEPT
 </blockquote>
 </li>
 </ul>
+<h3 class="mume-header" id="%E8%A8%AD%E5%AE%9A%E3%81%AE%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95" ebook-toc-level-3 heading="&amp;#x8A2D;&amp;#x5B9A;&amp;#x306E;&amp;#x78BA;&amp;#x8A8D;&amp;#x65B9;&amp;#x6CD5;">&#x8A2D;&#x5B9A;&#x306E;&#x78BA;&#x8A8D;&#x65B9;&#x6CD5;</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code>iptables [&#x30B5;&#x30D6;&#x30B3;&#x30DE;&#x30F3;&#x30C9;] [&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;]
+</code></pre><table>
+<thead>
+<tr>
+<th style="text-align:left">&#x30B5;&#x30D6;&#x30B3;&#x30DE;&#x30F3;&#x30C9;</th>
+<th style="text-align:left">&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-L, --list [CHAIN]</td>
+<td style="text-align:left">&#x30C1;&#x30A7;&#x30A4;&#x30F3; CHAIN&#xFF08;&#x7701;&#x7565;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x3059;&#x3079;&#x3066;&#xFF09;&#x306E;&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x4E00;&#x89A7;&#x8868;&#x793A;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x30D1;&#x30E9;&#x30E1;&#x30FC;&#x30BF;</th>
+<th style="text-align:left">&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-v, --verbose</td>
+<td style="text-align:left">&#x8A73;&#x7D30;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;</td>
+</tr>
+<tr>
+<td style="text-align:left">-n, --numeric</td>
+<td style="text-align:left">&#x540D;&#x524D;&#x89E3;&#x6C7A;&#x305B;&#x305A; IP &#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3084;&#x30DD;&#x30FC;&#x30C8;&#x3092;&#x6570;&#x5024;&#x3067;&#x51FA;&#x529B;&#x3059;&#x308B;</td>
+</tr>
+<tr>
+<td style="text-align:left">-x, --exact</td>
+<td style="text-align:left">&#x6B63;&#x78BA;&#x306A;&#x6570;&#x5024;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</td>
+</tr>
+</tbody>
+</table>
 <h3 class="mume-header" id="%E7%94%A8%E8%AA%9E%E3%81%AA%E3%81%A9%E3%81%AE%E4%B8%80%E8%A6%A7" ebook-toc-level-3 heading="&amp;#x7528;&amp;#x8A9E;&amp;#x306A;&amp;#x3069;&amp;#x306E;&amp;#x4E00;&amp;#x89A7;">&#x7528;&#x8A9E;&#x306A;&#x3069;&#x306E;&#x4E00;&#x89A7;</h3>
 
 <table>
@@ -100,15 +139,19 @@ iptables -t filter -A INPUT -p tcp -j ACCEPT
 <tbody>
 <tr>
 <td style="text-align:left">filter</td>
-<td style="text-align:left">&#x4E00;&#x822C;&#x7684;&#x306A;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30C6;&#x30FC;&#x30D6;&#x30EB;</td>
+<td style="text-align:left">&#x4E00;&#x822C;&#x7684;&#x306A;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30C6;&#x30FC;&#x30D6;&#x30EB; &#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x901A;&#x904E;&#x3084;&#x906E;&#x65AD;&#x3068;&#x3044;&#x3063;&#x305F;&#x5236;&#x5FA1;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;&#x901A;&#x5E38;&#x307B;&#x3068;&#x3093;&#x3069;&#x306E;&#x8A2D;&#x5B9A;&#x306F;&#x3053;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x306B;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;</td>
 </tr>
 <tr>
 <td style="text-align:left">nat</td>
-<td style="text-align:left">&#x30DE;&#x30B9;&#x30AB;&#x30EC;&#x30FC;&#x30C9;&#x306A;&#x3069;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B;&#x30C6;&#x30FC;&#x30D6;&#x30EB;</td>
+<td style="text-align:left">&#x30DE;&#x30B9;&#x30AB;&#x30EC;&#x30FC;&#x30C9;&#x306A;&#x3069;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B;&#x30C6;&#x30FC;&#x30D6;&#x30EB; &#x9001;&#x4FE1;&#x5148;&#x3084;&#x9001;&#x4FE1;&#x5143;&#x3068;&#x3044;&#x3063;&#x305F;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x308B;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;&#x5404;&#x901A;&#x4FE1;&#x3092;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x4E0A;&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x3078;&#x632F;&#x308A;&#x5206;&#x3051;&#x308B;&#x30EB;&#x30FC;&#x30BF;&#x30FC;&#x3068;&#x3057;&#x3066;&#x6A5F;&#x80FD;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</td>
 </tr>
 <tr>
 <td style="text-align:left">mangle</td>
-<td style="text-align:left">&#x3053;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3068; Quality of Service &#x306A;&#x3069;&#x304C;&#x8A2D;&#x5B9A;&#x53EF;&#x80FD;</td>
+<td style="text-align:left">&#x3053;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3068; Quality of Service &#x306A;&#x3069;&#x304C;&#x8A2D;&#x5B9A;&#x53EF;&#x80FD; TOS &#x306F;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x51E6;&#x7406;&#x306E;&#x512A;&#x5148;&#x5EA6;&#x4ED8;&#x3051;&#x3092;&#x884C;&#x3044;&#x3001;&#x901A;&#x4FE1;&#x54C1;&#x8CEA;&#x3092;&#x5236;&#x5FA1;&#x3059;&#x308B;&#x969B;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">Raw</td>
+<td style="text-align:left">&#x7528;&#x9014;&#x306F; mangle &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x306E;&#x3088;&#x3046;&#x306B;&#x7279;&#x5B9A;&#x306E;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306B;&#x30DE;&#x30FC;&#x30AF;&#x3092;&#x4ED8;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x304C;&#x3001;Raw &#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3067;&#x306F;&#x8FFD;&#x8DE1;&#x3092;&#x9664;&#x5916;&#x3059;&#x308B;&#x3088;&#x3046;&#x30DE;&#x30FC;&#x30AF;&#x3092;&#x4ED8;&#x3051;&#x307E;&#x3059;&#x3002;&#x3064;&#x307E;&#x308A;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x901A;&#x4FE1;&#x3092;&#x30D5;&#x30A1;&#x30A4;&#x30A2;&#x30A6;&#x30A9;&#x30FC;&#x30EB;&#x3067;&#x51E6;&#x7406;&#x305B;&#x305A;&#x306B;&#x4ED6;&#x306E;&#x6A5F;&#x6750;&#x3078;&#x901A;&#x3057;&#x305F;&#x308A;&#x3068;&#x3044;&#x3063;&#x305F;&#x7D4C;&#x8DEF;&#x5236;&#x5FA1;&#x3059;&#x308B;&#x5834;&#x5408;&#x306B;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;</td>
 </tr>
 </tbody>
 </table>
@@ -168,9 +211,48 @@ iptables -t filter -A INPUT -p tcp -j ACCEPT
 </tr>
 </tbody>
 </table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">parameter</th>
+<th style="text-align:left">&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-s (--source)</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x9001;&#x4FE1;&#x5143;&#x3092;&#x6307;&#x5B9A;&#x3002;&#x7279;&#x5B9A;&#x306E; IP&#xFF08;192.168.0.1&#xFF09;&#x3084;&#x7BC4;&#x56F2;&#xFF08;192.168.0.0/24&#xFF09;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">-d (--destination)</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x5B9B;&#x5148;&#x3092;&#x6307;&#x5B9A;&#x3002;&#x6307;&#x5B9A;&#x65B9;&#x6CD5;&#x306F;-s &#x3068;&#x540C;&#x3058;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">-p (--protocol)</td>
+<td style="text-align:left">&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x308B;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30C8;&#x30B3;&#x30EB;&#x3002; &#x6307;&#x5B9A;&#x3067;&#x304D;&#x308B;&#x30D7;&#x30ED;&#x30C8;&#x30B3;&#x30EB;&#x306F;&#x3001; tcp&#x3001;udp&#x3001;icmp&#x3001;all &#x306E;&#x3044;&#x305A;&#x308C;&#x304B; 1 &#x3064;&#x304B;&#x3001;&#x6570;&#x5024;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">-i (--in-interface)</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x3092;&#x53D7;&#x4FE1;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x306A;&#x308B;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#x540D;&#x3002;eth0&#x3001;eth1 &#x306A;&#x3069;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">-o (--out-interface)</td>
+<td style="text-align:left">&#x9001;&#x4FE1;&#x5148;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#x540D;&#x3092;&#x6307;&#x5B9A;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">-j (--jump)</td>
+<td style="text-align:left">&#x30BF;&#x30FC;&#x30B2;&#x30C3;&#x30C8;&#xFF08;ACCEPT&#x3001;DROP&#x3001;REJECT&#xFF09;&#x3092;&#x6307;&#x5B9A;</td>
+</tr>
+</tbody>
+</table>
 <h3 class="mume-header" id="%E4%BD%BF%E7%94%A8%E4%BE%8B" ebook-toc-level-3 heading="&amp;#x4F7F;&amp;#x7528;&amp;#x4F8B;">&#x4F7F;&#x7528;&#x4F8B;</h3>
 
-<pre data-role="codeBlock" data-info class="language-"><code>#!/bin/bash
+<pre data-role="codeBlock" data-info class="language-"><code># &#x30DD;&#x30FC;&#x30C8;80&#x3067;&#x53D7;&#x4FE1;&#x3057;&#x305F;TCP&#x306E;&#x53D7;&#x4FE1;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x3092;&#x7834;&#x68C4;
+iptables -A INPUT -p tcp --dport 80 -j DROP
+
+# IP&#x30DE;&#x30B9;&#x30AB;&#x30EC;&#x30FC;&#x30C9;&#x306E;&#x6307;&#x5B9A;
+iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
+</code></pre><pre data-role="codeBlock" data-info class="language-"><code>#!/bin/bash
 
 # &#x8A2D;&#x5B9A;&#x3092;&#x30AF;&#x30EA;&#x30A2;
 iptables -F
