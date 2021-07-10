@@ -141,4 +141,118 @@ iptables-restore < /etc/myiptables-set
 
 ## <a name=firewall>firewall-cmd</a>
 
+- ルールについて
+
+  - ランタイムルール(揮発性)
+    - メモリ上に保存されるルール。
+      firewalld をリスタートすると消える。
+  - パーマネントルール
+    - ファイル(/etc/firewalld/zones 配下)に保存されるルール。
+      firewalld をリスタートすると、ファイルからルールが読み込まれメモリに展開される。
+
+- この markdown について
+  - firewall-cmd は下記のような位置付けである。
+    では、なぜ firewall-cmd を使うのか、zone 設定ができるから(おそらく iptables でもできる)
+  - ここでは、Firewall の zone について記述をしていこうと思う
+
+```
+       CentOS7         Ubuntu16.04        openSUSE(Leap 42.3)
+  +--------------+    +------------+    +---------------------+   -*-
+  | firewall-cmd |    |     ufw    |    |    SUSEfirewall2    |    |
+  +--------------+    +------------+    +---------------------+    |
+                                                                 ユーザ空間
+  +-----------------------------------------------------------+    |
+  |                     iptables command                      |    |
+  +-----------------------------------------------------------+   -*-
+
+  +-----------------------------------------------------------+   -*-
+  |                                                           |    |
+  |                    OS(Netfilter)                          |  カーネル空間
+  |                                                           |    |
+  +-----------------------------------------------------------+   -*-
+```
+
+### ゾーンについて
+
+- デフォルトゾーンの確認方法(--get-default-zone)
+
+> firewall-cmd --get-default-zone #(default は public である。)
+
+- デフォルトゾーンの変更方法(--set-default-zone)
+
+```
+デフォルトのゾーンをtrustedに変更する。
+[root@server ~]# firewall-cmd --set-default-zone=trusted
+success
+
+デフォルトのゾーンを確認する。trustedに変更されたことがわかる。
+[root@server ~]# firewall-cmd --get-default-zone
+trusted
+
+12345番ポートをアクセス可能に設定する。
+[root@server ~]# firewall-cmd --add-port=12345/tcp
+success
+
+trustedゾーンの状態を確認する。12345番ポートがアクセス可能になったことがわかる(★印)。
+[root@server ~]# firewall-cmd --zone=trusted --list-all
+trusted (active)
+  target: ACCEPT
+  icmp-block-inversion: no
+  interfaces: eth0
+  sources:
+  services:
+  ports: ★12345/tcp
+  protocols:
+  masquerade: no
+  forward-ports:
+  sourceports:
+  icmp-blocks:
+  rich rules:
+```
+
+- ゾーンの状態を確認する方法(--list-all-zones)
+
+```
+# 全てのゾーンの状態確認
+firewall-cmd --list-all-zones
+# 特定ゾーンの状態確認
+firewall-cmd --zone=public --list-all
+```
+
+- ゾーンに属するインタフェースの表示、変更方法
+
+```
+publicゾーンにeth0,eth1の2つのインタフェースが存在することがわかる。
+[root@server ~]# firewall-cmd --get-active-zones
+public
+  interfaces: eth0 eth1
+
+eth1をhomeゾーンに変更する。(※パーマメントではない)
+[root@server ~]# firewall-cmd --zone=home --change-interface=eth1
+The interface is under control of NetworkManager, setting zone to 'home'.
+success
+
+eth0がpublicゾーン、eth1がhomeゾーンに所属することがわかる。
+[root@server ~]# firewall-cmd --get-active-zones
+home
+  interfaces: eth1
+public
+  interfaces: eth0
+```
+
+- Nic のゾーンを永続的に変更するには...
+
+```
+# /etc/sysconfig/network-scripts/ifcfg-<NIC名> に対して
+# ZONE=<ゾーン名> を追加してnetworkのreload
+systemctl restart network
+```
+
+- 参考
+
+  - https://qiita.com/hana_shin/items/bd9ba363ba06882e1fab
+  - https://qiita.com/miyase256/items/1dd937f1c6d9341e5635
+
+---
+
 [To top](#head)
