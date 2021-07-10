@@ -77,3 +77,26 @@ user@host WorkSpace % pref_tmp=`echo  $tmp | sed -r $reg`
 user@host WorkSpace % echo $pref_tmp
 92/0e/920e0776-e998-47d2-aac6-bd8962f3f811
 ```
+
+---
+
+## 正規表現便利な使い方メモ
+
+- grep で抽出していない行も出力したいとき
+  - 検索条件に$を or 条件でつける(先頭を無条件で抽出した状態)
+
+```
+user@host html % grep --color -E '$|(^state:(.*)$|^(\[|\{).*(\]|\}))$' tmp.txt
+hoge
+header
+state:hogehoge
+
+{"a":1,"b":2}
+```
+
+- tail でリアルタイムに出力された文字を正規表現で grep する。
+  ※`--line-buffered`がないと表示が流れない
+
+```
+ tail -f tmp.txt | grep --line-buffered  --color -E '$|(^state:(.*)$|^(\[|\{).*(\]|\}))$'
+```

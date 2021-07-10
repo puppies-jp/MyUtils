@@ -109,7 +109,28 @@ user@host WorkSpace % <span class="token builtin class-name">echo</span>  <span 
 user@host WorkSpace % <span class="token assign-left variable">pref_tmp</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">echo</span>  $tmp <span class="token operator">|</span> <span class="token function">sed</span> -r $reg<span class="token variable">`</span></span>
 user@host WorkSpace % <span class="token builtin class-name">echo</span> <span class="token variable">$pref_tmp</span>
 <span class="token number">92</span>/0e/920e0776-e998-47d2-aac6-bd8962f3f811
-</pre></div></body></html>
+</pre><hr>
+<h2 class="mume-header" id="%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E4%BE%BF%E5%88%A9%E3%81%AA%E4%BD%BF%E3%81%84%E6%96%B9%E3%83%A1%E3%83%A2" ebook-toc-level-2 heading="&amp;#x6B63;&amp;#x898F;&amp;#x8868;&amp;#x73FE;&amp;#x4FBF;&amp;#x5229;&amp;#x306A;&amp;#x4F7F;&amp;#x3044;&amp;#x65B9;&amp;#x30E1;&amp;#x30E2;">&#x6B63;&#x898F;&#x8868;&#x73FE;&#x4FBF;&#x5229;&#x306A;&#x4F7F;&#x3044;&#x65B9;&#x30E1;&#x30E2;</h2>
+
+<ul>
+<li>grep &#x3067;&#x62BD;&#x51FA;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x884C;&#x3082;&#x51FA;&#x529B;&#x3057;&#x305F;&#x3044;&#x3068;&#x304D;
+<ul>
+<li>&#x691C;&#x7D22;&#x6761;&#x4EF6;&#x306B;$&#x3092; or &#x6761;&#x4EF6;&#x3067;&#x3064;&#x3051;&#x308B;(&#x5148;&#x982D;&#x3092;&#x7121;&#x6761;&#x4EF6;&#x3067;&#x62BD;&#x51FA;&#x3057;&#x305F;&#x72B6;&#x614B;)</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info class="language-"><code>user@host html % grep --color -E &apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos; tmp.txt
+hoge
+header
+state:hogehoge
+
+{&quot;a&quot;:1,&quot;b&quot;:2}
+</code></pre><ul>
+<li>tail &#x3067;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x305F;&#x6587;&#x5B57;&#x3092;&#x6B63;&#x898F;&#x8868;&#x73FE;&#x3067; grep &#x3059;&#x308B;&#x3002;<br>
+&#x203B;<code>--line-buffered</code>&#x304C;&#x306A;&#x3044;&#x3068;&#x8868;&#x793A;&#x304C;&#x6D41;&#x308C;&#x306A;&#x3044;</li>
+</ul>
+<pre data-role="codeBlock" data-info class="language-"><code> tail -f tmp.txt | grep --line-buffered  --color -E &apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos;
+</code></pre></div></body></html>
     </div>
   </body>
 </html>
