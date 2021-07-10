@@ -27,12 +27,184 @@
 </ol>
 </li>
 </ul>
-<p><a href="https://puppies-jp.github.io/MyUtils/">home</a></p>
+<p><a href="file:///Users/gimahirotaka/Desktop/WorkSpace/MyUtil/FireWall">iptables</a><br>
+<a href="#firewall">filewall-cmd</a><br>
+<a href="https://puppies-jp.github.io/MyUtils/">home</a></p>
 <hr>
-<h2 class="mume-header" id="iptables" ebook-toc-level-2 heading="iptables">iptables</h2>
+<h2 class="mume-header" id="a-nameiptablesiptablesa" ebook-toc-level-2 heading="&lt;a name=&quot;iptables&quot; href=&quot;file:///Users/gimahirotaka/Desktop/WorkSpace/MyUtil/FireWall&quot;&gt;iptables&lt;/a&gt;"><a name="iptables" href="file:///Users/gimahirotaka/Desktop/WorkSpace/MyUtil/FireWall">iptables</a></h2>
 
+<ul>
+<li>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x4F8B;</li>
+</ul>
+<pre data-role="codeBlock" data-info class="language-"><code>iptables &#x3008;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3009;&#x3008;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3009; &#x3008;&#x30DE;&#x30C3;&#x30C1;&#x3009;&#x3008;&#x30BF;&#x30FC;&#x30B2;&#x30C3;&#x30C8;&#x3009;
+
+# INPUT &#x306B;&#x5BFE;&#x3057;&#x3066;&#x30D7;&#x30ED;&#x30C8;&#x30B3;&#x30EB;&#x304C; tcp &#x306E;&#x3082;&#x306E;&#x3092;&#x8A31;&#x53EF;&#x3059;&#x308B;&#x8A2D;&#x5B9A;
+# option&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x7279;&#x5B9A;&#x306E;IP&#x306E;&#x307F;&#x3092;&#x5F3E;&#x3044;&#x305F;&#x308A;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x3002;
+iptables -t filter -A INPUT -p tcp -j ACCEPT
+</code></pre><ul>
+<li>
+<p>Chain &#x3068;&#x306F;</p>
+<ul>
+<li>INPUT&#x3001;OUTPUT&#x3001;FORWARD &#x3068;&#x3044;&#x3046;&#xFF13;&#x3064;&#x306E;&#x7D4C;&#x8DEF;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x901A;&#x904E;&#x3055;&#x305B;&#x308B;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x3002;&#x3053;&#x306E;&#xFF13;&#x3064;&#x306E;&#x7D4C;&#x8DEF;&#x3092;&#x300C;&#x30C1;&#x30A7;&#x30A4;&#x30F3;&#x300D;&#x3068;&#x547C;&#x3076;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>target</p>
+<ul>
+<li>target &#x306B;&#x95A2;&#x3057;&#x3066;&#x306F;&#x8A31;&#x53EF;&#x3059;&#x308B;&#x306E;&#x304B;&#x62D2;&#x5426;&#x3059;&#x308B;&#x306E;&#x304B;&#x30ED;&#x30B0;&#x3092;&#x3068;&#x308B;&#x306E;&#x304B;&#xFF1F;&#x306A;&#x3069;&#x3002;&#x6761;&#x4EF6;&#x306B;&#x30DE;&#x30C3;&#x30C1;&#x3059;&#x308B;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x51E6;&#x7406;&#x306E;&#x884C;&#x304D;&#x5148;&#x3092;&#x3069;&#x3046;&#x3057;&#x307E;&#x3059;&#x304B;&#xFF1F;&#x3068;&#x3044;&#x3046;&#x610F;&#x5473;&#x3060;&#x3002;</li>
+</ul>
+</li>
+<li>
+<p>prot</p>
+<ul>
+<li>prot &#x306F;&#x30D7;&#x30ED;&#x30C8;&#x30B3;&#x30EB;&#x306E;&#x7A2E;&#x985E;</li>
+</ul>
+</li>
+<li>
+<p>opt</p>
+<ul>
+<li>opt &#x306F;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x8A18;&#x8FF0;</li>
+</ul>
+</li>
+<li>
+<p>source</p>
+<ul>
+<li>source &#x306F;&#x3069;&#x3053;&#x304B;&#x3089;&#x6765;&#x305F;&#x306E;&#x304B;</li>
+</ul>
+</li>
+<li>
+<p>destination</p>
+<ul>
+<li>destination &#x306F;&#x3069;&#x3053;&#x3078;&#x5411;&#x3046;&#x304B;&#xFF1F;</li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="%E3%83%AB%E3%83%BC%E3%83%AB%E3%81%AE%E9%81%A9%E7%94%A8%E9%A0%86%E5%BA%8F" ebook-toc-level-3 heading="&amp;#x30EB;&amp;#x30FC;&amp;#x30EB;&amp;#x306E;&amp;#x9069;&amp;#x7528;&amp;#x9806;&amp;#x5E8F;">&#x30EB;&#x30FC;&#x30EB;&#x306E;&#x9069;&#x7528;&#x9806;&#x5E8F;</h3>
+
+<ul>
+<li>iptables &#x306F;&#x4E0A;&#x304B;&#x3089;&#x9806;&#x756A;&#x306B;&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x9069;&#x5FDC;&#x3059;&#x308B;&#x3002;&#x4F8B;&#x3048;&#x3070;&#x3001;&#x4E0B;&#x8A18;&#x306E;&#x3053;&#x306E;&#x9805;&#x76EE;&#x3092;&#x771F;&#x3063;&#x5148;&#x306B;&#x8A2D;&#x5B9A;&#x3059;&#x308B;&#x3068;&#x5168;&#x3066;&#x306E;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x30ED;&#x30B0;&#x304C;&#x3068;&#x3089;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;
+<blockquote>
+<p>LOG all -- anywhere anywhere LOG level warning prefix &quot;drop_packet: &quot;</p>
+</blockquote>
+</li>
+</ul>
+<h3 class="mume-header" id="%E7%94%A8%E8%AA%9E%E3%81%AA%E3%81%A9%E3%81%AE%E4%B8%80%E8%A6%A7" ebook-toc-level-3 heading="&amp;#x7528;&amp;#x8A9E;&amp;#x306A;&amp;#x3069;&amp;#x306E;&amp;#x4E00;&amp;#x89A7;">&#x7528;&#x8A9E;&#x306A;&#x3069;&#x306E;&#x4E00;&#x89A7;</h3>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">table</th>
+<th style="text-align:left">&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">filter</td>
+<td style="text-align:left">&#x4E00;&#x822C;&#x7684;&#x306A;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30C6;&#x30FC;&#x30D6;&#x30EB;</td>
+</tr>
+<tr>
+<td style="text-align:left">nat</td>
+<td style="text-align:left">&#x30DE;&#x30B9;&#x30AB;&#x30EC;&#x30FC;&#x30C9;&#x306A;&#x3069;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B;&#x30C6;&#x30FC;&#x30D6;&#x30EB;</td>
+</tr>
+<tr>
+<td style="text-align:left">mangle</td>
+<td style="text-align:left">&#x3053;&#x306E;&#x30C6;&#x30FC;&#x30D6;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3068; Quality of Service &#x306A;&#x3069;&#x304C;&#x8A2D;&#x5B9A;&#x53EF;&#x80FD;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">chain</th>
+<th style="text-align:left">&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">INPUT</td>
+<td style="text-align:left">&#x5165;&#x3063;&#x3066;&#x304F;&#x308B;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306B;&#x95A2;&#x3057;&#x3066;</td>
+</tr>
+<tr>
+<td style="text-align:left">OUTPUT</td>
+<td style="text-align:left">&#x51FA;&#x3066;&#x3086;&#x304F;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306B;&#x95A2;&#x3057;&#x3066;</td>
+</tr>
+<tr>
+<td style="text-align:left">FORWARD</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306E;&#x8EE2;&#x9001;</td>
+</tr>
+<tr>
+<td style="text-align:left">PREROUTING</td>
+<td style="text-align:left">&#x53D7;&#x4FE1;&#x6642;&#x306B;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3092;&#x5909;&#x63DB;</td>
+</tr>
+<tr>
+<td style="text-align:left">POSTROUTING</td>
+<td style="text-align:left">&#x9001;&#x4FE1;&#x6642;&#x306B;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3092;&#x5909;&#x63DB;</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">target</th>
+<th style="text-align:left">&#x8AAC;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ACCEPT</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x3092;&#x8A31;&#x53EF;</td>
+</tr>
+<tr>
+<td style="text-align:left">DROP</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x3092;&#x7834;&#x68C4;&#x3002;&#x5FDC;&#x7B54;&#x3092;&#x8FD4;&#x3055;&#x306A;&#x3044;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">REJECT</td>
+<td style="text-align:left">&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x3092;&#x62D2;&#x5426;&#x3057;&#x3001;ICMP &#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;&#x3092;&#x8FD4;&#x4FE1;</td>
+</tr>
+<tr>
+<td style="text-align:left">REDIRECT</td>
+<td style="text-align:left">&#x7279;&#x5B9A;&#x30DD;&#x30FC;&#x30C8;&#x306B;&#x30EA;&#x30C0;&#x30A4;&#x30EC;&#x30AF;&#x30C8;</td>
+</tr>
+</tbody>
+</table>
+<h3 class="mume-header" id="%E4%BD%BF%E7%94%A8%E4%BE%8B" ebook-toc-level-3 heading="&amp;#x4F7F;&amp;#x7528;&amp;#x4F8B;">&#x4F7F;&#x7528;&#x4F8B;</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code>#!/bin/bash
+
+# &#x8A2D;&#x5B9A;&#x3092;&#x30AF;&#x30EA;&#x30A2;
+iptables -F
+iptables -X
+# &#x30DD;&#x30EA;&#x30B7;&#x30FC;&#x8A2D;&#x5B9A;
+iptables -P INPUT   DROP # default&#x3067;input&#x3092;drop&#x3059;&#x308B;
+iptables -P FORWARD DROP&#x3000;# default&#x3067;forward&#x3092;drop&#x3059;&#x308B;
+iptables -P OUTPUT  ACCEPT # default&#x3067;output&#x306F;&#x901A;&#x3059;
+
+# &#x307B;&#x304B;ACCEPT&#x3084;DROP&#x306A;&#x3069;&#x30E6;&#x30FC;&#x30B6;&#x306B;&#x3088;&#x308B;&#x8A2D;&#x5B9A;
+
+#&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30EB;&#x30FC;&#x30D7;&#x30D0;&#x30C3;&#x30AF;&#x306E;&#x63A5;&#x7D9A;&#x3092;&#x8A31;&#x53EF;&#x3059;&#x308B;&#x3002;(lo&#x306F;loopback&#x306E;&#x7565;)
+iptables -A INPUT -i lo -j ACCEPT
+#&#x3053;&#x3061;&#x3089;&#x304B;&#x3089;&#x6C42;&#x3081;&#x305F;&#x30D1;&#x30B1;&#x30C3;&#x30C8;&#x306F;&#x8A31;&#x53EF;&#x3059;&#x308B;&#x3002;
+# (ESTABLISHED,RELATED&#x306A;&#x63A5;&#x7D9A;&#x306F;&#x8A31;&#x53EF;&#x3059;&#x308B;&#x3002;)
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#&#x305D;&#x308C;&#x4EE5;&#x5916;&#x306F;&#x30ED;&#x30B0;&#x3092;&#x6B8B;&#x3059;&#x3002;
+iptables -A INPUT -j LOG --log-prefix &quot;drop_packet:&quot;
+</code></pre><h3 class="mume-header" id="%E8%A8%AD%E5%AE%9A%E3%81%AE%E4%BF%9D%E5%AD%98%E6%96%B9%E6%B3%95%E7%92%B0%E5%A2%83%E3%81%AB%E3%82%88%E3%82%8A%E7%95%B0%E3%81%AA%E3%82%8B" ebook-toc-level-3 heading="&amp;#x8A2D;&amp;#x5B9A;&amp;#x306E;&amp;#x4FDD;&amp;#x5B58;&amp;#x65B9;&amp;#x6CD5;(&amp;#x203B;&amp;#x74B0;&amp;#x5883;&amp;#x306B;&amp;#x3088;&amp;#x308A;&amp;#x7570;&amp;#x306A;&amp;#x308B;)">&#x8A2D;&#x5B9A;&#x306E;&#x4FDD;&#x5B58;&#x65B9;&#x6CD5;(&#x203B;&#x74B0;&#x5883;&#x306B;&#x3088;&#x308A;&#x7570;&#x306A;&#x308B;)</h3>
+
+<pre data-role="codeBlock" data-info class="language-"><code># iptables-save&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3044;&#x3001;&#x6A19;&#x6E96;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;&#x3082;&#x306E;&#x3092;&#x30EA;&#x30C0;&#x30A4;&#x30EC;&#x30AF;&#x30C8;&#x3067;&#x4FDD;&#x5B58;
+iptables-save &gt; /etc/myiptables-set
+# &#x4E0B;&#x8A18;&#x5165;&#x529B;&#x3067;&#x5FA9;&#x5143;
+iptables-restore &lt; /etc/myiptables-set
+</code></pre><ul>
+<li>&#x53C2;&#x8003;
+<ul>
+<li><a href="https://qiita.com/Tocyuki/items/6d90a1ec4dd8e991a1ce">https://qiita.com/Tocyuki/items/6d90a1ec4dd8e991a1ce</a></li>
+<li><a href="https://eng-entrance.com/linux-firewall">https://eng-entrance.com/linux-firewall</a></li>
+</ul>
+</li>
+</ul>
 <hr>
-<h2 class="mume-header" id="firewall-cmd" ebook-toc-level-2 heading="firewall-cmd">firewall-cmd</h2>
+<h2 class="mume-header" id="a-namefirewallfirewall-cmda" ebook-toc-level-2 heading="&lt;a name=&quot;firewall&quot; href=&quot;file:///Users/gimahirotaka/Desktop/WorkSpace/MyUtil/FireWall&quot;&gt;firewall-cmd&lt;/a&gt;"><a name="firewall" href="file:///Users/gimahirotaka/Desktop/WorkSpace/MyUtil/FireWall">firewall-cmd</a></h2>
 
 </div></body></html>
     </div>

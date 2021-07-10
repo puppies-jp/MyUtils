@@ -4,12 +4,105 @@
   1. 接続の可否などを分けたいシステムの network 設定を行う。
   2. 開発したシステムのテストで接続の可否を切り替えてテストを行うときに設定をすることでソースコードを変更することなく切り替えることができる。
 
+[iptables]()
+[filewall-cmd](#firewall)
 [home](https://puppies-jp.github.io/MyUtils/)
 
 ---
 
-## iptables
+## <a name=iptables>iptables</a>
+
+- コマンド例
+
+```
+iptables 〈テーブル〉〈コマンド〉 〈マッチ〉〈ターゲット〉
+
+# INPUT に対してプロトコルが tcp のものを許可する設定
+# optionを追加することで特定のIPのみを弾いたりすることができる。
+iptables -t filter -A INPUT -p tcp -j ACCEPT
+```
+
+- Chain とは
+
+  - INPUT、OUTPUT、FORWARD という３つの経路に対して、それぞれ通過させるパケットのルールを設定する。この３つの経路を「チェイン」と呼ぶ。
+
+- target
+  - target に関しては許可するのか拒否するのかログをとるのか？など。条件にマッチするパケットの処理の行き先をどうしますか？という意味だ。
+- prot
+  - prot はプロトコルの種類
+- opt
+  - opt はオプションが記述
+- source
+  - source はどこから来たのか
+- destination
+
+  - destination はどこへ向うか？
+
+### ルールの適用順序
+
+- iptables は上から順番にルールを適応する。例えば、下記のこの項目を真っ先に設定すると全てのパケットログがとられてしまう
+  > LOG all -- anywhere anywhere LOG level warning prefix "drop_packet: "
+
+### 用語などの一覧
+
+| table  | 説明                                                   |
+| :----- | :----------------------------------------------------- |
+| filter | 一般的なフィルタテーブル                               |
+| nat    | マスカレードなどを記述するテーブル                     |
+| mangle | このテーブルを使うと Quality of Service などが設定可能 |
+
+| chain       | 説明                       |
+| :---------- | :------------------------- |
+| INPUT       | 入ってくるパケットに関して |
+| OUTPUT      | 出てゆくパケットに関して   |
+| FORWARD     | パケットの転送             |
+| PREROUTING  | 受信時にアドレスを変換     |
+| POSTROUTING | 送信時にアドレスを変換     |
+
+| target   | 説明                                    |
+| :------- | :-------------------------------------- |
+| ACCEPT   | パケットを許可                          |
+| DROP     | パケットを破棄。応答を返さない。        |
+| REJECT   | パケットを拒否し、ICMP メッセージを返信 |
+| REDIRECT | 特定ポートにリダイレクト                |
+
+### 使用例
+
+```
+#!/bin/bash
+
+# 設定をクリア
+iptables -F
+iptables -X
+# ポリシー設定
+iptables -P INPUT   DROP # defaultでinputをdropする
+iptables -P FORWARD DROP　# defaultでforwardをdropする
+iptables -P OUTPUT  ACCEPT # defaultでoutputは通す
+
+# ほかACCEPTやDROPなどユーザによる設定
+
+#ローカルループバックの接続を許可する。(loはloopbackの略)
+iptables -A INPUT -i lo -j ACCEPT
+#こちらから求めたパケットは許可する。
+# (ESTABLISHED,RELATEDな接続は許可する。)
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+#それ以外はログを残す。
+iptables -A INPUT -j LOG --log-prefix "drop_packet:"
+```
+
+### 設定の保存方法(※環境により異なる)
+
+```
+# iptables-saveコマンドを使い、標準出力されるものをリダイレクトで保存
+iptables-save > /etc/myiptables-set
+# 下記入力で復元
+iptables-restore < /etc/myiptables-set
+```
+
+- 参考
+  - https://qiita.com/Tocyuki/items/6d90a1ec4dd8e991a1ce
+  - https://eng-entrance.com/linux-firewall
 
 ---
 
-## firewall-cmd
+## <a name=firewall>firewall-cmd</a>
