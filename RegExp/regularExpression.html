@@ -119,18 +119,18 @@ user@host WorkSpace % <span class="token builtin class-name">echo</span> <span c
 </ul>
 </li>
 </ul>
-<pre data-role="codeBlock" data-info class="language-"><code>user@host html % grep --color -E &apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos; tmp.txt
+<pre data-role="codeBlock" data-info="shell" class="language-shell">user@host html % <span class="token function">grep</span> --color -E <span class="token string">&apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos;</span> tmp.txt
 hoge
 header
 state:hogehoge
 
-{&quot;a&quot;:1,&quot;b&quot;:2}
-</code></pre><ul>
+<span class="token punctuation">{</span><span class="token string">&quot;a&quot;</span>:1,<span class="token string">&quot;b&quot;</span>:2<span class="token punctuation">}</span>
+</pre><ul>
 <li>tail &#x3067;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x305F;&#x6587;&#x5B57;&#x3092;&#x6B63;&#x898F;&#x8868;&#x73FE;&#x3067; grep &#x3059;&#x308B;&#x3002;<br>
 &#x203B;<code>--line-buffered</code>&#x304C;&#x306A;&#x3044;&#x3068;&#x8868;&#x793A;&#x304C;&#x6D41;&#x308C;&#x306A;&#x3044;</li>
 </ul>
-<pre data-role="codeBlock" data-info class="language-"><code> tail -f tmp.txt | grep --line-buffered  --color -E &apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos;
-</code></pre></div></body></html>
+<pre data-role="codeBlock" data-info="shell" class="language-shell"> <span class="token function">tail</span> -f tmp.txt <span class="token operator">|</span> <span class="token function">grep</span> --line-buffered  --color -E <span class="token string">&apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos;</span>
+</pre></div></body></html>
     </div>
   </body>
 </html>

@@ -85,7 +85,7 @@ user@host WorkSpace % echo $pref_tmp
 - grep で抽出していない行も出力したいとき
   - 検索条件に$を or 条件でつける(先頭を無条件で抽出した状態)
 
-```
+```shell
 user@host html % grep --color -E '$|(^state:(.*)$|^(\[|\{).*(\]|\}))$' tmp.txt
 hoge
 header
@@ -97,6 +97,6 @@ state:hogehoge
 - tail でリアルタイムに出力された文字を正規表現で grep する。
   ※`--line-buffered`がないと表示が流れない
 
-```
+```shell
  tail -f tmp.txt | grep --line-buffered  --color -E '$|(^state:(.*)$|^(\[|\{).*(\]|\}))$'
 ```
