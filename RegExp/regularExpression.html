@@ -119,7 +119,7 @@ user@host WorkSpace % <span class="token builtin class-name">echo</span> <span c
 </ul>
 </li>
 </ul>
-<pre data-role="codeBlock" data-info="shell" class="language-shell">user@host html % <span class="token function">grep</span> --color -E <span class="token string">&apos;$|(^state:(.*)$|^(\[|\{).*(\]|\}))$&apos;</span> tmp.txt
+<pre data-role="codeBlock" data-info="shell" class="language-shell">user@host html % <span class="token function">grep</span> --color -E <span class="token string">&apos;(^|^(\[|\{).*(\]|\})$)&apos;</span> tmp.txt
 hoge
 header
 state:hogehoge
