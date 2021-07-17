@@ -16,7 +16,7 @@
 
 - gdb,pdb
 
-  - 端的に言うと debuger
+  - 端的に言うと linux のコンソールで使える debuger
 
   - gdb
 
