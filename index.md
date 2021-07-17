@@ -9,14 +9,13 @@
 ```shell
 MyUtil % tree ./
 ├── FireWall
-│   ├── Firewall.html
 │   └── Firewall.md
 ├── Python # python関連をまとめるディレクトリ
 │   └── pandas # pandasをまとめるディレクトリ
 │       └── pandas_tuto.md
-├── README.md
+├── index.md
+├── keywords.md
 └── RegExp # 正規表現関連をまとめたディレクトリ
-    ├── regularExpression.html
     └── regularExpression.md
 
 4 directories, 9 files
@@ -26,6 +25,7 @@ MyUtil % tree ./
 
 - [pandas リンク](https://puppies-jp.github.io/MyUtils/Python/pandas/pandas_tuto)
 - [正規表現リンク](https://puppies-jp.github.io/MyUtils/RegExp/regularExpression)
+- [keyword 備忘録](https://puppies-jp.github.io/MyUtils/keywords)
 
 ---
 
