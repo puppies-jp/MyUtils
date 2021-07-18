@@ -10,15 +10,19 @@
 MyUtil % tree ./
 ├── FireWall
 │   └── Firewall.md
-├── Python # python関連をまとめるディレクトリ
-│   └── pandas # pandasをまとめるディレクトリ
+├── Python
+│   └── pandas
+│       ├── matplot.md
 │       └── pandas_tuto.md
+├── RegExp
+│   └── regularExpression.md
+├── _config.yml
 ├── index.md
 ├── keywords.md
-└── RegExp # 正規表現関連をまとめたディレクトリ
-    └── regularExpression.md
+└── tensorflow
+    └── tensorflow.md
 
-4 directories, 9 files
+5 directories, 8 files
 ```
 
 - [Firewall リンク](https://puppies-jp.github.io/MyUtils/FireWall/Firewall)
