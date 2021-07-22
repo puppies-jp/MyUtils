@@ -38,12 +38,12 @@ _ = plt.xticks([i for i in range(len(colums))],colums,rotation=-90)
 
 ## <a name=subplot>subplot</a>
 
-````
+```python
 fig, axes = plt.subplots(1, 5, figsize=(20,20))
 axes = axes.flatten()
 for img, ax in zip( images_arr, axes):
     ax.imshow(img, cmap="gray") # imshow で画像の表示ができる
     ax.axis('off')
 plt.tight_layout()
-plt.show()```
-````
+plt.show()
+```
