@@ -37,3 +37,4 @@ MyUtil % tree ./
 - リリース予定内容
   - tensorflow 周り
   - Cpp 系(簡単に調べたことをまとめとく)
+  - how to use gdb ?
