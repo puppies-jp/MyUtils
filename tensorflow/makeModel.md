@@ -7,8 +7,10 @@
 - [モデル作成方法](#makeModel)
   - 学習モデルの input_shape,layer,output_shape を決定する。
 - [コンパイル方法](#compileModel)
+
   - 学習モデルの optimizer,loss 関数、監視する metric を決定する。
-  ***
+
+---
 
 ## <a name=makeModel>モデル作成方法</a>
 
