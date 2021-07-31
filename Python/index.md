@@ -1,4 +1,5 @@
 # python index
 
-- [pandas](pandas/pandas_tuto)
-- [matplot](pandas/matplot)
+- データサイエンス関連
+  - [pandas](pandas/pandas_tuto)
+  - [matplot](pandas/matplot)
