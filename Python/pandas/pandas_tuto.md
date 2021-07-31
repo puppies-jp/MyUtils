@@ -1,4 +1,4 @@
-## Pandas how to Kaggle,ML メモ
+# Pandas how to Kaggle,ML メモ
 
 > このメモは Kaggle or ML にてデータクレンジングを行うためのメモです。
 
