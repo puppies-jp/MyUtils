@@ -11,6 +11,8 @@
 
 ---
 
+- 作成例
+
 ```cmake
 cmake_minimum_required(VERSION 3.19)
 # set(CMAKE_VERBOSE_MAKEFILE 1) # for debug cmake
@@ -29,7 +31,7 @@ add_definitions("-DBOOST_LOG_DYN_LINK")
 
 # if文によりオプションを分岐させる
 if(TEST)
-    # cmake ../src -DTEST=ON #これでTESTのフラグがTrueになる。
+    🌟 cmake ../src -DTEST=ON #これでTESTのフラグがTrueになる。
     message(" [preprocessor]test option build   ")
     # ここでg++でのフラグを設定を追加する。
     add_definitions(-DTEST)
@@ -73,3 +75,23 @@ add_executable(main_exe.out main.cpp)
 target_link_libraries(main_exe.out sub blogger)
 
 ```
+
+```sh
+gimahirotaka@gimaMacBook build % cmake ../src -DTEST=off
+ [preprocessor]no   option build
+---------------------------------------------------
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/gimahirotaka/Desktop/WorkSpace2/cpp_boost/build
+gimahirotaka@gimaMacBook build % cmake ../src -DTEST=on
+---------------------------------------------------
+ [preprocessor]test option build
+---------------------------------------------------
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/gimahirotaka/Desktop/WorkSpace2/cpp_boost/build
+gimahirotaka@gimaMacBook build %
+
+```
+
+---
