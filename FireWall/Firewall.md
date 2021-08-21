@@ -4,8 +4,8 @@
   1. 接続の可否などを分けたいシステムの network 設定を行う。
   2. 開発したシステムのテストで接続の可否を切り替えてテストを行うときに設定をすることでソースコードを変更することなく切り替えることができる。
 
-[iptables]()
-[filewall-cmd](#firewall)
+[iptables](#iptables)  
+[filewall-cmd](#firewall)  
 [home](https://puppies-jp.github.io/MyUtils/)
 
 ---
