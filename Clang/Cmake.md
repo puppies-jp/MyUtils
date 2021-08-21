@@ -77,20 +77,20 @@ target_link_libraries(main_exe.out sub blogger)
 ```
 
 ```sh
-gimahirotaka@gimaMacBook build % cmake ../src -DTEST=off
+user@MacBook build % cmake ../src -DTEST=off
  [preprocessor]no   option build
 ---------------------------------------------------
 -- Configuring done
 -- Generating done
--- Build files have been written to: .//cpp_boost/build
-gimahirotaka@gimaMacBook build % cmake ../src -DTEST=on
+-- Build files have been written to: ./cpp_boost/build
+user@MacBook build % cmake ../src -DTEST=on
 ---------------------------------------------------
  [preprocessor]test option build
 ---------------------------------------------------
 -- Configuring done
 -- Generating done
--- Build files have been written to: .//cpp_boost/build
-gimahirotaka@gimaMacBook build %
+-- Build files have been written to: ./cpp_boost/build
+user@MacBook build %
 
 ```
 
