@@ -82,14 +82,14 @@ gimahirotaka@gimaMacBook build % cmake ../src -DTEST=off
 ---------------------------------------------------
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/gimahirotaka/Desktop/WorkSpace2/cpp_boost/build
+-- Build files have been written to: .//cpp_boost/build
 gimahirotaka@gimaMacBook build % cmake ../src -DTEST=on
 ---------------------------------------------------
  [preprocessor]test option build
 ---------------------------------------------------
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/gimahirotaka/Desktop/WorkSpace2/cpp_boost/build
+-- Build files have been written to: .//cpp_boost/build
 gimahirotaka@gimaMacBook build %
 
 ```
