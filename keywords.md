@@ -53,4 +53,4 @@
 
   - [MicroSoft 公式リンク](https://docs.microsoft.com/ja-jp/cpp/mfc/mfc-desktop-applications?view=msvc-160)
   - 以下サンプルになりそうなリンクを貼ってく
-    - [ VC++ Windows Programming (阪大の方の備忘録)(便利そう)](http://www-higashi.ist.osaka-u.ac.jp/~k-maeda/vcpp/)
+    - [VC++ Windows Programming (阪大の方の備忘録)(便利そう)](http://www-higashi.ist.osaka-u.ac.jp/~k-maeda/vcpp/)
