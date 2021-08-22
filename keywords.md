@@ -45,8 +45,12 @@
   - C#などでメモリリークが起こらないよう自動でリソースの解放が行われる仕組み
   - やっていることは知っているけど名前が出てこないので、メモっとく
 
+---
+
 - MFC(Microsoft Foundation Class) C++ 関連
 
   > シンプルなデスクトップ アプリケーションの作成にも使用できますが、複数のコントロールを使用する複雑なユーザー インターフェイスを開発する必要がある場合に最も役立ちます。 MFC を使用すると、Office スタイルのユーザー インターフェイスを持つアプリケーションを作成できます。
 
   - [MicroSoft 公式リンク](https://docs.microsoft.com/ja-jp/cpp/mfc/mfc-desktop-applications?view=msvc-160)
+  - 以下サンプルになりそうなリンクを貼ってく
+    - [ VC++ Windows Programming (阪大の方の備忘録)(便利そう)](http://www-higashi.ist.osaka-u.ac.jp/~k-maeda/vcpp/)
