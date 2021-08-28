@@ -94,7 +94,7 @@ iptables [サブコマンド] [パラメータ]
 
 ### 使用例
 
-```
+```shell
 # ポート80で受信したTCPの受信パケットを破棄
 iptables -A INPUT -p tcp --dport 80 -j DROP
 
@@ -102,7 +102,7 @@ iptables -A INPUT -p tcp --dport 80 -j DROP
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
 ```
 
-```
+```shell
 #!/bin/bash
 
 # 設定をクリア
@@ -126,7 +126,7 @@ iptables -A INPUT -j LOG --log-prefix "drop_packet:"
 
 ### 設定の保存方法(※環境により異なる)
 
-```
+```shell
 # iptables-saveコマンドを使い、標準出力されるものをリダイレクトで保存
 iptables-save > /etc/myiptables-set
 # 下記入力で復元
@@ -212,7 +212,7 @@ trusted (active)
 
 - ゾーンの状態を確認する方法(--list-all-zones)
 
-```
+```shell
 # 全てのゾーンの状態確認
 firewall-cmd --list-all-zones
 # 特定ゾーンの状態確認
@@ -221,7 +221,7 @@ firewall-cmd --zone=public --list-all
 
 - ゾーンに属するインタフェースの表示、変更方法
 
-```
+```shell
 publicゾーンにeth0,eth1の2つのインタフェースが存在することがわかる。
 [root@server ~]# firewall-cmd --get-active-zones
 public
@@ -242,7 +242,7 @@ public
 
 - Nic のゾーンを永続的に変更するには...
 
-```
+```shell
 # /etc/sysconfig/network-scripts/ifcfg-<NIC名> に対して
 # ZONE=<ゾーン名> を追加してnetworkのreload
 systemctl restart network
