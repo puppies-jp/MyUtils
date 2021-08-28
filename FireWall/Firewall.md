@@ -14,7 +14,7 @@
 
 - コマンド例
 
-```
+```shell
 iptables 〈テーブル〉〈コマンド〉 〈マッチ〉〈ターゲット〉
 
 # INPUT に対してプロトコルが tcp のものを許可する設定
@@ -45,7 +45,7 @@ iptables -t filter -A INPUT -p tcp -j ACCEPT
 
 ### 設定の確認方法
 
-```
+```shell
 iptables [サブコマンド] [パラメータ]
 ```
 
@@ -155,7 +155,7 @@ iptables-restore < /etc/myiptables-set
     では、なぜ firewall-cmd を使うのか、zone 設定ができるから(おそらく iptables でもできる)
   - ここでは、Firewall の zone について記述をしていこうと思う
 
-```
+```shell
        CentOS7         Ubuntu16.04        openSUSE(Leap 42.3)
   +--------------+    +------------+    +---------------------+   -*-
   | firewall-cmd |    |     ufw    |    |    SUSEfirewall2    |    |
@@ -180,7 +180,7 @@ iptables-restore < /etc/myiptables-set
 
 - デフォルトゾーンの変更方法(--set-default-zone)
 
-```
+```shell
 デフォルトのゾーンをtrustedに変更する。
 [root@server ~]# firewall-cmd --set-default-zone=trusted
 success
