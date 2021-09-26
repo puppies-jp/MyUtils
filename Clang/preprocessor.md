@@ -87,7 +87,7 @@ void check_preprocesser2()
     1. プリプロセッサ出力: foo.i (C の場合) / foo.ii (C++ の場合)
     2. アセンブリコード: foo.s
 
-    - cmake ならこんな感じ
+- cmake ならこんな感じ
 
 ```cmake
 ifneq ($(SAVETEMPS),)
