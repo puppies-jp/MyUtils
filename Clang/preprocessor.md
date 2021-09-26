@@ -70,6 +70,35 @@ void check_preprocesser2()
 [Check]end Preprocesser
 ```
 
+### 使い方 その 3
+
+- 条件付きコンパイル
+
+```cpp
+#ifdef マクロ名  // #ifndefとすることもできる
+    処理２
+#else
+    処理３
+#endif
+```
+
+- 例
+
+```cpp
+// build時にTESTがoptionでついていると、
+// ifdefを通り、この部分を読み込まれてhogeが"base2"へ置き換わる。
+#ifdef TEST
+#include "sub/base2.cpp"
+#define hoge base2
+#endif
+
+~~ 略 ~~
+
+// #undef hogeとすることで
+// ここより後に定義を持ち出さないようにすることができる。
+#undef hoge
+```
+
 ---
 
 ## プリプロセッサ展開結果を出力する
