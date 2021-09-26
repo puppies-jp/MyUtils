@@ -70,9 +70,7 @@ void check_preprocesser2()
 [Check]end Preprocesser
 ```
 
-### 使い方 その 3
-
-- 条件付きコンパイル
+### 使い方 その 3 条件付きコンパイル
 
 ```cpp
 #ifdef マクロ名  // #ifndefとすることもできる
@@ -97,6 +95,23 @@ void check_preprocesser2()
 // #undef hogeとすることで
 // ここより後に定義を持ち出さないようにすることができる。
 #undef hoge
+```
+
+- `cmake`だとこんなん感じ -DTEST の on/off をつける。
+  (付けない場合、デフォルトで else に移る)
+
+```shell
+cmake ../src -DTEST=on
+```
+
+```cmake
+if(TEST)
+    message("|[preprocessor]test option build   ")
+    # ここでTESTを定義する。
+    add_definitions(-DTEST)
+else()
+    message("|[preprocessor]no   option build"  )
+endif()
 ```
 
 ---
