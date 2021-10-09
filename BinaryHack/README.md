@@ -16,5 +16,13 @@
 
 ```cpp
 void *__builtin_return_address(unsigned int LEVEL)
-関数のリターンアドレス(関数の呼び出しもとを返す関数。)
+    関数のリターンアドレス(関数の呼び出しもとを返す関数。)
+```
+
+### TLS(thread local storage)を使う
+
+gcc にはどのスレッドでも独立して同名の変数を使うことができる領域を作成、保持できる。その領域を TLS(thread local storage)という。
+
+```
+
 ```
