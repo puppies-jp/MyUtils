@@ -3,7 +3,8 @@
 - この MarkDown は system,os における用語をまとめるための備忘録である。
 
 ---
-- clz  count leading zero の略(先頭何ビットが0かというやつ)
+
+- clz count leading zero の略(先頭何ビットが 0 かというやつ)
 
 - マングリング
 
