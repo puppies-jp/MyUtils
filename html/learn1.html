@@ -18,8 +18,6 @@
 
 
  let tab=document.getElementById("tab1")
- tab.innerHTML += "hoge<div id=\"Inn\"></div>"
- let tab2=document.getElementById("Inn")
 
  var config_path = 'test.xml';
  let doc = "";
@@ -28,6 +26,8 @@
      complete:function(e){
     var data = e.responseText;
     // text -> xml 変換
+    tab.innerHTML += "hoge<div id=\"Inn\"></div>"
+ let tab2=document.getElementById("Inn")
 
     var dom_parser = new DOMParser();
     var document_obj = dom_parser.parseFromString(data, "text/xml");
