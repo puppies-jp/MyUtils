@@ -36,19 +36,21 @@
     var document_obj = dom_parser.parseFromString(data, "text/xml");
     doc = document_obj;
     let arr =document_obj.documentElement.getElementsByTagName("book")
-    tab2.innerHTML += "<table>"+
-        "<tr><th>title</th><th>auth</th></tr>";
+    tab2.innerHTML += "<table id=\"table1\"></table>";
+
+    let table1 = document.getElementById("table1");
+
+    table1.innerHTML += "<tr><th>title</th><th>auth</th></tr>"
     for(i=0;i<arr.length ; i++)
     {
         element = arr[i]
-        tab2.innerHTML +=
+        table1.innerHTML +=
         "<tr>" +
             "<td>"+element.getElementsByTagName("title")[0].innerHTML+"</td>"+
             "<td>"+element.getElementsByTagName("author")[0].innerHTML+"</td>"+
         "</tr>";
 
     }
-    tab2.innerHTML += "</table>";
 }
 }
 )
