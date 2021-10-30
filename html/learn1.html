@@ -17,7 +17,9 @@
 
 
  let tab=document.getElementById("tab1")
- tab.innerHTML += "hoge"
+ tab.innerHTML += "hoge<div id=\"Inn\"></div>"
+ let tab2=document.getElementById("Inn")
+
  var config_path = 'test.xml';
  let doc = "";
 
@@ -29,6 +31,14 @@
     var dom_parser = new DOMParser();
     var document_obj = dom_parser.parseFromString(data, "text/xml");
     doc = document_obj;
+    var arr =document_obj.documentElement.getElementsByTagName("book")
+    arr.forEach(element => {
+        tab2.innerHTML += 
+
+        element.getAttribute("title")+
+        element.getAttribute("author")
+        
+    });
      }
     }
 )
