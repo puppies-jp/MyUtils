@@ -5,4 +5,8 @@
             <title>吾輩は猫である</title>
             <author>夏目 漱石</author>
         </book>
+        <book>
+            <title>相対性理論</title>
+            <author>アインシュタイン</author>
+        </book>
     </doc>
