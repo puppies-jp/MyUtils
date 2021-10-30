@@ -36,8 +36,8 @@
     {
         element = arr[i]
         tab2.innerHTML += 
-        element.getAttribute("title")+
-        element.getAttribute("author");
+        element.getElementsByTagName("title")[0].innerHTML+
+        element.getElementsByTagName("author")[0].innerHTML;
 
     }
 }
