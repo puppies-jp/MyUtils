@@ -11,9 +11,26 @@
 </body>
 
 </html>
-<script>
+<script src="https://code.jquery.com/jquery-1.9.1.js">
+</script>
+<script type="text/javascript">
+
 
  let tab=document.getElementById("tab1")
  tab.innerHTML += "hoge"
+ var config_path = 'test.xml';
+ let doc = "";
+
+ $.ajax(config_path,{
+     complete:function(e){
+    var data = e.responseText;
+    // text -> xml 変換
+
+    var dom_parser = new DOMParser();
+    var document_obj = dom_parser.parseFromString(data, "text/xml");
+    doc = document_obj;
+     }
+    }
+)
 
 </script>
