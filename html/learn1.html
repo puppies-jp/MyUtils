@@ -33,13 +33,15 @@
     var document_obj = dom_parser.parseFromString(data, "text/xml");
     doc = document_obj;
     let arr =document_obj.documentElement.getElementsByTagName("book")
-    tab2.innerHTML += "<table>"
+    tab2.innerHTML += "<table>"+
+        "<tr><th>title</th><th>auth</th><tr>"
     for(i=0;i<arr.length ; i++)
     {
         element = arr[i]
-        tab2.innerHTML +="<tr>" +
-        "<th>"+element.getElementsByTagName("title")[0].innerHTML+"</th>"+
-        "<th>"+element.getElementsByTagName("author")[0].innerHTML+"</th>"+
+        tab2.innerHTML +=
+        "<tr>" +
+            "<td>"+element.getElementsByTagName("title")[0].innerHTML+"</td>"+
+            "<td>"+element.getElementsByTagName("author")[0].innerHTML+"</td>"+
         "</tr>"
 
     }
