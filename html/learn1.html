@@ -31,12 +31,11 @@
     var dom_parser = new DOMParser();
     var document_obj = dom_parser.parseFromString(data, "text/xml");
     doc = document_obj;
-    var arr =document_obj.documentElement.getElementsByTagName("book")
+    let arr =document_obj.documentElement.getElementsByTagName("book")
     arr.forEach(element => {
         tab2.innerHTML += 
-
         element.getAttribute("title")+
-        element.getAttribute("author")
+        element.getAttribute("author");
         
     });
      }
