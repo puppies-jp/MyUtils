@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
-<link rel="stylesheet" href="chart.css">    
+<style>
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+th,
+td {
+    padding: 5px;
+    border: 1px solid #333;    
+}
+th {
+    background-color: #2c88d9;
+    color: #fff;
+}
+</style>
+
 <head>
     <meta charset="utf-8">
     　<title>html ファイルIO入門 </title>
@@ -17,7 +33,6 @@
     <script>
         let files;
         let reader = new FileReader();
-        let readText;
         const parser = new window.DOMParser();
            
       function handleFileSelect(evt) {
@@ -31,17 +46,10 @@
                       f.lastModified.toPrecision(), '</li>');
                       reader.onload = function(ev){
                          //テキストエリアに表示する
-                        readText = reader.result;
-                        addTable(document.getElementById('res'));
+                        var readText = reader.result;
+                        addTable(readText,document.getElementById('res'));
                         console.debug("made table")
 
-                        const blb = new Blob([readText],{type:"text/plain"})
-                        document.getElementById('download').innerHTML = 
-                        "<a id=\"downloadFile\">"+"text"+"</a>";
-                        var link= document.getElementById("downloadFile");
-                        link.href= 
-                        URL.createObjectURL(blb);
-                        link.download = 'download.xml';
 
                     }        
                     reader.readAsText(f);
@@ -55,22 +63,45 @@
 </body>
 
 <script>
+function addDownloadLink(readText)
+{
+    const blb = new Blob([readText],{type:"text/plain"})
+    document.getElementById('download').innerHTML = 
+                        "<a id=\"downloadFile\">"+"text"+"</a>";     
+    var link= document.getElementById("downloadFile");                    
+    link.href= URL.createObjectURL(blb);                    
+    link.download = 'download.csv';
 
-function addTable(tab2){
+}
+
+function addTable(readText,tab2){
     var arr = parser.parseFromString( readText , "text/xml").getElementsByTagName("book");
     tab2.innerHTML += "<table id=\"table1\"></table>";
     console.debug(tab2.innerHTML)
     let table1 = document.getElementById("table1");
-    table1.innerHTML += "<tr><th>title</th><th>year</th><th>auth</th></tr>"
+    table1.innerHTML += 
+    "<tr>"+
+        "<th>year</th>"+
+        "<th>auth</th>"+
+        "<th>title</th>"+
+    "</tr>"
+    var output = "";
     for(i=0;i<arr.length ; i++)
     {
         element = arr[i]
+        title = element.getElementsByTagName("title")[0].innerHTML
+        year = element.getElementsByTagName("title")[0].getAttribute("year")
+        author = element.getElementsByTagName("author")[0].innerHTML
+
+
         table1.innerHTML +=
-        "<tr>" +
-            "<td>"+element.getElementsByTagName("title")[0].innerHTML+"</td>"+
-            "<td>"+element.getElementsByTagName("title")[0].getAttribute("year")+"</td>"+
-            "<td>"+element.getElementsByTagName("author")[0].innerHTML+"</td>"+
+            "<tr>" +
+                "<td>"+year+"</td>"+
+                "<td>"+author+"</td>"+
+                "<td>"+title+"</td>"+
             "</tr>";
+            output += `${year},${title},${author}\n`
         }
+        addDownloadLink(output)
 }
 </script>
