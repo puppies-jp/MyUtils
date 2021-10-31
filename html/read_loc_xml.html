@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<link rel="stylesheet" href="chart.css">    
+<head>
+    <meta charset="utf-8">
+    　<title>html ファイルIO入門 </title>
+
+</head>
+<body>
+    <div>test</div>
+
+
+    <input type="file" id="files" name="files[]" multiple />
+    <output id="list"></output>
+    <div id="download"></div>
+    <div id="res"></div>
+    <script>
+        let files;
+        let reader = new FileReader();
+        let readText;
+        const parser = new window.DOMParser();
+           
+      function handleFileSelect(evt) {
+        files = evt.target.files; // FileList object
+    
+        // files is a FileList of File objects. List some properties.
+        var output = [];
+        for (var i = 0, f; f = files[i]; i++) {
+            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                      f.size, ' bytes, last modified: ',
+                      f.lastModified.toPrecision(), '</li>');
+                      reader.onload = function(ev){
+                         //テキストエリアに表示する
+                        readText = reader.result;
+                        addTable(document.getElementById('res'));
+                        console.debug("made table")
+
+                        const blb = new Blob([readText],{type:"text/plain"})
+                        document.getElementById('download').innerHTML = 
+                        "<a id=\"downloadFile\">"+"text"+"</a>";
+                        var link= document.getElementById("downloadFile");
+                        link.href= 
+                        URL.createObjectURL(blb);
+                        link.download = 'download.xml';
+
+                    }        
+                    reader.readAsText(f);
+                }
+                document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+
+      }
+
+      document.getElementById('files').addEventListener('change', handleFileSelect, false);
+      </script>        
+</body>
+
+<script>
+
+function addTable(tab2){
+    var arr = parser.parseFromString( readText , "text/xml").getElementsByTagName("book");
+    tab2.innerHTML += "<table id=\"table1\"></table>";
+    console.debug(tab2.innerHTML)
+    let table1 = document.getElementById("table1");
+    table1.innerHTML += "<tr><th>title</th><th>year</th><th>auth</th></tr>"
+    for(i=0;i<arr.length ; i++)
+    {
+        element = arr[i]
+        table1.innerHTML +=
+        "<tr>" +
+            "<td>"+element.getElementsByTagName("title")[0].innerHTML+"</td>"+
+            "<td>"+element.getElementsByTagName("title")[0].getAttribute("year")+"</td>"+
+            "<td>"+element.getElementsByTagName("author")[0].innerHTML+"</td>"+
+            "</tr>";
+        }
+}
+</script>
