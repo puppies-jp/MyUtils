@@ -47,6 +47,7 @@ MyUtil % tree ./
 - [keyword 備忘録](keywords)
 - [html](html)
   - [learn1](html/learn1)
+  - [read_file](html/read_loc_xml)
     - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
 
 ---
