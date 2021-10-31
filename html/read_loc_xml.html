@@ -104,12 +104,7 @@ th {
 </body>
 
 <script>
-
-
-function sleep(ms, generator) {
-  setTimeout(() => generator.next(), ms);
-}
-
+let xmlObj;
 function addDownloadLink(readText)
 {
     const blb = new Blob([readText],{type:"text/plain"})
@@ -122,7 +117,11 @@ function addDownloadLink(readText)
 }
 
 function addTable(readText,tab2){
-    var arr = parser.parseFromString( readText , "text/xml").getElementsByTagName("book");
+
+    // debug用変数
+    xmlObj = parser.parseFromString( readText , "text/xml").getElementsByTagName("book");
+    let arr = xmlObj
+
     tab2.innerHTML = "<table id=\"table1\"></table>";
     console.debug(tab2.innerHTML)
     let table1 = document.getElementById("table1");
