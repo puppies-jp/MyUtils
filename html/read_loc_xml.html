@@ -54,23 +54,25 @@ th {
     <output id="list"></output>
     <div id="download"></div>
     <div id="res"></div>
+    <div id="loader"></div>
     <div id="load"></div>
     <script>
         let files;
         let reader = new FileReader();
         const parser = new window.DOMParser();
+        let loader = document.getElementById('loader');
 
         let load = document.getElementById('load');
         load.onclick = function() {
             if(load.className != "loading-icon")
             {
                 load.className = "loading-icon"
-                load.innerText = "loading"
+                loader.innerText = "read xml?"
             }
             else
             {
                 load.className = ""
-                load.innerText = ""
+                loader.innerText = ""
             }
         }
            
@@ -88,18 +90,15 @@ th {
                          //テキストエリアに表示する
                         var readText = reader.result;
                         addTable(readText,document.getElementById('res'));
-                        console.debug("made table")
-
-
                     }        
                     reader.readAsText(f);
                 }
                 document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
 
-                load.onclick()
       }
 
-      document.getElementById('files').onclick = load.onclick
+      document.getElementById('files').onmouseover = load.onclick
+      document.getElementById('files').onmouseleave = load.onclick
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
       </script>        
 </body>
