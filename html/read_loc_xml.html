@@ -54,6 +54,7 @@ th {
     <output id="list"></output>
     <div id="download"></div>
     <div id="res"></div>
+    <table id="table1"></table>
     <div id="loader"></div>
     <div id="load"></div>
     <script>
@@ -122,10 +123,9 @@ function addTable(readText,tab2){
     xmlObj = parser.parseFromString( readText , "text/xml").getElementsByTagName("book");
     let arr = xmlObj
 
-    tab2.innerHTML = "<table id=\"table1\"></table>";
     console.debug(tab2.innerHTML)
     let table1 = document.getElementById("table1");
-    table1.innerHTML += 
+    table1.innerHTML = 
     `<tr>
         <th>year</th>
         <th>author</th>
