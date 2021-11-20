@@ -90,3 +90,38 @@ int main()
 }
 
 ```
+
+### unwind,backtrace を使う。
+
+- `unwind`とは一般的にスタックの巻き戻し処理を意味する。
+
+  - `libunwind` というライブラリを使用することで、実装ができる。
+  - つまり、スタックフレームから `main -> fun1 -> func2 -> func3` と呼び出し、`func3` 内で巻き戻しを実行することで、`func2,func1` の return を通らずに main 関数に戻ることができたりする。
+
+  - また、スタックフレームを辿るため、関数のバックトレースを作成する事もできる。
+
+```cpp
+#include <libunwind.h>
+
+using namespace std;
+
+// backtraceの出力を呼びたい箇所でこの関数を実行すると、取得できる。
+void show_bachtrace()
+{
+    unw_cursor_t cursor;
+    unw_context_t uc;
+    unw_word_t ip, sp;
+    char buf[4096];
+    unsigned long offset;
+
+    unw_getcontext(&uc);
+    unw_init_local(&cursor, &uc);
+    while (unw_step(&cursor) > 0)
+    {
+        unw_get_reg(&cursor, UNW_REG_IP, &ip);
+        unw_get_reg(&cursor, UNW_REG_SP, &sp);
+        unw_get_proc_name(&cursor, buf, 4095, &offset);
+        printf("0x%8x <%s+0x%x>\n", (long)ip, buf, offset);
+    }
+}
+```
