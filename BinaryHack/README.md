@@ -91,7 +91,7 @@ int main()
 
 ```
 
-### unwind,backtrace を使う。
+### unwind,backtrace を使う
 
 - `unwind`とは一般的にスタックの巻き戻し処理を意味する。
 
