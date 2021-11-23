@@ -34,7 +34,7 @@ Thread 0 tls 0 global 2
 Thread 2 tls 2 global 2
 ```
 
-```cpp
+```cpp :btrace.cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -100,7 +100,9 @@ int main()
 
   - また、スタックフレームを辿るため、関数のバックトレースを作成する事もできる。
 
-```cpp
+```cpp :sighandle.cpp
+#include <cstddef>
+#include <iostream>
 #include <libunwind.h>
 
 using namespace std;
@@ -121,7 +123,75 @@ void show_bachtrace()
         unw_get_reg(&cursor, UNW_REG_IP, &ip);
         unw_get_reg(&cursor, UNW_REG_SP, &sp);
         unw_get_proc_name(&cursor, buf, 4095, &offset);
-        printf("0x%8x <%s+0x%x>\n", (long)ip, buf, offset);
+        printf("0x%8lx <%s+0x%lx>\n", (long)ip, buf, offset);
     }
+}
+```
+
+### signal をハンドリングする
+
+```cpp :main.cpp
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <setjmp.h>
+
+#include "btrace.cpp"
+
+#define ALT_STACK_SIZE (64 * 1024)
+
+static sigjmp_buf return_point;
+static void signal_handler(int sig, siginfo_t *sig_info, void *sig_data)
+{
+    printf("catch signal\n");
+    if (sig == SIGSEGV)
+    {
+        show_bachtrace();
+        siglongjmp(return_point, 1);
+    }
+}
+
+static void meaningless_recursive_func()
+{
+    int buff[1024] = {};
+    meaningless_recursive_func();
+}
+
+static void register_signalstack()
+{
+    stack_t newSS, oldSS;
+
+    newSS.ss_sp = malloc(ALT_STACK_SIZE);
+    newSS.ss_size = ALT_STACK_SIZE;
+    newSS.ss_flags = 0;
+    sigaltstack(&newSS, &oldSS);
+}
+
+int main(int argc, char **argv)
+{
+    struct sigaction newAct, oldAct;
+
+    /* 代替シグナルスタック設定 */
+    register_signalstack();
+
+    /* signal handler set */
+    sigemptyset(&newAct.sa_mask);
+    sigaddset(&newAct.sa_mask, SIGSEGV);
+    newAct.sa_sigaction = signal_handler;
+    newAct.sa_flags = SA_SIGINFO | SA_RESTART | SA_ONSTACK;
+
+    sigaction(SIGSEGV, &newAct, &oldAct);
+
+    if (sigsetjmp(return_point, 1) == 0)
+    {
+        meaningless_recursive_func();
+    }
+    else
+    {
+        show_bachtrace();
+        fprintf(stderr, "stack overflow error\n");
+    }
+
+    return 0;
 }
 ```
