@@ -35,7 +35,7 @@ Thread 2 tls 2 global 2
 ```
 
 ```cpp
-// btrace.cpp
+// tls_Check.cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -102,7 +102,7 @@ int main()
   - また、スタックフレームを辿るため、関数のバックトレースを作成する事もできる。
 
 ```cpp
-//sighandle.cpp
+//btrace.cpp
 #include <cstddef>
 #include <iostream>
 #include <libunwind.h>
@@ -132,7 +132,8 @@ void show_bachtrace()
 
 ### signal をハンドリングする
 
-```cpp :main.cpp
+```cpp
+// signal_handler.cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
