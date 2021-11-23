@@ -34,7 +34,8 @@ Thread 0 tls 0 global 2
 Thread 2 tls 2 global 2
 ```
 
-```cpp :btrace.cpp
+```cpp
+// btrace.cpp
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -100,7 +101,8 @@ int main()
 
   - また、スタックフレームを辿るため、関数のバックトレースを作成する事もできる。
 
-```cpp :sighandle.cpp
+```cpp
+//sighandle.cpp
 #include <cstddef>
 #include <iostream>
 #include <libunwind.h>
