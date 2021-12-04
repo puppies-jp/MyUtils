@@ -5,6 +5,8 @@
 1. [プログラムが main()に辿り着くまで](#start)
 2. [共有ライブラリを差し替える(LD_PRELOAD)](#PRELOAD)
 3. [trace 機能](#trace)
+4. [プログラムの起動高速化](#prelink)
+5. [実行中のプロセスにパッチを当てる](#livepatch)
 
 ---
 
@@ -23,3 +25,12 @@
 ## <a name="trace">trace 機能</a>
 
 - システムの trace についてまとめる
+  - strace
+  - ltrace
+  - Jockey
+
+## <a name="prelink">prelink でプログラムの起動を高速化する</a>
+
+## <a name="livepatch">実行中のプロセスにパッチを当てる</a>
+
+- livepatch
