@@ -21,6 +21,7 @@
 ## <a name="unwind">unwind についてまとめる</a>
 
 - コールチェインを制御する。
+  - unwind
 
 ## <a name="trace">trace 機能</a>
 
