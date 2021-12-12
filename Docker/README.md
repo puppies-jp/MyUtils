@@ -8,9 +8,9 @@
   1. [イメージからコンテナを生成して起動(run)](#run)
   1. [コンテナ内でコマンド実行 (exec)](#exec)
   1. [コンテナを停止 (start/stop)](#start_stop)
-  1. コンテナをイメージ化 (commit)
-  1. いらなくなったらコンテナを削除 (rm)
-  1. いらなくなったらイメージを削除 (rmi)
+  1. [コンテナをイメージ化 (commit)](#commit)
+  1. [いらなくなったらイメージ/コンテナを削除 (rmi/rm)](#rm)
+  1. [イメージをファイルに出力/読み込みを行う](#save_load)
 
 - その他よく利用するコマンド
   - 取得済みイメージ一覧 (images)
@@ -105,4 +105,36 @@ docker stop [コンテナ名]
 # 例
 docker start ubuntuCont
 docker stop ubuntuCont
+```
+
+## <a name="commit">コンテナをイメージ化 (commit)</a>
+
+```sh
+# イメージ命名規則
+#<Docker Hubのユーザ名>/イメージ名:[タグ名]
+
+docker commit [コンテナ名] [イメージ名]
+docker commit  ubuntuCont local/ubuntu
+```
+
+## <a name="rm">いらなくなったらイメージ/コンテナを削除 (rmi/rm)</a>
+
+```sh
+# イメージ削除
+docker rmi [イメージ名]
+# コンテナ削除
+docker rm [コンテナ名]
+
+# 例
+docker rmi loc/ubuntu
+docker rm loc/ubuntu
+```
+
+## <a name="save_load">イメージをファイルに出力/読み込みを行う</a>
+
+```sh
+# イメージをファイル出力する
+docker save [イメージ名] -o [ファイル名].tar
+# saveで出力したイメージを読み込む
+docker load -i [ファイル名].tar
 ```
