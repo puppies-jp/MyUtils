@@ -5,9 +5,9 @@
 - 大まかな流れを以下にまとめる
 
   1. Docker Hub からイメージを検索／取得する。(search/pull)
-  1. イメージからコンテナを生成して起動(run)
-  1. コンテナ内でコマンド実行 (exec)
-  1. コンテナを停止 (stop)
+  1. [イメージからコンテナを生成して起動(run)](#run)
+  1. [コンテナ内でコマンド実行 (exec)](#exec)
+  1. [コンテナを停止 (start/stop)](#start_stop)
   1. コンテナをイメージ化 (commit)
   1. いらなくなったらコンテナを削除 (rm)
   1. いらなくなったらイメージを削除 (rmi)
@@ -48,7 +48,7 @@ $ docker pull ubuntsu/ubuntu
 
 - 取得結果を確認する
 
-```
+```sh
 $ docker images
 REPOSITORY               TAG       IMAGE ID       CREATED             SIZE
 docker101tutorial        latest    452eceecfe4f   About an hour ago   28.5MB
@@ -57,7 +57,7 @@ uphy/ubuntu-desktop-jp   latest    3ba68e262397   4 weeks ago         1.34GB
 uphy/ubuntu-desktop-jp   18.04     2f92249dc622   3 years ago         908MB
 ```
 
-## イメージからコンテナを生成して起動(run)
+## <a name="run">イメージからコンテナを生成して起動(run)</a>
 
 - `コンテナを生成して起動` (あくまで生成してから起動していることに注意すること)
 
@@ -84,7 +84,7 @@ docker run -d -p 8080:8080 -v $(pwd):/root/Desktop --name ubuntuCont uphy/ubuntu
 
 ---
 
-## コンテナ内でコマンド実行 (exec)
+## <a name="exec">コンテナ内でコマンド実行 (exec)</a>
 
 ```sh
 docker exec -it [コンテナ名] [コマンド]
@@ -94,7 +94,9 @@ docker exec -it ubuntuCont /bin/bash
 docker exec -it ubuntuCont pwd
 ```
 
-## コンテナを起動/停止する
+## <a name="start_stop">コンテナを起動/停止する</a>
+
+image からコンテナを作成した場合はここで起動、停止を行う
 
 ```sh
 docker start [コンテナ名]
