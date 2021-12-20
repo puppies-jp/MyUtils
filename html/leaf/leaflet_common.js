@@ -20,7 +20,7 @@ const START_ZOOM = 15;
 // 最大のズーム値
 const MAX_ZOOM = 20;
 // 最大のズーム値
-const ICON_FOLDER = "./";
+const ICON_FOLDER = "";
 // アイコンのファイルパス定義
 const ICON_IMAGE = {
     0: "current.jpg",
