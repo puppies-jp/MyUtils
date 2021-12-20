@@ -1,0 +1,105 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="ja">
+<title>Leaflet サンプル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<style>
+    /* ページ全体 */
+    html, body  {
+        width: 100vw;
+        height: 100vh;
+        padding: 0px;
+        margin: 0px;
+    }
+    /* 地図領域（サイズはお好みで） */
+    #map_area {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="leaflet_common.js"></script>
+<script>
+    // 場所情報(仮作成＠博多近辺)
+    var tempPlaceData = [
+        {"id":"1", "lat": 33.59513931435894,  "lng": 130.42419433593753, "name":"地点Ａ"},
+        {"id":"2", "lat": 33.59260123175435,  "lng": 130.41131973266604, "name":"地点Ｂ"},
+        {"id":"3", "lat": 33.59517506146791,  "lng": 130.42694091796878, "name":"地点Ｃ"},
+        {"id":"4", "lat": 33.59653344063089,  "lng": 130.420138835907,   "name":"地点Ｄ"},
+        {"id":"5", "lat": 33.590813804823924, "lng": 130.42249917984012, "name":"地点Ｅ"},
+        {"id":"6", "lat": 33.590849553725455, "lng": 130.4186797142029,  "name":"地点Ｆ"},
+    ];
+
+    // 画面初期表示時
+    window.onload = function(){
+        // 緯度経度取得関数(引数は下記の事後処理)
+        navigator.geolocation.getCurrentPosition(gcpAfterFunc);
+    };
+
+    // 座標取得後の初期処理
+    const gcpAfterFunc = function(position){
+
+        // データ取得関数(可変の場合は、ajax処理等で取ってくる)
+        let placeData = tempPlaceData;
+
+        //緯度経度取得
+        let lat_t = position.coords.latitude;
+        let lng_t = position.coords.longitude;
+
+        //地図表示関数
+        viewMap(lat_t, lng_t);
+
+        // 地図のイベント処理は、このタイミングで指定
+        mapObj.on('click', testfunc);
+
+        // アイコン表示
+        putIconsData(placeData, 1);
+
+        // 現在地のアイコンを表示し、オブジェクトを取得
+        currentIconObj = putIcon(lat_t, lng_t, 0);
+
+    }
+
+    // 渡されたjsonデータのアイコンを表示する(サンプルでは、戻り値での判定は行っていない)
+    const putIconsData = function(jsonData, imgIdx = 0){
+        // 処理されたか
+        let isProcessed = false;
+
+        // インデックスに対する画像がある場合は実行
+        if(ICON_IMAGE[imgIdx]){
+
+            for(var idx in jsonData){
+                // アイコンを地図上に設定、ポップアップで地点名を設定し、オブジェクトとして取得、
+                putIconsObj[idx] = putIcon(jsonData[idx]["lat"], jsonData[idx]["lng"], imgIdx, jsonData[idx]["name"]);
+                // ※ポップアップ表示したい場合やアイコンサイズを変えたい場合は以下のように指定
+                // putIconsObj[idx] = putIcon(jsonData[idx].lat, jsonData[idx].lng, imgIdx, jsonData[idx]["name"], [36, 48]);
+
+                // 実行した場合はtrueとする
+                if(!isProcessed) isProcessed = true;
+            }
+        }
+
+        // ループで処理がされている場合は、trueを返す
+        return isProcessed;
+    }
+
+    // テスト関数
+    const testfunc = function(e){
+
+        let lat_t = e.latlng.lat;
+        let lng_t = e.latlng.lng;
+
+        console.log([lat_t, lng_t]);
+    }
+</script>
+</head>
+<body>
+    <div id="map_area"></div>
+</body>
+</html>
+
