@@ -1,0 +1,16 @@
+.canvas {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 800px;
+  height: 500px;
+  background-color: blanchedalmond;
+}
+
+.aline {
+  width: 5px;
+  height: 5px;
+  background-color: rgba(255, 72, 0, 0.596);
+  color: coral;
+  position: absolute;
+  transform-origin: 0 0 0;
+}

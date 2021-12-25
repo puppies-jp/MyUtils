@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="stylesheet" href="test1.css">
+    <meta charset="utf-8">
+    <title>CSS入門</title>
+
+</head>
+<style>
+    </style>
+
+    <body>
+        <div id=canvas class=canvas>Canvas</div>
+
+        <div id=pText></div>
+
+        <div id=canvas2 class=canvas>Canvas2<div id=tests class=aline></div></div>
+    </body>
+</html>
+
+<script>
+    let can = document.getElementById("canvas")
+    let cons = document.getElementById("pText")
+    let can2 = document.getElementById("canvas2")
+    can.innerHTML += " JavaScrpit"
+
+    let value
+
+    let str
+    let str1
+    let str2 = "\";></div>"
+
+    var documentElement = document.documentElement;
+    
+
+    class clickedLine
+    {
+        X1 = null;
+        Y1 = null;
+        X2 = null;
+        Y2 = null;
+        startTag = "<div class=aline "
+        endTag = "\";></div>"
+
+        constructor(x1,y1){
+            this.X1 =x1;
+            this.Y1 =y1;
+        }
+
+        drawSelf()
+        {
+            return this.startTag+  
+                   "style=\
+                   \"top: "+ this.Y1 +"px;"+
+                   " left: "+this.X1+"px; "+
+                   this.endTag
+        }
+
+        appendPoint(x,y)
+        {
+            this.X2 = x;
+            this.Y2 = y;
+
+            let length =  Math.sqrt(
+                (this.X2-this.X1)**2 
+                +(this.Y2-this.Y1)**2 )
+
+            let angleRad = Math.atan2((this.Y2-this.Y1),(this.X2-this.X1))
+            let angleDeg = Math.round( angleRad* ( 180 / Math.PI ) );
+
+            return this.startTag+  
+                   "style=\
+                   \"top: "+ this.Y1 +"px;"+
+                   "left: "+ this.X1+"px; "+
+                   "width: "+ Math.round(length) +"px;"+
+                   "rotate: " + angleDeg + "deg; "+
+                   this.endTag
+        }
+
+
+    }
+
+    let tmp;
+    function catchPoint1(ev ){
+        px = ev.x
+        str = can.innerHTML
+
+        let scrllY = documentElement.scrollTop
+        tmp = new clickedLine(ev.x,ev.y + scrllY) 
+        can.innerHTML+= tmp.drawSelf()
+
+        value =ev;
+        cons.innerHTML = "[clicked] "+
+        "x: "+  (ev.x - can.offsetLeft) +" "+
+        "y: " +  (ev.y - can.offsetTop)
+
+        can.onclick = catchPoint2
+    }
+
+    function catchPoint2(ev){
+        value =ev;
+        let scrllY = documentElement.scrollTop
+
+        can.innerHTML = str + tmp.appendPoint(ev.x,ev.y+scrllY)
+        cons.innerHTML = "[clicked] "+
+        "x: "+  (ev.x - can.offsetLeft) +" "+
+        "y: " +  (ev.y - can.offsetTop)
+        can.onclick = catchPoint1
+    }
+
+    can.onclick = catchPoint1
+
+</script>
