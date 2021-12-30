@@ -23,7 +23,7 @@ const MAX_ZOOM = 20;
 const ICON_FOLDER = "";
 // アイコンのファイルパス定義
 const ICON_IMAGE = {
-    0: "current.jpg",
+    0: "current.png",
     1: "point.jpg",
 }
 // アイコンのサイズ
