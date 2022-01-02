@@ -15,6 +15,11 @@
         <div id=pText></div>
 
         <div id=canvas2 class=canvas>Canvas2<div id=tests class=aline></div></div>
+        <div id=note class="NoteCover">
+            <div id=canvas3L class=canvasPB>Canvas3</div>
+            <div id=canvas3 class=canvasP>CanvasX</div>
+        </div>
+
     </body>
 </html>
 
@@ -22,7 +27,31 @@
     let can = document.getElementById("canvas")
     let cons = document.getElementById("pText")
     let can2 = document.getElementById("canvas2")
+    let note = document.getElementById("note")
+    let positon = note.getBoundingClientRect()
+
+    let can3 = document.getElementById("canvas3")
+    let can3L = document.getElementById("canvas3L")
+
+    can3L.style.transform= "rotateY(0deg)"
     can.innerHTML += " JavaScrpit"
+
+    can3.addEventListener('animationend', function(e) {
+            if(e.animationName === 'noteRoate') {
+                console.log("animated noteRotate")
+                can3.innerText =""
+                can3.className = "canvasPB"
+                can3.style.animation = "noteRoate2 1s linear 0s";                
+            }
+            else if(e.animationName === 'noteRoate2') {
+                console.log("animated noteRotate2")
+                can3.style.transform = "rotateY(0deg)"
+            }
+          })
+    can3.onclick = (function(ev){
+          console.log("clicked")
+        can3.style.animation = "noteRoate 1s linear 0s ";
+    })
 
     let value
 

@@ -14,3 +14,68 @@
   position: absolute;
   transform-origin: 0 0 0;
 }
+
+.NoteCover {
+  margin-top: 50px;
+  margin-left: 50px;
+  width: 800px;
+  height: 500px;
+  background-color: rgb(0, 0, 0);
+}
+
+.canvasP {
+  margin-top: 00%;
+  margin-left: 50%;
+  width: 49%;
+  height: 100%;
+  background-color: blanchedalmond;
+  position: relative;
+  transform-origin: top left;
+}
+
+.canvasPB {
+  margin-top: 0%;
+  margin-left: 0%;
+  width: 49%;
+  height: 100%;
+  background-color: rgb(231, 84, 25);
+  position: relative;
+  transform-origin: top right;
+  transform: rotateY(90deg);
+}
+
+@keyframes noteRoate {
+  0% {
+    transform: rotateY(0deg);
+  }
+  25% {
+    transform: rotateY(25deg);
+  }
+  50% {
+    transform: rotateY(50deg);
+  }
+  75% {
+    transform: rotateY(75deg);
+  }
+  100% {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes noteRoate2 {
+  0% {
+    transform: rotateY(90deg);
+  }
+  25% {
+    transform: rotateY(75deg);
+  }
+  50% {
+    transform: rotateY(50deg);
+  }
+  75% {
+    transform: rotateY(25deg);
+  }
+  100% {
+    transform: rotateY(00deg);
+  }
+}

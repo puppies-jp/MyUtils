@@ -27,7 +27,7 @@ const ICON_IMAGE = {
     1: "point.jpg",
 }
 // アイコンのサイズ
-const ICON_SIZE = 36;
+const ICON_SIZE = 106;
 // アイコンオブジェクト
 var putIconsObj = [];
 // 現在地アイコンオブジェクト
