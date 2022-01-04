@@ -3,7 +3,7 @@
 ## ここでは BinaryHacks を読んだ内容をざっくりとまとめる
 
 - [ELF とは](#ELF)
-- [01_RAII なロッククラス実装(01_ThreadSafe_Mutex)
+- [01_RAII なロッククラス実装](01_ThreadSafe_Mutex)
 - [05\_ランタイム Hack](05_ランタイムHack)
 
 ### <a name="ELF" >ELF(Executable and Linking Format) とは</a>
