@@ -3,7 +3,7 @@
 - このリポジトリは私の備忘録を兼ねたメモをまとめるためのディレクトリです。
 
 - Tensorflow 周りのめも(別のページのリンク)
-  - https://puppies-jp.github.io/TensorflowDevLearn/
+  - [Tensorflow お勉強関連](https://puppies-jp.github.io/TensorflowDevLearn/)
 
 ---
 
