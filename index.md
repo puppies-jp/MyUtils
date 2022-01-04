@@ -2,6 +2,9 @@
 
 - このリポジトリは私の備忘録を兼ねたメモをまとめるためのディレクトリです。
 
+- Tensorflow 周りのめも(別のページのリンク)
+  - https://puppies-jp.github.io/TensorflowDevLearn/
+
 ---
 
 ファイル構成
