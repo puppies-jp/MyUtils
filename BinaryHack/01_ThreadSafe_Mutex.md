@@ -1,9 +1,12 @@
 # RAII なロッククラスを実装する
 
 - メリット
+
   - マルチスレッドで同期をとった処理をするためにロックする際に役立つ
 
-```cpp: RAII_LockClass.hpp
+## RAII なロッククラス(header ファイルだけで実装できる)
+
+```cpp
 
 
 #include <pthread.h>
@@ -48,7 +51,7 @@ void need_to_sync()
 
 - 動作確認用テストソース
 
-```cpp:test.cpp
+```cpp
 
 #include <thread>
 #include <mutex>
