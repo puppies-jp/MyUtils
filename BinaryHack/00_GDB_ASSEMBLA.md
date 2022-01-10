@@ -19,6 +19,20 @@ gdb -q ~.out
 gcc -g ~.c
 ```
 
+- こんな感じ
+
+```sh
+(gdb) list
+1   #include <stdio.h>
+2
+3   int main(){
+4       for(int i =0 ; i < 5;i++){
+5           printf("hello world\n");
+6       }
+7   }
+8
+```
+
 - 関数をアセンブラで表示する(main は関数名)
 
   ```gdb
@@ -30,17 +44,19 @@ gcc -g ~.c
   ```gdb
   (gdb) disassemble main
   Dump of assembler code for function main:
-  0x0000558c10fcf149 <+0>:	endbr64
-  0x0000558c10fcf14d <+4>:	push   %rbp
-  0x0000558c10fcf14e <+5>:	mov    %rsp,%rbp
-  => 0x0000558c10fcf151 <+8>:	lea    0xeac(%rip),%rdi        # 0x558c10fd0004
-  0x0000558c10fcf158 <+15>:	callq  0x558c10fcf050 <puts@plt>
-  0x0000558c10fcf15d <+20>:	mov    $0x0,%eax
-  0x0000558c10fcf162 <+25>:	pop    %rbp
-  0x0000558c10fcf163 <+26>:	retq
+  0x0000558c10fcf149 <+0>:  endbr64
+  0x0000558c10fcf14d <+4>:  push   %rbp
+  0x0000558c10fcf14e <+5>:  mov    %rsp,%rbp
+  => 0x0000558c10fcf151 <+8>:   lea    0xeac(%rip),%rdi        # 0x558c10fd0004
+  0x0000558c10fcf158 <+15>: callq  0x558c10fcf050 <puts@plt>
+  0x0000558c10fcf15d <+20>: mov    $0x0,%eax
+  0x0000558c10fcf162 <+25>: pop    %rbp
+  0x0000558c10fcf163 <+26>: retq
   End of assembler dump.
   (gdb)
   ```
+
+![GDB_コマンドリスト](gdb_cmd_list.png)
 
 ## Assembla
 
