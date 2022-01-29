@@ -13,6 +13,18 @@
 // printf("var1　= %d",var1)
 #define var(i) printf("var" #i " = %d\n", var##i)
 
+// 🌟引数の数が違う、同じ関数に置き換える
+/* 可変長だとこんな感じ */
+#define DEBUG_PRINT(...)  printf(__VA_ARGS__)
+#define DEBUG_PRINT2(fmt, ...)  printf(fmt, __VA_ARGS__)
+
+
+// 引数の数が違う、別の関数に置き換える
+// 🌟 こんな感じで引数が2つだったらsum2,3つだったらsum3の関数に置き換えることができる。
+#define GET_MACRO(_1,_2,_3,NAME,...) NAME
+#define SUM(...) GET_MACRO(__VA_ARGS__, sum3, sum2)(__VA_ARGS__)
+
+
 void check_preprocesser1()
 {
     cout << "Start Check processer" << endl;

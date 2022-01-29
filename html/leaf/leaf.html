@@ -26,14 +26,14 @@
 <script src="leaflet_common.js"></script>
 <script>
     // 場所情報(仮作成＠博多近辺)
-    var tempPlaceData = [
-        {"id":"1", "lat": 33.59513931435894,  "lng": 130.42419433593753, "name":"地点Ａ"},
-        {"id":"2", "lat": 33.59260123175435,  "lng": 130.41131973266604, "name":"地点Ｂ"},
-        {"id":"3", "lat": 33.59517506146791,  "lng": 130.42694091796878, "name":"地点Ｃ"},
-        {"id":"4", "lat": 33.59653344063089,  "lng": 130.420138835907,   "name":"地点Ｄ"},
-        {"id":"5", "lat": 33.590813804823924, "lng": 130.42249917984012, "name":"地点Ｅ"},
-        {"id":"6", "lat": 33.590849553725455, "lng": 130.4186797142029,  "name":"地点Ｆ"},
-    ];
+    //var tempPlaceData = [
+    //    {"id":"1", "lat": 33.59513931435894,  "lng": 130.42419433593753, "name":"地点Ａ"},
+    //    {"id":"2", "lat": 33.59260123175435,  "lng": 130.41131973266604, "name":"地点Ｂ"},
+    //    {"id":"3", "lat": 33.59517506146791,  "lng": 130.42694091796878, "name":"地点Ｃ"},
+    //    {"id":"4", "lat": 33.59653344063089,  "lng": 130.420138835907,   "name":"地点Ｄ"},
+    //    {"id":"5", "lat": 33.590813804823924, "lng": 130.42249917984012, "name":"地点Ｅ"},
+    //    {"id":"6", "lat": 33.590849553725455, "lng": 130.4186797142029,  "name":"地点Ｆ"},
+    //];
 
     // 画面初期表示時
     window.onload = function(){
@@ -45,7 +45,7 @@
     const gcpAfterFunc = function(position){
 
         // データ取得関数(可変の場合は、ajax処理等で取ってくる)
-        let placeData = tempPlaceData;
+        //let placeData = tempPlaceData;
 
         //緯度経度取得
         let lat_t = position.coords.latitude;
@@ -58,7 +58,7 @@
         mapObj.on('click', testfunc);
 
         // アイコン表示
-        putIconsData(placeData, 1);
+        //putIconsData(placeData, 1);
 
         // 現在地のアイコンを表示し、オブジェクトを取得
         currentIconObj = putIcon(lat_t, lng_t, 0);
