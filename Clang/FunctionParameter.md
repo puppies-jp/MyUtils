@@ -110,3 +110,33 @@ int main()
     std::cout << global_int << std::endl;
 }
 ```
+
+## ダイレクトパラメータアクセス
+
+- printfに`$`を使ってやることで、引数の何番目の数字を使用するのかを直で指定できる
+
+- 使い方はこんな感じ
+
+```c
+printf("%2$d",1,2,3);
+```
+
+- 出力例
+  - ⚠️他の`%d`などのアクセス順に影響してない
+
+```sh
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/OverFlow# cat dyrectPrm.c 
+#include<stdio.h>
+
+int main()
+{
+    printf("%d %d %1$d %d %d %d \narg2: %2$d\n"
+		,1,2,3,4,5);
+	return 0;
+}
+
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/OverFlow# ./a.out
+1 2 1 3 4 5 
+arg2: 2
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/OverFlow# 
+```
