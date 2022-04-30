@@ -6,7 +6,10 @@
 - [00_GDB と Assembly](00_GDB_ASSEMBLA)
 - [01_RAII なロッククラス実装](01_ThreadSafe_Mutex)
 - [05\_ランタイム Hack](05_ランタイムHack)
-- [コンストラクタ_デストラクタの脆弱性攻撃](00_00_脆弱性コンストラクタ_デストラクタ)
+
+- Hacking: 美しき策謀 読書メモ
+  - [コンストラクタ_デストラクタの脆弱性攻撃](00_00_脆弱性コンストラクタ_デストラクタ)
+  - [GOT(グローバルオフセットテーブル)](00_01_GOT)
 
 ### <a name="ELF" >ELF(Executable and Linking Format) とは</a>
 
