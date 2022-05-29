@@ -8,6 +8,7 @@
 - [05\_ランタイム Hack](05_ランタイムHack)
 
 - Hacking: 美しき策謀 読書メモ
+  - [00_Hacking基礎](Hacking/00_Hacking基礎)
   - [コンストラクタ_デストラクタの脆弱性攻撃](Hacking/00_脆弱性コンストラクタ_デストラクタ)
   - [01_GOT(グローバルオフセットテーブル)](Hacking/01_GOT)
   - [02_Network](Hacking/02_Network)
