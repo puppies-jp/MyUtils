@@ -58,7 +58,26 @@ MyUtil % tree ./
 
 ---
 
-- リリース予定内容
-  - tensorflow 周り
-  - Cpp 系(簡単に調べたことをまとめとく)
-  - how to use gdb ?
+- Git使い方備忘録
+
+```shell
+# 🌟 直前に行ったcommitを取り消す
+git reset --soft HEAD^
+
+# 
+```
+
+`HEAD^`は「一つ前のコミット」のこと
+
+- --soft
+  HEADの位置のみ巻き戻す
+  例：`git reset --soft HEAD^` →直前のコミットを消す
+
+- --mixed
+  HEADの位置、インデックスを巻き戻す
+  オプションなしでも同じ結果になる
+  例：`git reset HEAD` →インデックスの変更（addしたもの）を消す
+
+- --hard
+  HEADの位置、インデックス、作業ディレクトリを巻き戻す
+  例：`git reset --hard HEAD^` →直前のコミットまですべて消す
