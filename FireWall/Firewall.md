@@ -8,7 +8,7 @@
 [filewall-cmd](#firewall)  
 [home](https://puppies-jp.github.io/MyUtils/)
 
-[OSI参照モデル 関連リンク](#../BinaryHack/Hacking/02_Network)
+[OSI参照モデル 関連リンク](../BinaryHack/Hacking/02_Network)
 
 ---
 
