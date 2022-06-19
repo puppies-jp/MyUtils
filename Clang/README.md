@@ -6,7 +6,8 @@
 - [プリプロセッサ使い方 cheat メモ](preprocessor)
 - [C++の安全なリソース解放について](SafeResource)
 - [引数について](FunctionParameter)
-
+ 
+-[不本意ながらMFCというか、Windows関連](MFC)
 ---
 
 - よく使うソース群
