@@ -111,3 +111,63 @@ int main()
 }
 ```
 
+## 引数の挙動確認
+
+> `結論`
+> 参照渡しを引数に渡すと値渡しと違い、渡されたオブジェクト本体のポインタ、値で渡される(つまり同じオブジェクトを見にいく)
+
+- 動作確認用ソース
+
+```cpp
+#include <stdio.h>
+#include <iostream>
+
+class test
+{
+public:
+    int x = 0;
+};
+
+// 値渡し
+void func_norm(test tmp)
+{
+    printf("%-10s: %p : %d\n", __func__, &tmp, tmp.x);
+}
+
+// 　参照渡し
+void func_ref(test &tmp)
+{
+    printf("%-10s: %p : %d\n", __func__, &tmp, tmp.x);
+}
+
+// ポインタ渡し
+void func_ptr(test *tmp)
+{
+    printf("%-10s: %p : %d\n", __func__, tmp, tmp->x);
+}
+
+int main()
+{
+    test tmp;
+    tmp.x = 3;
+    printf("%-10s: %p : %d\n", __func__, &tmp, tmp.x);
+    func_norm(tmp);
+    func_ref(tmp);
+    func_ptr(&tmp);
+    return 0;
+}
+```
+
+- 出力結果
+
+```shell
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/Descripter# g++ classtest.cpp -o cls.out
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/Descripter# 
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/Descripter# ./cls.out 
+main      : 0x7ffc25c9b734 : 3
+func_norm : 0x7ffc25c9b71c : 3
+func_ref  : 0x7ffc25c9b734 : 3
+func_ptr  : 0x7ffc25c9b734 : 3
+(base) root@9ea233d8d241:~/Desktop/LeakDetect/Descripter# 
+
+```
