@@ -48,6 +48,7 @@ MyUtil % tree ./
 - [Clang 系](Clang)
 - [BinaryHack](BinaryHack)
 - [Docker](Docker)
+- [sqlite3](sqlite3)
 - [keyword 備忘録](keywords)
 - [html](html)
   - [How to use leaf](html/leaf/leaf.html)
