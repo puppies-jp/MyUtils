@@ -1,6 +1,6 @@
 # sqlite3,SQL関連
 
-- Sqlite3では
+- Sqlite3では以下のようにすることでいろいろ形式を変えることができる
 
 ```sql
 .header on/off
