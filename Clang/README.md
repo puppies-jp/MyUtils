@@ -19,6 +19,9 @@
 
 - 小技系
   - [ダイレクトパラメータアクセス](#direct)
+  - [ソースコードに直でブレークポイントを貼る](#breakPoint)
+
+---
 
 ## <a name=memory_dump>メモリダンプ</a>
 
@@ -69,6 +72,15 @@ int main()
     return 0;
 }
 */
+```
+
+---
+
+## <a name=breakPoint>ブレークポイント</a>
+
+```cpp
+#include<signal.h>
+raise(SIGTRAP)
 ```
 
 ## <a name=network>ネットワーク系</a>
