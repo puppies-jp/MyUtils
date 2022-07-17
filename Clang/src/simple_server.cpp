@@ -23,16 +23,10 @@ int main(void)
     char buffer[1024];
 
     if ((sockfd = socket(PF_INET, SOCK_STREAM, 0)) == -1)
-    {
-        printf("socketの生成に失敗しました");
-        exit(1);
-    }
+        printf("socketの生成に失敗しました"), exit(1);
 
     if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
-    {
-        printf("socketのSO_REUSEADDR設定に失敗しました。");
-        exit(1);
-    }
+        printf("socketのSO_REUSEADDR設定に失敗しました。"), exit(1);
 
     host_addr.sin_family = AF_INET;   /*  */
     host_addr.sin_port = htons(PORT); /* PORT番号を短整数に変換　*/
@@ -41,16 +35,10 @@ int main(void)
     memset(&host_addr.sin_zero, 0x00, 8); /* 構造体の残りを0に */
 
     if (bind(sockfd, (struct sockaddr *)&host_addr, sizeof(struct sockaddr)) == -1)
-    {
-        printf("bindに失敗しました。");
-        exit(1);
-    }
+        printf("bindに失敗しました。"), exit(1);
 
     if (listen(sockfd, 5) == -1)
-    {
-        printf("ソケット待ち受けに失敗しました。");
-        exit(1);
-    }
+        printf("ソケット待ち受けに失敗しました。"), exit(1);
 
     while (true)
     {
@@ -64,21 +52,19 @@ int main(void)
             printf("コネクションの受付に失敗しました。");
             continue;
         }
-
         printf(
             "コネクションを受け付けました IP: %s, port: %d\n",
             inet_ntoa(client_addr.sin_addr),
             ntohs(client_addr.sin_port));
 
         send(new_sockfd, "Hello world!\n", 13, 0);
-        recv_length = recv(new_sockfd, &buffer, 1024, 0);
 
-        while (recv_length > 0)
+        do
         {
+            recv_length = recv(new_sockfd, &buffer, 1024, 0);
             printf("%d byte 受信しました\n", recv_length);
             dump(buffer, recv_length);
-            recv_length = recv(new_sockfd, &buffer, 1024, 0);
-        }
+        } while (recv_length > 0);
         close(new_sockfd);
     }
 
