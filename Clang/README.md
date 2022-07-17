@@ -91,6 +91,8 @@ raise(SIGTRAP)
 使い方としては以下のようにFile記述子のようにして作成する。
 `/usr/include/x86_64-linux-gnu/bits/socket.h`
 
+- [生ソケットの使用について](raw_socket)
+
 ```cpp
 /* /usr/include/x86_64-linux-gnu/bits/socket.h参照
 * int domain
