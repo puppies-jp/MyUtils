@@ -7,7 +7,7 @@
 - [awaitまとめ](#await)
 - [asyncまとめ](#async)
 
-[参考スクリプト](https://github.com/puppies-jp/MyUtils/blob/gh-pages/CSharp/async_await.cs)
+[参考スクリプト](https://github.com/puppies-jp/MyUtils/blob/gh-pages/CSharp/src/async_await.cs)
 
 ### <a name="await">awaitまとめ</a>
 
