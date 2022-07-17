@@ -14,6 +14,7 @@
 - よく使うソース群
   - [メモリダンプ](#memory_dump)
   - [ネットワーク系](#network)
+    - [ソケットについて](#socket)
     - [サーバサイド](#server)
     - [クライアントサイド](#client)
   - [パスワード暗号化](#crypt)
@@ -86,7 +87,29 @@ raise(SIGTRAP)
 
 ## <a name=network>ネットワーク系</a>
 
-- Coming soon
+### <a name=socket>ソケットについて</a>
+
+- ソケットは`OSI参照モデル`における、`セッション層`の技術でソケットの種類によってトランスポート層の構造が決定される。(TCPやUDPなどに)  
+使い方としては以下のようにFile記述子のようにして作成する。
+`/usr/include/x86_64-linux-gnu/bits/socket.h`
+
+```cpp
+/* /usr/include/x86_64-linux-gnu/bits/socket.h参照
+* int domain
+*            ソケットのプロトコルファミリのこと IPプロトコルや
+*            アマチュア無線のプロトコルなどを指定する。
+*            (Protocol families　(参照: /usr/include/x86_64-linux-gnu/bits/socket.h参照))
+* int type 
+*          ソケットの型のこと(Type of sockets参照)
+*          SOCK_STREAM(1), ストリームソケット(双方向)
+*          SOCK_DGRAM(2), データグラムソケット(一方通行で、送った順序で届くとは限らない)
+*          他 bits/socket_type.hに定義されている。
+* int protocol 
+*          プロトコルファミリ内に複数のプロトコルが存在する場合指定する。
+*          ほとんどの場合、1つしかないため0となる。
+*/
+int sockfd = socket(int domain, int type, int protocol)
+```
 
 ### <a name=server>サーバーサイド</a>
 
@@ -131,6 +154,8 @@ arg2: 2
 ```
 
 ## <a name="crypt">password暗号化</a>
+
+- [参照](https://github.com/puppies-jp/LeakDetect/blob/master/crypt/crypt_test.cpp)
 
 ```c
 #include <unistd.h>
