@@ -90,7 +90,7 @@ private async Task RunTaskCAsync()
 ```cs
 // 🌟実行例
 // taskB,taskCを実行し、同時に終了待ちする。
-public async Task<int> RunTaskAAsync()
+async Task<int> RunTaskAAsync()
 {
   Task<int> taskB = RunTaskBAsync();
   Task<int> taskC = RunTaskCAsync();
@@ -100,13 +100,13 @@ public async Task<int> RunTaskAAsync()
   return results[0] + results[1]; // タスクBとタスクCの結果を加算
 }
 
-private async Task<int> RunTaskBAsync()
+async Task<int> RunTaskBAsync()
 {
   await Task.Delay(100); // 0.1秒待機
   return 1 + 2 + 3;
 }
 
-private async Task<int> RunTaskCAsync()
+async Task<int> RunTaskCAsync()
 {
   await Task.Delay(200); // 0.2秒待機
   return 4 + 5 + 6;
