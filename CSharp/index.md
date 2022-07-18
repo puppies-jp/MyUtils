@@ -1,5 +1,13 @@
 # CSharpいろいろメモ
 
+- コンパイル/実行方法
+
+```sh
+# mac環境
+mcs async_await.cs #コンパイル
+mono async_await.exe #実行
+```
+
 - [async/awaitまとめ](#async_await)
 
 ## <a name="async_await">async/awaitまとめ</a>
