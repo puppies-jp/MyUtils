@@ -134,8 +134,7 @@ int main(void)
 {
     int sockfd /* 自ソケット */,
         new_sockfd;
-    struct sockaddr_in host_addr /* 自ホスト情報 */,
-        client_addr /* クライアント情報 */;
+    struct sockaddr_in host_addr; /* 自ホスト情報 */
     socklen_t sin_size;
     int recv_length = 1, yes = 1;
     char buffer[1024];
@@ -156,12 +155,17 @@ int main(void)
     if (bind(sockfd, (struct sockaddr *)&host_addr, sizeof(struct sockaddr)) == -1)
         printf("bindに失敗しました。"), exit(1);
 
-    // listenでソケットへの待受をする
+    // NOTE:listenでソケットへの待受をする
+    //       int listen(int sockfd, int backlog);
+    //      sockfd が参照するソケットを接続待ちソケット (passive socket) として印をつける。 
+    //      接続待ちソケットとは、 accept を使って到着した接続要求を受け付けるのに使用されるソケットである。 
+    //      backlog 引数は、 sockfd についての保留中の接続のキューの最大長を指定する。 キューがいっぱいの状態で接続要求が到着すると、クライアントは "ECONNREFUSED" というエラーを受け取る。
     if (listen(sockfd, 5) == -1)
         printf("ソケット待ち受けに失敗しました。"), exit(1);
 
     while (true)
     {
+        struct sockaddr_in client_addr; /* クライアント情報 */
         sin_size = sizeof(struct sockaddr_in);
         new_sockfd = accept(
             sockfd,
