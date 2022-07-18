@@ -59,12 +59,14 @@ int main(void)
 
         send(new_sockfd, "Hello world!\n", 13, 0);
 
-        do
+        recv_length = recv(new_sockfd, &buffer, 1024, 0);
+
+        while (recv_length > 0)
         {
-            recv_length = recv(new_sockfd, &buffer, 1024, 0);
             printf("%d byte 受信しました\n", recv_length);
             dump((u_char *)buffer, recv_length);
-        } while (recv_length > 0);
+            recv_length = recv(new_sockfd, &buffer, 1024, 0);
+        };
         close(new_sockfd);
     }
 

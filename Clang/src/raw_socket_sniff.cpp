@@ -29,5 +29,6 @@ int main(void)
         recv_length = recv(sockfd, buffer, 8000, 0);
         printf("%d のパケットを受信しました\n", recv_length);
         dump(buffer, recv_length);
+        // caught_packet_dump((u_char *)buffer, recv_length);
     }
 }
