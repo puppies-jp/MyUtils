@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "dump.h"
+#include "network_hack.h"
+
 /*
 引数のアドレスから16byte単位で改行し、16進数とasciiコード単位で出力する関数
 */
@@ -34,6 +36,27 @@ void dump(const unsigned char *data_buffer, const unsigned int length)
             }
             printf("\n");
         }
+    }
+}
+
+void caught_packet_dump(const u_char *packet, const uint length)
+{
+    printf("======= %d byteのパケットを受信しました。\n", length);
+    decode_ethernet(packet);
+    decode_ip(packet + sizeof(ether_hdr));
+    u_int tcp_len = decode_tcp(packet + sizeof(ether_hdr) + sizeof(ip_hdr));
+
+    u_int total_header_size = sizeof(ether_hdr) + sizeof(ip_hdr) + tcp_len;
+    unsigned char *pkt_data = (unsigned char *)packet + total_header_size;
+    u_int packet_len = length - total_header_size;
+    if (packet_len > 0)
+    {
+        printf("%u バイトのパケットデータ\n", packet_len);
+        dump(pkt_data, packet_len);
+    }
+    else
+    {
+        printf("パケットデータがありません");
     }
 }
 
