@@ -1,9 +1,9 @@
-#include "stdio.h"
-
+#include <stdio.h>
+#include "dump.h"
 /*
 引数のアドレスから16byte単位で改行し、16進数とasciiコード単位で出力する関数
 */
-void dump(char *data_buffer, const unsigned int length)
+void dump(const unsigned char *data_buffer, const unsigned int length)
 {
     unsigned char byte;
     unsigned int i, j;

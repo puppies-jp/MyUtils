@@ -14,7 +14,7 @@ int main(void)
 {
     int sockfd /* 自ソケット */,
         recv_length;
-    char buffer[9000];
+    u_char buffer[9000];
 
     // NOTE: 生のソケットを生成するにはroot権限が必要
     // IPPROTO_TCP,IPPROTO_UDP,IPPROTO_ICMPなどが使える
