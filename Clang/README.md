@@ -13,6 +13,7 @@
 
 - よく使うソース群
   - [メモリダンプ](#memory_dump)
+  - [ディレクトリ有無チェック](#is_dir)
   - [ネットワーク系](#network)
     - [ソケットについて](#socket)
     - [サーバサイド](#server)
@@ -75,7 +76,29 @@ int main()
 ```
 
 ---
+## <a name=is_dir>ディレクトリチェック</a>
 
+```c++
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
+int main()
+{
+    // std=c++17から使える
+    // 引数にディレクトリのパスを渡すと存在の有無をチェックしてくれる。
+    auto isDirectry1 = fs::is_directory(std::string("./"));
+        std::cout << "./ :" << (isDirectry1 == true) << std::endl;
+}
+```
+
+```sh
+(base) root@9ea233d8d241:~/Desktop/MyUtils/Clang/src# g++ isDir.cpp -o dir.out -std=c++17
+(base) root@9ea233d8d241:~/Desktop/MyUtils/Clang/src# ./dir.out 
+./ :1
+```
+
+---
 ## <a name=breakPoint>ブレークポイント</a>
 
 ```cpp
