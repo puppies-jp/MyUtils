@@ -7,17 +7,20 @@
 #include <unistd.h>
 
 #include <cstring>
+#include <iostream>
+#include <thread>
 
 #include "dump.h"
 
 #define PORT 7070
 
+void RecvThread(int sockfd);
+
 int main(void)
 {
-    int sockfd /* 自ソケット */,
-        new_sockfd;
-    struct sockaddr_in host_addr /* 自ホスト情報 */,
-        client_addr /* クライアント情報 */;
+    int sockfd; // /* 自ソケット */,
+                // new_sockfd;
+    struct sockaddr_in host_addr /* 自ホスト情報 */;
     socklen_t sin_size;
     int recv_length = 1, yes = 1;
     char buffer[1024];
@@ -42,8 +45,9 @@ int main(void)
 
     while (true)
     {
+        struct sockaddr_in client_addr /* クライアント情報 */;
         sin_size = sizeof(struct sockaddr_in);
-        new_sockfd = accept(
+        int new_sockfd = accept(
             sockfd,
             (sockaddr *)&client_addr,
             &sin_size);
@@ -58,17 +62,23 @@ int main(void)
             ntohs(client_addr.sin_port));
 
         send(new_sockfd, "Hello world!\n", 13, 0);
-
-        recv_length = recv(new_sockfd, &buffer, 1024, 0);
-
-        while (recv_length > 0)
-        {
-            printf("%d byte 受信しました\n", recv_length);
-            dump((u_char *)buffer, recv_length);
-            recv_length = recv(new_sockfd, &buffer, 1024, 0);
-        };
-        close(new_sockfd);
+        // std::thread th2(RecvThread, new_sockfd);
+        RecvThread(new_sockfd);
     }
 
     return 0;
+}
+
+void RecvThread(int sockfd)
+{
+    char buffer[1024];
+    int recv_length = recv(sockfd, &buffer, 1024, 0);
+
+    while (recv_length > 0)
+    {
+        printf("%d byte 受信しました\n", recv_length);
+        dump((u_char *)buffer, recv_length);
+        recv_length = recv(sockfd, &buffer, 1024, 0);
+    };
+    close(sockfd);
 }
