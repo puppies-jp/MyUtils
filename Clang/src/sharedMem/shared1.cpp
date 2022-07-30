@@ -42,6 +42,9 @@ int main()
     std::cout << "Hit any key when ready to close shared memory" << std::endl;
     std::cin.get();
 
+    sprintf(shared_memory, "Hello, world2.");
+    std::cin.get();
+
     /* 共有メモリのデタッチ */
     shmdt(shared_memory);
     /* 共有メモリの解放 */
