@@ -25,6 +25,7 @@ int main()
     /* 共有メモリの読み込み */
     printf("%s\n", shared_memory);
     std::cin.get();
+    /* メモリを読み込む側もアタッチしていれば更新された状態で参照できる */
     printf("%s\n", shared_memory);
 
     /* 共有メモリのデタッチ */

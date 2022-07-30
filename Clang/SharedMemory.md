@@ -1,3 +1,8 @@
+# 共有メモリについてここでまとめる
+
+- [サンプルソース](https://github.com/puppies-jp/MyUtils/tree/gh-pages/Clang/src/sharedMem)
+
+```cpp
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -43,8 +48,8 @@ int main()
     std::cin.get();
 
     /* 共有メモリへの再書込み */
-    /* メモリを読み込む側もアタッチしていれば更新された状態で参照できる */
     sprintf(shared_memory, "Hello, world2.");
+    std::cout << "Hit any key when ready to close shared memory" << std::endl;
     std::cin.get();
 
     /* 共有メモリのデタッチ */
@@ -54,3 +59,4 @@ int main()
 
     return EXIT_SUCCESS;
 }
+```
