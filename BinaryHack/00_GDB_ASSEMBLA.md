@@ -18,16 +18,16 @@ gdb --pid <PID>
 
 - breakpointsの確認方法
 
-> info breakpoints
-> disable `[breakpoint no]` #無効化
-> enable `[breakpoint no]`  #有効化
+> info breakpoints  
+> disable `[breakpoint no]` #無効化  
+> enable `[breakpoint no]`  #有効化  
 
 - breakからの実行関連
 
-> next # 関数の中までは追わない
-> step # 関数内まで追う
-> continue #次のbreakまで処理を継続
-> finish   #関数の終了進む(一個上のスタックまで戻る)
+> next # 関数の中までは追わない  
+> step # 関数内まで追う  
+> continue #次のbreakまで処理を継続  
+> finish   #関数の終了進む(一個上のスタックまで戻る)  
 
 - GDB でデバッグ情報を追加して表示するためのフラグ
   - こうすることで GDB 中の`list` コマンドでソースを見れる
