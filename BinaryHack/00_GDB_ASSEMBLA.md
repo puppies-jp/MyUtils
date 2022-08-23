@@ -10,7 +10,24 @@
 
 ```sh
 gdb -q ~.out
+
+# 起動済のプロセスにアタッチする gdb単体で起動後に`attach <PID>`でもOK
+gdb --pid <PID>
+
 ```
+
+- breakpointsの確認方法
+
+> info breakpoints
+> disable `[breakpoint no]` #無効化
+> enable `[breakpoint no]`  #有効化
+
+- breakからの実行関連
+
+> next # 関数の中までは追わない
+> step # 関数内まで追う
+> continue #次のbreakまで処理を継続
+> finish   #関数の終了進む(一個上のスタックまで戻る)
 
 - GDB でデバッグ情報を追加して表示するためのフラグ
   - こうすることで GDB 中の`list` コマンドでソースを見れる
@@ -32,6 +49,21 @@ gcc -g ~.c
 7   }
 8
 ```
+
+### GDBでint以外の関数を使う
+
+- GDBでint以外の関数を使うのはめんどくさい。。。
+
+```sh
+print cos(0.0) #だめ
+print (double)cos(0.0) #だめ
+
+# 以下のようにすることで使える
+set $p = (double (*)(double)) cos #1 cos関数を$pの変数で定義
+ptype $p # 型確認コマンド(不要)
+p $p(3.14159265) #ここで実行
+```
+
 
 - 関数をアセンブラで表示する(main は関数名)
 
