@@ -67,7 +67,7 @@ gcc -g ~.c
 
 - こんな感じ
 
-```sh
+```gdb
 (gdb) list
 1   #include <stdio.h>
 2
@@ -83,7 +83,7 @@ gcc -g ~.c
 
 - GDBでint以外の関数を使うのはめんどくさい。。。
 
-```sh
+```gdb
 print cos(0.0) #だめ
 print (double)cos(0.0) #だめ
 
