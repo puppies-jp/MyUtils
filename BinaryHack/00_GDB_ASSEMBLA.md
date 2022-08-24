@@ -93,7 +93,7 @@ ptype $p # 型確認コマンド(不要)
 p $p(3.14159265) #ここで実行
 ```
 
-### GDBではsignalをハンドリングしている処理を扱う必要がある。
+### GDBではsignalをハンドリングしている処理を扱う必要がある
 
 - signalを受けてGDBでプログラムを止めたりすることがる。handleコマンドでいろいろできるらしい
 
@@ -103,6 +103,32 @@ p $p(3.14159265) #ここで実行
 ```gdb
 # no~~ にどれぐらい種類があるのかは不明
 handle SIGSEGV nostop noprint
+```
+
+### GUIなどのウィンドウで動作するプログラムをデバッグする
+
+courseで動作するプログラムのデバッグを想定する。
+
+- `手順1 プロセスの出力先のコンソールを調べる`
+
+```sh
+(base)root@9ea233d8d241:~/Desktop/MyUtils# tty 
+/dev/pts/1 # 🌟この出力をコピペしておく
+(base)root@9ea233d8d241:~/Desktop/MyUtils# 
+```
+
+- `手順2 GDBの入出力先を指定する`
+
+```gdb
+# 🌟 ttyコマンドで入出力先のコンソールを指定する
+(gdb) tty /dev/pts/1 
+(gdb) break main
+(gdb) run
+# 🌟printfコマンドを使えば出力先のコンソールに出力されることが確認できる
+# プログラムの標準入力/出力も同様となる
+(gdb) print printf("hello world\n") 
+$3 = 12
+(gdb) 
 ```
 
 ### アセンブラ関連
