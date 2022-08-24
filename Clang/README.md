@@ -14,6 +14,7 @@
 ---
 
 - よく使うソース群
+- [エラー出力について](#error)
   - [メモリダンプ](#memory_dump)
   - [ディレクトリ有無チェック](#is_dir)
   - [ネットワーク系](#network)
@@ -27,6 +28,33 @@
   - [ソースコードに直でブレークポイントを貼る](#breakPoint)
 
 ---
+
+## <a name=error>Errorについて</a>
+
+Linux環境においてC言語系ソースのエラーは引数から0,1で関数の成否が返される。しかし、エラーの原因がどうしてそうなったのか返してくれない。
+そこで、`errno.h`を用いることで調べることができる。
+慣習的にライブラリ、システムコールの失敗はerrnoに代入される。
+(🚨成功時に0となるとは限らないことに注意)
+マクロに対応したエラー内容の番号が振られているのでerrnoの番号からエラーの内容を調べることができる。
+また、マクロの内容を覚えなくても`void perror(const char *s)`,`char *strerror(int errnum)`を使うことでエラーメッセージの取得ができるようになる。
+
+`🚨飽く迄、関数の返り値でエラーを判定し、errnoからエラーの内容を割り出すように使うこと`
+
+```cpp
+// 🌟これをインクルードすることで変数errnoにアクセスできる。
+#include <errno.h> 
+
+//これを実行することで、標準エラー出力に出力が可能になる。
+#include<stdio.h>
+void perror(const char *s);//飽く迄標準エラー出力をしてくれる
+// 出力例
+// <*s(ユーザー追加の文字列)>:<error message>　
+
+#include <string.h>
+char *strerror(int errnum)// errnoのコードを文字列にする
+// 使用例
+printf("[Error]:%s\n",strerror(errno));
+```
 
 ## <a name=memory_dump>メモリダンプ</a>
 
