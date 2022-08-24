@@ -108,6 +108,7 @@ handle SIGSEGV nostop noprint
 ### GUIなどのウィンドウで動作するプログラムをデバッグする
 
 courseで動作するプログラムのデバッグを想定する。
+🚨先に起動したプロセスに`attach`する場合はいらない
 
 - `手順1 プロセスの出力先のコンソールを調べる`
 
@@ -129,6 +130,19 @@ courseで動作するプログラムのデバッグを想定する。
 (gdb) print printf("hello world\n") 
 $3 = 12
 (gdb) 
+```
+
+### strace,ltraceを使ってみる
+
+- strace,ltraceはプログラムが実行したシステムコールを引数、返り値を一緒に表示してくれる。両方とも似たようなツールで共通したオプションも多いので片方を覚えればもう片方も使える。
+
+>`strace`:`システムコールに関して引数と返り値を表示してくれる`  
+>`ltrace`:`ライブラリ関数の呼び出しについて表示してくれる`
+
+```bash
+strace ./a.out
+strace ./a.out -o <logfile> # logfileに出力してくれる
+strace ./a.out -o <logfile>　-ff # forkした子プロセスごとに logfile.xxxでプロセス番号付きで表示してくれる
 ```
 
 ### アセンブラ関連
