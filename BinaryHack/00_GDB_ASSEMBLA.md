@@ -145,6 +145,25 @@ strace ./a.out -o <logfile> # logfileに出力してくれる
 strace ./a.out -o <logfile>　-ff # forkした子プロセスごとに logfile.xxxでプロセス番号付きで表示してくれる
 ```
 
+### マクロを定義する
+
+```gdb
+define function1 //こんな感じでマクロを定義できる
+printf $arg0,$arg1 //引数に最大10個まで取れる
+continue
+end
+```
+
+### ブレークポイント・コマンドリスト
+
+```gdb
+commands <breakpoint No>
+silent // 余計な出力を減らせる
+コマンド(printfや自作の関数など 基本的にC言語と同様に動く)
+continue // breakで止まった後で再度動かしてくれる
+end
+```
+
 ### アセンブラ関連
 
 - 関数をアセンブラで表示する(main は関数名)
