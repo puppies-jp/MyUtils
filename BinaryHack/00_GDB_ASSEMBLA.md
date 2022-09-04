@@ -2,7 +2,20 @@
 
 ここでは GDB の使い方,Assembla についてまとめる
 
-## GDB の使い方
+- [GDB使い方](#howtoUse)
+- [coreでバグを調査する](#Bug)
+- [Threadをデバッグする](#thread)
+- [signalを扱う](#signal)
+- [マクロ/関数を定義する](#macro)
+- [他windowに出力してデバッグする](#gui)
+- [systemcall,ライブラリのコールをtraceする](#trace)
+- [いろいろ](#etc)
+
+- [アセンブラ](#assembla)
+
+---
+
+## <a name=howToUse>GDB の使い方</a>
 
 - GDB 起動
 
@@ -17,16 +30,23 @@ gdb --pid <PID>
 
 - breakpointsの確認方法
 
-> info breakpoints  
-> disable `[breakpoint no]` #無効化  
-> enable `[breakpoint no]`  #有効化  
+```gdb
+# breakpointsの確認
+info breakpoints  
+#無効化
+disable [breakpoint no]   
+#無効化
+enable [breakpoint no]
+```
 
 - breakからの実行関連
 
-> next # 関数の中までは追わない  
-> step # 関数内まで追う  
-> continue #次のbreakまで処理を継続  
-> finish   #関数の終了進む(一個上のスタックまで戻る)  
+```gdb
+next # 関数の中までは追わない  
+step # 関数内まで追う  
+continue #次のbreakまで処理を継続  
+finish   #関数の終了進む(一個上のスタックまで戻る)  
+```
 
 ### 処理を飛ばして実行する
 
@@ -34,7 +54,41 @@ gdb --pid <PID>
 
 > `jump <行番号>`
 
-### thread環境をデバッグする
+---
+
+### <a name=Bug>Coreからバグを調査する</a>
+
+GDBではプログラムが吐いたコアファイルを使ってバグの調査ができる。
+ここではそれをまとめる。
+
+- 手順1.coreファイルを含めてgdbを起動する
+
+```sh
+# 🌟こんな感じで実行する
+gdb <実行ファイル> <coreファイル>
+```
+
+- 手順2.backtraceを確認し、どこのスタックフレームで止まったか確認する
+
+```gdb
+bt
+backtrace 
+```
+
+- 手順3.問題のスタックフレームに移動し変数を確認する
+
+```gdb
+# 問題のフレームへ移動
+frame <btで確認したNo>
+# 変数の確認
+print <var>
+# 現在のスタックフレーム上のローカル変数を確認できる。
+info locals 
+```
+
+---
+
+### <a name=thread>thread環境をデバッグする</a>
 
 以下のコマンドで各スレッドが何をしているのかがわかる。(わかると言っても動作中の関数ぐらいのものだが、、)
 
@@ -56,7 +110,9 @@ gdb --pid <PID>
 🌟 他のスレッドに移りたい場合はthread <スレッドId>で移動する
 ```
 
-### 他いろいろ
+---
+
+### <a name=etc>他いろいろ</a>
 
 - GDB でデバッグ情報を追加して表示するためのフラグ
   - こうすることで GDB 中の`list` コマンドでソースを見れる
@@ -93,7 +149,9 @@ ptype $p # 型確認コマンド(不要)
 p $p(3.14159265) #ここで実行
 ```
 
-### GDBではsignalをハンドリングしている処理を扱う必要がある
+---
+
+### <a name=signal>GDBではsignalをハンドリングしている処理を扱う必要がある</a>
 
 - signalを受けてGDBでプログラムを止めたりすることがる。handleコマンドでいろいろできるらしい
 
@@ -105,7 +163,7 @@ p $p(3.14159265) #ここで実行
 handle SIGSEGV nostop noprint
 ```
 
-### GUIなどのウィンドウで動作するプログラムをデバッグする
+### <a name=gui>GUIなどのウィンドウで動作するプログラムをデバッグする</a>
 
 courseで動作するプログラムのデバッグを想定する。
 🚨先に起動したプロセスに`attach`する場合はいらない
@@ -132,7 +190,9 @@ $3 = 12
 (gdb) 
 ```
 
-### strace,ltraceを使ってみる
+---
+
+### <a name=trace>strace,ltraceを使ってみる</a>
 
 - strace,ltraceはプログラムが実行したシステムコールを引数、返り値を一緒に表示してくれる。両方とも似たようなツールで共通したオプションも多いので片方を覚えればもう片方も使える。
 
@@ -144,6 +204,10 @@ strace ./a.out
 strace ./a.out -o <logfile> # logfileに出力してくれる
 strace ./a.out -o <logfile>　-ff # forkした子プロセスごとに logfile.xxxでプロセス番号付きで表示してくれる
 ```
+
+---
+
+## <a name=macro>マクロ/関数を定義する</a>
 
 ### マクロを定義する
 
@@ -164,7 +228,9 @@ continue // breakで止まった後で再度動かしてくれる
 end
 ```
 
-### アセンブラ関連
+---
+
+### <a name=assembla>アセンブラ関連</a>
 
 - 関数をアセンブラで表示する(main は関数名)
 
