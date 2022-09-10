@@ -3,7 +3,8 @@
 #include <iostream>
 #include <cstdlib>
 
-#include "../dump.h"
+//#include <OpenGL/gl.h>
+//#include <GL/gl.h>
 #include <GLUT/glut.h>
 #include <opencv2/opencv.hpp>
 
@@ -15,8 +16,26 @@
 
 float vertex[ARRAY_MAX];
 int lines[ARRAY_MAX];
+
 int vertexDataSize = 0, lineDataSize = 0;
-int width = 500, height = 500;
+int width = 200, height = 200;
+int isFirst = true;
+
+void GL2Png()
+{
+    // 取得画像エリアの確保(width*height)
+    unsigned char *buffer =
+        (unsigned char *)malloc(width * height * 4 * sizeof(unsigned char));
+    // フロントを読み込む様に設定する
+    glReadBuffer(GL_FRONT);
+    // 描画内容の読込(画像で出力する場合、RGB,BGRなどに合わせて取得するといい)
+    glReadPixels(0, 0, width, height, GL_BGR, GL_UNSIGNED_BYTE, buffer);
+    // glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, buffer);
+    cv::Mat image = cv::Mat(height, width, CV_8UC3, buffer);
+    // cv::Mat image = cv::Mat(height, width, CV_8UC4, buffer);
+    cv::imwrite("output.bmp", image);
+    free(buffer);
+}
 
 void disp()
 {
@@ -63,23 +82,19 @@ void disp()
         }
     }
     glEnd();
-    // 取得画像エリアの確保(width*height)
-    unsigned char *buffer =
-        (unsigned char *)malloc(width * height * 4 * sizeof(unsigned char));
-    // フロントを読み込む様に設定する
-    glReadBuffer(GL_FRONT);
-    // 描画内容の読込
-    glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-    // cv::Mat image = cv::Mat::zeros(500, 500, CV_8UC3);
-    // cv::imwrite("output.png", image);
+
+    if (isFirst)
+    {
+        isFirst = false;
+        GL2Png();
+    }
     glFlush();
-    dump(buffer, width * height * 4 * sizeof(char));
-    free(buffer);
 }
 
 void timer(int x)
 {
-    glRotatef(1, 0, 1.0, 0);
+    glRotatef(1, 1.0, 1.0, 0);
+    // glRotatef(1, 0, 1.0, 0);
     glutPostRedisplay();
     glutTimerFunc(50, timer, 0);
 }
@@ -106,23 +121,37 @@ void InitialProc()
 int main(int argc, char **argv)
 {
     InitialProc();
-
+    printf("dbug1");
     glutInit(&argc, argv);
-    glutInitWindowPosition(100, 10);
-    glutInitWindowSize(500, 500);
+    // どこにwindowを表示するか
+    glutInitWindowPosition(100, 100);
+    // windowのサイズ
+    glutInitWindowSize(width, height);
+    GLUT_RGB;
+    GLUT_SINGLE;
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
-
     glutCreateWindow("Obj Test");
 
-    glRotatef(30, 1.0, 0, 0);
-    glRotatef(30, 0, 1.0, 0);
-    glScalef(0.8, 0.8, 0.8);
+    /*
+    // create object
+    unsigned int objectId = 0;
+    glGenObject(1, &objectId);
+    // bind/assign object to context
+    glBindObject(GL_WINDOW_TARGET, objectId);
+    // set options of object currently bound to GL_WINDOW_TARGET
+    glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_WIDTH, 800);
+    glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, 600);
+    // set context target back to default
+    glBindObject(GL_WINDOW_TARGET, 0);
+    */
 
-    disp();
-    // glutDisplayFunc(disp);
-    // glutTimerFunc(100, timer, 0);
+    glRotatef(50, 1.0, 0, 0);
+    glRotatef(30, 0, 1.0, 0);
+    glScalef(0.6, 0.6, 0.6);
+    // glScalef(0.8, 0.8, 0.8);
+    glutDisplayFunc(disp);        // display関数をセットする
+    glutTimerFunc(100, timer, 0); // 定期実行関数にtimerをセットする
 
     glutMainLoop();
-
     return 0;
 }
