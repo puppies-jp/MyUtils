@@ -51,7 +51,7 @@ CREATE TABLE sales
 CREATE TABLE stable (
     sdate DATE /* 売り上げ日 */, 
     reg VARCHAR2(20) /* 地域 */, 
-    cost NUMBER　/* 値段 */)
+    cost NUMBER /* 値段 */)
     PARTITION BY RANGE (sdate)/* メインPartation */
     SUBPARTITION BY LIST (reg) /* サブ */
     (
