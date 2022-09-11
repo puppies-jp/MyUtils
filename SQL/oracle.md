@@ -48,12 +48,12 @@ CREATE TABLE sales
 
 -- コンポジットパーティション
 -- 複数keyでパーティション作成する場合
-CREATE TABLE “stable” (
-    ”date” DATE /* 売り上げ日 */, 
-    “reg” VARCHAR2(20) /* 地域 */, 
-    “cost” NUMBER　/* 値段 */)
-    PARTITION BY RANGE (”date”)/* メインPartation */
-    SUBPARTITION BY LIST (“reg”) /* サブ */
+CREATE TABLE stable (
+    sdate DATE /* 売り上げ日 */, 
+    reg VARCHAR2(20) /* 地域 */, 
+    cost NUMBER　/* 値段 */)
+    PARTITION BY RANGE (sdate)/* メインPartation */
+    SUBPARTITION BY LIST (reg) /* サブ */
     (
         PARTITION P2009Q1 VALUES LESS THAN(to_date('2009-04-01','YYYY-MM-DD'))
         (
@@ -73,7 +73,7 @@ CREATE TABLE “stable” (
 
 ```sql
 -- RANGEだと追加できる方向(Less thanとかの大きさ)が決まってるっぽい。。
-ALTER TABLE ”stable” ADD PARTITION P201005 VALUES LESS THAN (TO_DATE('2010/4/01','YYYY/MM/DD'));
+ALTER TABLE stable ADD PARTITION P201005 VALUES LESS THAN (TO_DATE('2010/4/01','YYYY/MM/DD'));
 -- subpartitionもこんな感じ
 ALTER TABLE stable ADD PARTITION P201105 VALUES LESS THAN (TO_DATE('2011/4/01','YYYY/MM/DD'))
 (SUBPARTITION P2011Q2_kanto VALUES ('kanagawa','Tokyo'));
