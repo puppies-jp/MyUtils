@@ -5,5 +5,7 @@
 - [oracle](oracle)
 
 ```sql
+-- sqlite3 だけ？っぽい
+PRAGMA table_info('テーブル名')
 
 ```
