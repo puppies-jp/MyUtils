@@ -1,0 +1,29 @@
+#version 120
+
+//
+// shader.vert
+//
+
+#define PI radians(180.0)
+
+void main(void)
+{
+    gl_Position = gl_Vertex+ vec4(0.0, 0.4 ,0.0, 0.0);
+    gl_FrontColor = gl_Color;
+}
+
+
+//
+// pointsprite.vert
+//
+/* 
+uniform float size;  // 点の大きさ
+varying vec3 light;  // 光線ベクトル
+ 
+void main(void)
+{
+  light = normalize(vec3(gl_LightSource[0].position - gl_ModelViewMatrix * gl_Vertex));  // 点光源の光線ベクトル
+  gl_Position = ftransform();  // 座標変換するだけ
+  gl_PointSize = size / gl_Position.w;  // 点の大きさを変更する
+}
+*/

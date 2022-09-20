@@ -1,0 +1,31 @@
+#version 120
+
+//
+// shader.frag
+//
+
+void main(void)
+{
+    gl_FragColor = gl_Color + vec4(0.0, 0.0, 0.6, 0.0);;
+}
+
+
+//
+// pointsprite.frag
+//
+/*varying vec3 light;  // 光線ベクトル
+ 
+void main(void)
+{
+  vec3 n;
+  
+  n.xy = gl_PointCoord * 2.0 - 1.0;  // 座標値を [0, 1] → [-1, 1] に変換する
+  n.z = 1.0 - dot(n.xy, n.xy);  // 1 から x と y のそれぞれの二乗和を引く
+  if (n.z < 0.0) discard;  // 結果が負ならフラグメントを捨てる
+  
+  n.z = sqrt(n.z);  // 球面だと仮定して法線ベクトルの z 成分を求める
+  vec3 m = normalize(gl_NormalMatrix * n);  // モデルビュー変換による回転の影響を加味する
+  float d = dot(light, m);  // 拡散反射光強度
+  gl_FragColor.rgb = vec3(d);
+  gl_FragColor.a = 1.0;
+}*/
