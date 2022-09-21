@@ -21,6 +21,11 @@ mono async_await.exe #実行
 
 - 非同期処理しているタスクの完了を待つ場合はawaitを使う
 
+#### 🚨Canceltoken
+
+- Cancellation tokenは終了でExceptionを吐くのではなく。
+  flagが立つだけのため、逐次フラグのチェックが必要となることに注意。
+
 ```cs
 // タスクBに戻り値がない(void)場合
 await RunTaskBAsync(); 
