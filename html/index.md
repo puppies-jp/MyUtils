@@ -44,7 +44,18 @@
   width: 100%;
   margin: auto;
 }  
-/*  */
+
+/*
+<div class="親">
+  <div class="子">
+    <div class="孫"></div>
+  </div>
+  <div class="子">
+    <div class="孫"></div>
+  </div>
+</div>
+*/
+/* このように書くことで上記の親の設定を子に適用される */
 .list> li {
     scroll-snap-align: start;
     width: 100%;
