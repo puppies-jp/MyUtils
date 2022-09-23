@@ -21,6 +21,23 @@
 
 ---
 
+## Dockerでグラフィックカード周りの機能を使う
+
+- `CentOS 7.xの場合、/dev/dri/cardX`などのデバイスファイルをdocker上で共有しコンテナと共有して使用するアイデア
+
+```sh
+# docker run \
+...
+--device=/dev/dri:/dev/dri \  ←描画のデバイスを共有
+--device=/dev/input:/dev/input \　←ゲームコントローラーのデバイスを共有
+...
+ubuntu:mygame01 /bin/bash
+```
+
+以下、参考リンク
+
+- [Dockerで3Dゲームを動かす――構築編(IT-media)](https://www.itmedia.co.jp/enterprise/articles/1604/27/news001_3.html)
+
 ## Docker アップグレードコマンド
 
 たまにやると忘れそうなので、メモを残しておく
