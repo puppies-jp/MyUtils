@@ -1,0 +1,5 @@
+# Linuxについて
+
+Linuxについてのあれこれをメモってく
+
+- [filesystemについて](filesystem)
