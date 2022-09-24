@@ -5,6 +5,7 @@ Linuxのfilesystemについてのあれこれをメモってく
 - [`df`について](#df)
 - [`fdisk`について(hdd,ssdのパーティション作成)](#fdisk)
 - [`mkfs`について(ファイルシステム作成)]()
+- [`mount`について(mountの仕方/OS起動時自動マウント設定)]
 
 ---
 
@@ -161,4 +162,54 @@ Linux ファイルシステムを作成します。
 詳しくは mkfs(8) をお読みください。
 (base)root@ubuntu:~# 
 
+```
+
+---
+
+## <a name='mount'>mountについて</a>
+
+### 手動でmountする
+
+1. マウント先のディレクトリを作成する
+2. `mount`コマンドでディスクをディレクトリにマウントする
+3. `df -h`でmountされたことを確認する
+
+```sh
+$ df -h　# 🌟dfで一応状態を確認
+ファイルシス            サイズ  使用  残り 使用% マウント位置
+/dev/mapper/centos-root   8.5G  4.9G  3.6G   58% /
+devtmpfs                  482M     0  482M    0% /dev
+tmpfs                     497M   84K  497M    1% /dev/shm
+/dev/sda1                 497M  210M  288M   43% /boot
+tmpfs                     100M   20K  100M    1% /run/user/42
+[root@pg-rex01 ~]$ mkdir /database  # 🌟マウントポイントを作成
+[root@pg-rex01 ~]$ mount /dev/sdb1 /database　# 🌟ファイルシステムとマウントポイントを指定する。
+
+```
+
+### 起動時に自動でmountさせる
+
+- `/etc/fstab`にマウント設定を記述する。  
+  (デバイス名で指定することもできるが、OS起動時にデバイス名が変わる可能性もあるのでUUIDで指定する方がよい)
+- `blkid`コマンドでUUIDが確認できる
+
+🌟こんな感じらしい
+
+```sh
+[root@pg-rex01 ~]# blkid /dev/sdb1
+/dev/sdb1: UUID="4208687d-cb09-4821-bc5e-c7614f1ad14d" TYPE="ext4" 
+[root@pg-rex01 ~]# vim /etc/fstab 
+[root@pg-rex01 ~]# cat /etc/fstab 
+
+#
+# /etc/fstab
+# Created by anaconda on Sat Jan 16 21:53:32 2016
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk'
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
+#
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=a892b7ee-0842-4ec9-bcba-56a8ed2042ac /boot                   xfs     defaults        0 0
+UUID=4208687d-cb09-4821-bc5e-c7614f1ad14d /database               ext4    defaults        1 2
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
 ```
