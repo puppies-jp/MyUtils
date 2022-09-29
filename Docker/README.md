@@ -19,9 +19,12 @@
   - 停止中のコンテナを起動 (start)
   - ホストとコンテナ間でのファイルコピー (cp)
 
+- 他
+  - [GPU(nvidiaだけではない)を使う](#gpu)
+
 ---
 
-## Dockerでグラフィックカード周りの機能を使う
+## <a name='gpu'>Dockerでグラフィックカード周りの機能を使う</a>
 
 - `CentOS 7.xの場合、/dev/dri/cardX`などのデバイスファイルをdocker上で共有しコンテナと共有して使用するアイデア
 
@@ -38,6 +41,8 @@ ubuntu:mygame01 /bin/bash
 
 - [Dockerで3Dゲームを動かす――構築編(IT-media)](https://www.itmedia.co.jp/enterprise/articles/1604/27/news001_3.html)
 
+ ---
+
 ## Docker アップグレードコマンド
 
 たまにやると忘れそうなので、メモを残しておく
@@ -48,7 +53,7 @@ ubuntu:mygame01 /bin/bash
 brew upgrade --cask docker
 ```
 
-## Docker Hub からイメージを検索／取得する。
+## Docker Hub からイメージを検索／取得する
 
 - 検索
 
@@ -98,7 +103,7 @@ docker run -d -p 8080:8080 -v $(pwd):/root/Desktop --name ubuntuCont uphy/ubuntu
 
 - `-p 8080:8080` : ホスト側の 8080 番ポートをコンテナ側の 8080 番ポートに転送するように指定(GUI が動くのであれば以下にアクセスして GUI に入れるはず)
 
-  > http://localhost:8080/
+  > <http://localhost:8080/>
 
 - `-v $(pwd):/root/Desktop`
   ホストのディレクトリ(`$(pwd)`)をコンテナのディレクトリ(`/root/Desktop`)としてマウントします。(`ホスト側のディレクトリも絶対パスで指定する 必要があります。`)
