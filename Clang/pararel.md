@@ -2,6 +2,10 @@
 
 - ここではmulti thread/processのテクニック等についてまとめる
 
+0. 並列化モデル
+    - タスク分解(タスクの並行処理,task decomposition)
+    - データ分解(データの並行処理,data decomposition)
+
 1. thread間機能
 [ミューテックス](#mutex)
 [リードライトロック](#readers_writer_lock)
