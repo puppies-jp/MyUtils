@@ -1,5 +1,6 @@
 #include <thread>
 #include <mutex>
+#include <vector>
 #include <iostream>
 #include <unistd.h>
 #include <stdio.h>
@@ -19,12 +20,26 @@ enum class ThreadState
     Finish = 3, // thread終了
 };
 
+typedef void (*TaskFunc)(void *);
+
+typedef struct _AsyncTask
+{
+    void *args = nullptr;
+    TaskFunc func = nullptr;
+} AsyncTask;
+
+void test1(void *ptr)
+{
+    printf("TEST setted function args");
+}
+
 class lThreads
 {
 private:
     std::thread m_thread;
     std::string m_threadName = "";
     static void mainJob(lThreads *self);
+    AsyncTask *task;
 
 public:
     ThreadState threadState =
@@ -37,9 +52,13 @@ public:
     }
     lThreads(std::string theadName)
     {
-        m_threadName = theadName;
+        static int counter = 1;
+        m_threadName = "[" + theadName + "(" + std::to_string(counter) + ")" + "]";
         m_thread = std::thread(mainJob, this);
+        counter++;
     };
+    // コピーコンストラクタ
+    lThreads(const lThreads &src){};
 
     ~lThreads()
     {
@@ -47,6 +66,16 @@ public:
         if (threadState != ThreadState::Finish)
             threadStop();
     };
+
+    void setState(ThreadState state)
+    {
+        threadState = state;
+    }
+
+    void setFunc(AsyncTask *src)
+    {
+        task = src;
+    }
 };
 
 void lThreads::mainJob(lThreads *self)
@@ -56,25 +85,36 @@ void lThreads::mainJob(lThreads *self)
         ThreadState _threadState = self->threadState;
         if (_threadState == ThreadState::Finish)
         {
+            break;
         }
         if (_threadState != ThreadState::WakeUp)
         {
-            std::cout << self->m_threadName << ": Sleep 10s" << std::endl;
-            sleep(self->interval);
         }
         else
         {
+            self->task->func(self->task->args);
         }
+
+        std::cout << self->m_threadName << ": Sleep " + std::to_string(self->interval) + "s" << std::endl;
+        sleep(self->interval);
+        continue;
     }
 }
 
 int main()
 {
-    lThreads t1[3]{
-        std::string("Thread1"),
-        std::string("Thread2"),
-        std::string("Thread3")};
-    sleep(30);
-
+    lThreads Tasks[3]{
+        {"Thread1"},
+        {"Thread2"},
+        {"Thread3"},
+    };
+    AsyncTask ag = {nullptr, test1};
+    Tasks[0].setFunc(&ag);
+    Tasks[0].setState(ThreadState::WakeUp);
+    sleep(10);
+    Tasks[1].setFunc(&ag);
+    Tasks[1].setState(ThreadState::WakeUp);
+    Tasks[0].setState(ThreadState::Inited);
+    sleep(10);
     return 0;
 }
