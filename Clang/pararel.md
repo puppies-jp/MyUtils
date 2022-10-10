@@ -36,11 +36,11 @@ std::lock_guard<std::mutex> lock(mtx_);
 
 - 実装に当たって
 
-1. `shared_mutex`を使う
-    - `mutex`クラスに対し、`lock_guard`(書き込み用のロッククラス)/`shared_lock`(読み込み用ロッククラス)でロックすることでreaders/writer lockした動きとなる。
-    - [shared mutex使用例](https://cpprefjp.github.io/reference/shared_mutex/shared_mutex.html)
-    - 🚨このクラスは現状、`書き込みロック`と`読み込みロック`についての`スケジューリング戦略を規定せず、カスタマイズもできない。`そのため、書き込みロックがなかなか取得できない、読み込みロックがなかなか取得できないというスタベーションの問題が発生した場合に、ユーザーの状況に合わせて戦略を変更することができない。
-        - `pthread_rwlockattr_setkind_np`を使うことで、対応することができる。
+- `shared_mutex`を使う
+  - `mutex`クラスに対し、`lock_guard`(書き込み用のロッククラス)/`shared_lock`(読み込み用ロッククラス)でロックすることでreaders/writer lockした動きとなる。
+  - [shared mutex使用例](https://cpprefjp.github.io/reference/shared_mutex/shared_mutex.html)
+  - 🚨このクラスは現状、`書き込みロック`と`読み込みロック`についての`スケジューリング戦略を規定せず、カスタマイズもできない。`そのため、書き込みロックがなかなか取得できない、読み込みロックがなかなか取得できないというスタベーションの問題が発生した場合に、ユーザーの状況に合わせて戦略を変更することができない。
+    - `pthread_rwlockattr_setkind_np`を使うことで、対応することができる。
 
 ```cpp
 std::shared_mutex mtx_;
@@ -50,8 +50,8 @@ std::lock_guard<std::shared_mutex> lock(mtx_);
 std::shared_lock<std::shared_mutex> lock(mtx_); 
 ```
 
-2. `pthread_rwlockattr_setkind_np`を使う
-    - [pthread_rwlockattr_setkind_np使用例](https://linuxjm.osdn.jp/html/LDP_man-pages/man3/pthread_rwlockattr_setkind_np.3.html)
+- `pthread_rwlockattr_setkind_np`を使う
+  - [pthread_rwlockattr_setkind_np使用例](https://linuxjm.osdn.jp/html/LDP_man-pages/man3/pthread_rwlockattr_setkind_np.3.html)
 
 ---
 
