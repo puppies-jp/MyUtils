@@ -1,10 +1,5 @@
-#include <thread>
-#include <mutex>
-#include <vector>
-#include <iostream>
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
+#include "SimpleThread.h"
+
 // thread停止用
 // int pthread_kill(pthread_t thread, int sig);
 
@@ -12,71 +7,34 @@
  * g++ SimpleThread.cpp -o main.out -lpthread -std=c++17
  */
 
-enum class ThreadState
-{
-    Inited = 0,
-    WakeUp = 1, // 割り当てたタスクの開始
-    Stop = 2,   // タスクの停止
-    Finish = 3, // thread終了
-};
-
-typedef void (*TaskFunc)(void *);
-
-typedef struct _AsyncTask
-{
-    void *args = nullptr;
-    TaskFunc func = nullptr;
-} AsyncTask;
-
 void test1(void *ptr)
 {
     printf("TEST setted function args");
 }
 
-class lThreads
+lThreads::lThreads(std::string theadName)
 {
-private:
-    std::thread m_thread;
-    std::string m_threadName = "";
-    static void mainJob(lThreads *self);
-    AsyncTask *task;
+    static int counter = 1;
+    m_threadName = "[" + theadName + "(" + std::to_string(counter) + ")" + "]";
+    m_thread = std::thread(mainJob, this);
+    counter++;
+}
 
-public:
-    ThreadState threadState =
-        ThreadState::Inited; //初期状態
-    unsigned int interval = 5;
-    void threadStop()
-    {
-        threadState = ThreadState::Finish;
-        m_thread.join();
-    }
-    lThreads(std::string theadName)
-    {
-        static int counter = 1;
-        m_threadName = "[" + theadName + "(" + std::to_string(counter) + ")" + "]";
-        m_thread = std::thread(mainJob, this);
-        counter++;
-    };
-    // コピーコンストラクタ
-    lThreads(const lThreads &src){};
+void lThreads::threadStop()
+{
+    threadState = ThreadState::Finish;
+    m_thread.join();
+}
 
-    ~lThreads()
-    {
-        // pthread_kill(m_thread, SIGTERM);
-        if (threadState != ThreadState::Finish)
-            threadStop();
-    };
+void lThreads::setState(ThreadState state)
+{
+    threadState = state;
+}
 
-    void setState(ThreadState state)
-    {
-        threadState = state;
-    }
-
-    void setFunc(AsyncTask *src)
-    {
-        task = src;
-    }
-};
+void lThreads::setFunc(AsyncTask *src)
+{
+    task = src;
+}
 
 void lThreads::mainJob(lThreads *self)
 {
