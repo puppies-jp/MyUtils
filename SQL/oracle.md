@@ -20,6 +20,7 @@ select name, open_mode from v$pdbs;
 
 -- 確認したPDBを起動
 alter pluggable database <ORCLPDB> open;
+alter pluggable database PDB01 open;
 -- クローズはこれ
 alter pluggable database PDB01 close;
 -- 削除
@@ -40,10 +41,10 @@ CREATE TABLE sales
     Customer_id VARCHAR2(40))
     PARTITION BY RANGE(sales_date)
     (
-        PARTITION sales_p1 VALUES LESS THAN(TO_DATE(' 2011/04/01 ','YYYY/MM/DD')) TABLESPACE Q1,
-        PARTITION sales_p2 VALUES LESS THAN(TO_DATE(' 2011/07/01 ','YYYY/MM/DD')) TABLESPACE Q2,
-        PARTITION sales_p3 VALUES LESS THAN(TO_DATE(' 2011/10/01 ','YYYY/MM/DD')) TABLESPACE Q3,
-        PARTITION sales_p4 VALUES LESS THAN(TO_DATE(' 2012/01/01 ','YYYY/MM/DD')) TABLESPACE Q4
+        PARTITION sales_p1 VALUES LESS THAN(TO_DATE(' 2011/04/01 ','YYYY/MM/DD')),
+        PARTITION sales_p2 VALUES LESS THAN(TO_DATE(' 2011/07/01 ','YYYY/MM/DD')),
+        PARTITION sales_p3 VALUES LESS THAN(TO_DATE(' 2011/10/01 ','YYYY/MM/DD')),
+        PARTITION sales_p4 VALUES LESS THAN(TO_DATE(' 2012/01/01 ','YYYY/MM/DD'))
     );
 
 -- コンポジットパーティション
@@ -105,9 +106,7 @@ mkdir /opt/oracle/oradata/XE/pdb01
 ```
 
 ```sql
--- ユーザを作成
-create user oracle identified by oracle; 
--- PDBの新規作成(pdb$seedから作成)
+-- PDBの新規作成(pdb$seedから作成) 作成されれば、指定したuser名でログインできる。
 CREATE PLUGGABLE DATABASE pdb01 ADMIN USER oracle IDENTIFIED BY oracle
 file_name_convert = ('/opt/oracle/oradata/XE/pdbseed/','/opt/oracle/oradata/XE/pdb01/');
 
@@ -139,7 +138,7 @@ ALTER SESSION SET CONTAINER=pdb01;
 DROP USER hogeuser CASCADE;
 
 -- ユーザ作成
-CREATE USER hogeuser IDENTIFIED BY passw0rd
+CREATE USER oracle IDENTIFIED BY oracle
 DEFAULT TABLESPACE users
 QUOTA UNLIMITED ON users
 TEMPORARY TABLESPACE temp;
@@ -147,5 +146,5 @@ TEMPORARY TABLESPACE temp;
 -- 作成ユーザへ権限付与
 GRANT CREATE SESSION TO oracle;
 GRANT RESOURCE TO oracle;
-GRANT UNLIMITED TABLESPACE TO oracle;
+GRANT UNLIMITED TABLESPACE TO users;
 ```
