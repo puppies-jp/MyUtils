@@ -106,7 +106,10 @@ mkdir /opt/oracle/oradata/XE/pdb01
 ```
 
 ```sql
+-- 🚨ここはsysユーザで実行すること
 -- PDBの新規作成(pdb$seedから作成) 作成されれば、指定したuser名でログインできる。
+-- 他のuserを追加したい場合、作成したpdb内でuserを追加すること。
+-- ここで作成するのぱpdbの管理ユーザ
 CREATE PLUGGABLE DATABASE pdb01 ADMIN USER oracle IDENTIFIED BY oracle
 file_name_convert = ('/opt/oracle/oradata/XE/pdbseed/','/opt/oracle/oradata/XE/pdb01/');
 
