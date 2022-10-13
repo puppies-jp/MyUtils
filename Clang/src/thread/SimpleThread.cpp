@@ -50,7 +50,8 @@ void lThreads::mainJob(lThreads *self)
         }
         else
         {
-            self->task->func(self->task->args);
+            TaskFunc threadFunc = self->task->func;
+            threadFunc(self->task->args);
         }
 
         std::cout << self->m_threadName << ": Sleep " + std::to_string(self->interval) + "s" << std::endl;
