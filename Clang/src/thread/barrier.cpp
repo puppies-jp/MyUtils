@@ -26,6 +26,7 @@ int main()
 {
     // バリア同期: 初期カウント値=ワーカ数+1(メインスレッド)
     // std::barrier<> sync{NWORKERS + 1};
+    std::string arr[3] = {"1", "2", "3"};
 
     // ワーカスレッド群をFire-and-Forget起動
     for (int id = 1; id <= NWORKERS; id++)
@@ -35,7 +36,8 @@ int main()
       for (int phase = 1; phase <= NPHASES; phase++) {
         { // ワーカスレッドのフェーズタスクを実行
           std::lock_guard lk{cout_mtx};
-          std::cout << "Worker#" << id << " " << phase << std::endl;
+          std::cout << "Worker#" << id << " phase" << phase 
+          << " lambda:"<< arr[id%NWORKERS]<< std::endl;
         }
 
         // 合流ポイント: メインスレッド＋他ワーカスレッドと同期
