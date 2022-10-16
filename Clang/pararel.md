@@ -11,10 +11,19 @@
 [リードライトロック](#readers_writer_lock)
 [条件変数](#condition)
 [バリアオブジェクト](#barrier)
+[volatile宣言について](#volatile)
 
 2. process間機能
 
 ---
+
+## <a name=pthread>pthreadについて</a>
+
+🚨 `pthread_create`した後は必ず`join`,`detach`がいる。
+
+- `pthread_create`でスレッドを作成した場合、
+  `join`もしくは、`detach`しなければなりません。 pthread_detachは、メインスレッドからスレッドを切り離す機能を提供します。
+  `pthread_create`で作ったスレッドが終了したとき、`join`で終了を回収せずに、`pthread_create`だけを呼び出して、`プログラムを動かしているとメモリリーク`します。
 
 ## <a name='mutex'>mutex</a>
 
@@ -141,4 +150,22 @@ int ret = pthread_barrier_init(&barrier, &attr, count);
 
 
 int ret = pthread_barrier_wait(&barrier);
+```
+
+---
+
+## <a name=volatile>volatile宣言</a>
+
+`volatile`とは`「揮発性の」`のこと、つまりすぐに変わってしまうという意味を持ちます。
+マルチスレッドで値を書き換える可能性があることを示すため、コンパイラでの省略がされなくなる。
+(処理系によっては正しく動かないのもあるらしいです。)
+
+```cpp
+volatile int flag = 0;
+void worker() {
+    // volatile宣言してないと、コンパイル時の最適化で
+    // whileが全てtrueとなることがある。
+    while( flag == 0){}
+    std::cout << "worker!! \n";
+}
 ```
