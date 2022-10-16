@@ -92,7 +92,7 @@ printf("[Error]:%s\n",strerror(errno));
 
 ## <a name=memory_dump>メモリダンプ</a>
 
-```c
+```cpp
 #include "stdio.h"
 
 /*
@@ -140,6 +140,7 @@ int main()
 ```
 
 ---
+
 ## <a name=is_dir>ディレクトリチェック</a>
 
 ```c++
@@ -163,12 +164,15 @@ int main()
 ```
 
 ---
+
 ## <a name=breakPoint>ブレークポイント</a>
 
 ```cpp
 #include<signal.h>
 raise(SIGTRAP)
 ```
+
+---
 
 ## <a name=network>ネットワーク系</a>
 
@@ -348,6 +352,8 @@ Hello world!
 
 ```
 
+---
+
 ### <a name=direct>ダイレクトパラメータアクセス</a>
 
 - printfに`$`を使ってやることで、引数の何番目の数字を使用するのかを直で指定できる
@@ -379,6 +385,8 @@ int main()
 arg2: 2
 (base) root@9ea233d8d241:~/Desktop/LeakDetect/OverFlow# 
 ```
+
+---
 
 ## <a name="crypt">password暗号化</a>
 
