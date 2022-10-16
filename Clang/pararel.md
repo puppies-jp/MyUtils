@@ -10,6 +10,7 @@
 [ミューテックス](#mutex)
 [リードライトロック](#readers_writer_lock)
 [条件変数](#condition)
+[バリアオブジェクト](#barrier)
 
 2. process間機能
 
@@ -119,3 +120,17 @@ int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock1) // writeロック
 状態が変化したら`pthread_cond_signal()`をコールし、条件変数でブロックしているスレッドの実行を再開される。状態変化を通知されたスレッドは、対応するmutexロックを獲得後、
 `pthread_cond_wait()`からリターンし、結果に応じて再度条件変数を待つか処理を続けるか判断する。`(通知しても待っているスレッドが存在しなければ通知が破棄される)`。
 また、`pthread_cond_broadcast()`は条件変数により待っている全スレッドの実行を再開させる。
+
+## <a name='barrier'>バリアオブジェクト</a>
+
+`バリアオブジェクト`とは
+同期メカニズムの一つ、実行中の他のスレッドがバリアポイントに到達するまで、スレッドの実行を一時停止するもの。
+
+> `C++20`からクラスが作成されてる。
+それ以前だと`Pthread`で実装がいるかも
+
+- [バリア同期(C++20)](https://cpprefjp.github.io/reference/barrier.html)
+
+```cpp
+
+```
