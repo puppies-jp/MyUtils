@@ -132,5 +132,13 @@ int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock1) // writeロック
 - [バリア同期(C++20)](https://cpprefjp.github.io/reference/barrier.html)
 
 ```cpp
+#include <pthread.h>
 
+pthread_barrier_t barrier;  // バリアオブジェクト
+pthread_barrierattr_t attr; //バリア属性
+unsigned count;             // 並列数
+int ret = pthread_barrier_init(&barrier, &attr, count);
+
+
+int ret = pthread_barrier_wait(&barrier);
 ```
