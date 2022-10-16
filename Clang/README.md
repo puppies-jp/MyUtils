@@ -16,6 +16,7 @@
 ---
 
 - よく使うソース群
+  - [popenで標準出力/戻り値を取得する](#popen)
   - [エラー出力について](#error)
   - [メモリダンプ](#memory_dump)
   - [ディレクトリ有無チェック](#is_dir)
@@ -30,6 +31,35 @@
   - [ソースコードに直でブレークポイントを貼る](#breakPoint)
 
 ---
+
+## <a name=popen>popenで標準出力/戻り値を取得する</a>
+
+```cpp
+#include <stdio.h>
+
+// FILE *popen(const char *command, const char *type);
+// int pclose(FILE *stream);
+
+
+int main()
+{
+    FILE *fp;
+    // 🌟ここでコマンドが実行される
+    // "bash -c 'pwd -l'" /* -lが余計で失敗するパターン */
+    fp = popen("bash -c 'pwd -l'", "r");
+    char buf[256] = {};
+
+    // 🌟標準出力取得(エラーも取得してしまう...)
+    // 失敗した段階でエラー取れる方が嬉しいかも。。。
+    while (fgets(buf, 256, fp))
+        fputs(buf, stdout);
+
+    // 🌟ここで返り値が取得できる。
+    int ret = pclose(fp);
+    printf("ret: %d\n", ret);
+    return 0;
+}
+```
 
 ## <a name=error>Errorについて</a>
 
