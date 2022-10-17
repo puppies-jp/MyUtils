@@ -1,5 +1,12 @@
 # lambda式について
 
+- [変数/キャプチャについて](#args)
+- [関数ポインタへの変換](#function)
+
+---
+
+## 基本系
+
 ```cpp
 #include <iostream>
 using namespace std;
@@ -18,7 +25,7 @@ int main() {
 
 ---
 
-## 変数について
+## <a name=args>引数について</a>
 
 - [キャプチャ記法](https://cpprefjp.github.io/lang/cpp11/lambda_expressions.html#capture)
   - ラムダ式の外にある自動変数を、ラムダ式内で参照できるようにする「キャプチャ(capture)」という機能がある。キャプチャは、ラムダ導入子(lambda-introducer)と呼ばれる、ラムダ式の先頭にある[ ]ブロックのなかで指定する。
@@ -57,4 +64,22 @@ g++ -std=c++11 test.cpp
 ./a.out 
 i = 0
 j = 1
+```
+
+---
+
+## <a name=function>関数ポインタへの変換</a>
+
+```cpp
+
+void foo(int(*fp)(int, int))
+{
+  int result = fp(2, 3);
+  std::cout << result << std::endl;
+}
+
+int main()
+{
+  foo([](int a, int b) { return a + b; });
+}
 ```
