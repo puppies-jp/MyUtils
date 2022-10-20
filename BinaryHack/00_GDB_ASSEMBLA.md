@@ -241,11 +241,18 @@ gdb実行時に特定の初期化ファイルを指定するには
 
 > gdb -command=`[初期化ファイル]` `[実行ファイル]`
 
+- [gdbで効率的にデバッグするためのTips](https://qiita.com/aosho235/items/e8efd18364408231062d)
+
 ```txt
-🌟1 .gdbinitに以下のようにブレークポイントを書いたり
+# コマンド履歴を保存する(~/.gdbinitに置くと自動で読み込まれる)
+set history save on
+set history size 10000
+set history filename ~/.gdb_history
+
+# 🌟1 .gdbinitに以下のようにブレークポイントを書いたり
 break g
 
-🌟2 .gdbinitに以下のようにマクロを書いたり。。
+# 🌟2 .gdbinitに以下のようにマクロを書いたり。。
 define function1 //こんな感じでマクロを定義できる
 printf $arg0,$arg1 //引数に最大10個まで取れる
 continue
