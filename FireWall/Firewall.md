@@ -100,6 +100,10 @@ iptables [サブコマンド] [パラメータ]
 # ポート80で受信したTCPの受信パケットを破棄
 iptables -A INPUT -p tcp --dport 80 -j DROP
 
+# < `-s(送信元)`|`-d(宛先)` >
+# < `--sport(送信元ポート)`|`--dport(宛先ポート)`>への
+iptables -A INPUT -p tcp -s <IPaddr> --dport 80 -j DROP
+
 # IPマスカレードの指定
 iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
 ```
