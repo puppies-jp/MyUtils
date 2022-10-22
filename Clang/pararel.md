@@ -7,13 +7,14 @@
     - データ分解(データの並行処理,data decomposition)
 
 1. thread間機能
-[ミューテックス](#mutex)
-[リードライトロック](#readers_writer_lock)
-[条件変数](#condition)
-[バリアオブジェクト](#barrier)
-[volatile宣言について](#volatile)
+[ミューテックス](#mutex)  
+[リードライトロック](#readers_writer_lock)  
+[条件変数](#condition)  
+[バリアオブジェクト](#barrier)  
+[volatile宣言について](#volatile)  
 
 2. process間機能
+[セマフォ](#semapho)
 
 ---
 
@@ -95,7 +96,6 @@ pthread_rwlock_destroy(pthread_rwlock_t *rwlock1)
 /* 読み書きの優先度とかのスケジューリングに使う */
 pthread_rwlock_attr_setfavorwriters_np()
     
-
 /* ⭐️読み取りのためのロック・オブジェクトのロック/アンロック */
 int pthread_rwlock_rdlock(pthread_rwlock_t *rwlock1) //ロック取得(取得できるまで待つ)
 int pthread_rwlock_unlock(pthread_rwlock_t *rwlock1) //
@@ -148,7 +148,6 @@ pthread_barrierattr_t attr; //バリア属性
 unsigned count;             // 並列数
 int ret = pthread_barrier_init(&barrier, &attr, count);
 
-
 int ret = pthread_barrier_wait(&barrier);
 ```
 
@@ -168,4 +167,13 @@ void worker() {
     while( flag == 0){}
     std::cout << "worker!! \n";
 }
+```
+
+---
+
+## <a name=semapho>セマフォの使い方</a>
+
+セマフォとは。。。
+
+```cpp
 ```
