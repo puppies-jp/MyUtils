@@ -6,7 +6,7 @@
     - タスク分解(タスクの並行処理,task decomposition)
     - データ分解(データの並行処理,data decomposition)
 
-1. thread間機能
+1. thread間機能  
 [ミューテックス](#mutex)  
 [リードライトロック](#readers_writer_lock)  
 [条件変数](#condition)  
@@ -175,5 +175,82 @@ void worker() {
 
 セマフォとは。。。
 
+### semget
+
 ```cpp
+#include <sys/sem.h>
+
+// 🌟既存セマフォ集合のセマフォIDあるいは、新規作成したセマフォ集合のセマフォIDを取得します。
+// key:取得するセマフォ集合のキー  nsems:セマフォの数  semflg:オプション
+int semget(key_t key， int nsems， int semflg);
+
+// 作り方は2通り
+// 1.第１引数のkeyにIPC_PRIVATEを指定します。
+// 2. 第１引数のkeyにユニークな値を指定し、第３引数のsemflgにIPC_CREATを指定します。
+// semflgにIPC_CREATとIPC_EXCLを指定すると、keyに対するセマフォ集合が既に存在していた場合にエラーになります。
+// 第３引数のsemflgの下位９ビットは、そのセマフォの所有者、グループ、他人に対するアクセス許可の定義として使用します。
+const key_t key = 112;int sem_flags = 0666;
+int sem_id = semget(key, 1, sem_flags | IPC_CREAT);
+```
+
+### semctl
+
+```cpp
+
+// semid で指定された  System V セマフォ集合 (semaphore set) またはセマフォ集合の 
+// semnun 番目のセマフォに対して、 cmd で指定された制御操作を行なう (集合内のセマフォの番号は 0 から始まる)。 
+int semctl(
+  int semid,  /* セマフォ集合のId */
+  int semnum, /* 何番目のセマフォか */
+  int cmd,    /* 制御操作 */
+  ...
+  );
+
+union semun
+{
+    int val;/* SETVAL の値 */ 
+    struct semid_ds *buf;/* IPC_STAT,IPC_SET 用のバッファー */ 
+    unsigned short int *array;/* GETALL,SETALL 用の配列 */ 
+    struct seminfo *__buf;
+};
+
+/* セマフォの初期化 */
+union semun argument;
+unsigned short values[1] = {1};
+argument.array = values;
+semctl(sem_id, 0, SETALL, argument);
+
+/* セマフォの解放 */
+int result = semctl(sem_id, 1, IPC_RMID, NULL);
+    
+```
+
+```cpp
+// 🌟 セマフォ操作
+int semop(
+  int semid, // セマフォId
+  struct sembuf *sops, // セマフォ操作配列
+  size_t nsops // セマフォ操作構造体の数
+  );
+
+enum SEMAPHORE_OPERATION
+{
+  // 🌟セマフォ値（semval）が指定した値の絶対値以上の場合は、セマフォ値から指定した値の絶対値を減算し、プロセスを停止状態にします。
+  // セマフォ値が指定した値の絶対値以上になると、プロセスは目覚めます。
+  UNLOCK = -1,
+  // 🌟sem_num=0 でセマフォ値（semval）が０になるまで待ち（プロセスの停止）ます。（ロックの操作）
+  WAIT = 0,
+  // 🌟指定した値(sem_num>0)をセマフォ値（semval）に加算します。この操作は必ず実行でき、プロセスの停止状態は起こりません。（アンロックの操作）
+  LOCK = 1,
+};
+
+
+// 🌟使用例
+sembuf operations[1];
+operations[0].sem_num = 0;
+operations[0].sem_op = WAIT;
+operations[0].sem_flg = SEM_UNDO;
+// sem_flgには休眠状態（停止）を避ける為のIPC_NOWAITと、シグナル等でプロセスが終了した場合に、セマフォ値を元に戻す為のSEM_UNDOが設定できます。どちらも指定しない場合は０を指定します。
+
+semop(sem_id, operations, sizeof(operations)/sizeof(sembuf));
 ```
