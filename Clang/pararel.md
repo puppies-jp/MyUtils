@@ -216,7 +216,7 @@ union semun
 
 /* セマフォの初期化 */
 union semun argument;
-unsigned short values[1] = {1};
+unsigned short values[1] = {1}; // ここの配列で設定した値が初期値で設定される
 argument.array = values;
 semctl(sem_id, 0, SETALL, argument);
 
