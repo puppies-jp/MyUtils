@@ -15,6 +15,9 @@
 
 2. process間機能  
 [セマフォ](#semapho)
+[共有メモリ](#share_mem)
+
+- [参考](https://qiita.com/MoriokaReimen/items/5c4256ef620499a88bb3)
 
 ---
 
@@ -256,4 +259,11 @@ operations[0].sem_flg = SEM_UNDO;
 // sem_flgには休眠状態（停止）を避ける為のIPC_NOWAITと、シグナル等でプロセスが終了した場合に、セマフォ値を元に戻す為のSEM_UNDOが設定できます。どちらも指定しない場合は０を指定します。
 
 semop(sem_id, operations, sizeof(operations)/sizeof(sembuf));
+```
+
+### <a name=share_mem>共有メモリ</a>
+
+- [とりあえずここ参照](https://puppies-jp.github.io/MyUtils/Clang/src/sharedMem/)
+
+```cpp
 ```
