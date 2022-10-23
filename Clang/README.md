@@ -39,6 +39,7 @@
 C/C++のmem系操作をあれこれ書いてく。
 
 ```cpp
+#include <string.h>
 // 🌟buf2からn byte分をbuf1へコピーする
 // 🚨buf1 と buf2 が重なっているときの動作は未定義です。
 void *memcpy(void *buf1, const void *buf2, size_t n);
@@ -46,7 +47,6 @@ void *memcpy(void *buf1, const void *buf2, size_t n);
 // 🌟buf1 の先頭にbuf2を n byte分 コピー
 // 🚨buf1 と buf2 が重なっているときでもbuf1の値からbuf2の値に上書きされる。
 void *memmove(void *buf1, const void *buf2, size_t n);
-
 ```
 
 ---
