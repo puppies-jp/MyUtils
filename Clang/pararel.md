@@ -13,7 +13,7 @@
 [バリアオブジェクト](#barrier)  
 [volatile宣言について](#volatile)  
 
-2. process間機能
+2. process間機能  
 [セマフォ](#semapho)
 
 ---
@@ -109,7 +109,7 @@ int pthread_rwlock_tryrdlock(pthread_rwlock_t *rwlock1) // readロック取得(�
 */
     
 /* ⭐️書き込みのためのロック・オブジェクトのロック */
-int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock1)　//ロック取得(取得できるまで待つ)
+int pthread_rwlock_wrlock(pthread_rwlock_t *rwlock1) //ロック取得(取得できるまで待つ)
 int pthread_rwlock_unlock(pthread_rwlock_t *rwlock1)
 
 int pthread_rwlock_trywrlock(pthread_rwlock_t *rwlock1) // writeロック
@@ -182,7 +182,7 @@ void worker() {
 
 // 🌟既存セマフォ集合のセマフォIDあるいは、新規作成したセマフォ集合のセマフォIDを取得します。
 // key:取得するセマフォ集合のキー  nsems:セマフォの数  semflg:オプション
-int semget(key_t key， int nsems， int semflg);
+int semget(key_t key, int nsems, int semflg);
 
 // 作り方は2通り
 // 1.第１引数のkeyにIPC_PRIVATEを指定します。
