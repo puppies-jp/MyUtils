@@ -196,7 +196,6 @@ int sem_id = semget(key, 1, sem_flags | IPC_CREAT);
 ### semctl
 
 ```cpp
-
 // semid で指定された  System V セマフォ集合 (semaphore set) またはセマフォ集合の 
 // semnun 番目のセマフォに対して、 cmd で指定された制御操作を行なう (集合内のセマフォの番号は 0 から始まる)。 
 int semctl(
@@ -221,8 +220,7 @@ argument.array = values;
 semctl(sem_id, 0, SETALL, argument);
 
 /* セマフォの解放 */
-int result = semctl(sem_id, 1, IPC_RMID, NULL);
-    
+int result = semctl(sem_id, 1, IPC_RMID, NULL);    
 ```
 
 ```cpp
@@ -243,7 +241,6 @@ enum SEMAPHORE_OPERATION
   // 🌟指定した値(sem_num>0)をセマフォ値（semval）に加算します。この操作は必ず実行でき、プロセスの停止状態は起こりません。（アンロックの操作）
   LOCK = 1,
 };
-
 
 // 🌟使用例
 sembuf operations[1];
