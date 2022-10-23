@@ -1,6 +1,6 @@
 #include "forkinter.h"
 
-int CreateSemaphore(int key)
+int CreateSemaphore(int key, int sem_flgs, semun *initOpe = nullptr)
 {
     int sem_id = semget(key, 1, sem_flags | IPC_CREAT);
     if (-1 == sem_id)
@@ -9,11 +9,10 @@ int CreateSemaphore(int key)
         return EXIT_FAILURE;
     }
 
-    /* セマフォの初期化 */
-    union semun argument;
-    unsigned short values[1] = {1};
-    argument.array = values;
-    semctl(sem_id, 0, SETALL, argument);
+    if (initOpe != nullptr)
+    {
+        semctl(sem_id, 0, SETALL, initOpe);
+    }
     return sem_id;
 }
 
@@ -21,8 +20,7 @@ int CreateSemaphore(int key)
 void DiscardSemaphore(int sem_id)
 {
     auto result = semctl(sem_id, 0, IPC_RMID, 0);
-    if (result /*semctl(sem_id, 0, IPC_RMID, 0)*/
-        == -1)
+    if (result == -1)
     {
         perror("semctl(del) failure");
         exit(-1);
@@ -34,19 +32,29 @@ void ChildProcess(int sem_id, int Pid);
 
 int main()
 {
-    int sem_id = CreateSemaphore(key);
+    // int sem_id = CreateSemaphore(key);
     int nPid = fork();
     if (nPid < 0)
     { // fork失敗
         perror("fork failure");
         exit(-1);
     }
-    else if (nPid == 0)
-        ChildProcess(sem_id, nPid);
-    else
+    else if (nPid == 0) // child process
     {
-        ParentProcess(sem_id, nPid);
+        sleep(1); // 親のsemaphore作成待ちスリープ
+        int sem_id = CreateSemaphore(key, sem_flags);
+        ChildProcess(sem_id, nPid);
+    }
+    else // parent process
+    {
+        /* セマフォの初期化 */
+        union semun argument;
+        unsigned short values[1] = {1};
+        argument.array = values;
 
+        int sem_id = CreateSemaphore(
+            key, sem_flags | IPC_CREAT, &argument);
+        ParentProcess(sem_id, nPid);
         sleep(10);
         DiscardSemaphore(sem_id);
     }
