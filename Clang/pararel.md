@@ -175,6 +175,10 @@ void worker() {
 
 セマフォとは。。。
 
+コンピュータ上の共有資源について、利用可能な資源の数を指し示している。プログラムが資源を占有するときはセマフォの値から1を減じ、処理が終わって解放する際には1を加える。
+
+- [sampleスクリプト](https://github.com/puppies-jp/MyUtils/tree/gh-pages/Clang/src/pararel/semaphore)
+
 ### semget
 
 ```cpp
@@ -231,6 +235,7 @@ int semop(
   size_t nsops // セマフォ操作構造体の数
   );
 
+/* sembuf.sem_op の操作 */
 enum SEMAPHORE_OPERATION
 {
   // 🌟セマフォ値（semval）が指定した値の絶対値以上の場合は、セマフォ値から指定した値の絶対値を減算し、プロセスを停止状態にします。
@@ -238,7 +243,8 @@ enum SEMAPHORE_OPERATION
   UNLOCK = -1,
   // 🌟sem_num=0 でセマフォ値（semval）が０になるまで待ち（プロセスの停止）ます。（ロックの操作）
   WAIT = 0,
-  // 🌟指定した値(sem_num>0)をセマフォ値（semval）に加算します。この操作は必ず実行でき、プロセスの停止状態は起こりません。（アンロックの操作）
+  // 🌟指定した値(sem_num>0)をセマフォ値（semval）に加算します。
+  // この操作は必ず実行でき、プロセスの停止状態は起こりません。（アンロックの操作）
   LOCK = 1,
 };
 
