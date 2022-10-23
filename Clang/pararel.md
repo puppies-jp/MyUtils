@@ -180,6 +180,16 @@ void worker() {
 
 コンピュータ上の共有資源について、利用可能な資源の数を指し示している。プログラムが資源を占有するときはセマフォの値から1を減じ、処理が終わって解放する際には1を加える。
 
+OSの機能を使うため生成/削除を漏らさずに実行しないと前回実行したセマフォが残る可能性がある。
+
+```sh
+# 🌟セマフォの利用状況について以下コマンドで確認できる
+ipcs -s
+
+# 🌟セマフォの削除は以下
+ipcrm -s <semid>
+```
+
 - [sampleスクリプト](https://github.com/puppies-jp/MyUtils/tree/gh-pages/Clang/src/pararel/semaphore)
 
 ### semget
