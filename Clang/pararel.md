@@ -273,6 +273,26 @@ semop(sem_id, operations, sizeof(operations)/sizeof(sembuf));
 
 ### <a name=share_mem>共有メモリ</a>
 
+```bash
+# IPC(inter process communication)
+# 🌟共有メモリの確認
+ipcs 
+
+# 🌟セマフォとかがうざい時は `-m`オプションで共有メモリだけ表示できる
+ipcs -m
+
+# 出力はこんな感じ
+
+------ 共有メモリセグメント --------
+キー     shmid      所有者  権限     バイト  nattch     状態      
+0x00000000 0          root       777        2560       2                       
+0x00000000 1          root       777        2048000    2                       
+0x00000000 2          root       777        2048       2                       
+
+# 🌟共有メモリの削除
+ipcrm shm <shmid>
+```
+
 - [とりあえずここ参照](https://puppies-jp.github.io/MyUtils/Clang/src/sharedMem/)
 
 ```cpp

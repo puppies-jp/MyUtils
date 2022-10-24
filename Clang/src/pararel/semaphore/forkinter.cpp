@@ -55,6 +55,7 @@ int main()
         int sem_id = CreateSemaphore(
             key, sem_flags | IPC_CREAT, &argument);
         ParentProcess(sem_id, nPid);
+        system("ipcs -s");
         sleep(10);
         DiscardSemaphore(sem_id);
     }
