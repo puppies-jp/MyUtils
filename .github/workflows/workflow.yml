@@ -28,4 +28,5 @@ jobs:
       - name: Run builded file
         run: |
           pwd
+          cd ./Clang/src/pararel/pthread
           ./SimpleThread.out
