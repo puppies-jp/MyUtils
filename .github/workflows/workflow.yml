@@ -1,0 +1,14 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: SetUp
+        run: echo "Hello workflow"
