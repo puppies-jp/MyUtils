@@ -21,11 +21,11 @@ jobs:
           tree ./
       - name: Build src
         run: |
-          cd ./Clang/src/pararel/semaphore
-          g++ forkinter.cpp -o forkinter.out -std=c++2a
-          ./forkinter.out
+          cd ./Clang/src/pararel/pthread
+          g++ SimpleThread.cpp -o SimpleThread.out -lpthread
+          ./SimpleThread.out
 
       - name: Run builded file
         run: |
-          ./forkinter.out
-          
+          pwd
+          ./SimpleThread.out
