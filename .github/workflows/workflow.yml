@@ -1,5 +1,8 @@
+# Workflow name
 name: Build
 
+# workflow trigger
+# on: [push, pull_request, workflow_dispatch]
 on:
   push:
     branches:
@@ -7,8 +10,22 @@ on:
 
 jobs:
   build:
+    # The type of runner that the job will run on
+    # runs-on: macos-10.15
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: SetUp
-        run: echo "Hello workflow" ;tree ./
+      - name: Start Up
+        run: |
+          echo "Hello workflow" 
+          tree ./
+      - name: Build src
+        run: |
+          cd ./Clang/src/pararel/semaphore
+          g++ forkinter.cpp -o forkinter.out -std=c++2a
+          ./forkinter.out
+
+      - name: Run builded file
+        run: |
+          ./forkinter.out
+          
