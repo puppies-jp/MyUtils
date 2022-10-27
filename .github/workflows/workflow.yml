@@ -27,6 +27,16 @@ jobs:
 
       - name: Run builded file
         run: |
+          # name間でbuild/実行したファイルはそのまま残る。
+          # また、nameごとにhomeディレクトリ(gitの直下)まで戻る
           pwd
-          cd ./Clang/src/pararel/pthread
-          ./SimpleThread.out
+          # cd ./Clang/src/pararel/pthread
+          # ./SimpleThread.out
+
+      - name: Run sharePoint
+        run: |
+          cd Clang/src/pararel/shareMem
+          touch key_data.dat
+          g++ forkShareMem.cpp -o forkShareMem.out
+          ./forkShareMem.out
+
