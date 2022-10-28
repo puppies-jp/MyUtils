@@ -1,16 +1,28 @@
 # ここでは C/C++ 系の言語についてのあれこれをまとめる
 
+build周り
+
 - [Cmake について](Cmake)
-  - [Makefile描き方サンプル](MakeFile)
-- [コンストラクト/デストラクト](construct)
-- [mutex の安全な運用について](mutex)
+- [Makefile描き方サンプル](MakeFile)
+
+言語仕様系
+
 - [プリプロセッサ使い方 cheat メモ](preprocessor)
+- [コンストラクト/デストラクト](construct)
 - [C++の安全なリソース解放について](SafeResource)
 - [引数について](FunctionParameter)
 - [inline調査](inline)
-- [共有メモリについて](src/sharedMem)
+
+ossとか環境依存系とか
+
 - [不本意ながらMFCというか、Windows関連](MFC)
 - [openGLについて](openGL)
+- [Google test/mockについて](src/googletest/)
+
+実装の戦略とか
+
+- [mutex の安全な運用について](mutex)
+- [共有メモリについて](src/sharedMem)
 - [並行プログラミング戦略](src/pararel/pararel)
 - [lambda式について](lambda)
 
