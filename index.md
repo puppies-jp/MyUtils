@@ -43,7 +43,7 @@ MyUtil % tree ./
 - [python](Python)
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
-- [正規表現リンク](RegExp/regularExpression)
+- [正規表現/sed リンク](RegExp/regularExpression)
 - [tensorflow](tensorflow)
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)

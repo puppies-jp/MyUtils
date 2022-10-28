@@ -100,3 +100,27 @@ state:hogehoge
 ```shell
  tail -f tmp.txt | grep --line-buffered  --color -E '$|(^state:(.*)$|^(\[|\{).*(\]|\}))$'
 ```
+
+## sed使い方メモ
+
+適宜追加していく
+
+- 正規表現で置換
+
+> sed -e 's/置換元/置換後/g'
+
+```sh
+# 置き換え
+sed -i 's/#Port 22/Port 20022/' /etc/ssh/sshd_config
+```
+
+- 行を抽出
+
+```sh
+# 1~3行目まで
+sed -n '1,3 p' 
+# 5~末尾まで
+sed -n '5,$ p ' test
+# 正規表現 /<正規表現>/で括られた内部のパターンで抽出
+sed -n '/^root/ p' /etc/passwd
+```
