@@ -7,35 +7,7 @@
 
 ---
 
-ファイル構成
-
-```shell
-MyUtil % tree ./
-./
-├── Clang
-│   └── README.md
-├── FireWall
-│   └── Firewall.md
-├── Python
-│   ├── index.md
-│   └── pandas
-│       ├── matplot.md
-│       └── pandas_tuto.md
-├── RegExp
-│   └── regularExpression.md
-├── ShellScript
-│   └── index.md
-├── _config.yml
-├── index.md
-├── keywords.md
-├── sandbox
-│   └── index.md
-└── tensorflow
-    ├── index.md
-    └── makeModel.md
-
-8 directories, 13 files
-```
+## topics
 
 - [sandpox code pen](sandbox)
 - [ShellScript](ShellScript)
