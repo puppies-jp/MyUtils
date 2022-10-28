@@ -11,7 +11,7 @@
 - [共有メモリについて](src/sharedMem)
 - [不本意ながらMFCというか、Windows関連](MFC)
 - [openGLについて](openGL)
-- [並行プログラミング戦略](pararel)
+- [並行プログラミング戦略](src/pararel/pararel)
 - [lambda式について](lambda)
 
 ---
