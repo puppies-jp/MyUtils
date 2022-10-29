@@ -40,11 +40,14 @@ cf03ee007fb4        host                host
 ![hostネットワークはLinuxホストでしか動作しません😞](png/hostNetwork.png)
 
 ---
+---
 
 ## ネットワークを作成する
 
 Dockerでは`ブリッジ・ネットワーク`や`オーバレイ・ネットワーク`を作成できる。
 また、ネットワークは`複数作成`できます。`コンテナを１つ以上のネットワークに追加できます`。コンテナの通信はネットワーク内だけでなく、ネットワーク間を横断できます。コンテナが２つのネットワークにアタッチする時、どちらのネットワークに対しても通信可能です。コンテナが複数のネットワークに接続時、外部への通信は単語順で１つめの非内部ネットワークを経由します。
+
+---
 
 ### ブリッジネットワークを作成する(単一ホスト上で比較的小さなネットワークの実行時に便利)
 
@@ -59,7 +62,49 @@ Dockerでは`ブリッジ・ネットワーク`や`オーバレイ・ネット�
 
 ### オーバーレイ・ネットワークを作成する
 
-- 使ったことないので、後日調べる！
+`Docker overlay network` を使うことで異なるL3 上(Dockerの場合は`異なるDockerホスト上`) に存在する`コンテナ`に対して、  
+`同じネットワークに存在するコンテナとして透過的にアクセスすることができるようになります。`  
+`VXLAN` を利用して実装されているらしい(よくわからん。。。)
+
+[オーバーレイ・ネットワークに関して(公式)](https://matsuand.github.io/docs.docker.jp.onthefly/network/overlay/)
+
+### 手順を以下に示す
+
+[1.Dockerホストで`Swarmを初期化`or `既存のSwarmに追加`させる](#how#1)
+[2. Swarm サービスに対して利用するオーバーレイネットワークを生成する](#how#2)
+
+#### <a name=how#1>1.Dockerホストで`Swarmを初期化`or `既存のSwarmに追加`させる</a>
+
+`Swarm`はサービス名らしい(VXLANの制御とかするのかな？)
+
+```markdown
+
+- Docker ホスト間でのトラフィックのやりとりのため、以下のポートを公開する必要がある。
+TCP ポート 2377、クラスター管理に関する通信用。
+TCP と UDP のポート 7946、ノード間の通信用。
+UDP ポート 4789、オーバーレイネットワークトラフィック用。
+
+- オーバーレイネットワークを生成する前に以下のどちらかで、Swarmにホストを追加する必要がある。
+
+`docker swarm init`(DockerデーモンをSwarmマネージャーとして初期化する)
+or
+`docker swarm join`(既存の Swarmに対して追加する)
+```
+
+#### <a name=how#2>2. Swarm サービスに対して利用するオーバーレイネットワークを生成する</a>
+
+```markdown
+- over-rayネットワーク間でのやりとりだけが目的なら
+docker network create -d overlay my-overlay
+
+- スタンドアロンコンテナー においても 利用することが必要な場合で、他の Docker デーモン上で動作する他のスタンドアロンコンテナーとも通信を行う必要がある場合は、--attachableフラグを加えます。
+docker network create -d overlay --attachable my-attachable-overlay
+
+- `--opt encrypted --attachable`を同時に指定すれば、このネットワークに対して、管理外にあったコンテナーをアタッチさせることができます。
+docker network create --opt encrypted --driver overlay --attachable my-attachable-multi-host-network
+
+
+```
 
 ---
 ---
