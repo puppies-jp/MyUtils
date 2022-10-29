@@ -35,6 +35,10 @@ NETWORK ID          NAME                DRIVER
 cf03ee007fb4        host                host
 ```
 
+🚨 [hostネットワークに関して](https://matsuand.github.io/docs.docker.jp.onthefly/network/network-tutorial-host/)
+
+![hostネットワークはLinuxホストでしか動作しません😞](png/hostNetwork.png)
+
 ---
 
 ## ネットワークを作成する
