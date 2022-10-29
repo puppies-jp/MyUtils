@@ -5,6 +5,13 @@
 - [networkについて](#network)
 - [firewall,セキュリティについて](#sec)
 
+## ネットワークのポートを調べる
+
+```sh
+# 🌟TCP,UDPで使用しているポートを確認する
+netstat -atnu
+```
+
 Dockerのネットワークについては以下を参照
 
 - [Dockerのネットワークについて](../Docker/dockerNetwork)

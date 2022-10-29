@@ -66,7 +66,8 @@ Dockerでは`ブリッジ・ネットワーク`や`オーバレイ・ネット�
 `同じネットワークに存在するコンテナとして透過的にアクセスすることができるようになります。`  
 `VXLAN` を利用して実装されているらしい(よくわからん。。。)
 
-[オーバーレイ・ネットワークに関して(公式)](https://matsuand.github.io/docs.docker.jp.onthefly/network/overlay/)
+[オーバーレイ・ネットワークに関して(公式)](https://matsuand.github.io/docs.docker.jp.onthefly/network/overlay/)  
+[実装手順](https://matsuand.github.io/docs.docker.jp.onthefly/network/network-tutorial-overlay/)  
 
 ### 手順を以下に示す
 
@@ -86,9 +87,16 @@ UDP ポート 4789、オーバーレイネットワークトラフィック用�
 
 - オーバーレイネットワークを生成する前に以下のどちらかで、Swarmにホストを追加する必要がある。
 
-`docker swarm init`(DockerデーモンをSwarmマネージャーとして初期化する)
-or
-`docker swarm join`(既存の Swarmに対して追加する)
+# 🌟Swarn作成🌟
+なんか ubuntu(manager)/mac(worker)で作成できなかった、、
+
+## 🌟manager側
+docker swarm init --advertise-addr=<managerのIPアドレス>
+
+## 🌟worker側
+docker swarm join --token <トークン> \
+--advertise-addr <worker-1のIPアドレス> \
+<managerのIPアドレス>:2377
 ```
 
 #### <a name=how2>2. Swarm サービスに対して利用するオーバーレイネットワークを生成する</a>
@@ -102,7 +110,6 @@ docker network create -d overlay --attachable my-attachable-overlay
 
 - `--opt encrypted --attachable`を同時に指定すれば、このネットワークに対して、管理外にあったコンテナーをアタッチさせることができます。
 docker network create --opt encrypted --driver overlay --attachable my-attachable-multi-host-network
-
 
 ```
 
