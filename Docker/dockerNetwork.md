@@ -70,10 +70,10 @@ Dockerでは`ブリッジ・ネットワーク`や`オーバレイ・ネット�
 
 ### 手順を以下に示す
 
-[1.Dockerホストで`Swarmを初期化`or `既存のSwarmに追加`させる](#how#1)
+[1.Dockerホストで`Swarmを初期化`or `既存のSwarmに追加`させる](#how1)
 [2. Swarm サービスに対して利用するオーバーレイネットワークを生成する](#how#2)
 
-#### <a name=how#1>1.Dockerホストで`Swarmを初期化`or `既存のSwarmに追加`させる</a>
+#### <a name=how1>1.Dockerホストで`Swarmを初期化`or `既存のSwarmに追加`させる</a>
 
 `Swarm`はサービス名らしい(VXLANの制御とかするのかな？)
 
@@ -91,7 +91,7 @@ or
 `docker swarm join`(既存の Swarmに対して追加する)
 ```
 
-#### <a name=how#2>2. Swarm サービスに対して利用するオーバーレイネットワークを生成する</a>
+#### <a name=how2>2. Swarm サービスに対して利用するオーバーレイネットワークを生成する</a>
 
 ```markdown
 - over-rayネットワーク間でのやりとりだけが目的なら
