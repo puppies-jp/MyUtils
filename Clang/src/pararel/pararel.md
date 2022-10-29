@@ -17,7 +17,13 @@
 [セマフォ](#semapho)
 [共有メモリ](#share_mem)
 
-- [参考](https://qiita.com/MoriokaReimen/items/5c4256ef620499a88bb3)
+    - [参考](https://qiita.com/MoriokaReimen/items/5c4256ef620499a88bb3)
+
+3. 実行効率計測ツール周り
+
+- [Intel VTune Profiler](https://www.intel.com/content/www/us/en/develop/documentation/vtune-install-guide/top/linux.html)
+  - インテルのプロセッサ周りの実行プロファイルを作成してくれる。
+  - Linux,Windows,macでも動かせるらしい(ARM,AMDとかプロセッサ依存で可否が変わるのかな？(使うときに調査がいるかも))
 
 ---
 
