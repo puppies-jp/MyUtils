@@ -1,0 +1,83 @@
+version: "3"
+
+volumes:
+  # gitlab用Volume
+  gitlab-config:
+    name: gitlab-config
+  gitlab-logs:
+    name: gitlab-logs
+  gitlab-data:
+    name: gitlab-data
+  gitlab-runner-config:
+    name: gitlab-runner-config
+  # redmine用 Volume
+  redmine-plugins:
+    name: redmine-plugins
+  redmine-themes:
+    name: redmine-themes
+  redmine-db:
+    name: redmine-db
+
+networks:
+  gitlab-network:
+    name: gitlab-network
+  redmine-network:
+    name: redmine-network
+
+services:
+  # redmine 本体
+  redmine:
+    container_name: redmine
+    image: redmine
+    restart: always
+    ports: # Redmine公開port
+      - 8081:3000
+    environment:
+      REDMINE_DB_MYSQL: redmine-db
+      REDMINE_DB_PASSWORD: redminepass
+    # Volumeを追加したかったら以下を適当に、、
+    volumes:
+      - redmine-plugins:/usr/src/redmine/plugins
+      - redmine-themes:/usr/src/redmine/public/themes
+  redmine-db:
+    image: mysql:5.7
+    container_name: redmine-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: redminepass
+      MYSQL_DATABASE: redmine
+    volumes:
+      - redmine-db:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci   
+
+  lab:
+    image: 'gitlab/gitlab-ee:latest'
+    restart: always
+    hostname: 'gitlab.my.com'
+    container_name: gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.my.com'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports: # git公開ポート 
+      - '8080:80'
+      # - '443:443'
+      # - '22:22'
+    volumes:
+      - 'gitlab-config:/etc/gitlab'
+      - 'gitlab-logs:/var/log/gitlab'
+      - 'gitlab-data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      - gitlab-network
+      - redmine-network
+  runner:
+    image: gitlab/gitlab-runner:latest
+    restart: always
+    container_name: gitlab-runner
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - gitlab-runner-config:/etc/gitlab-runner
+    networks:
+      - gitlab-network
+
