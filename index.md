@@ -9,12 +9,10 @@
 
 ## topics
 
-- [sandpox code pen](sandbox)
 - [python](Python)
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
-- [正規表現/sed リンク](RegExp/regularExpression)
-- [tensorflow](tensorflow)
+  - [tensorflow](tensorflow)
 
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
@@ -22,10 +20,13 @@
 - [Linux](Linux)
   - [ShellScript](ShellScript)
   - [Firewall リンク](FireWall/Firewall)
+  - [正規表現/sed リンク](RegExp/regularExpression)
 
 - [Docker](Docker)
 - [SQL](SQL)
   - [sqlite3](./SQL/sqlite3)
+
+- [sandpox code pen](sandbox)
 
 - [html](html)
   - [How to use leaf](html/leaf/leaf.html)
