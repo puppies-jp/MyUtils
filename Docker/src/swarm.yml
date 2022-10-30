@@ -16,6 +16,12 @@ version: "3"
 networks:
   swarm-network:
     name: swarm-network
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.27.11.0/24
+         gateway: 172.27.11.1
 
 volumes:
   manager-docker:
@@ -35,7 +41,9 @@ services:
     init: true
     restart: always
     networks:
-      - swarm-network
+      swarm-network:
+        ipv4_address: 172.27.11.2
+
     volumes:
       - manager-docker:/var/lib/docker
 
@@ -50,7 +58,8 @@ services:
     init: true
     restart: always
     networks:
-      - swarm-network
+      swarm-network:
+        ipv4_address: 172.27.11.3
     volumes:
       - woker1-docker:/var/lib/docker
     links:
@@ -67,7 +76,8 @@ services:
     init: true
     restart: always
     networks:
-      - swarm-network
+      swarm-network:
+        ipv4_address: 172.27.11.4
     volumes:
       - woker2-docker:/var/lib/docker
     links:
