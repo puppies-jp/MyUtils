@@ -10,27 +10,31 @@
 ## topics
 
 - [sandpox code pen](sandbox)
-- [ShellScript](ShellScript)
-- [Firewall リンク](FireWall/Firewall)
 - [python](Python)
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
 - [正規表現/sed リンク](RegExp/regularExpression)
 - [tensorflow](tensorflow)
+
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
 - [BinaryHack](BinaryHack)
 - [Linux](Linux)
+  - [ShellScript](ShellScript)
+  - [Firewall リンク](FireWall/Firewall)
+
 - [Docker](Docker)
 - [SQL](SQL)
-- [sqlite3](sqlite3)
-- [keyword 備忘録](keywords)
+  - [sqlite3](./SQL/sqlite3)
+
 - [html](html)
   - [How to use leaf](html/leaf/leaf.html)
   - [learn css](html/LearnCss/LearnCss.html)
   - [learn1](html/learn1)
   - [read_file](html/read_loc_xml)
     - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
+
+- [keyword 備忘録](keywords)
 
 - html/javascript/css 勉強用リポジトリ  
   - [gh-pagesリンク](https://puppies-jp.github.io/LearnHtml/)

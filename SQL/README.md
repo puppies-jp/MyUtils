@@ -3,6 +3,7 @@
 好きじゃないがめんどくさいのでここにいろいろまとめる
 
 - [oracle](oracle)
+- [sqlite3](sqlite3)
 
 ```sql
 -- sqlite3 だけ？っぽい
