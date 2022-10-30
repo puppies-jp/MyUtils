@@ -24,6 +24,9 @@
   - [Dockerfileを作成する](WhatDockerfile)
   - [コンテナ間のネットワークを設定する](dockerNetwork)
   - [マルチコンテナアプリケーションを作成する/DockerCompose](DockerCompose)
+  - [Docker in Docker/Docker outside of Dockerについて](InOutSizeOf)
+    - Dockerコンテナ内でさらにDockerコンテナを動かす(Docker in Docker)
+    - Dockerコンテナ内からDockerHostのDockerを操作する
 
 ---
 
@@ -115,7 +118,11 @@ docker run -d -p 8080:8080 -v $(pwd):/root/Desktop --name ubuntuCont uphy/ubuntu
 - `--name ubuntuCont`
   生成するコンテナに名前をつけます。名前をつけずにコンテナ ID を利用することもできますが、指定するのが面倒なので名前をつけた方が作業しやすいです。
 
-- 他色々あったら追加してく
+- `--privileged`
+  Dockerコンテナ上ではデフォルトで`systemctl`が使えない、そこでコンテナを
+  `特権モード(privileged)`にすることで、`/sbin/init`が使えるようになる。
+  Docker Composeの場合はコンテナの設定に以下を追加するだけ
+  > privileged: true
 
 ---
 
