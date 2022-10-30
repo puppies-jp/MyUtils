@@ -1,0 +1,76 @@
+version: "3"
+
+# docker-compose -f swarm.yml up -d
+# manager
+# docker swarm init
+# docker network create --opt encrypted --driver overlay --attachable myNetwork
+# docker run -it --name mng --network myNetwork  ubuntu
+
+# worker1,2
+# docker swarm join --token <token> <manager>:2377
+# docker run -it --name worker1 --privileged --network myNetwork  ubuntu
+
+# apt update
+# apt-get install iputils-ping net-tools # ping コマンド
+
+networks:
+  swarm-network:
+    name: swarm-network
+
+volumes:
+  manager-docker:
+    name: mangager
+  woker1-docker:
+    name: woker1
+  woker2-docker:
+    name: woker2
+
+
+services:
+  manager:
+    hostname: manager
+    container_name: manager
+    image: docker:20-dind
+    privileged: true
+    init: true
+    restart: always
+    networks:
+      - swarm-network
+    volumes:
+      - manager-docker:/var/lib/docker
+
+
+  worker1:
+    hostname: worker1
+    container_name: worker1
+    image: docker:20-dind
+    depends_on: 
+      - manager
+    privileged: true
+    init: true
+    restart: always
+    networks:
+      - swarm-network
+    volumes:
+      - woker1-docker:/var/lib/docker
+    links:
+      - manager
+
+
+  worker2:
+    hostname: worker2
+    container_name: worker2
+    image: docker:20-dind
+    depends_on: 
+      - manager
+    privileged: true
+    init: true
+    restart: always
+    networks:
+      - swarm-network
+    volumes:
+      - woker2-docker:/var/lib/docker
+    links:
+      - manager
+
+

@@ -20,8 +20,12 @@ services:
     shm_size: '256m'
     networks:
       - gitlab-network
+    privileged: true
+    init: true
+
   runner:
     image: gitlab/gitlab-runner:latest
+    hostname: 'gitlab-runner.my.com'
     restart: always
     container_name: gitlab-runner
     volumes:
@@ -29,6 +33,10 @@ services:
       - gitlab-runner-config:/etc/gitlab-runner
     networks:
       - gitlab-network
+    links:
+      - lab
+    privileged: true
+    init: true
 
 volumes:
   gitlab-config:

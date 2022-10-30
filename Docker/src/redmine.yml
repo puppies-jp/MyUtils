@@ -31,6 +31,8 @@ services:
       - redmine-themes:/usr/src/redmine/public/themes
     networks:
       - redmine-network
+    links:
+      - redmine-db
 
   redmine-db:
     image: mysql:5.7
