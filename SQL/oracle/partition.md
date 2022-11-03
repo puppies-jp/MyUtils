@@ -81,7 +81,6 @@ SELECT * FROM STABLE SUBPARTITION (P2009Q1_kanto);
 SELECT * FROM STABLE SUBPARTITION (P2009Q2_kansai);
 ```
 
-
 ---
 
 ## <a name=config>USERの使えるテーブル、パーティション確認方法</a>

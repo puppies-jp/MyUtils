@@ -117,7 +117,37 @@ docker network create --opt encrypted --driver overlay --attachable my-attachabl
 
 ### <a name=service>Dockerのswarmクラスタのサービス作成</a>
 
-そのうち書く
+- managerホスト上で以下を実行
+
+```sh
+docker service create \
+  --name my-nginx \
+  --publish target=80,published=80 \
+  --replicas=2 \
+  --network myNetwork \
+  nginx
+```
+
+- 各ホストで以下コマンドを打つことで、コンテナの稼働状況を見れる
+
+```sh
+# 1秒ごとにコマンドを実行する
+watch -n 1 docker ps -a
+```
+
+- どこぞのホストでmanagerのサービスポート向けにtelnetする
+
+```sh
+# 例 上記に合わせて 80番Portにアクセス
+telnet 172.27.11.2 80
+```
+
+- サービスの削除
+
+```sh
+docker service rm <サービス名>
+docker service rm my-nginx
+```
 
 ---
 ---
