@@ -8,6 +8,9 @@
 
 ## <a name=create>パーティションを指定したtable作成</a>
 
+- パーティションの種類は以下から選ぶことができる。  
+    {HASH | RANGE [INTERVAL]| LIST}
+
 ```sql
 -- 普通のpartitionの場合
 CREATE TABLE sales
