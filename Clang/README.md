@@ -18,6 +18,7 @@ ossとか環境依存系とか
 - [不本意ながらMFCというか、Windows関連](MFC)
 - [openGLについて](openGL)
 - [Google test/mockについて](src/googletest/)
+- [バイナリの使用するライブラリを確認する(ldd)](ldd)
 
 実装の戦略とか
 
@@ -45,6 +46,20 @@ ossとか環境依存系とか
   - [ソースコードに直でブレークポイントを貼る](#breakPoint)
 
 ---
+
+## <a name=ldd>バイナリの使用するライブラリを確認する(ldd)</a>
+
+```bash
+(base)root@ubuntu:~# which ls
+/usr/bin/ls
+(base)root@ubuntu:~# ldd /usr/bin/ls
+	linux-vdso.so.1 (0x00007ffd5ff48000)
+	libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007fd86cd1b000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd86caf3000)
+	libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007fd86ca5c000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fd86cd73000)
+
+```
 
 ## <a name=mem>mem系メモリ操作のあれこれ</a>
 
