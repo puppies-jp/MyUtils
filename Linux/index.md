@@ -3,3 +3,4 @@
 Linuxについてのあれこれをメモってく
 
 - [filesystemについて](filesystem)
+- [ソケットファイルについて](socketfile)

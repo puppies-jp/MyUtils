@@ -2,7 +2,7 @@
 
 ここではOracle特有のSQLとかについてまとめる
 
-- [パーティション化](#partition)
+- [パーティション周り](partition)
 
 - CSV形式で出力する設定
 
@@ -30,69 +30,6 @@ alter session set comtainer = <ORCLPDB>;
 ```
 
 ---
-
-## <a name=partition>パーティション作成</a>
-
-```sql
--- 
-CREATE TABLE sales
-(
-    product_id NUMBER(4) NOT NULL,sales_date DATE,
-    Customer_id VARCHAR2(40))
-    PARTITION BY RANGE(sales_date)
-    (
-        PARTITION sales_p1 VALUES LESS THAN(TO_DATE(' 2011/04/01 ','YYYY/MM/DD')),
-        PARTITION sales_p2 VALUES LESS THAN(TO_DATE(' 2011/07/01 ','YYYY/MM/DD')),
-        PARTITION sales_p3 VALUES LESS THAN(TO_DATE(' 2011/10/01 ','YYYY/MM/DD')),
-        PARTITION sales_p4 VALUES LESS THAN(TO_DATE(' 2012/01/01 ','YYYY/MM/DD'))
-    );
-
--- コンポジットパーティション
--- 複数keyでパーティション作成する場合
-CREATE TABLE stable (
-    sdate DATE /* 売り上げ日 */, 
-    reg VARCHAR2(20) /* 地域 */, 
-    cost NUMBER /* 値段 */)
-    PARTITION BY RANGE (sdate)/* メインPartation */
-    SUBPARTITION BY LIST (reg) /* サブ */
-    (
-        PARTITION P2009Q1 VALUES LESS THAN(to_date('2009-04-01','YYYY-MM-DD'))
-        (
-            SUBPARTITION P2009Q1_kanto VALUES ('kanagawa','Tokyo'),
-            SUBPARTITION P2009Q1_kansai VALUES ('Osaka','kyoto')
-        ),
-        PARTITION P2009Q2 VALUES LESS THAN(to_date('2009-07-01','YYYY-MM-DD'))
-        (
-            SUBPARTITION P2009Q2_kanto VALUES ('kanagawa','Tokyo'),
-            SUBPARTITION P2009Q2_kansai VALUES ('Osaka','kyoto')
-        )
-    );
-
-```
-
-- 後から追加する場合
-
-```sql
--- RANGEだと追加できる方向(Less thanとかの大きさ)が決まってるっぽい。。
-ALTER TABLE stable ADD PARTITION P201005 VALUES LESS THAN (TO_DATE('2010/4/01','YYYY/MM/DD'));
--- subpartitionもこんな感じ
-ALTER TABLE stable ADD PARTITION P201105 VALUES LESS THAN (TO_DATE('2011/4/01','YYYY/MM/DD'))
-(SUBPARTITION P2011Q2_kanto VALUES ('kanagawa','Tokyo'));
-
--- 後からsubpartiotionを弄る場合(こんな感じ)
-ALTER TABLE stable MODIFY PARTITION P201105 
-ADD SUBPARTITION P2021Q2_kansai VALUES ('Osaka','kyoto');
-
-```
-
-- パーティション確認方法
-
-```sql
-SELECT TABLE_NAME FROM USER_TABLES WHERE  PARTITIONED = 'YES';
-
-SELECT TABLE_NAME,PARTITION_NAME FROM USER_TAB_PARTITIONS;
-```
-
 ---
 
 ## PDB作成
