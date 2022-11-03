@@ -12,14 +12,14 @@
 - [python](Python)
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
-  - [tensorflow](tensorflow)
+  - [tensorflow](Python/tensorflow)
 
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
 - [BinaryHack](BinaryHack)
 
 - [Linux](Linux)
-  - [ShellScript](ShellScript)
+  - [ShellScript](Linux/ShellScript)
   - [Firewall リンク](FireWall/Firewall)
   - [正規表現/sed リンク](RegExp/regularExpression)
 
