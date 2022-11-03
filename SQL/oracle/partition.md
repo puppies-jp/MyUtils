@@ -67,6 +67,21 @@ ADD SUBPARTITION P2021Q2_kansai VALUES ('Osaka','kyoto');
 
 ```
 
+```sql
+-- insertの確認
+insert into stable (sdate, reg, cost) values (TO_DATE('2008/04/2','YYYY/MM/DD'),'kanagawa',100) ;
+insert into stable (sdate, reg, cost) values (TO_DATE('2008/06/2','YYYY/MM/DD'),'Osaka',200) ;
+insert into stable (sdate, reg, cost) values (TO_DATE('2009/06/2','YYYY/MM/DD'),'Tokyo',300) ;
+insert into stable (sdate, reg, cost) values (TO_DATE('2009/06/2','YYYY/MM/DD'),'kyoto',400) ;
+
+-- 抽出
+SELECT * FROM STABLE PARTITION (P2009Q1);
+SELECT * FROM STABLE PARTITION (P2009Q2);
+SELECT * FROM STABLE SUBPARTITION (P2009Q1_kanto);
+SELECT * FROM STABLE SUBPARTITION (P2009Q2_kansai);
+```
+
+
 ---
 
 ## <a name=config>USERの使えるテーブル、パーティション確認方法</a>
@@ -108,7 +123,7 @@ SELECT * FROM stable PARTITION(P2009Q1,P2009Q2);
 ```sql
 
 ALTER TABLE <table名> TRUNCATE PARTITION <パーティション名> ;
-ALTER TABLE <table名> TRUNCATE PARTITION <サブパーティション名> ;
+ALTER TABLE <table名> TRUNCATE SUBPARTITION <サブパーティション名> ;
 
 
 -- DROP(省略可)/REUSE　を指定することができる。
