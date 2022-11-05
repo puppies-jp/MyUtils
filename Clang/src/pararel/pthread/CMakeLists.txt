@@ -8,10 +8,18 @@ set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++)
 set(CMAKE_CXX_FLAGS "-lpthread -std=c++2a -fPIC -Wall ")
 
 # インクルードパスの設定(これもそれぞれの環境に合わせる)
-add_executable(SimpleThread.out SimpleThread.cpp)
-add_executable(barrier.out barrier.cpp)
-add_executable(rwlock.out rwlock.cpp)
+find_package(Threads REQUIRED)
 
+add_executable(SimpleThread.out SimpleThread.cpp)
+target_link_libraries(SimpleThread.out Threads::Threads)
+
+add_executable(barrier.out barrier.cpp)
+target_link_libraries(barrier.out Threads::Threads)
+
+add_executable(rwlock.out rwlock.cpp)
+target_link_libraries(rwlock.out Threads::Threads)
+
+# install 
 set(execs SimpleThread.out barrier.out rwlock.out)
 install(
   TARGETS ${execs}
