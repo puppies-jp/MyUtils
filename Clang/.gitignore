@@ -1,0 +1,6 @@
+*.bmp
+*.so
+*.a
+*.out
+build*
+Makefile
