@@ -28,6 +28,7 @@
   - [sqlite3](SQL/sqlite3)
   - [oracle](SQL/oracle)
 
+- [PlantUML](PlantUML)
 - [sandpox code pen](sandbox)
 
 - [html](html)
