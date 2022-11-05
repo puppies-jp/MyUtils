@@ -18,7 +18,7 @@ ossとか環境依存系とか
 - [不本意ながらMFCというか、Windows関連](MFC)
 - [openGLについて](openGL)
 - [Google test/mockについて](src/googletest/)
-- [バイナリの使用するライブラリを確認する(ldd)](ldd)
+- [バイナリの使用するライブラリを確認する(ldd)](#ldd)
 
 実装の戦略とか
 
