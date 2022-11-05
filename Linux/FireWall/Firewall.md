@@ -14,7 +14,7 @@ netstat -atnu
 
 Dockerのネットワークについては以下を参照
 
-- [Dockerのネットワークについて](../Docker/dockerNetwork)
+- [Dockerのネットワークについて](../../Docker/dockerNetwork)
 
 ## <a name=network>networkについてあれこれ</a>
 
@@ -91,7 +91,7 @@ Dockerのネットワークについては以下を参照
 [filewall-cmd](#firewall)  
 [home](https://puppies-jp.github.io/MyUtils/)
 
-[OSI参照モデル 関連リンク](../BinaryHack/Hacking/02_Network)
+[OSI参照モデル 関連リンク](../../BinaryHack/Hacking/02_Network)
 
 ---
 
@@ -343,5 +343,3 @@ systemctl restart network
   - https://qiita.com/miyase256/items/1dd937f1c6d9341e5635
 
 ---
-
-[To top](#head)

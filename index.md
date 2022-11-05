@@ -20,7 +20,7 @@
 
 - [Linux](Linux)
   - [ShellScript](Linux/ShellScript)
-  - [Firewall リンク](FireWall/Firewall)
+  - [Firewall リンク](Linux/FireWall/Firewall)
   - [正規表現/sed リンク](RegExp/regularExpression)
 
 - [Docker](Docker)
