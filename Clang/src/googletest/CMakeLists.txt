@@ -13,7 +13,17 @@ include_directories(${GTEST_INCLUDE_DIR} ${GMOCK_INCLUDE_DIR})
 
 
 # インクルードパスの設定(これもそれぞれの環境に合わせる)
-add_executable(main.out MockTest.cpp)
-target_link_libraries(main.out GTest::GTest GTest::Main  GTest::gmock)
-add_executable(main2.out gtest1.cpp)
-target_link_libraries(main2.out GTest::GTest GTest::Main  GTest::gmock)
+add_executable(MockTest.out MockTest.cpp)
+target_link_libraries(MockTest.out 
+GTest::GTest GTest::Main  GTest::gmock)
+
+add_executable(gtest1.out gtest1.cpp)
+target_link_libraries(gtest1.out 
+GTest::GTest GTest::Main  GTest::gmock)
+message(Install\ gtest\ prj\ ${CMAKE_BINARY_DIR})
+
+set(execs gtest1.out MockTest.out)
+install(
+  TARGETS ${execs}
+  RUNTIME DESTINATION ${CMAKE_BINARY_DIR}
+)
