@@ -41,7 +41,7 @@ int main()
     }
     else if (nPid == 0) // child process
     {
-        sleep(1); // 親のsemaphore作成待ちスリープ
+        sleep(10); // 親のsemaphore作成待ちスリープ
         int sem_id = CreateSemaphore(key, sem_flags);
         ChildProcess(sem_id, nPid);
     }
@@ -77,7 +77,6 @@ void ParentProcess(int sem_id, int Pid)
 void ChildProcess(int sem_id, int Pid)
 {
     std::cout << "[" << Pid << "] unlock it" << std::endl;
-    sleep(1);
     /* セマフォにポスト */
     sembuf operations[1];
     operations[0].sem_num = 0;
