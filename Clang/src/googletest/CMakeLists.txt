@@ -6,7 +6,8 @@ set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++)
 project(test_cmake CXX)
 
 # onUbuntu
-set(CMAKE_CXX_FLAGS "-lpthread -std=c++2a -fPIC -Wall --coverage")
+set(CMAKE_CXX_FLAGS "-lpthread -std=c++2a -fPIC -Wall ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage") # 追加
 
 find_package(GTest REQUIRED)

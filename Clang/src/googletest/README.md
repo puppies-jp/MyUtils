@@ -32,3 +32,29 @@ add_executable(MockTest.out MockTest.cpp)
 target_link_libraries(MockTest.out 
 GTest::GTest GTest::Main  GTest::gmock)
 ```
+
+## カバレッジを出力する
+
+- コンパイルオプションに`--coverage`を追加する
+
+```cmake
+# onUbuntu
+set(CMAKE_CXX_FLAGS "-lpthread -std=c++2a -fPIC -Wall ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage") # 追加
+```
+
+- カバレッジレポートを出力する
+
+```sh
+# 🌟1. ビルドしたバイナリを実行
+./~~~
+
+# 同じディレクトリで以下を実行
+lcov -d ./  -c -o <ファイル名.info>
+
+# 🌟お好みで、いらないパス上の結果を除外できる
+lcov -r coverage.info */googletest/* test/* */c++/* -o coverageFiltered.info
+
+genhtml -o <出力先ディレクトリ> --num-spaces 4 -s --legend ./<infoファイル名>
+```
