@@ -13,6 +13,22 @@ windowの表示には`x11`などがよく使われるが、他にも`ARM`など�
 
 ---
 
+## Docker環境上でセーフティーに`offscreen rendering`する
+
+仮想ディスプレイを起動してそこでレンダリングする。
+**以上**
+
+```sh
+# こんな感じでDISPLAYを設定し、仮想ディスプレイを起動する。
+export DISPLAY=:9
+Xvfb $DISPLAY -screen 0 1024x768x24 &
+```
+
+
+
+---
+---
+
 ```glsl
 #define PI 3.141
 
