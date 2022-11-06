@@ -20,8 +20,20 @@ link_directories(${OPENGL_LIBRARIES_DIRS} ${OPENGL_LIBRARIES_DIRS})
 include_directories(${CMAKE_SOURCE_DIR} ${OPENGL_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
 
 # インクルードパスの設定(これもそれぞれの環境に合わせる)
-add_executable(main2.out egl_offscreen.cpp)
-target_link_libraries(main2.out
+add_executable(egl_offscreen.out egl_offscreen.cpp)
+target_link_libraries(egl_offscreen.out
   PRIVATE ${OpenCV_LIBRARIES}
   PRIVATE OpenGL::OpenGL OpenGL::EGL
+)
+
+set(execs egl_offscreen.out)
+install(
+  TARGETS ${execs}
+  RUNTIME DESTINATION ${CMAKE_BINARY_DIR}
+)
+
+set(plygonfile vData.txt fData.txt)
+install(
+  FILES ${plygonfile}
+  DESTINATION ${CMAKE_BINARY_DIR}
 )

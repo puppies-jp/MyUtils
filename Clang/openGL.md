@@ -24,8 +24,6 @@ export DISPLAY=:9
 Xvfb $DISPLAY -screen 0 1024x768x24 &
 ```
 
-
-
 ---
 ---
 
