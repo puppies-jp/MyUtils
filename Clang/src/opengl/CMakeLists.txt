@@ -19,6 +19,22 @@ find_package(OpenGL REQUIRED COMPONENTS OpenGL EGL)
 link_directories(${OPENGL_LIBRARIES_DIRS} ${OPENGL_LIBRARIES_DIRS})
 include_directories(${CMAKE_SOURCE_DIR} ${OPENGL_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS})
 
+
+add_library(ContextManager SHARED 
+  render_context.cpp
+)
+target_link_libraries(ContextManager
+  PRIVATE ${OpenCV_LIBRARIES}
+  PRIVATE OpenGL::OpenGL OpenGL::EGL
+)
+add_executable(rendering_main.out rendering_main.cpp)
+target_link_libraries(rendering_main.out
+PRIVATE
+  ContextManager
+  PRIVATE ${OpenCV_LIBRARIES}
+  PRIVATE OpenGL::OpenGL OpenGL::EGL
+)
+
 # インクルードパスの設定(これもそれぞれの環境に合わせる)
 add_executable(egl_offscreen.out egl_offscreen.cpp)
 target_link_libraries(egl_offscreen.out
