@@ -1,5 +1,5 @@
 #include <GLFW/glfw3.h>
-#include "conv.h"
+//#include "conv.h"
 #include <vector>
 #include <iostream>
 
@@ -34,5 +34,5 @@ int main()
     std::vector<std::uint8_t> data(width * height * 4);
     // glReadBuffer(GL_FRONT);
     glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, (char *)&data[0]);
-    convert(width, height, "test2.bmp", (char *)&data[0]);
+    //convert(width, height, "test2.bmp", (char *)&data[0]);
 }

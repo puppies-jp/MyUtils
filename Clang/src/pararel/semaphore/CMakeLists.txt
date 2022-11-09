@@ -8,9 +8,9 @@ set(CMAKE_CXX_COMPILER:FILEPATH /usr/bin/g++)
 set(CMAKE_CXX_FLAGS "-lpthread -std=c++2a -fPIC -Wall ")
 
 # インクルードパスの設定(これもそれぞれの環境に合わせる)
-add_executable(forkinter.out forkinter.cpp)
+add_executable(forkInterSemaphore.out forkinter.cpp)
 
-set(execs forkinter.out)
+set(execs forkInterSemaphore.out)
 install(
   TARGETS ${execs}
   RUNTIME DESTINATION ${CMAKE_BINARY_DIR}

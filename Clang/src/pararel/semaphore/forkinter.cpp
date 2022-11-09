@@ -16,7 +16,7 @@ int CreateSemaphore(int key, int sem_flgs, semun *initOpe = nullptr)
     return sem_id;
 }
 
-//セマフォ破棄
+// セマフォ破棄
 void DiscardSemaphore(int sem_id)
 {
     auto result = semctl(sem_id, 0, IPC_RMID, 0);
@@ -33,6 +33,14 @@ void ChildProcess(int sem_id, int Pid);
 int main()
 {
     // int sem_id = CreateSemaphore(key);
+    /* セマフォの初期化 */
+    union semun argument;
+    unsigned short values[1] = {LOCK};
+    argument.array = values;
+
+    int sem_id = CreateSemaphore(
+        key, sem_flags | IPC_CREAT, &argument);
+
     int nPid = fork();
     if (nPid < 0)
     { // fork失敗
@@ -41,23 +49,18 @@ int main()
     }
     else if (nPid == 0) // child process
     {
-        sleep(10); // 親のsemaphore作成待ちスリープ
-        int sem_id = CreateSemaphore(key, sem_flags);
+        // 親待機状態になるまでスリープ
+        sleep(2);
+        // int sem_id = CreateSemaphore(key, sem_flags);
         ChildProcess(sem_id, nPid);
     }
     else // parent process
     {
-        /* セマフォの初期化 */
-        union semun argument;
-        unsigned short values[1] = {1};
-        argument.array = values;
-
-        int sem_id = CreateSemaphore(
-            key, sem_flags | IPC_CREAT, &argument);
+        // 子プロセスがunlockするまで待機
         ParentProcess(sem_id, nPid);
-        system("ipcs -s");
-        sleep(10);
+        sleep(4);
         DiscardSemaphore(sem_id);
+        system("ipcs -s");
     }
     return 0;
 }
@@ -70,9 +73,9 @@ void ParentProcess(int sem_id, int Pid)
     operations[0].sem_num = 0;
     operations[0].sem_op = WAIT;
     operations[0].sem_flg = SEM_UNDO;
-    std::cout << "is this block?" << std::endl;
     semop(sem_id, operations, 1);
-    std::cout << "[" << Pid << "] nop" << std::endl;
+    sleep(1);
+    std::cout << "[" << Pid << "] semaphore wait finished" << std::endl;
 }
 void ChildProcess(int sem_id, int Pid)
 {
@@ -82,6 +85,8 @@ void ChildProcess(int sem_id, int Pid)
     operations[0].sem_num = 0;
     operations[0].sem_op = UNLOCK;
     operations[0].sem_flg = SEM_UNDO;
+    sleep(1);
     semop(sem_id, operations, 1);
+    sleep(1);
     std::cout << "[" << Pid << "] unlocked it" << std::endl;
 }

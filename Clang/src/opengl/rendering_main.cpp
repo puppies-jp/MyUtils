@@ -6,19 +6,7 @@
  * OpenCV for saving the render target as an image file.
  */
 #include <opencv2/opencv.hpp>
-
-/*
- * EGL headers.
- */
-#include <EGL/egl.h>
-
-/*
- * OpenGL headers.
- */
-#define GL_GLEXT_PROTOTYPES 1
-#include <GL/gl.h>
-#include <GL/glext.h>
-#include <GL/glu.h>
+#include "render_context.h"
 
 using namespace std;
 
