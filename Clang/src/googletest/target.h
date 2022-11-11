@@ -10,11 +10,8 @@ public:
         this->turtle = turtle;
     }
 
-    bool DrawCircle(int x, int y, int z)
+    int DrawCircle(int x, int y, int z)
     {
-
-        turtle->PenDown();
-
-        return true;
+        return turtle->PenDown();
     }
 };
