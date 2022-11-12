@@ -11,10 +11,14 @@ def rootFunc():
                    capture_output=True,
                    text=True).stdout
     hello = {
-        "message": name
+        "message": name.split()[0]
     }
-    return make_response(jsonify(hello))
+
+    resp = make_response(jsonify(hello), 200)
+    resp.headers['Content-Type'] = "application/json"
+    return resp
 
 
 if __name__ == '__main__':
-    api.run(host='0.0.0.0', port=80)
+    api.run(host='localhost', port=8080)
+    # api.run(host='0.0.0.0', port=8080)
