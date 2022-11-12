@@ -2,7 +2,7 @@
 
 build周り
 
-- [Cmake について](Cmake)
+- [gcc/Cmake について](Cmake)
 - [Makefile描き方サンプル](MakeFile)
 
 言語仕様系
