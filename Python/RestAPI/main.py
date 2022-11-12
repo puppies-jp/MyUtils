@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request
-from flask import Response, make_response
+from flask import Flask, jsonify
+from flask import make_response
 import subprocess as sub
 
 api = Flask(__name__)
