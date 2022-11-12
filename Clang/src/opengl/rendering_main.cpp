@@ -5,7 +5,6 @@
 /*
  * OpenCV for saving the render target as an image file.
  */
-#include <opencv2/opencv.hpp>
 #include "render_context.h"
 
 using namespace std;
@@ -18,21 +17,9 @@ int lines[ARRAY_MAX];
 int vertexDataSize = 0, lineDataSize = 0;
 int width = 1000, height = 1000;
 
-
-void assertOpenGLError(const std::string &msg)
-{
-	GLenum error = glGetError();
-	if (error != GL_NO_ERROR)
-	{
-		stringstream s;
-		s << "OpenGL error 0x" << std::hex << error << " at " << msg;
-		throw runtime_error(s.str());
-	}
-}
-
-
 void InitialProc()
 {
+
 	FILE *fpVData, *fpFData;
 	fpVData = fopen("vData.txt", "r");
 	fpFData = fopen("fData.txt", "r");
@@ -49,15 +36,15 @@ void InitialProc()
 	while (fscanf(fpFData, "%d, %d, %d", &lines[lineDataSize * 3], &lines[lineDataSize * 3 + 1], &lines[lineDataSize * 3 + 2]) != EOF)
 		lineDataSize += 1;
 
-    printf("vertex: %d Line Size: %d\n",vertexDataSize,lineDataSize);
+	printf("vertex: %d Line Size: %d\n", vertexDataSize, lineDataSize);
 }
 
 void disp()
 {
 
 	static int r = 0;
-	glPushMatrix();						 //行列退避
-	glRotated(double(r), 2.0, 1.0, 0.0); //[2].回転
+	glPushMatrix();						 // 行列退避
+	glRotated(double(r*1), 2.0, 1.0, 0.0); //[2].回転
 
 	glClearColor(0, 0.0, 0, 0.7);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -113,79 +100,19 @@ void disp()
 
 int main()
 {
-	/*
-	 * Create an OpenGL framebuffer as render target.
-	 */
-	GLuint frameBuffer;
-	glGenFramebuffers(1, &frameBuffer);
-	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-	assertOpenGLError("glBindFramebuffer");
+	printf("Make Context\n");
+	Contexts processContexts;
+	printf("Make frame buffer\n");
+	OffscreenBuffer frameBuffer(width,height);
 
-	// デプスバッファ
-	GLuint depthrenderbuffer;
-	glGenRenderbuffers(1, &depthrenderbuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, depthrenderbuffer);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, width, height);
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthrenderbuffer);
-	assertOpenGLError("glFramebufferRenderbuffer");
-
-	/*
-	 * Create a texture as color attachment.
-	 */
-	GLuint t;
-	glGenTextures(1, &t);
-
-	glBindTexture(GL_TEXTURE_2D, t);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
-				 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
-	assertOpenGLError("glTexImage2D");
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-
-	/*
-	 * Attach the texture to the framebuffer.
-	 * GL_COLOR_ATTACHMENT0
-	 * GL_DEPTH_COMPONENT
-	 */
-	glFramebufferTexture2D(
-		GL_FRAMEBUFFER,
-		GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, t, 0);
-	assertOpenGLError("glFramebufferTexture2D");
-	/*
-	 * Render something.
-	 */
-	glEnable(GL_NORMALIZE);	 //法線の有効化
-	glEnable(GL_DEPTH_TEST); // ZバッファON
-
-	glRotatef(30, 1.0, 0, 0);
-	glRotatef(50, 0, 1.0, 0);
-	glRotatef(20, 0, 0.0, 1.0);
 	glScalef(0.4, 0.4, 0.4);
-
-	glViewport(0, 0, width, height);
-    printf("InitialProc\n");
+	/* Render something.*/
+	printf("InitialProc\n");
 	InitialProc();
 	disp();
-
-	/*
-	 * Read the framebuffer's color attachment and save it as a PNG file.
-	 */
-	glReadBuffer(GL_COLOR_ATTACHMENT0);
 	for (int i = 0; i < 10; i++)
 	{
 		disp();
-
-		cv::Mat image(width, height, CV_8UC4);
-		glReadPixels(0, 0, width, height, GL_BGRA, GL_UNSIGNED_BYTE, image.data);
-		assertOpenGLError("glReadPixels");
-		cv::imwrite("img" + std::to_string(i) + ".png", image);
+		frameBuffer.saveImage("img" + std::to_string(i) + ".png");
 	}
-	/*
-	 * Destroy context.
-	 */
-	glDeleteFramebuffers(1, &frameBuffer);
-	glDeleteTextures(1, &t);
-
 }

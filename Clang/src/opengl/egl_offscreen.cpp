@@ -186,18 +186,6 @@ int main()
 		GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, t, 0);
 	assertOpenGLError("glFramebufferTexture2D");
 
-	// glDrawBuffer(GL_COLOR_ATTACHMENT1);
-	// glDrawBuffer(GL_DEPTH_ATTACHMENT);
-
-	// glMatrixMode(GL_PROJECTION); //行列モード切替
-	// glLoadIdentity();			 //行列初期化
-	/*
-	 * Render something.
-	 */
-	// float Light0Pos[] = {2, 2, 2, 0};			  //光源の位置
-	// glLightfv(GL_LIGHT0, GL_POSITION, Light0Pos); //位置だけ設定(あとはデフォルト)
-	// glEnable(GL_LIGHTING);						  //光源の有効化
-	// glEnable(GL_LIGHT0);
 	glEnable(GL_NORMALIZE);	 //法線の有効化
 	glEnable(GL_DEPTH_TEST); // ZバッファON
 	// gluPerspective(30.0, (double)height / (double)width, 1.0, 100.0);
