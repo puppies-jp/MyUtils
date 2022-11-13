@@ -9,6 +9,7 @@
 
 ## topics
 
+- [オブジェクト指向について](object-oriented)
 - [python](Python)
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)

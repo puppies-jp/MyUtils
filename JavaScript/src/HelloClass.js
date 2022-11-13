@@ -29,10 +29,28 @@ function hello(name){
     console.log("hello "+ name);
 };
 
-arrowl = (num) => {
+arrowLambda = (num) => {
     return num * 2
   }
   
 f("Jhon");
 hello("Tom");
 arrowLambda(3);
+
+// 🌟継承はこんな感じ
+class fish extends Animal{
+    constructor(name)
+    { 
+        //親クラスのコンストラクタはこんな感じ
+        super("I`m fish!");
+        super.baw2 ="";
+    }
+
+    talk(){
+        // 親クラスの関数を実行する。
+        super.say();
+    }
+}
+
+jerryfihs = new fish("");
+jerryfihs.talk();
