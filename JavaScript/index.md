@@ -122,6 +122,37 @@ varでスコープを抜けても呼び出せることから察せるように�
 ## <a name=async>非同期処理(async/await)を使ってみる</a>
 
 1. パッケージをインストールする
+　　(パッケージもあるが、デフォでPromise型が使える)
+  asyncパッケージでの使い方はそのうち
 
 > npm install async
 
+```javascript
+// 標準の async/awaitを使う(パッケージ入れなくてもOK)
+function myPromise(num) {
+    return new Promise(
+        // 🚨resolveを引数に設定し、
+        function(resolve) {
+            setTimeout(function() {
+                // 🚨resolveに結果を渡す。 戻り値は見てない
+                resolve(num * num + 1);
+                return 101; 
+        }, 
+        3000)
+    })
+}
+
+async function myAsync() {
+     
+    var prom = myPromise(20);
+    console.log("Waitting .. process")
+ 
+    // 色々処理やった後で、awaitで取り出せばOK
+    // C#とほぼ同じっぽい
+    var result = await prom;
+    console.log(result);
+ 
+}
+ 
+myAsync();
+```

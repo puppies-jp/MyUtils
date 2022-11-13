@@ -41,8 +41,15 @@ async.parallel([
 // 標準の async/awaitを使う(パッケージ入れなくてもOK)
 
 function myPromise(num) {
-    return new Promise(function(resolve) {
-      setTimeout(function() { resolve(num * num) }, 3000)
+    return new Promise(
+        // 🚨resolveを引数に設定し、
+        function(resolve) {
+            setTimeout(function() {
+                // 🚨resolveに結果を渡す。 戻り値は見てない
+                resolve(num * num + 1);
+                return 101; 
+        }, 
+        3000)
     })
 }
 
