@@ -15,7 +15,8 @@
 ## 環境構築
 
 ```sh
-# 🚨 aptやっぱダメだわ(笑) Microsoftのやつを参考にcurlでinstallシェルとってきた方が安全かも
+# 🚨 aptやっぱダメだわ(笑) 
+# Microsoftのやつを参考にcurlでinstallシェルとってきた方が安全かも
 # nodejs,npmをinstall
 apt install -y nodejs npm
 
@@ -152,6 +153,7 @@ function myPromise(num) {
     })
 }
 
+// asyncの関数である宣言が必要みたい(C#と同じっぽい🤗)
 async function myAsync() {
      
     var prom = myPromise(20);
