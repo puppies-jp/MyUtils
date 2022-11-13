@@ -1,4 +1,35 @@
-# inline関数について
+# operator/inlineについて
+
+`operator`/`inline`関係ないけど、単体だけだとそこまで書くことないのでまとめる。
+
+## <a name=operator>operatorについて</a>
+
+オペレータ関数の作り方はこんな感じ
+
+```cpp
+class TestClass
+{
+    int num;
+
+public:
+    //🌟+記号をオーバーロード(🌟引数は+の左辺値)
+    TestClass operator+(TestClass r)
+    {
+        TestClass tc;
+        tc.num = this->num + r.num;
+        return tc;
+    }
+    //🌟-記号をオーバーロード(🌟引数は+の左辺値)
+    TestClass operator-(TestClass r)
+    {
+        TestClass tc;
+        tc.num = this->num - r.num;
+        return tc;
+    }
+};
+```
+
+## <a name=inline>inline関数について</a>
 
 ```cpp
 #include <iostream>

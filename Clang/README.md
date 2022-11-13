@@ -11,7 +11,8 @@ build周り
 - [コンストラクト/デストラクト](construct)
 - [C++の安全なリソース解放について](SafeResource)
 - [引数について](FunctionParameter)
-- [inline調査](inline)
+- [inline調査](inline#inline)
+- [オペレータの定義について](inline#operator)
 
 ossとか環境依存系とか
 
