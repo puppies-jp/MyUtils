@@ -7,6 +7,7 @@
 - [クラス定義](#defineClass)
 - [関数定義とlambda式について](#func)
 - [let/varの違い](#diff_let_var)
+- [非同期処理(async/await)を使ってみる](#async)
 
 ## 環境構築
 
@@ -117,3 +118,10 @@ const f = function(name){
 varでスコープを抜けても呼び出せることから察せるように、`デストラクタがないらしい、、`
 
 つまり、リソースの使い方には注意してコーディングする必要がある。
+
+## <a name=async>非同期処理(async/await)を使ってみる</a>
+
+1. パッケージをインストールする
+
+> npm install async
+
