@@ -13,7 +13,7 @@
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
   - [tensorflow](Python/tensorflow)
-
+- [JavaScript](JavaScript)
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
 - [BinaryHack](BinaryHack)
@@ -51,7 +51,6 @@
 # 🌟 直前に行ったcommitを取り消す
 git reset --soft HEAD^
 
-# 
 ```
 
 `HEAD^`は「一つ前のコミット」のこと
