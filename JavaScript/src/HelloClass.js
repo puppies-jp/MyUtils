@@ -41,13 +41,13 @@ arrowLambda(3);
 class fish extends Animal{
     constructor(name)
     { 
-        //親クラスのコンストラクタはこんな感じ
+        //🌟親クラスのコンストラクタはこんな感じ
         super("I`m fish!");
         super.baw2 ="";
     }
 
     talk(){
-        // 親クラスの関数を実行する。
+        // 🌟親クラスの関数を実行する。
         super.say();
     }
 }
