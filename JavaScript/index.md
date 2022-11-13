@@ -5,9 +5,8 @@
   - node.jsでやってみる
 
 - [クラス定義](#defineClass)
-- [scopeについて](#scope)
+- [関数定義とlambda式について](#func)
 - [let/varの違い](#diff_let_var)
-
 
 ## 環境構築
 
@@ -83,15 +82,33 @@ cat.say();
 //dog.say();
 ```
 
-## <a name=scope>スコープについて</a>
+## <a name=func>関数定義とlambda式</a>
 
-そのうち書く
+`Python`みたいに関数をクラス一つとして扱っているっぽい
+
+```javascript
+// 通常の宣言
+function hello(name){
+    console.log("hello "+ name);
+};
+
+// lambda式(無名関数)
+const f = function(name){
+    console.log("hello "+ name+ "!");
+};
+
+// lambda式(arrow)
+// (上記の変数f同様に関数クラスのように扱うこともできる。)
+(num) => {
+  return num * 2
+}
+```
 
 ## <a name=diff_let_var>let/var/constの違い</a>
 
 違いは`再宣言可能`か`再代入可能`か`スコープ`に違いが出る
 
-|\\\\|再代入|再宣言|スコープ|
+| *|再代入|再宣言|スコープ|
 |:--:|:--:|:--:|:--|
 |var|可能|可能|ある関数内でvarを用いて宣言した変数は、その変数をどこからでも呼び出すことが可能|
 |let|可能|不可|同じ関数内であってもブロックの外側からは変数を呼び出せません。|

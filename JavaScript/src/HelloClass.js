@@ -19,3 +19,20 @@ cat = new Animal("mew mew");
 
 cat.say();
 //dog.say();
+
+// lambda
+const f = function(name){
+    console.log("hello "+ name+ "!");
+};
+
+function hello(name){
+    console.log("hello "+ name);
+};
+
+arrowl = (num) => {
+    return num * 2
+  }
+  
+f("Jhon");
+hello("Tom");
+arrowLambda(3);
