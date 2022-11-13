@@ -9,9 +9,13 @@
 - [let/varの違い](#diff_let_var)
 - [非同期処理(async/await)を使ってみる](#async)
 
+---
+---
+
 ## 環境構築
 
 ```sh
+# 🚨 aptやっぱダメだわ(笑) Microsoftのやつを参考にcurlでinstallシェルとってきた方が安全かも
 # nodejs,npmをinstall
 apt install -y nodejs npm
 
@@ -53,6 +57,9 @@ sudo npm update -g npm
 3. **`以上`**
    クラスとかメイン関数とか気にしないで試せるのは楽かも？
 
+---
+---
+
 ## <a name=defineClass>クラス定義について</a>
 
 - とりあえず特徴的っぽいとこをあげる。
@@ -82,6 +89,9 @@ cat = new Animal("mew mew");
 cat.say();
 //dog.say();
 ```
+
+---
+---
 
 ## <a name=func>関数定義とlambda式</a>
 
