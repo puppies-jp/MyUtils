@@ -27,6 +27,17 @@ public:
         return tc;
     }
 };
+
+// 引数は両方ともnewで確保に必要なメモリサイズが渡される。
+// 普通にmallocで確保したポインタを返すとかでOK
+void *operator new(size_t size){ return malloc(size);}
+void *operator new[](size_t size){ return malloc(size);}
+
+// 確保したインスタンスのポインタが渡される
+// 普通にfreeでOK
+void operator delete(void *p){free(p);}
+void operator delete[](void *p){free(p);}
+
 ```
 
 ## <a name=inline>inline関数について</a>
