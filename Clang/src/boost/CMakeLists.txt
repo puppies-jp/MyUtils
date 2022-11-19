@@ -19,8 +19,12 @@ message("---------------------------------------------------")
 
 # ライブラリ定義作成(静的ライブラリ作成)
 # boost logライブラリ作成(staticライブラリ作成)
-# ライブラリに他共有ライブラリリンク追加(boostlogで共有リンクを使うのでlinkがいる)
 add_library(blogger STATIC boost_log.cpp)
+
+# boost logライブラリ作成(共有ライブラリ作成)
+# add_library(blogger_share SHARED boost/boost_log.cpp)
+
+# ライブラリに他共有ライブラリリンク追加(boostlogで共有リンクを使うのでlinkがいる)
 target_link_libraries(
     blogger ${Boost_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT} ${ARGN}
 )
