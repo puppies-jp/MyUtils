@@ -35,3 +35,9 @@ add_executable(boost_sample.out boost_sample.cpp)
 # main_exe.outを作成する際に使用するライブラリをリンク
 target_link_libraries(boost_sample.out blogger)
 message("[cmake end]----------------------------------------")
+
+set(execs boost_sample.out blogger)
+install(
+    TARGETS ${execs}
+    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}
+)
