@@ -17,7 +17,8 @@ build周り
 ossとか環境依存系とか
 
 - [不本意ながらMFCというか、Windows関連](MFC)
-- [openGLについて](openGL)
+- [openGLについて](src/opengl/openGL)
+- [boostについて](src/boost/)
 - [Google test/mockについて](src/googletest/)
 - [バイナリの使用するライブラリを確認する(ldd)](#ldd)
 
