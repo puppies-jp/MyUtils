@@ -8,6 +8,7 @@
 - [関数定義とlambda式について](#func)
 - [let/varの違い](#diff_let_var)
 - [非同期処理(async/await)を使ってみる](#async)
+- [モジュール作成](#module)
 
 ---
 ---
@@ -185,4 +186,17 @@ async function myAsync() {
 }
  
 myAsync();
+```
+
+## <a name=module>モジュール作成</a>
+
+```javascript
+
+class Animal{};
+
+// require('hello-world-script')でclassを作成できるようにする
+module.exports = Animal;
+
+// import xxx from 'hello-world-script'できるようにする
+module.exports.default = Animal;
 ```
