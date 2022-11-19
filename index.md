@@ -14,7 +14,6 @@
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
   - [tensorflow](Python/tensorflow)
-- [JavaScript](JavaScript)
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
 - [BinaryHack](BinaryHack)
@@ -32,17 +31,19 @@
 - [PlantUML](PlantUML)
 - [sandpox code pen](sandbox)
 
-- [html](html)
-  - [How to use leaf](html/leaf/leaf.html)
-  - [learn css](html/LearnCss/LearnCss.html)
-  - [learn1](html/learn1)
-  - [read_file](html/read_loc_xml)
-    - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
+- html/javascript/css 勉強用
+  - [JavaScript](JavaScript)
+  - [css](css)
+  - [html](html)
+    - [How to use leaf](html/leaf/leaf.html)
+    - [learn css](html/LearnCss/LearnCss.html)
+    - [learn1](html/learn1)
+    - [read_file](html/read_loc_xml)
+      - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
+
+  - [gh-pagesリンク(別ブランチ)](https://puppies-jp.github.io/LearnHtml/)
 
 - [keyword 備忘録](keywords)
-
-- html/javascript/css 勉強用リポジトリ  
-  - [gh-pagesリンク](https://puppies-jp.github.io/LearnHtml/)
 
 ---
 
