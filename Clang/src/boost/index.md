@@ -1,17 +1,26 @@
-#include "boost_log.h"
 
-using namespace std;
+# boostについて
 
-// typedef sinks::synchronous_sink<sinks::text_file_backend> sink_t;
-void fileOpeningHandler(sinks::text_file_backend::stream_type &file)
-{
-    std::cout << "Opened" << std::endl;
-}
+本ページではboostの使い方をまとめる
 
-void fileClosingHandler(sinks::text_file_backend::stream_type &file)
-{
-    std::cout << "Closed" << std::endl;
-}
+[とりあえずsample](https://github.com/puppies-jp/MyUtils/tree/gh-pages/Clang/src/boost)
+
+## boost loggerについて
+
+boostライブラリが提供するloggerである。
+`front`と`back`のシンクと呼ばれる出口を作成することで、
+ファイル出力、標準出力などの切り替えを実装者側で必要としないloggerを作成できる。
+また、ファイルへのloggingにおいてのopen/closeをフックすることもできる。
+以下にサンプルを載せる
+
+基本的な手順は2つである。
+
+1. sinkを作成し、frontend,backendの設定を行う(open/close/mode/formatなど)
+2. coreに作成したsinkを登録する
+
+以上
+
+```cpp
 
 boost::shared_ptr<sink_t> make_text_file_sink()
 {
@@ -49,7 +58,7 @@ boost::shared_ptr<sink_t> make_text_file_sink()
 void init1(boost::shared_ptr<sink_t> sink)
 {
     // boost logger init
-    cout << "📕📕📕📕📕Start logging 2nd" << endl;
     boost::shared_ptr<logging::core> core = logging::core::get();
     core->add_sink(sink);
 }
+```

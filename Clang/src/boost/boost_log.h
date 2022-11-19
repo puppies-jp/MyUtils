@@ -43,9 +43,9 @@ using namespace logging::trivial;
 
 typedef sinks::synchronous_sink<sinks::text_file_backend> sink_t;
 
-void handler1(sinks::text_file_backend::stream_type &file);
-
-void handler2(sinks::text_file_backend::stream_type &file);
+// text file backendにおいける、open/closeフック用関数
+void fileOpeningHandler(sinks::text_file_backend::stream_type &file);
+void fileClosingHandler(sinks::text_file_backend::stream_type &file);
 
 boost::shared_ptr<sink_t> make_text_file_sink();
 
