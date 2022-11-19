@@ -2,6 +2,8 @@
 
 このページではldを利用したC/C++の関数置き換え、hookについて書いてみる
 
+[サンプルソース](https://github.com/puppies-jp/MyUtils/tree/gh-pages/Clang/src/hook)
+
 ```sh
 # 🌟ライブラリを作成する
 g++ -fPIC -shared ./printhook.cpp -o hook.so -rdynamic -ldl -std=c++2a
