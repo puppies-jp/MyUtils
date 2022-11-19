@@ -20,6 +20,7 @@ ossとか環境依存系とか
 - [openGLについて](src/opengl/openGL)
 - [boostについて](src/boost/)
 - [Google test/mockについて](src/googletest/)
+- [printfとかの関数を置き換える](src/hook/)
 - [バイナリの使用するライブラリを確認する(ldd)](#ldd)
 
 実装の戦略とか
@@ -62,6 +63,9 @@ ossとか環境依存系とか
 	/lib64/ld-linux-x86-64.so.2 (0x00007fd86cd73000)
 
 ```
+
+---
+---
 
 ## <a name=mem>mem系メモリ操作のあれこれ</a>
 
