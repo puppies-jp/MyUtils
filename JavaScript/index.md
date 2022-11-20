@@ -9,6 +9,9 @@
 - [関数定義とlambda式について](#func)
 - [let/varの違い](#diff_let_var)
 - [非同期処理(async/await)を使ってみる](#async)
+  - [クリティカルリージョンについて](#critical)
+- [yieldについて](#yield)
+
 - [モジュール作成](#module)
 - [演算子のオーバーロードについて](#overload)
 
@@ -191,6 +194,14 @@ async function myAsync() {
  
 myAsync();
 ```
+
+### <a name=critical>非同期処理におけるクリティカルリージョンについて</a>
+
+jsにはmutexなどはないらしい、結論としてクリティカルリージョンは以下で実装が必要
+
+1. `ロック用の変数用意して自分で排他処理しないとダメ `
+1. `想定外のコード実行が行われないように、Arrayをタスクキューとして使って、そこに期待した順番でタスクを並べてごにょごにょすれば良い`
+
 ---
 
 ## <a name=module>モジュール作成</a>
@@ -208,10 +219,36 @@ module.exports.default = Animal;
 
 ---
 
-## <a name=overload>オーバーロードについて</a>
+## <a name=overload>JavaScriptにおけるオーバーロードについて</a>
 
 - [StackOverflowの回答](https://stackoverflow.com/questions/19620667/javascript-operator-overloading)
 
 `JavaScript doesn't support operator overloading.`らしい。。。  
 しかし、`valueOf`,`toString`をいじることで近い機能を実装することができる
 (仕様的にオブジェクト指向としてどうなんだ？)
+
+--- 
+
+## <a name=yield>yieldについて</a>
+
+JavaScriptにおけるyieldは関数の処理を一時的に呼び出し元に譲って、
+関数の処理は待機しておくという意味
+nextで処理を再開することができる
+
+```js
+
+// yieldが含まれるジェネレータ関数には、functionの最後にアスタリスクをつける必要があります。
+function* funcA() {
+    yield "Hello";
+    yield "JavaScript";
+    return "!!";
+}
+
+f1 = funcA();
+// valueはyieldに指定した戻り値で、doneはジェネレータ関数が終了したかどうかを表す真偽値
+console.log(f1.next()); // -> { value: 'Hello', done: false }
+console.log(f1.next()); // -> { value: 'JavaScript', done: false }
+console.log(f1.next()); // -> { value: '!!', done: true }
+console.log(f1.next()); // -> { value: undefined, done: true }
+
+```
