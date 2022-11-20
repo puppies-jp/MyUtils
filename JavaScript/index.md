@@ -9,6 +9,7 @@
 - [let/varの違い](#diff_let_var)
 - [非同期処理(async/await)を使ってみる](#async)
 - [モジュール作成](#module)
+- [演算子のオーバーロードについて](#overload)
 
 ---
 ---
@@ -200,3 +201,11 @@ module.exports = Animal;
 // import xxx from 'hello-world-script'できるようにする
 module.exports.default = Animal;
 ```
+
+## <a name=overload>オーバーロードについて</a>
+
+- [StackOverflowの回答](https://stackoverflow.com/questions/19620667/javascript-operator-overloading)
+
+`JavaScript doesn't support operator overloading.`らしい。。。  
+しかし、`valueOf`,`toString`をいじることで近い機能を実装することができる
+(仕様的にオブジェクト指向としてどうなんだ？)
