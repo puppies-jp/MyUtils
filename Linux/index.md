@@ -39,12 +39,19 @@ telnet <ip address> <port>
 
 ## <a name=rsync>ファイル転送(rsync)</a>
 
-scpについてはとりあえず書かない(概ね知ってるし)
+scpについてはとりあえず書かない(概ね知ってるし)  
+とりあえず、`rsync`は`scp`と違い送信元,送信先のどちらかをローカルで指定する
+必要がある。  
+どこかのサーバを経由する場合、sshでポート転送をする必要がある。
+
+`scp`と`rsync`とで差分を取ったりする分、CPU性能が要求される。  
+しかし、転送速度は早いらしい。(効率的にCPUを使ってるんだろう。)
 
 ```sh
 # 🌟--remove-source-files で送信したファイルの削除を行える(ただし、ディレクトリは消さない)
 # 🌟 -z(--compress)らしい
-rsync -r -z --remove-source-files <対象ファイル/ディレクトリ> <user>@<host>:<Dest path>
+# 🌟 -t オプションを指定しない場合、通常転送した後で転送元、転送先で更新日が実行時にされてしまう。そこで-tオプションをつけることで更新日時を保持したままにすることができる
+rsync -r -z -t --remove-source-files <対象ファイル/ディレクトリ> <user>@<host>:<Dest path>
 
 # 🌟 --list-only 転送は行わずにファイルのリストを作成する
 rsync -r -z --list-only <対象ファイル/ディレクトリ> <user>@<host>:<Dest path>
