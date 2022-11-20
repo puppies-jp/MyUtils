@@ -31,8 +31,8 @@
 - [PlantUML](PlantUML)
 - [sandpox code pen](sandbox)
 
-- html/javascript/css 勉強用
-  - [JavaScript](JavaScript)
+- [JavaScript](JavaScript)
+- [html/javascript/css 勉強用](Frontend)
   - [css](css)
   - [html](html)
     - [How to use leaf](html/leaf/leaf.html)

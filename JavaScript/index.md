@@ -136,6 +136,8 @@ const f = function(name){
 }
 ```
 
+---
+
 ## <a name=diff_let_var>let/var/constの違い</a>
 
 違いは`再宣言可能`か`再代入可能`か`スコープ`に違いが出る
@@ -188,6 +190,7 @@ async function myAsync() {
  
 myAsync();
 ```
+---
 
 ## <a name=module>モジュール作成</a>
 
@@ -201,6 +204,8 @@ module.exports = Animal;
 // import xxx from 'hello-world-script'できるようにする
 module.exports.default = Animal;
 ```
+
+---
 
 ## <a name=overload>オーバーロードについて</a>
 
