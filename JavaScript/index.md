@@ -207,7 +207,6 @@ jsにはmutexなどはないらしい、結論としてクリティカルリー�
 ## <a name=module>モジュール作成</a>
 
 ```javascript
-
 class Animal{};
 
 // require('hello-world-script')でclassを作成できるようにする
@@ -236,7 +235,6 @@ JavaScriptにおけるyieldは関数の処理を一時的に呼び出し元に�
 nextで処理を再開することができる
 
 ```js
-
 // yieldが含まれるジェネレータ関数には、functionの最後にアスタリスクをつける必要があります。
 function* funcA() {
     yield "Hello";
@@ -250,5 +248,4 @@ console.log(f1.next()); // -> { value: 'Hello', done: false }
 console.log(f1.next()); // -> { value: 'JavaScript', done: false }
 console.log(f1.next()); // -> { value: '!!', done: true }
 console.log(f1.next()); // -> { value: undefined, done: true }
-
 ```
