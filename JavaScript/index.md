@@ -4,6 +4,7 @@
   - Ubuntu(on Docker(Xなどのウィンドウなし、完全にUbuntuのものだけ))
   - node.jsでやってみる
 
+- [モジュール管理について](npm)
 - [クラス定義](#defineClass)
 - [関数定義とlambda式について](#func)
 - [let/varの違い](#diff_let_var)
