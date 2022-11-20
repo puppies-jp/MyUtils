@@ -43,8 +43,8 @@ void disp()
 {
 
 	static int r = 0;
-	glPushMatrix();						 // 行列退避
-	glRotated(double(r*1), 2.0, 1.0, 0.0); //[2].回転
+	glPushMatrix();							 // 行列退避
+	glRotated(double(r * 1), 2.0, 1.0, 0.0); //[2].回転
 
 	glClearColor(0, 0.0, 0, 0.7);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -103,7 +103,7 @@ int main()
 	printf("Make Context\n");
 	Contexts processContexts;
 	printf("Make frame buffer\n");
-	OffscreenBuffer frameBuffer(width,height);
+	OffscreenBuffer frameBuffer(width, height);
 
 	glScalef(0.4, 0.4, 0.4);
 	/* Render something.*/
