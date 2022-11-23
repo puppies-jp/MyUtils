@@ -1,6 +1,6 @@
 # MyUtils
 
-<link rel="shortcut icon" type="image/x-icon" href="path/to/favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href=".github/favicon.ico">
 
 - このリポジトリは私の備忘録を兼ねたメモをまとめるためのディレクトリです。
 
