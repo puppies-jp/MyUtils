@@ -111,6 +111,10 @@ SELECT * FROM stable SUBPARTITION (P2009Q2_KANTO);
 
 -- Docker環境でうまく動かない。。(実機は知らんが)　もしかしてMySQLの構文？
 SELECT * FROM stable PARTITION(P2009Q1,P2009Q2);
+
+-- partitionの複数指定ができない場合はunionでも、、、
+SELECT * FROM STABLE PARTITION(P2009Q1)
+UNION ALL SELECT * FROM STABLE PARTITION(P2009Q1);
 ```
 
 ---
