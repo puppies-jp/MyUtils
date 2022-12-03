@@ -16,3 +16,17 @@ left joinの場合`select * from [左テーブル] LEFT JOIN [右テーブル] O
 といった形でSQL文を作成できる
 
 ![About Join](img/SQL_JOINS.png)
+
+## Union/Union Allについて
+
+```sql
+-- union(重複したレコードは削除される)
+select test_pk, test_val from test1
+union 
+select test_pk, test_val from test2
+
+-- union all(重複の削除は行わない)
+select test_pk, test_val from test1
+union all 
+select test_pk, test_val from test2
+```
