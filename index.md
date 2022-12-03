@@ -35,13 +35,13 @@
 
 - [JavaScript](JavaScript)
 - [html/javascript/css 勉強用](Frontend)
-  - [css](css)
-  - [html](html)
-    - [How to use leaf](html/leaf/leaf.html)
-    - [learn css](html/LearnCss/LearnCss.html)
-    - [learn1](html/learn1)
-    - [read_file](html/read_loc_xml)
-      - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
+
+- [html template](html)
+  - [How to use leaf](html/leaf/leaf.html)
+  - [learn css](html/LearnCss/LearnCss.html)
+  - [learn1](html/learn1)
+  - [read_file](html/read_loc_xml)
+    - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
 
   - [gh-pagesリンク(別ブランチ)](https://puppies-jp.github.io/LearnHtml/)
 
