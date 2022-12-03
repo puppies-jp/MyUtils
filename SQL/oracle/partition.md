@@ -135,3 +135,14 @@ ALTER TABLE <table名> TRUNCATE SUBPARTITION <サブパーティション名> ;
 ALTER TABLE <table名> TRUNCATE PARTITION <パーティション名> DROP STORAGE;
 ALTER TABLE <table名> TRUNCATE PARTITION <パーティション名> REUSE STORAGE;
 ```
+
+## <a name=maintenance>パーティションメンテナンス</a>
+
+```sql
+-- listパーティションのメンテ
+ALTER TABLE <table名> MODIFY PARTITION <Partition名> ADD VALUES ('OK', 'KS');
+ALTER TABLE <table名> MODIFY PARTITION <listPartition名> DROP VALUES ('OK', 'KS');
+
+-- パーティション名のリネーム
+ALTER TABLE <table名> RENAME PARTITION sys_p636 TO tanks;
+```
