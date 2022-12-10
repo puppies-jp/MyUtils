@@ -10,6 +10,10 @@
 
 using namespace std;
 
+/*
+g++ bubbleSort.cpp -o bubbleSort.out -lpthread -std=c++2a
+*/
+
 void BubbleSort(int *input, int arraySize);
 
 int main(int argc, char *argv[])
@@ -47,7 +51,7 @@ int main(int argc, char *argv[])
 
 void BubbleSort(int *input, int arraySize)
 {
-    std::mutex mtx_;
+    std::mutex mtx_; // index
     // std::lock_guard<std::mutex> lock(mtx_);
 
     bool isChanged = false;
@@ -100,6 +104,7 @@ void BubbleSort(int *input, int arraySize)
             .detach();
     }
 
+    // 親スレッド
     while (count != 2)
     {
         // 全スレッド完了待ち
