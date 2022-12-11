@@ -27,7 +27,8 @@ ossとか環境依存系とか
 
 - [mutex の安全な運用について](mutex)
 - [共有メモリについて](src/sharedMem)
-- [並行プログラミング戦略](src/pararel/pararel)
+- [並行プログラミング戦略](src/pararel/pararel)  
+  - [並列ソート処理](src/pthread_sort/sort)
 - [lambda式について](lambda)
 
 ---
