@@ -14,7 +14,7 @@
 [volatile宣言について](#volatile)  
 
 2. process間機能  
-[セマフォ](#semapho)
+[セマフォ](#semapho)  
 [共有メモリ](#share_mem)
 
     - [参考](https://qiita.com/MoriokaReimen/items/5c4256ef620499a88bb3)
@@ -34,6 +34,9 @@
 - `pthread_create`でスレッドを作成した場合、
   `join`もしくは、`detach`しなければなりません。 pthread_detachは、メインスレッドからスレッドを切り離す機能を提供します。
   `pthread_create`で作ったスレッドが終了したとき、`join`で終了を回収せずに、`pthread_create`だけを呼び出して、`プログラムを動かしているとメモリリーク`します。
+
+[pthread Cサンプル](https://github.com/puppies-jp/MyUtils/blob/gh-pages/Clang/src/pararel/pthread/pthreadSample.cpp)  
+[pthread std C++サンプル](https://github.com/puppies-jp/MyUtils/blob/gh-pages/Clang/src/pararel/pthread/SimpleThread.cpp)  
 
 ## <a name='mutex'>mutex</a>
 
