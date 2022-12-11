@@ -13,6 +13,9 @@ find_package(Threads REQUIRED)
 add_executable(SimpleThread.out SimpleThread.cpp)
 target_link_libraries(SimpleThread.out Threads::Threads)
 
+add_executable(pthreadSample.out pthreadSample.cpp)
+target_link_libraries(pthreadSample.out Threads::Threads)
+
 add_executable(barrier.out barrier.cpp)
 target_link_libraries(barrier.out Threads::Threads)
 
@@ -23,7 +26,7 @@ add_executable(rwlock2.out rwlock2.cpp)
 target_link_libraries(rwlock2.out Threads::Threads)
 
 # install
-set(execs SimpleThread.out barrier.out rwlock.out rwlock2.out)
+set(execs SimpleThread.out pthreadSample.out barrier.out rwlock.out rwlock2.out)
 install(
   TARGETS ${execs}
   RUNTIME DESTINATION ${CMAKE_BINARY_DIR}
