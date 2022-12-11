@@ -19,8 +19,11 @@ target_link_libraries(barrier.out Threads::Threads)
 add_executable(rwlock.out rwlock.cpp)
 target_link_libraries(rwlock.out Threads::Threads)
 
-# install 
-set(execs SimpleThread.out barrier.out rwlock.out)
+add_executable(rwlock2.out rwlock2.cpp)
+target_link_libraries(rwlock2.out Threads::Threads)
+
+# install
+set(execs SimpleThread.out barrier.out rwlock.out rwlock2.out)
 install(
   TARGETS ${execs}
   RUNTIME DESTINATION ${CMAKE_BINARY_DIR}
