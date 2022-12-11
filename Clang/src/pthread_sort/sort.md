@@ -1,54 +1,19 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <sstream>
-#include <istream>
-#include <thread>
-#include <mutex>
+# Sortについて
 
-#include <barrier>
+また、ソートする上でのマルチスレッド戦略を書いていく
 
-using namespace std;
+- [Bubble Sort](#Bubble)
+- [ヒープソート(そのうち)]
+- [マージソート(そのうち)]
+- [クイックソート(そのうち)]
 
-/*
-g++ bubbleSort.cpp -o bubbleSort.out -lpthread -std=c++2a
-*/
+## <a name=Bubble>Bubble Sort</a>
 
-void BubbleSort(int *input, int arraySize);
+バブルソートは、隣り合う要素の大小を比較しながら整列させるソートアルゴリズム。 アルゴリズムが単純で実装も容易である一方、最悪時間計算量は O(n²) と遅いため、一般にはマージソートやヒープソートなど、より最悪時間計算量の小さな方法が利用される。
 
-int main(int argc, char *argv[])
-{
+- マルチスレッドで実装するとこんな感じ
 
-    string line;
-    getline(cin, line);
-    int inputCount = std::atoi(line.c_str());
-    auto inputs = new int[inputCount]{};
-    getline(cin, line);
-
-    std::stringstream ss{line};
-    std::string buf;
-    int counter = 0;
-    while (std::getline(ss, buf, ' '))
-    {
-        inputs[counter] = atoi(buf.c_str());
-        counter++;
-    }
-
-    std::vector<int> outPutList = {};
-    BubbleSort(inputs, counter);
-    // std::sort(outPutList.begin(), outPutList.end() );
-
-    cout << inputs[0] << " " << inputs[counter - 1] << "\n";
-    for (int i = 0; i < counter; i++)
-    {
-        cout << inputs[i];
-    }
-    cout << "\n";
-
-    delete[] inputs;
-    return 0;
-}
-
+```cpp
 void BubbleSortThread(int *input, int arraySize,
                       std::barrier<> *sync,
                       int myThreadNo,
@@ -77,7 +42,7 @@ void BubbleSortThread(int *input, int arraySize,
         else
         {
             // 親スレッドに完了通知
-            cout << "ThreadNo: " << myThreadNo << " isChanged: " << thlocalChanged << "\n";
+            //cout << "ThreadNo: " << myThreadNo << " isChanged: " << thlocalChanged << "\n";
             sync->arrive_and_wait();
             // 配列0番目スタート or 1番目スタートを切り替える
             evenOdd = (evenOdd + 1) % 2;
@@ -122,9 +87,10 @@ void BubbleSort(int *input, int arraySize)
         else
             count++;
         isChanged = false;
-        cout << "pairent flag clear  and count " << count << "\n";
+        //cout << "pairent flag clear  and count " << count << "\n";
 
         // 子スレッドへの完了待ち
         sync.arrive_and_wait();
     }
 }
+```

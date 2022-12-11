@@ -1,7 +1,5 @@
 # MyUtils
 
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
-
 - このリポジトリは私の備忘録を兼ねたメモをまとめるためのディレクトリです。
 
 - Tensorflow 周りのめも(別のページのリンク)
