@@ -5,7 +5,9 @@
 - [Bubble Sort](#Bubble)
 - [ヒープソート(そのうち)]
 - [マージソート(そのうち)]
+- [シェルソート(そのうち)]
 - [クイックソート(そのうち)]
+- [基数ソート(そのうち)]
 - [バケットソート](#Bucket)
 
 ## <a name=Bubble>Bubble Sort</a>
@@ -104,3 +106,11 @@ void BubbleSort(int *input, int arraySize)
 手順は簡単だが、`少数が使えない`、`最大値が大きすぎるとそれだけ配列を確保しないといけない`
 といった制約が多い
 
+[非同期実装サンプル](https://github.com/puppies-jp/MyUtils/blob/gh-pages/Clang/src/pthread_sort/bucketSort.cpp)
+
+## <a name=Quick>クイックソート</a>
+
+ピボットと呼ぶ要素を軸に分割を繰り返して整列を行うアルゴリズム
+
+```cpp
+```
