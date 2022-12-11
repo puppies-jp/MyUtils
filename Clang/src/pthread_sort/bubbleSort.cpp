@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     std::stringstream ss{line};
     std::string buf;
     int counter = 0;
-    while (std::getline(ss, buf, ' '))
+    while ((counter < inputCount) && std::getline(ss, buf, ' '))
     {
         inputs[counter] = atoi(buf.c_str());
         counter++;
@@ -77,7 +77,7 @@ void BubbleSortThread(int *input, int arraySize,
         else
         {
             // 親スレッドに完了通知
-            cout << "ThreadNo: " << myThreadNo << " isChanged: " << thlocalChanged << "\n";
+            // cout << "ThreadNo: " << myThreadNo << " isChanged: " << thlocalChanged << "\n";
             sync->arrive_and_wait();
             // 配列0番目スタート or 1番目スタートを切り替える
             evenOdd = (evenOdd + 1) % 2;
@@ -95,7 +95,7 @@ void BubbleSort(int *input, int arraySize)
     bool isChanged = false;
     int count = 0;
 
-    int NWORKERS = 30;
+    int NWORKERS = 1;
     std::barrier<> sync{NWORKERS + 1};
 
     // n thread 起動
