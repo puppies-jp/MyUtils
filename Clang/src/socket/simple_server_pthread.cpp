@@ -48,35 +48,32 @@ int main(void)
     {
         struct sockaddr_in client_addr /* クライアント情報 */;
         sin_size = sizeof(struct sockaddr_in);
-        int new_sockfd = accept(
-            sockfd,
-            (sockaddr *)&client_addr,
-            &sin_size);
+        int new_sockfd = accept(sockfd, (sockaddr *)&client_addr, &sin_size);
         if (new_sockfd == -1)
         {
-            printf("コネクションの受付に失敗しました。");
-            continue;
-        }
-        printf("コネクションを受け付けました IP: %s, port: %d\n",
-               inet_ntoa(client_addr.sin_addr),
-               ntohs(client_addr.sin_port));
-        auto pid = fork();
-        if (pid == 0) // child proc
-        {
-            send(new_sockfd, "Hello world!\n", 13, 0);
-            // std::thread th2(RecvThread, new_sockfd);
-            RecvThread(new_sockfd);
+            printf("コネクションの受付に失敗しました\n");
             break;
         }
-        else // pairent proc
-        {
-            counter++;
-            if (counter == 2)
+        std::thread(
+            [=]
             {
-                close(sockfd);
-                printf("close socket\n");
-                break;
-            }
+                printf("コネクションを受け付けました IP: %s, port: %d\n",
+                       inet_ntoa(client_addr.sin_addr),
+                       ntohs(client_addr.sin_port));
+
+                send(new_sockfd, "Hello world!\n", 13, 0);
+                RecvThread(new_sockfd);
+                printf("sub thread finished\n");
+                close(new_sockfd);
+            })
+            .detach();
+
+        counter++;
+        if (counter > 2)
+        {
+            printf("Close server");
+            close(sockfd);
+            break;
         }
     }
 
@@ -86,6 +83,7 @@ int main(void)
 void RecvThread(int sockfd)
 {
     char buffer[1024];
+    printf("Recv sockfd %d\n", sockfd);
     int recv_length = recv(sockfd, &buffer, 1024, 0);
 
     while (recv_length > 0)
@@ -95,5 +93,4 @@ void RecvThread(int sockfd)
         recv_length = recv(sockfd, &buffer, 1024, 0);
     };
     sleep(5);
-    close(sockfd);
 }
