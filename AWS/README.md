@@ -10,6 +10,9 @@ awsについてまとめるためのメモ
   - [ECS(Amazon Elastic Container Service)について](#ECS)  
   - [EKS](#EKS)
 
+---
+---
+
 ## オーケストレータについて
 
 コンテナに関して`オーケストレータ`がある。`オーケストレータ`は`処理の分散`、`自動復旧`
@@ -22,6 +25,9 @@ dockerの`swarm`があげられる。
 一般企業が採用する場合、`Kubernetes`はOSSのため、`自身で対処法` or `修正を待つ`
 こととなってしまう。  
 そういった意味で`OpenShift`であれば技術的なサポートを受けることができる。
+
+---
+---
 
 ## <a name=control>コントロールプレーン</a>
 
@@ -37,6 +43,9 @@ AWSでは`Amazon Elastic Container Service(ECS)`,`Amazon Elastic Kubernetes Serv
 - EKS  
     フルマネージドな`Kubernetes`のサービス
 
+---
+---
+
 ## <a name=ECS>ECSについて</a>
 
 ECS上でアプリを起動するにはコンテナがいる。
@@ -51,6 +60,9 @@ ECS上でアプリを起動するにはコンテナがいる。
 ## <a name=EKS>EKSについて</a>
 
 Kubernetesをベースに作られるため、特別`ECS`と違ってAWS独自の用語等を意識することはない。
+
+---
+---
 
 ## <a name=data>データプレーン</a>
 
@@ -73,6 +85,9 @@ ECS AnywhereはECSの`コントロールプレーンをAWSで動作`させつつ
 `データプレーンを自身が管理するサーバで動作させる`ことができるサービス
 
 EKS Anywhereはコントロールプレーン、データプレーンを自身が管理するサーバ上で立ち上げるサービス
+
+---
+---
 
 ## <a name=lambda>AWS Lambda/AWS App Runner について</a>
 
