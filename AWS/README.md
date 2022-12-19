@@ -2,13 +2,13 @@
 
 awsについてまとめるためのメモ
 
-[コントロールプレーン](#control)
-[データプレーン](#data)
-[AWS Lambda/AWS Runner について](#lambda)
+[コントロールプレーン](#control)  
+[データプレーン](#data)  
+[AWS Lambda/AWS Runner について](#lambda)  
 
 - オーケストレータ
   - [ECS(Amazon Elastic Container Service)について](#ECS)  
-  - [EKS](#EKS)
+  - [EKS(Amazon Elastic Kubernetes Service)について](#EKS)
 
 ---
 ---
