@@ -16,7 +16,7 @@
   - [tensorflow](Python/tensorflow)
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
-  - [Blazor](CSharp/Blazor)
+  - [Blazor](CSharp/blazor)
 - [BinaryHack](BinaryHack)
 
 - [Linux](Linux)
