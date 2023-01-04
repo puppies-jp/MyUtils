@@ -30,3 +30,15 @@ select test_pk, test_val from test1
 union all 
 select test_pk, test_val from test2
 ```
+
+## Merge(upsert)文について
+
+近年追加された構文で1ステートメントでinsert/update/deleteを同時に実行できるSQL
+ユースケースとして`upsert`,`複数のテーブルデータをマージ`するといった場合が考えられる
+
+`insert on conflict`との違いとしては、`insert on conflict`は`insert`を主目的として競合時の処理を実行できるのに対し、
+いるのに対しupdate/delete処理を選ぶことができる点がある。
+
+```sql
+
+```
