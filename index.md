@@ -14,6 +14,8 @@
   - [pandas リンク](Python/pandas/pandas_tuto)
   - [matplot リンク](Python/pandas/matplot)
   - [tensorflow](Python/tensorflow)
+  - [非同期処理について](Python/#async)
+
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
   - [Blazor](CSharp/blazor)
@@ -54,7 +56,6 @@
 ```shell
 # 🌟 直前に行ったcommitを取り消す
 git reset --soft HEAD^
-
 ```
 
 `HEAD^`は「一つ前のコミット」のこと

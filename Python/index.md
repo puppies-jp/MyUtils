@@ -5,7 +5,31 @@
   - [matplot](pandas/matplot)
 
 - [RestAPI](RestAPI)
+- [lambda式](#lambda)
 - [非同期処理について](#async)
+
+---
+
+## <a name=lambda>lambda式について</a>
+
+```python
+"""🌟こんな感じでlambda式を実装できる(一行のみらしい、、、)
+    lambda a,b,c,...<パラメータリスト>: 戻り値の式
+"""
+add_lambda = lambda a, b=1: a + b
+
+print(add_lambda(3, 4))
+# 7
+print(add_lambda(3))
+# 4
+
+get_odd_even = lambda x: 'even' if x % 2 == 0 else 'odd'
+print(get_odd_even(3))
+# odd
+print(get_odd_even(4))
+# even
+
+```
 
 ---
 
