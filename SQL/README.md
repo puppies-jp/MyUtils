@@ -40,5 +40,40 @@ select test_pk, test_val from test2
 いるのに対しupdate/delete処理を選ぶことができる点がある。
 
 ```sql
+/* 🌟例1 */
+MERGE INTO /* 操作対象テーブル */user1 a
+USING ( /* 参照テーブル(🌟セレクトじゃなくてテーブル指定でもOK) */
+    SELECT id, name, age
+    FROM user2
+    ) b
+ON (a.id = b.id) /*　🌟結合条件 */
+WHEN MATCHED THEN /* 🌟マッチする場合 */
+    UPDATE SET
+        a.name = b.name,
+        a.age  = b.age
+WHEN NOT MATCHED THEN /* 🌟マッチしない場合 */
+    INSERT (id, name, age)
+    VALUES (b.id, b.name, b.age)
 
+/* 🌟例2 */
+MERGE INTO /*🌟更新先テーブル*/ user1 a
+USING (
+    SELECT id, name, age
+    FROM user2
+) b /* 利用元テーブル */
+ON (a.id = b.id)
+/* 🌟マッチする場合 */
+WHEN MATCHED THEN 
+    UPDATE SET
+        a.name = b.name,
+        a.age  = b.age
+-- 🌟マッチしない場合
+-- BY TARGETをつけることで更新先テーブルに条件と一致するデータが存在しない場合
+WHEN NOT MATCHED BY TARGET THEN
+    INSERT (id, name, age)
+    VALUES (b.id, b.name, b.age)
+-- 🌟マッチしない場合
+-- 🌟BY SOURCE をつけることで利用元テーブルに条件と一致するデータが存在しない場合
+WHEN NOT MATCHED BY SOURCE THEN
+    DELETE;
 ```
