@@ -10,6 +10,8 @@
 PRAGMA table_info('テーブル名')
 ```
 
+---
+
 ## Joinについて
 
 left joinの場合`select * from [左テーブル] LEFT JOIN [右テーブル] ON ...`  
@@ -30,6 +32,8 @@ select test_pk, test_val from test1
 union all 
 select test_pk, test_val from test2
 ```
+
+---
 
 ## Merge(upsert)文について
 
