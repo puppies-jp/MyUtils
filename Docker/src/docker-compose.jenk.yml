@@ -1,0 +1,112 @@
+version: "3"
+
+volumes:
+  # gitlab用Volume
+  gitlab-config:
+    name: gitlab-config
+  gitlab-logs:
+    name: gitlab-logs
+  gitlab-data:
+    name: gitlab-data
+  # redmine用 Volume
+  redmine-plugins:
+    name: redmine-plugins
+  redmine-themes:
+    name: redmine-themes
+  redmine-db:
+    name: redmine-db
+  # jenkins
+  jenkins-home:
+    name: jenkins-home
+    
+networks:
+  gitlab-network:
+    name: gitlab-network
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.27.13.0/24
+         gateway: 172.27.13.1
+
+  redmine-network:
+    name: redmine-network
+    driver: bridge
+    ipam:
+     driver: default
+     config:
+       - subnet: 172.27.12.0/24
+         gateway: 172.27.12.1
+
+services:
+  # redmine 本体
+  redmine:
+    container_name: redmine
+    image: redmine
+    ports: # Redmine公開port
+      - 8081:3000
+    environment:
+      REDMINE_DB_MYSQL: redmine-db
+      REDMINE_DB_PASSWORD: redminepass
+    # Volumeを追加したかったら以下を適当に、、
+    volumes:
+      - redmine-plugins:/usr/src/redmine/plugins
+      - redmine-themes:/usr/src/redmine/public/themes
+    networks:
+      gitlab-network:
+        ipv4_address: 172.27.13.4
+      redmine-network:
+        ipv4_address: 172.27.12.2
+
+
+  redmine-db:
+    image: mysql:5.7
+    container_name: redmine-db
+    environment:
+      MYSQL_ROOT_PASSWORD: redminepass
+      MYSQL_DATABASE: redmine
+    volumes:
+      - redmine-db:/var/lib/mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci   
+    networks:
+      redmine-network:
+        ipv4_address: 172.27.12.3
+
+  lab:
+    image: 'gitlab/gitlab-ee:latest'
+    hostname: 'gitlab.myDev.com'
+    container_name: gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://gitlab.my.com'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports: # git公開ポート 
+      - '8080:80'
+      # - '443:443'
+      # - '22:22'
+    volumes:
+      - 'gitlab-config:/etc/gitlab'
+      - 'gitlab-logs:/var/log/gitlab'
+      - 'gitlab-data:/var/opt/gitlab'
+    shm_size: '256m'
+    networks:
+      gitlab-network:
+        ipv4_address: 172.27.13.2
+      redmine-network:
+        ipv4_address: 172.27.12.4
+
+  jenkins:
+    image: 'jenkins:2.60.3'
+    container_name: jenkins
+    user: root
+    ports:
+      - '58080:8080'
+      - '50000:50000'
+    volumes:
+      - jenkins-home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      gitlab-network:
+        ipv4_address: 172.27.13.3
+      redmine-network:
+        ipv4_address: 172.27.12.5
