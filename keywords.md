@@ -86,3 +86,5 @@ C#などでメモリリークが起こらないよう自動でリソースの解
 そこで`WebSocket`で接続をキープし、サーバ側/クライアント側の両方を起点
 とした双方向通信を実現されている。
 node.js,C#,Pythonなどでライブラリが存在する。
+
+- [参考ページ](https://qiita.com/okumurakengo/items/a8ccea065f5659d1a1de)
