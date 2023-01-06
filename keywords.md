@@ -73,3 +73,16 @@ C#などでメモリリークが起こらないよう自動でリソースの解
 - [MicroSoft mfc samples](https://docs.microsoft.com/ja-jp/cpp/overview/visual-cpp-samples?view=msvc-160#mfc-samples)
 - 以下サンプルになりそうなリンクを貼ってく
   - [VC++ Windows Programming (阪大の方の備忘録)(便利そう)](http://www-higashi.ist.osaka-u.ac.jp/~k-maeda/vcpp/)
+
+---
+
+## WebSocketについて
+
+いままでのWebアプリではAjaxやGET/POSTなどのクライアント側(curlやブラウザ)
+を起点に接続してデータのやり取りをしていた。
+しかし、この方法では一回の通信毎に接続処理が発生してしまうため
+リソースの負荷が高かった。
+
+そこで`WebSocket`で接続をキープし、サーバ側/クライアント側の両方を起点
+とした双方向通信を実現されている。
+node.js,C#,Pythonなどでライブラリが存在する。
