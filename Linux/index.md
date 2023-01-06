@@ -8,6 +8,7 @@ Linuxについてのあれこれをメモってく
 
 - [便利コマンド](#usefull)
   - [プロセス監視](#watch)
+  - [systemd ファイル作成](#systemd)
   - [network系](#network)
   - [ファイル転送(rsync)](#rsync)
 
@@ -55,4 +56,59 @@ rsync -r -z -t --remove-source-files <対象ファイル/ディレクトリ> <us
 
 # 🌟 --list-only 転送は行わずにファイルのリストを作成する
 rsync -r -z --list-only <対象ファイル/ディレクトリ> <user>@<host>:<Dest path>
+```
+
+---
+
+## <a name=systemd>Serviceファイルの書き方</a>
+
+[参照](https://qiita.com/masami256/items/ef0f23125cf8255e4857)
+
+基本的にUnit/Service/Installの3つのセクションに分類される
+
+### Unitセクションについて
+
+サービス起動の前後を設定したり、説明を書いたりするセクション
+
+> man 5 systemd.unit
+
+```conf
+[Unit]
+# 説明を書いたり
+Description=Load dump capture kernel
+
+# Before/Afterを書くことでサービス起動の前後を指定できる
+Before=sysinit.target shutdown.target
+After=local-fs.target
+
+# 起動時に必要なサービスとかを書くらしい、、
+Wants=bar.service
+Requires=foo.service
+```
+
+### Servicesセクションについて
+
+プロセスのタイプ、実行/再起動とかの設定を書き込める
+詳細は以下コマンドで確認できる
+
+> man 5 systemd.service
+
+```conf
+# sshdだとこんな感じ
+[Service]
+# -Dオプションをつけて起動
+ExecStart=/usr/bin/sshd -D
+# 🚨sighupでプロセスを殺しているだけ
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=always
+```
+
+### Installセクション
+
+```conf
+[Install]
+# 🌟UnitセクションのWant/Requiredと同じらしい
+WantedBy=sysinit.target
+RequiredBy=sysinit.target
 ```
