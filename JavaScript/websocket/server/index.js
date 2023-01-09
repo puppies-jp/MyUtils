@@ -16,6 +16,8 @@ s.on('connection',function(ws){
 
         s.clients.forEach(function(client){
             client.send(message+' : '+new Date());
+            // 🌟送信を2回行っても動く!!
+            client.send("Fuck you"+' : '+new Date());
         });
     });
 
@@ -25,3 +27,4 @@ s.on('connection',function(ws){
 
 });
 
+// 定期的にサーバーから送るには？
