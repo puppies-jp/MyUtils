@@ -12,14 +12,25 @@ PRAGMA table_info('テーブル名')
 
 ---
 
-## Joinについて
+## SQL クエリ関連について
+
+- [Joinについて](#join)
+- [Unionについて](#union)
+- [Mergeについて](#merge)
+
+---
+
+## <a name=join>Joinについて</a>
 
 left joinの場合`select * from [左テーブル] LEFT JOIN [右テーブル] ON ...`  
 といった形でSQL文を作成できる
 
 ![About Join](img/SQL_JOINS.png)
 
-## Union/Union Allについて
+---
+---
+
+## <a name=union>Union/Union Allについて</a>
 
 ```sql
 -- union(重複したレコードは削除される)
@@ -35,7 +46,7 @@ select test_pk, test_val from test2
 
 ---
 
-## Merge(upsert)文について
+## <a name=merge>Merge(upsert)文について</a>
 
 近年追加された構文で1ステートメントでinsert/update/deleteを同時に実行できるSQL
 ユースケースとして`upsert`,`複数のテーブルデータをマージ`するといった場合が考えられる
