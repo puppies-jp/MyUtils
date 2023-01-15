@@ -5,6 +5,7 @@ awsについてまとめるためのメモ
 [コントロールプレーン](#control)  
 [データプレーン](#data)  
 [AWS Lambda/AWS Runner について](#lambda)  
+    - [Lambda入門](Lambda)
 
 - オーケストレータ
   - [ECS(Amazon Elastic Container Service)について](#ECS)  
