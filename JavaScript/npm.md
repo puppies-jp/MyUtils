@@ -2,7 +2,7 @@
 
 npmについてまとめる
 
-```
+```sh
 npm install <package名>
 
 # 最新の npmに更新する場合
@@ -15,9 +15,9 @@ sudo npm update -g npm
 適当なディレクトリで`npm install`するたびに出てくる`node_modelues`これライブラリのinstall先らしい。
 
 んで、`-g (gloabal)`オプションをつけると。
-`current`の代わりに`prefix folder`に突っ込んでくれるらしい
+`current(実行したフォルダ)`の代わりに`prefix folder(グローバルのフォルダ)`に突っ込んでくれるらしい
 
-```
+```sh
 > npm help install
 
 Operates in "global" mode, so that packages are installed into the prefix folder instead of the current working directory. See npm
