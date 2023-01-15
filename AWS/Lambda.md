@@ -30,5 +30,7 @@ aws configure
 # 最小構成としてはこんな感じ
 aws lambda invoke --function-name <lambda関数名>  <出力先ファイル>
 
+# 以下、オプションを使うことで python 呼び出し時の Eventから値を取得できる
+#  --cli-binary-format raw-in-base64-out --payload '{ "key": "value" }'
 aws lambda invoke --function-name <function名> --cli-binary-format raw-in-base64-out --payload '{ "key": "value" }' response.json
 ```
