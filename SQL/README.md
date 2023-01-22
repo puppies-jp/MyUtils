@@ -55,7 +55,7 @@ select test_pk, test_val from test2
 いるのに対しupdate/delete処理を選ぶことができる点がある。
 
 ```sql
-/* 🌟例1 */
+/* 🌟例1----------------------------- */
 MERGE INTO /* 操作対象テーブル */user1 a
 USING ( /* 参照テーブル(🌟セレクトじゃなくてテーブル指定でもOK) */
     SELECT id, name, age
@@ -70,7 +70,7 @@ WHEN NOT MATCHED THEN /* 🌟マッチしない場合 */
     INSERT (id, name, age)
     VALUES (b.id, b.name, b.age)
 
-/* 🌟例2 */
+/* 🌟例2----------------------------- */
 MERGE INTO /*🌟更新先テーブル*/ user1 a
 USING (
     SELECT id, name, age

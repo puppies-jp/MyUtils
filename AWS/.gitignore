@@ -2,3 +2,4 @@ aws/
 awscliv2.zip
 config.txt
 response.json
+*.pem
