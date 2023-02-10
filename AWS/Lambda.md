@@ -2,6 +2,17 @@
 
 AWS Lambdaについて書いてみる
 
+## AWS EC2にssh接続する
+
+```sh
+# パーミッションを変更する(読み書きできるとアクセスできないとかある)
+chmod 400 <key>
+
+# 公開鍵を指定してアクセス
+ssh -i ~/.ssh/id_rsa user@hostname
+ssh -i "<キー>.pem" user@host
+```
+
 ## AWS Cli　をインストールする
 
 [参考](https://qiita.com/nanbuwks/items/3b500fa1d55b56ef66dc)

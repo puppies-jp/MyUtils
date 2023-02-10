@@ -11,10 +11,35 @@ Linuxについてのあれこれをメモってく
   - [systemd ファイル作成](#systemd)
   - [network系](#network)
   - [ファイル転送(rsync)](#rsync)
+  - [ssh接続について](#ssh)
 
 ---
 
 ## <a name=usefull>便利コマンドメモ</a>
+
+### <a name=ssh>sshについて</a>
+
+```sh
+# パーミッションを変更する(読み書きできるとアクセスできないとかある)
+chmod 400 <key>
+
+# 公開鍵を指定してアクセス
+ssh -i ~/.ssh/id_rsa user@hostname
+ssh -i "<キー>.pem" user@host
+```
+
+- Port Forwardingについて
+
+```sh
+# 🌟トンネル接続(通常の接続では自身のホストからの接続のみフォワディングされる。)
+# ほかデバイスから経由する場合は "-g(gateway ports)"オプションをつける)
+# 自ホスト(host0:50022) -> 踏み台(host1) -> 転送先(host2:22)
+ssh <踏み台ユーザ>@<踏み台> -L 50022:<転送先>:22
+# 👆 sshをautossh に置き換えることで、接続が切断されても自動で再接続される。
+
+# scp 自ホスト -> 転送先へ
+scp -P 50022 <ファイル>  <転送先ユーザ>@<自ホスト>:<パス> 
+```
 
 ### <a name=watch>プロセス監視系</a>
 
