@@ -33,6 +33,13 @@ aws configure
 
 ## Lambdaを実行する
 
+### Curl編
+
+`lambda`は`Gateway`と組み合わせることで、外部からのcurlコマンド等と
+通信を行うことができる。
+
+### CLI編
+
 ```sh
 # こんな感じで AWS Cliから lambdaを実行できるらしい
 # ユーザの設定とかはどこでやるんだろうか？
