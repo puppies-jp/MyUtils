@@ -38,7 +38,6 @@ user@macbook webapps % tree ./helloworld
 </web-app>
 ```
 
-
 ## サンプル1
 
 ```jsp
