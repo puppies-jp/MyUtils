@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  tomcat:
+    image: tomcat:9.0.13-jre11-slim
+    volumes:
+      - ./webapps:/usr/local/tomcat/webapps
+    ports:
+      - 58080:8080

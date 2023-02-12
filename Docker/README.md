@@ -102,6 +102,13 @@ uphy/ubuntu-desktop-jp   18.04     2f92249dc622   3 years ago         908MB
 ```sh
 # このコマンドで起動することで $pwdとdesktopのファイルを共有できる
 docker run -d -p 8080:8080 -v $(pwd):/root/Desktop --name ubuntuCont uphy/ubuntu-desktop-jp
+
+# ubuntsuコンテナを作成する
+docker run -it -d \
+--name <コンテナ名> \
+-v ~/Docker/Ubuntsu:/root/ \
+--privileged \
+ubuntu:latest /bin/bash
 ```
 
 - `-d` : バックグラウンド実行

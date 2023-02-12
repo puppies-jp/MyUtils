@@ -3,6 +3,42 @@
 WebサーバがリアルタイムにHTMLページを組み立て、Webブラウザに送り返すという仕組み。
 JSPでは、通常のHTMLページの代わりに、「.jsp」という拡張子を持つ「JSPページ」を記述することで、Webコンテンツを動的に生成できます
 
+## tomcat フォルダ構成
+
+```sh
+user@macbook webapps % tree ./helloworld 
+# 🌟HTMLファイル、イメージファイル、JSPファイルなどを格納
+# ディレクトリは自由に作成できます
+/usr/local/tomcat/webapps/helloworld/ # 🌟webアプリルートディレクトリ
+├── WEB-INF # 🌟Webアプリケーション環境定義ファイル(web.xml)を格納
+│   ├── classes # 🌟サーブレットなどのJavaのクラスファイルを格納
+│   │   └── xxx.class
+│   └── lib # 🌟JavaクラスファイルをJAR形式のJARファイルを格納
+│   └── web.xml
+└── index.jsp
+
+3 directories, 3 files
+```
+
+## XMLファイル書き方
+
+```xml
+<?xml version="1.0"?>
+<web-app>
+    <servlet>
+        <!-- 🌟サーブレット・クラスsample.TestServlet定義 -->
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>sample.TestServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <!-- 🌟sample.TestServletに/testというURLを割り当て -->
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+</web-app>
+```
+
+
 ## サンプル1
 
 ```jsp
