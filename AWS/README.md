@@ -7,6 +7,8 @@ awsについてまとめるためのメモ
 [AWS Lambda/AWS Runner について](#lambda)  
     - [EC2/Lambda入門](Lambda)
 
+[AWS S3](S3backet)
+
 - オーケストレータ
   - [ECS(Amazon Elastic Container Service)について](#ECS)  
   - [EKS(Amazon Elastic Kubernetes Service)について](#EKS)

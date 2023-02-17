@@ -3,3 +3,8 @@ awscliv2.zip
 config.txt
 response.json
 *.pem
+.usage-cache.bin/
+.usage-cache.bin/*
+.minio.sys/
+.minio.sys/*
+*.meta
