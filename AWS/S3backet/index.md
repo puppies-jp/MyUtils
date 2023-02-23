@@ -36,3 +36,33 @@ python3なら`boto3`というライブラリを経由してファイルにアク
 権限の設定として
 `lambdaでバケットのアクセス権を付与する` or `バケットに権限をアクセス権を付与する` の2通りがある。
 
+```python
+import json
+import time
+from datetime import datetime
+
+# boto3を使うことでAWSのバケットの操作を行う
+import boto3
+
+# clientインスタンスを作成(引数は普通に's3'でOK)
+# 他の使い方は知らん
+s3 = boto3.client('s3')
+
+def lambda_handler(event, context):
+    # TODO implement
+    print(context)
+    
+    bucket = '<バケット名>'
+    key = '<バケットのファイルパス>'
+
+    # バケットとファイルを指定することで取ってきてくれる
+    # dir型の他の中身は知らん
+    response = s3.get_object(Bucket=bucket, Key=key)
+    body = response['Body'].read()
+
+    return {
+        'statusCode': 200,
+        'body': body,
+        'event':event # 第一引数eventはcurlの -d '{}'で指定できる
+    }
+```
