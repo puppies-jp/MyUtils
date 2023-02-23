@@ -116,3 +116,27 @@ nbtstat -A {IP address}
 ```
 
 - VLANについて(そのうち書く)
+
+    管理者権限で`PowerShell`を起動すること
+
+```powershell
+# 🌟IntelNIC用のモジュールをインポート
+Import-Module -Name “C:\Program Files\Intel\Wired Networking\IntelNetCmdlets”
+
+# 🌟NICの名前(ParentName)を取得
+Get-IntelNetAdapter
+
+# 🌟NICの名前を-ParentName に指定し、追加したいVLANIDを指定
+Add-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
+
+# example:
+Add-IntelNetVLAN -ParentName “Intel(R) I350 Gigabit Network Connection” -VLANID 300
+```
+
+```powershell
+# 🌟VLAN名前の変更
+Set-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID> -NewVLANName “<VLAN名>”
+
+# 🌟VLAN Interfaceの削除
+Remove-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
+```
