@@ -21,8 +21,52 @@ Get-WinEvent
 eventvwr.exe
 ```
 
+- サンプル1
+    イベントログを取得
+    (syslog,applicationログを別々に出力する場合)
+
+```powershell
+#任意の出力先フォルダと-afterで指定する時間を設定
+$OutPutFolder = Join-Path ([Environment]::GetFolderPath('Desktop')) "EventLogs"
+if(!(Test-Path $OutPutFolder)){ mkdir $OutPutFolder }
+$yesterday = (Get-Date).Date.AddDays(-1)
+
+#Systemログ、Applicationログを別々に$OutPutFolderへ保存する処理。
+@("System", "Application") | %{
+    Get-EventLog $_ -After $yesterday |
+    ?{ ($_.EntryType -eq "Error") -or ($_.EntryType -eq "0") } |
+    Export-Csv -Encoding Default -NoTypeInformation -Path (
+        Join-Path $OutPutFolder ($_ + "Log_" + (Get-Date).Date.ToString("yyyyMMdd") + ".csv") #任意の出力ファイル名
+    )
+}
+```
+
+- サンプル2
+    イベントログを取得
+    (syslog,applicationログを別々に出力する場合)
+
+```powershell
+#任意の出力先フォルダと-afterで指定する時間を設定
+$OutPutFolder = Join-Path ([Environment]::GetFolderPath('Desktop')) "EventLogs"
+if(!(Test-Path $OutPutFolder)){ mkdir $OutPutFolder }
+$yesterday = (Get-Date).Date.AddDays(-1)
+
+Get-WinEvent -FilterHashtable @{
+    LogName='System', 'Application'
+    Level=1,2
+    StartTime=$yesterday
+} | 
+Select-Object -Property * |
+Export-Csv -Encoding Default -NoTypeInformation -Path (
+        Join-Path $OutPutFolder ("WinEventLog_" + (Get-Date).Date.ToString("yyyyMMdd") + ".csv") #任意の出力ファイル名
+    )
+
+```
+
 [Get-WinEvent使い方](https://forsenergy.com/ja-jp/windowspowershellhelp/html/62e7642c-51d4-47d1-97fe-62b08197896a.htm)
 [🌟イベントログ -> CSVファイル出力](https://qiita.com/hara_power/items/073fa6079e633f084412)
+
+---
 
 ## <a name=network>ネットワーク設定バッチ</a>
 
@@ -56,7 +100,7 @@ netsh interface ip show address "ローカル エリア接続"
 netsh interface ip show dns "ローカル エリア接続"
 ```
 
-## ネットワーク確認プロンプト
+- ネットワーク確認プロンプト
 
 ```powershell
 # 接続ポートを確認
