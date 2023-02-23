@@ -48,6 +48,8 @@
 
   - [gh-pagesリンク(別ブランチ)](https://puppies-jp.github.io/LearnHtml/)
 
+- [Windowsについて](Windows)
+
 - [keyword 備忘録](keywords)
 
 ---
