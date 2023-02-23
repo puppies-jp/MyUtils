@@ -2,7 +2,10 @@
 
 不服だが、仕事上使うのでメモを書いていく
 
-## イベントログについて
+- [イベントログ](#EventLog)  
+- [ネットワーク](#network)  
+
+## <a name=EventLog>イベントログについて</a>
 
 `イベントログ`は`イベントログビューア`でも確認できるが、
 いちいちアプリを起動するのは鬱陶しい。
@@ -21,7 +24,7 @@ eventvwr.exe
 [Get-WinEvent使い方](https://forsenergy.com/ja-jp/windowspowershellhelp/html/62e7642c-51d4-47d1-97fe-62b08197896a.htm)
 [🌟イベントログ -> CSVファイル出力](https://qiita.com/hara_power/items/073fa6079e633f084412)
 
-## ネットワーク設定バッチ
+## <a name=network>ネットワーク設定バッチ</a>
 
 - 外部向けIP設定
 
@@ -58,7 +61,7 @@ netsh interface ip show dns "ローカル エリア接続"
 ```powershell
 # 接続ポートを確認
 netstat -aon
-netstat　/a  # すべて表示、待ち受けのポートも表示
+netstat /a  # すべて表示、待ち受けのポートも表示
 
 # MACアドレスキャッシュ一覧
 arp -a
@@ -67,3 +70,5 @@ arp -a
 nslookup {hostname}
 nbtstat -A {IP address}
 ```
+
+- VLANについて(そのうち書く)
