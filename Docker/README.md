@@ -59,6 +59,20 @@ ubuntu:mygame01 /bin/bash
 brew upgrade --cask docker
 ```
 
+---
+
+## UbuntuなどでDockerコマンドをsudoなしの設定にする
+
+```sh
+# 🌟docker グループに追加したいユーザがいないことを確認する
+getent group docker
+
+# 🌟 dockerグループに対象ユーザを追加する
+sudo gpasswd -a <ユーザ名> docker
+```
+
+---
+
 ## Docker Hub からイメージを検索／取得する
 
 - 検索
