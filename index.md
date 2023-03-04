@@ -35,7 +35,7 @@
 - [PlantUML](PlantUML)
 - [sandpox code pen](sandbox)
 
-- [Java/jsp](Java/Jsp)
+- [Java/jsp](Java)
 - [JavaScript](JavaScript)
 - [html/javascript/css 勉強用](Frontend)
 
