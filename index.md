@@ -10,12 +10,8 @@
 ## topics
 
 - [オブジェクト指向について](object-oriented)
-- [python](Python)
-  - [pandas リンク](Python/pandas/pandas_tuto)
-  - [matplot リンク](Python/pandas/matplot)
-  - [tensorflow](Python/tensorflow)
-  - [非同期処理について](Python/#async)
 
+- [python](Python)
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
   - [Blazor](CSharp/blazor)

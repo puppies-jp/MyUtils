@@ -3,6 +3,7 @@
 - データサイエンス関連
   - [pandas](pandas/pandas_tuto)
   - [matplot](pandas/matplot)
+  - [tensorflow](tensorflow)
 
 - [RestAPI](RestAPI)
 - [lambda式](#lambda)
