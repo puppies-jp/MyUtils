@@ -50,6 +50,13 @@ PowerShell には、開発環境として `ISE （あいす）`というエデ�
 ポリシーを変更するには、 Set-ExecutionPolicy というコマンドレットを使用する。
 RemoteSigned を指定した場合、ローカルで作成されたスクリプトは無条件で実行できるが、ネットワークから入手したスクリプトは署名が無ければ実行できない（Windows Server 2012 R2 はこの設定がデフォルト）。
 
+```powershell
+> Set-ExecutionPolicy RemoteSigned
+実行ポリシーは、信頼されていないスクリプトからの保護に役立ちます。実行ポリシーを変更すると、about_Execution_Policies
+のヘルプ トピックで説明されているセキュリティ上の危険にさらされる可能性があります。実行ポリシーを変更しますか?
+[Y] はい(Y)  [N] いいえ(N)  [S] 中断(S)  [?] ヘルプ (既定値は "Y"): y
+```
+
 ---
 ---
 
@@ -92,7 +99,7 @@ True     True     Int32                                    System.ValueType
 ```powershell
 $a = "aaa"
 
-echo "hoge $a"　#🌟変数の展開が行われる
+echo "hoge $a" #🌟変数の展開が行われる
 # [出力] hoge aaa
 echo 'fuga $a' #🌟展開が行われない。
 # [出力] fuga $a
@@ -103,6 +110,9 @@ $hoge = "HOGE"
 echo "${hoge}_FUGA PIYO" # 🌟${hoge}で展開される
 echo "$hoge_FUGA PIYO" # 🌟hoge_Fugaまでが変数と認識
 ```
+
+---
+---
 
 ## <a name=here>ヒアドキュメント</a>
 
