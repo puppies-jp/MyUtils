@@ -2,9 +2,39 @@
 
 不服だが、仕事上使うのでメモを書いていく
 
+- [cmd,PowerShellの違い](#shell)
+  - [PowerShellについて](PowerShell)
+
 - [イベントログ](#EventLog)  
 - [ネットワーク](#network)  
 - [SQLServerについて](SQLServer)
+
+---
+---
+
+## <a name=shell>cmd,PowerShellの違い</a>
+
+`cmd`と`PowerShell`の違いについてまとめる。
+`cmd`は古くからあるが、`PowerShell(以下PSで省略)`はWindows7から追加された機能で`cmdより強力`で`スクリプトを描くための言語`である。  
+`cmdで使えるコマンド`は，ほぼすべて`PowerShellでも利用可能`です。  
+また、`cmd`では，`レジストリやWMI`にアクセスすることは難しいですが，  
+`PowerShellでは標準的にサポート`されており，システムの管理業務に役に立ちます。  
+
+実際には，`PS`は`CMD`とは全くことなります。  
+`コマンドレット(cmdlets)`と呼ばれる独自のコマンドを用います。
+
+### コマンドプロンプトで使えるほとんどのコマンドが，PowerShellでも利用可能です
+
+PowerShellの内部でエイリアスが設定されており，例えばSet-Locationというコマンドレットにはcdという従来のコマンドが対応するようになっています。また，Get-ChildItemはコマンドプロンプトでいうdirに相当する，という具合です。
+
+- 対応の確認には`Get-Aliasコマンド`が使える。
+
+```powershell
+Get-Alias dir
+```
+
+---
+---
 
 ## <a name=EventLog>イベントログについて</a>
 
