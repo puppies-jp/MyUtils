@@ -4,6 +4,7 @@
 
 - [cmd,PowerShellの違い](#shell)
   - [PowerShellについて](PowerShell)
+- [Debugについて](Debug)
 
 - [イベントログ](#EventLog)  
 - [ネットワーク](#network)  
@@ -172,6 +173,9 @@ Set-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID> -NewVLANName “<VL
 # 🌟VLAN Interfaceの削除
 Remove-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
 ```
+
+---
+---
 
 ## <a name=resource>リソース使用料集計バッチ</a>
 

@@ -52,4 +52,3 @@ sqlcmd -S <host> -U <user> -P <password> -d <database>
 select name from sys.databases;
 go
 ```
-
