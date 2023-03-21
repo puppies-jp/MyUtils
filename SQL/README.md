@@ -14,10 +14,46 @@ PRAGMA table_info('テーブル名')
 
 ## SQL クエリ関連について
 
+- [Insert/Update/delete構文](#basic)
 - [Joinについて](#join)
 - [Unionについて](#union)
 - [Mergeについて](#merge)
 
+---
+
+## <a name=basic>Select/Insert/Update/delete構文</a>
+
+- select
+
+```sql
+言わずもがななので、省略
+```
+
+- insert構文
+
+```sql
+INSERT INTO テーブル名 (列名1, 列名2,...) VALUES (値1, 値2,...);
+
+-- 🚨非推奨(並び変わったり、列名が変更された際に悲惨なことに)
+INSERT INTO テーブル名 VALUES (値1, 値2,...);
+```
+
+- update構文
+
+```sql
+UPDATE (表名) SET (カラム名1) = (値1), (カラム名2) = (値2) WHERE (条件);
+
+UPDATE employees SET title = 'Ms.'
+WHERE emp_no IN (10006, 10007, 10009)
+```
+
+- Delete構文
+
+```sql
+Delete from テーブル名 where 条件 
+```
+
+---
 ---
 
 ## <a name=join>Joinについて</a>
