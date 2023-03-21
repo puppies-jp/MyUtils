@@ -8,6 +8,7 @@
 - [イベントログ](#EventLog)  
 - [ネットワーク](#network)  
 - [SQLServerについて](SQLServer)
+- [リソース集計バッチ](#resource)
 
 ---
 ---
@@ -171,3 +172,17 @@ Set-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID> -NewVLANName “<VL
 # 🌟VLAN Interfaceの削除
 Remove-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
 ```
+
+## <a name=resource>リソース使用料集計バッチ</a>
+
+```batch
+# CPU/メモリ使用可能料出力
+typeperf -y -si 5 -o resource.csv "\Processor Information(_total) \%% Processor Utility" "\Memory\Available MByte"
+
+# helpコマンド
+typeperf -?
+```
+
+以下のパフォーマンスモニタを参考に集計メトリックが確認できる。
+
+![リソースメトリック確認メモ](img/windows_resource.png)
