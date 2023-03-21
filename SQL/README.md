@@ -4,6 +4,7 @@
 
 - [oracle](oracle)
 - [sqlite3](sqlite3)
+- [SQL Server](sqlserver)
 
 ```sql
 -- sqlite3 だけ？っぽい
