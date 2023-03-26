@@ -10,6 +10,17 @@
 <!DOCTYPE html>
 <html lang="ja">
     <link rel="stylesheet" href="~~.css">
+    <!-- 🌟他ファイルにリンクせずとも直で書き込める -->
+    <style>
+      :root {
+        --color: red;
+      }
+      
+      div {
+        color: white;
+        background-color: var(--color)
+      }
+    </style>
     <meta charset="utf-8">　
     <head>
         <title>OXページ</title>
@@ -19,6 +30,9 @@
     </body>
 </html>
 <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script>
+//ここにJavaScriptのコードを記述
+</script>
 
 ```
 

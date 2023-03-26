@@ -1,0 +1,29 @@
+
+<html>
+<head>
+  <style>
+    :root {
+        --color: red;
+      }
+      
+      div {
+        color: white;
+        background-color: var(--color)
+      }
+      
+  </style>
+</head>
+
+<body>
+  <!-- デフォルトの赤が表示される。 -->
+  <div>赤</div>
+  <!-- 指定した色が表示される。 -->
+  <div style="--color: blue;">青</div>
+  <div style="--color: gold;">金</div>
+  <!-- 
+    🚨未指定の場合、赤が表示される。(--colorが書き換わる訳ではない!!)
+    -->
+  <div>赤</div>
+</body>
+
+</html>
