@@ -4,6 +4,7 @@
 
 - [cmd,PowerShellの違い](#shell)
   - [PowerShellについて](PowerShell)
+- [マクロ](VBA)  
 - [Debugについて](Debug)
 
 - [イベントログ](#EventLog)  
