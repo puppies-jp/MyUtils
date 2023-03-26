@@ -35,7 +35,7 @@ div { color: yellow;}
 
 ## <a name=valiable>変数ぽいものを扱ってみる</a>
 
-- [sample](src/css/text1.html)
+- [sample](src/css/test1.html)
 
 ```html
 
