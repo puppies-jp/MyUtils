@@ -13,6 +13,7 @@
 
     <script>
         var sock = new WebSocket('ws://127.0.0.1:5001');
+        var message = document.getElementById("message");
 
         // 接続
         sock.addEventListener('open',function(e){
@@ -21,7 +22,6 @@
 
         // サーバーからデータを受け取る
         sock.addEventListener('message',function(e){
-            var message = document.getElementById("message");
             //console.log(e.data);
             var jdata = JSON.parse(e.data);
             message.innerText = e.data;

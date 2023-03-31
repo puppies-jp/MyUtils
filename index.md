@@ -9,13 +9,36 @@
 
 ## topics
 
-- [オブジェクト指向について](object-oriented)
+### 考え方系
 
-- [python](Python)
+- [オブジェクト指向について](object-oriented)
+- [BinaryHack](BinaryHack)  
+
+- [keyword 備忘録](keywords)
+
+### 言語系
+
+- [Python🐍](Python)
 - [Clang 系](Clang)
 - [C# CSharp](CSharp)
   - [Blazor](CSharp/blazor)
-- [BinaryHack](BinaryHack)
+
+- [Java/jsp](Java)
+- [JavaScript](JavaScript)
+- [html/javascript/css 勉強用](Frontend)
+
+- [SQL](SQL)  
+
+- [html template](html)
+  - [How to use leaf](html/leaf/leaf.html)
+  - [learn css](html/LearnCss/LearnCss.html)
+  - [learn1](html/learn1)
+  - [read_file](html/read_loc_xml)
+  - [gh-pagesリンク(別ブランチ)](https://puppies-jp.github.io/LearnHtml/)
+
+### 環境系
+
+- [Windowsについて](Windows)
 
 - [Linux](Linux)
   - [ShellScript](Linux/ShellScript)
@@ -24,33 +47,13 @@
 
 - [Docker](Docker)
 - [AWS](AWS)
-- [SQL](SQL)
-  - [sqlite3](SQL/sqlite3)
-  - [oracle](SQL/oracle)
 
 - [PlantUML](PlantUML)
 - [sandpox code pen](sandbox)
 
-- [Java/jsp](Java)
-- [JavaScript](JavaScript)
-- [html/javascript/css 勉強用](Frontend)
-
-- [html template](html)
-  - [How to use leaf](html/leaf/leaf.html)
-  - [learn css](html/LearnCss/LearnCss.html)
-  - [learn1](html/learn1)
-  - [read_file](html/read_loc_xml)
-    - [src](https://github.com/puppies-jp/MyUtils/tree/gh-pages/html)
-
-  - [gh-pagesリンク(別ブランチ)](https://puppies-jp.github.io/LearnHtml/)
-
-- [Windowsについて](Windows)
-
-- [keyword 備忘録](keywords)
-
 ---
 
-- Git使い方備忘録
+## Git使い方備忘録
 
 ```shell
 # 🌟 直前に行ったcommitを取り消す
