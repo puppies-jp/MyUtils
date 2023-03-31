@@ -7,16 +7,14 @@
 
 ---
 
-## topics
-
-### 考え方系
+## 考え方系
 
 - [オブジェクト指向について](object-oriented)
 - [BinaryHack](BinaryHack)  
 
 - [keyword 備忘録](keywords)
 
-### 言語系
+## 言語系
 
 - [Python🐍](Python)
 - [Clang 系](Clang)
@@ -36,7 +34,7 @@
   - [read_file](html/read_loc_xml)
   - [gh-pagesリンク(別ブランチ)](https://puppies-jp.github.io/LearnHtml/)
 
-### 環境系
+## 環境系
 
 - [Windowsについて](Windows)
 

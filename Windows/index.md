@@ -149,6 +149,11 @@ nslookup {hostname}
 nbtstat -A {IP address}
 ```
 
+---
+---
+
+## VLanIDの設定方法(PowerShell)
+
 - VLANについて(そのうち書く)
 
     管理者権限で`PowerShell`を起動すること
@@ -163,8 +168,10 @@ Get-IntelNetAdapter
 # 🌟NICの名前を-ParentName に指定し、追加したいVLANIDを指定
 Add-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
 
-# example:
-Add-IntelNetVLAN -ParentName “Intel(R) I350 Gigabit Network Connection” -VLANID 300
+# example: 
+# 複数設定する場合:VLanId1,VLanId2,VLanId3
+# 範囲を指定する場合: (VLanId1..VLanId4)            
+Add-IntelNetVLAN -ParentName “Intel(R) I350 Gigabit Network Connection” -VLANID 300,400,500
 ```
 
 ```powershell
