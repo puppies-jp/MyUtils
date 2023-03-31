@@ -6,6 +6,8 @@
 
 - [モジュール管理について](npm)
   - [Electron](Electron/electron)
+
+- [Hello World兼Json <--> str変換](#base)
 - [クラス定義](#defineClass)
 - [関数定義とlambda式について](#func)
 - [let/varの違い](#diff_let_var)
@@ -52,12 +54,23 @@ sudo npm update -g npm
 - `npm`: パッケージ管理ツールみたい(Dockerのubuntuでなんかエラー吐いてる。。)
   とりあえず、今回は導入できればいいのでエラーの調査はしない！
 
-## 実行方法(Hello world)
+---
+---
+
+## <a name=base>実行方法(Hello world)</a>
 
 1. 適当なファイルに以下を書き込む
 
     ```javascript
     console.log('Hello World!');
+
+    // string <--> json 変換 //
+    // string -> json
+    var jdata = JSON.parse("{\"data1\":data2}");
+
+    // json -> string
+    var str = JSON.stringify(
+      {"count":count,"Now":new Date()});
     ```
 
 2. `node <ファイル名.js>`で実行
