@@ -7,7 +7,7 @@ npm i ws --save
 // ブラウザで以下を開く
 // open index.html
 var server = require('ws').Server;
-var s = new server({port:5001});
+var s = new server({port:5001,cookie: true});
 count =0;
 connectCount = 0;
 
@@ -28,8 +28,11 @@ function sendMessage(client){
         count +=1;
 }
 
-s.on('connection',function(ws){
+
+s.on('connection',function(ws,request){
     connectCount += 1;
+    ip = request.socket.remoteAddress;
+    console.log("Connect: " +ip + "  url"+ request.url);
 
     ws.on('message',function(message){
         console.log("Received: "+message);
@@ -50,7 +53,7 @@ s.on('connection',function(ws){
 });
 
 // 定期的にサーバーから送るには？
-// -> 非同期でsendを呼び出すことでできる。
+// -> 非同期でsendを呼び出すことでできる!
 console.log("Loop running");
 async function loops(){ 
     while(connectCount >=0){
@@ -59,8 +62,7 @@ async function loops(){
                 sendMessage(client);
             }
         );
-    
-    await new Promise(s => setTimeout(s, 3000));
-}
+        await new Promise(s => setTimeout(s, 3000));
+    }
 }
 loops();

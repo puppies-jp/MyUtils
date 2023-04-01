@@ -9,30 +9,32 @@
 <body>
 
     <input type="button" id="sample" value="送信">
+    <div id="state"></div>
     <div id="message"></div>
+    <div id="send"></div>
 
     <script>
-        var sock = new WebSocket('ws://127.0.0.1:5001');
+        var sock = new WebSocket('ws://127.0.0.1:5001/test',null,null, {"user": "I`m"});
+        var state = document.getElementById("state");
         var message = document.getElementById("message");
-
+        
         // 接続
-        sock.addEventListener('open',function(e){
-            console.log('Socket 接続成功');
-        });
+        sock.onopen = function ()
+        {
+            state.innerText = "Connected"; 
+            document.getElementById('sample').addEventListener(
+                'click',function()
+                {
+                    sock.send('hello');
+                });
+  
+        };
 
         // サーバーからデータを受け取る
-        sock.addEventListener('message',function(e){
-            //console.log(e.data);
+        sock.onmessage = function(e) {
             var jdata = JSON.parse(e.data);
             message.innerText = e.data;
-        });
-
-        document.addEventListener('DOMContentLoaded',function(e){
-            // サーバーにデータを送る
-            document.getElementById('sample').addEventListener('click',function(e){
-                sock.send('hello');
-            });
-        });
+        };
     </script>
 </body>
 </html>
