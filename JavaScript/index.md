@@ -7,6 +7,7 @@
 - [モジュール管理について](npm)
   - [Electron](Electron/electron)
 
+- [デバッグについて](#Debug)
 - [Hello World兼Json <--> str変換](#base)
 - [クラス定義](#defineClass)
 - [関数定義とlambda式について](#func)
@@ -77,6 +78,25 @@ sudo npm update -g npm
 
 3. **`以上`**
    クラスとかメイン関数とか気にしないで試せるのは楽かも？
+
+---
+---
+
+## <a name=Debug>Debugについて</a>
+
+- とりあえず、これでできる。
+(ツール(ChromeDevTools)を使うことでGUIでのデバッグも可)
+`chrome://inspect` で開いて`Open dedicated DevTools for Node`へ行くことでデバッグできるようになるらしい。  
+
+- breakpointはソースに`debugger;`と追記する。。。
+(微妙すぎる。。)
+
+```shell
+node inspect <対象ファイル>
+
+# 👇これでChromeDevToolsを使えるようになる
+node –inspect-brk app.js
+```
 
 ---
 ---
