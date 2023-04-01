@@ -25,7 +25,3 @@ enum SEMAPHORE_OPERATION
     WAIT = 0,
     LOCK = 1,
 };
-
-/* セマフォKeyの確保 */
-const key_t key = 112;
-int sem_flags = 0666;
