@@ -38,7 +38,7 @@ user@macbook webapps % tree ./helloworld
 </web-app>
 ```
 
-## サンプル1
+## サンプル1(for loop)
 
 ```jsp
 // sample1.jsp
