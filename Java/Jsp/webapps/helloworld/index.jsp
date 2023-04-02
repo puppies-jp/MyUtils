@@ -6,6 +6,8 @@
   </head>
   <body>
     <h1><%= "Hello, world! page1" %></h1>
+    <div id="text">
+    </div>
   </body>
 </html>
 <script type="text/javascript">
@@ -17,4 +19,7 @@
     }
     %>
   };
+
+  temp = document.getElementById("text");
+  temp.innerText = JSON.stringify(data);
 </script>

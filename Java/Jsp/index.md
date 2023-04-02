@@ -55,6 +55,7 @@ user@macbook webapps % tree ./helloworld
     <c:forEach var="item" begin="1" end="10">
         ${item}
     </c:forEach>
+    <div id="text"></div>
 
   </body>
 
@@ -70,6 +71,9 @@ user@macbook webapps % tree ./helloworld
     }
     %>
   };
+
+  temp = document.getElementById("text");
+  temp.innerText = JSON.stringify(data);
   <!-- 🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟🌟 -->
 </script>
 
