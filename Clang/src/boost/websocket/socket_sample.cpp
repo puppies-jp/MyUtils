@@ -45,6 +45,7 @@ class session : public std::enable_shared_from_this<session>
 {
     websocket::stream<beast::tcp_stream> ws_;
     beast::flat_buffer buffer_;
+    int count = 0;
 
 public:
     // Take ownership of the socket
@@ -99,6 +100,13 @@ public:
             return fail(ec, "accept");
 
         std::cout << "session on accept\n";
+
+        // send message
+        auto message = std::string("{\"message\": \"Hi! I`m Server\"}");
+        auto buff = boost::asio::dynamic_buffer(message);
+        ws_.write(
+            buff.data());
+
         // Read a message
         do_read();
     }
@@ -133,9 +141,14 @@ public:
         std::cout << boost::beast::buffers_to_string(buffer_.data())
                   << "\n";
 
+        std::string message =
+            "{\"count\":" + std::to_string(count++) + " }";
+
+        auto buff = boost::asio::dynamic_buffer(message);
+
         ws_.text(ws_.got_text());
         ws_.async_write(
-            buffer_.data(),
+            buff.data(),
             beast::bind_front_handler(
                 &session::on_write,
                 shared_from_this()));

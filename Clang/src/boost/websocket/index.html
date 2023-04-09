@@ -32,8 +32,8 @@
 
         // サーバーからデータを受け取る
         sock.onmessage = function(e) {
-            //var jdata = JSON.parse(e.data);
             message.innerText = e.data;
+            var jdata = JSON.parse(e.data);
         };
     </script>
 </body>
