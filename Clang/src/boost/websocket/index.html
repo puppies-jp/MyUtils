@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" id="sample" value="送信">
+    <div id="state"></div>
+    <div id="message"></div>
+    <div id="send"></div>
+
+    <script>
+        var sock = new WebSocket('ws://localhost:9900/',null,null, {"user": "I`m"});
+        var state = document.getElementById("state");
+        var message = document.getElementById("message");
+        
+        // 接続
+        sock.onopen = function ()
+        {
+            state.innerText = "Connected"; 
+            document.getElementById('sample').addEventListener(
+                'click',function()
+                {
+                    sock.send('hello wocket');
+                });
+  
+        };
+
+        // サーバーからデータを受け取る
+        sock.onmessage = function(e) {
+            //var jdata = JSON.parse(e.data);
+            message.innerText = e.data;
+        };
+    </script>
+</body>
+</html>
+

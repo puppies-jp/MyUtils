@@ -41,3 +41,6 @@ install(
     TARGETS ${execs}
     RUNTIME DESTINATION ${CMAKE_BINARY_DIR}
 )
+
+add_executable(boost_websocket.out websocket/socket_sample.cpp)
+target_link_libraries(boost_websocket.out blogger)
