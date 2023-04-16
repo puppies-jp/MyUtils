@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websocket sample</title>
+  </head>
+
+  <h1>Websocket sample</h1>
+  <body>
+    <script>
+      // URLがそのままwsとのコネクション用アドレスになる
+      const { host, pathname, protocol } = window.location;
+      const wsProtocol = protocol === "http:" ? "ws://" : "wss://";
+      const address = wsProtocol + host + pathname;
+      const socket = new window.WebSocket(address);
+
+      // サーバーからのデータ
+      socket.onmessage = (res)=> {
+        if (typeof res.data === 'string') {
+          alert(`Message from server: ${res.data}`)
+        }
+      };
+
+      // コネクション確立後
+      socket.onopen = () => {
+        // メッセージ送ってみる
+        socket.send('hello')
+      }
+    </script>
+  </body>
+</html>

@@ -2,6 +2,9 @@
 
 [JSP(tomcat)を使ってみる](Jsp)
 
+[Gradleとは](#gradle)
+[mavenとは](#maven)
+
 ## ubuntu環境構築
 
 ```bash
@@ -32,3 +35,16 @@ javac HelloWorld.java
 # 🌟実行(classファイルを実行する)
 java HelloWorld
 ```
+
+---
+---
+
+## <a name=gradle>Gradleとは</a>
+
+javaのビルドツール
+ jarファイル(javaのバイトコードファイルや画像をzipファイル形式で一つにまとめたもの)
+へのビルドをしてくれます。
+mavenと違い、設定ファイルはgrovyという言語で書きます。
+
+## <a name=maven>mavenとは</a>
+
