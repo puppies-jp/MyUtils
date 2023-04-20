@@ -42,7 +42,7 @@ java HelloWorld
 ## <a name=gradle>Gradleとは</a>
 
 javaのビルドツール
- jarファイル(javaのバイトコードファイルや画像をzipファイル形式で一つにまとめたもの)
+jarファイル(javaのバイトコードファイルや画像をzipファイル形式で一つにまとめたもの)
 へのビルドをしてくれます。
 mavenと違い、設定ファイルはgrovyという言語で書きます。
 
