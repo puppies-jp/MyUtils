@@ -2,6 +2,7 @@
 
 CMD
 [SQLサーバを起動/停止/一時停止/再開/再起動する](#cmd)
+[ビット演算をする](#bit)
 
 ## <a name=cmd>SQLサーバを起動/停止/一時停止/再開/再起動する</a>
 
@@ -51,4 +52,24 @@ sqlcmd -S <host> -U <user> -P <password> -d <database>
 ```powershell
 select name from sys.databases;
 go
+```
+
+---
+
+## <a name=bit>ビット演算をする</a>
+
+他ド忘れしたら追記してく
+
+```sql
+SELECT BIT_COUNT ( 0xabcdef ) as Count;
+/*
+abcdef = 1001 1010 1100 1101 1110 1111 
+カウントが17となる
+*/
+
+SELECT BIT_COUNT ( 17 ) as Count;
+/*
+17 = 0001 0001
+カウント2となる
+*/
 ```

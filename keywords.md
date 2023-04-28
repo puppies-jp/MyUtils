@@ -2,6 +2,8 @@
 
 - この MarkDown は system,os における用語をまとめるための備忘録である。
 
+[三項演算子(ternary operator)](#ternary)
+
 ---
 
 - `clz` count leading zero の略(先頭何ビットが 0 かというやつ)
@@ -127,3 +129,27 @@ C#などでメモリリークが起こらないよう自動でリソースの解
 node.js,C#,Pythonなどでライブラリが存在する。
 
 - [参考ページ](https://qiita.com/okumurakengo/items/a8ccea065f5659d1a1de)
+
+---
+---
+
+## <a name=ternary>三項演算子</a>
+
+- 🚨3項演算子は可読性を考えて使うこと
+
+|condition(bool)|戻り値|備考|
+|:--:|--|--|
+|true|consequent||
+|false|alternative||
+
+言語毎の三項演算子書き方をまとめる
+
+```cpp
+// 🌟C++/C#/JavaScript/
+condition ? consequent : alternative
+```
+
+```python
+# python
+consequent if condition else alternative
+```
