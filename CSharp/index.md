@@ -14,6 +14,7 @@ mono async_await.exe #実行
 
 - [awaitまとめ](#await)
 - [asyncまとめ](#async)
+- [排他方法](#Exclusive)
 
 [参考スクリプト](https://github.com/puppies-jp/MyUtils/blob/gh-pages/CSharp/src/async_await.cs)
 
@@ -125,5 +126,67 @@ async Task<int> RunTaskCAsync()
 {
   await Task.Delay(200); // 0.2秒待機
   return 4 + 5 + 6;
+}
+```
+
+## <a name="Exclusive">排他処理</a>
+
+- CSharpの排他はlockっていうらしい
+  - lock
+
+```cs
+//ロック用のobjを作成
+private static object lockTest = new object(); 
+
+// ロックの実行
+lock (lockTest)
+{
+  /* 何らかの排他中の処理 */
+}
+```
+
+ 他
+
+- `ReaderWriterLockSlim`
+  - その名の通り、Readers/Writer lock  
+  ReaderWriterLockもあるが、古いVersionで現在はSlimが推奨
+- `ConcurrentBag or SyncronizedCollection`
+  - リストのスレッドセーフな排他系らしい
+- `ConcurrentDictionnary`
+  - スレッドセーフなDictionary
+  - 🌟ConcurrentDictionnaryを使えば、ある特定のKey同士では排他制御を掛けて、別のKeyであれば並列で実行をするような挙動ができます
+
+```cs
+private static ConcurrentDictionanry<string, ReaderWriterLockSlim> _lockerDictionary = new ConcurrentDictionanry<string, ReaderWriterLockSlim>()
+
+private void ThreadSafeAction(string key)
+{
+    var locker = _lockerDictionary.GetOrAdd(key, new ReaderWriterLockSlim());
+    LockUtility.Write(() => 
+    { 
+        Thread.Sleep(1000);
+        Console.WriteLine(key);
+    }, locker);
+}
+
+private void Main()
+{
+    Task.Run(() => 
+    {
+        ThreadSafeAction("key1");
+    });
+    Task.Run(() => 
+    {
+        ThreadSafeAction("key1");
+    });
+    Task.Run(() => 
+    {
+        ThreadSafeAction("key2");
+    });
+ 
+    // 出力例
+    // key1
+    // key2
+    // key1
 }
 ```

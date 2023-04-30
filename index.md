@@ -72,3 +72,17 @@ git reset --soft HEAD^
 - --hard
   HEADの位置、インデックス、作業ディレクトリを巻き戻す
   例：`git reset --hard HEAD^` →直前のコミットまですべて消す
+
+---
+
+## VScodeメモ
+
+フォーマッタ起動
+
+- mac
+
+> Shift + Option + F
+
+- windows
+
+> Shift + Alt + F
