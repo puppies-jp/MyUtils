@@ -2,7 +2,7 @@
 
 `navigator.mediaDevices.getUserMedia`を使う
 
-- sample
+- [sample](sample)
 
 ```js
 var localVideo = document.getElementById('localVideo');
