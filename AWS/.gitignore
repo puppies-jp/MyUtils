@@ -8,3 +8,5 @@ response.json
 .minio.sys/
 .minio.sys/*
 *.meta
+static
+test.txt
