@@ -8,10 +8,14 @@
 
 つまり、`「マクロを作成するための手段の1つがVBA」`
 
+[変数](#valiable)
+[関数](#func)
+[Excel VBAでよく使うオブジェクトについて](#excel)
+
 ---
 ---
 
-## 変数(Valiable)
+## <a name=valiable>変数(Valiable)</a>
 
 VBAには一般的なプログラミングの型に加えていくつか特殊な型がある。
 それらを踏まえて変数の宣言方法をいかに示す。
@@ -21,6 +25,12 @@ VBAには一般的なプログラミングの型に加えていくつか特殊�
 Dim old As Integer
 Dim name As String
 Dim dnum As Double
+
+'リスト
+Dim names(5) As String
+names(1) = "1" '🌟1~5の数字でインデックスを指定するらしい、、
+names(2) = name(1)&"2" '🌟文字列の連結は"&"
+names(5) = "5"
 
 '通貨型
 Dim curr As Currency
@@ -61,7 +71,7 @@ End Sub
 ---
 ---
 
-## 関数について
+## <a name=func>関数について</a>
 
 ```vba
 'サブプロージャ関数のようなもの 
@@ -84,7 +94,7 @@ globalに宣言した場合はグローバルに、関数内は関数内での�
 
 ---
 
-## Excel VBAでよく使うオブジェクトについて
+## <a name=excel>Excel VBAでよく使うオブジェクトについて</a>
 
 |オブジェクト|説明|
 |--|--|
