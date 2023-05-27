@@ -1,5 +1,7 @@
 # CSharpいろいろメモ
 
+[RAIIパターン](#raii)
+
 - コンパイル/実行方法
 
 ```sh
@@ -188,5 +190,34 @@ private void Main()
     // key1
     // key2
     // key1
+}
+```
+
+### <a name=raii>RAIIパターン</a>
+
+C# はスタックを抜けたタイミングでデストラクタが呼ばれず、GCで呼ばれる。
+RAIIを実装するには`Disposeを定義し、using句`でコンストラクタ/Disposeが呼ばれる作り
+となるように作成することでRAIIが実装できる。
+
+```cs
+// 🌟クラス実装
+class MyFileStream : IDisposer{
+    public MyFileStream( str filenname )
+    {
+        Open( filename );
+    }
+    
+    public void Dispose()
+    {
+        Close();
+    }
+
+    ...//OpenとかCloseの実装
+};
+
+// 🌟使い方
+using( MyFileStream mfs = new MyFileStream( "hoge.txt" ) )
+{
+    //処理
 }
 ```
