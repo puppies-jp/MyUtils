@@ -37,7 +37,7 @@
 ## 環境系
 
 - [Windowsについて](Windows)
-  - [Windowsについて](WireShark)  
+  - [WireSharkについて](WireShark)  
 - [WebRTC](WebRTC)
 
 - [Linux](Linux)
