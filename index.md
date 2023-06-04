@@ -10,8 +10,7 @@
 ## 考え方系
 
 - [オブジェクト指向について](object-oriented)
-- [BinaryHack](BinaryHack)  
-
+- [BinaryHack](BinaryHack)
 - [keyword 備忘録](keywords)
 
 ## 言語系
@@ -37,9 +36,9 @@
 ## 環境系
 
 - [Windowsについて](Windows)
-  - [WireSharkについて](WireShark)  
+  - [WireSharkについて](WireShark)
 - [WebRTC](WebRTC)
-
+- [Git](Git)
 - [Linux](Linux)
   - [ShellScript](Linux/ShellScript)
   - [Firewall リンク](Linux/FireWall/Firewall)
