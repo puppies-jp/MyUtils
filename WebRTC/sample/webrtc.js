@@ -6,15 +6,15 @@ const sslPort = 8443;
 const peerConnectionConfig = {
 	iceServers: [
 		// GoogleのパブリックSTUNサーバーを指定しているが自前のSTUNサーバーに変更可
-		{urls: 'stun:stun.l.google.com:19302'},
-		{urls: 'stun:stun1.l.google.com:19302'},
-		{urls: 'stun:stun2.l.google.com:19302'},
+		{ urls: 'stun:stun.l.google.com:19302' },
+		{ urls: 'stun:stun1.l.google.com:19302' },
+		{ urls: 'stun:stun2.l.google.com:19302' },
 		// TURNサーバーがあれば指定する
 		//{urls: 'turn:turn_server', username:'', credential:''}
 	]
 };
 
-window.onload = function() {
+window.onload = function () {
 	localVideo = document.getElementById('localVideo');
 	remoteVideo = document.getElementById('remoteVideo');
 
@@ -37,7 +37,7 @@ function startVideo(localId, remoteId) {
 				window.stream.getTracks().forEach(track => {
 					track.stop();
 				});
-			} catch(error) {
+			} catch (error) {
 				console.error(error);
 			}
 			window.stream = null;
@@ -50,9 +50,11 @@ function startVideo(localId, remoteId) {
 		navigator.mediaDevices.getUserMedia(constraints).then(stream => {
 			window.stream = stream;
 			localVideo.srcObject = stream;
+			console.log("StartServerConnection");
 			startServerConnection(localId, remoteId);
 		}).catch(e => {
 			alert('Camera start error.\n\n' + e.name + ': ' + e.message);
+			console.error(e);
 		});
 	} else {
 		alert('Your browser does not support getUserMedia API');
@@ -65,7 +67,7 @@ function stopVideo() {
 			remoteVideo.srcObject.getTracks().forEach(track => {
 				track.stop();
 			});
-		} catch(error) {
+		} catch (error) {
 			console.error(error);
 		}
 		remoteVideo.srcObject = null;
@@ -77,13 +79,15 @@ function startServerConnection(localId, remoteId) {
 		sc.close();
 	}
 	// サーバー接続の開始
+	console.log("Connect WebSocket");
 	sc = new WebSocket('wss://' + location.hostname + ':' + sslPort + '/');
 	sc.onmessage = gotMessageFromServer;
-	sc.onopen = function(event) {
+	sc.onopen = function (event) {
 		// サーバーに接続情報を通知
-		this.send(JSON.stringify({open: {local: localId, remote: remoteId}}));
+		console.log("Connect WebSocket");
+		this.send(JSON.stringify({ open: { local: localId, remote: remoteId } }));
 	};
-	sc.onclose = function(event) {
+	sc.onclose = function (event) {
 		clearInterval(this._pingTimer);
 		setTimeout(conn => {
 			if (sc === conn) {
@@ -94,7 +98,7 @@ function startServerConnection(localId, remoteId) {
 	}
 	sc._pingTimer = setInterval(() => {
 		// 接続確認
-		sc.send(JSON.stringify({ping: 1}));
+		sc.send(JSON.stringify({ ping: 1 }));
 	}, 30000);
 }
 
@@ -102,17 +106,17 @@ function startPeerConnection(sdpType) {
 	stopPeerConnection();
 	queue = new Array();
 	pc = new RTCPeerConnection(peerConnectionConfig);
-	pc.onicecandidate = function(event) {
+	pc.onicecandidate = function (event) {
 		if (event.candidate) {
 			// ICE送信
-			sc.send(JSON.stringify({ice: event.candidate, remote: remoteId}));
+			sc.send(JSON.stringify({ ice: event.candidate, remote: remoteId }));
 		}
 	};
 	if (window.stream) {
 		// Local側のストリームを設定
 		window.stream.getTracks().forEach(track => pc.addTrack(track, window.stream));
 	}
-	pc.ontrack = function(event) {
+	pc.ontrack = function (event) {
 		// Remote側のストリームを設定
 		if (event.streams && event.streams[0]) {
 			remoteVideo.srcObject = event.streams[0];
@@ -147,7 +151,7 @@ function gotMessageFromServer(message) {
 		return;
 	}
 	if (signal.ping) {
-		sc.send(JSON.stringify({pong: 1}));
+		sc.send(JSON.stringify({ pong: 1 }));
 		return;
 	}
 	if (!pc) {
@@ -184,7 +188,7 @@ function gotMessageFromServer(message) {
 function setDescription(description) {
 	pc.setLocalDescription(description).then(() => {
 		// SDP送信
-		sc.send(JSON.stringify({sdp: pc.localDescription, remote: remoteId}));
+		sc.send(JSON.stringify({ sdp: pc.localDescription, remote: remoteId }));
 	}).catch(errorHandler);
 }
 
