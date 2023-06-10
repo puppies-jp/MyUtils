@@ -15,7 +15,7 @@ PRAGMA table_info('テーブル名')
 
 ## SQL クエリ関連について
 
-- [Insert/Update/delete構文](#basic)
+- [Insert/Update + join/delete構文](#basic)
 - [Joinについて](#join)
 - [Unionについて](#union)
 - [Mergeについて](#merge)
@@ -42,10 +42,28 @@ INSERT INTO テーブル名 VALUES (値1, 値2,...);
 - update構文
 
 ```sql
+-- シンプルパターン
 UPDATE (表名) SET (カラム名1) = (値1), (カラム名2) = (値2) WHERE (条件);
 
 UPDATE employees SET title = 'Ms.'
 WHERE emp_no IN (10006, 10007, 10009)
+
+-- 🌟From を使うパターン
+UPDATE  T
+SET  [カラム1] = [値1],
+ [カラム2] = [値1], ...
+FROM  [テーブル1] AS T
+WHERE  [条件];
+
+-- Joinしてupdateするパターン
+UPDATE table_A
+SET table_A.medical_checkup = 'DONE'
+FROM table_A
+INNER JOIN table_B
+ON table_A.stuff_id = table_B.stuff_id
+AND table_B.checkup_date IS NOT NULL
+Where table_B.scheup_data = ~~
+;
 ```
 
 - Delete構文
