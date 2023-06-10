@@ -13,6 +13,9 @@
 - [SQLServerについて](SQLServer)
 - [リソース集計バッチ](#resource)
 
+👇いいこと書いてるので、おすすめ時間ある時に読む
+[日本マイクロソフト TechnologySupportBlog](https://jpwinsup.github.io/blog/)
+
 ---
 ---
 
@@ -190,10 +193,58 @@ Remove-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
 
 ```batch
 # CPU/メモリ使用可能料出力
+# %%はバッチ用エスケープなので、%で読み替えて、
 typeperf -y -si 5 -o resource.csv "\Processor Information(_total) \%% Processor Utility" "\Memory\Available MByte"
 
 # helpコマンド
 typeperf -?
+```
+
+### CPU使用率調査有効メトリック
+
+- [参考](https://jpwinsup.github.io/blog/2022/07/15/Performance/SystemResource/PerformanceCounterProcessor/)
+
+```batch
+# 🌟システム全体での CPU 使用率
+\Processor Information\ % Processor Utility
+
+# CPU が idle 以外のスレッドを実行するために使用した経過時間の割合
+\Processor Information\ % Processor Time
+
+# CPU の処理を待つスレッドの数
+\System\Processor Queue Length
+
+## 🌟🌟🌟🌟🌟プロセスごとの CPU 使用状況🌟🌟🌟🌟🌟
+# プロセスのスレッドすべてが、命令を実行するためにプロセッサを使用する経過時間の割合
+# Processor = Privileged + User となる。
+\Process(プロセス名)\ % Processor Time
+
+# プロセスのスレッドが特権モードでコードを実行するために費やす時間の割合
+\Process(プロセス名)\ % Privileged Time
+# プロセスのスレッドがユーザー モードでコードを実行するために費やす時間の割合
+\Process(プロセス名)\ % User Time
+
+```
+
+### メモリ使用率調査有効メトリック
+
+- [Microsoft 参考](https://jpwinsup.github.io/blog/2021/10/26/Performance/SystemResource/PerformanceCounterMemory/)
+
+```batch
+# 利用可能な物理メモリの大きさ(※使用量ではない)
+\Memory\Available Bytes
+\Memory\Available KBytes
+\Memory\Available MBytes
+
+## 🌟🌟🌟🌟🌟プロセスごとの メモリ 使用状況🌟🌟🌟🌟🌟
+# 各プロセスが割り当てた物理メモリ使用量
+\Process(プロセス名)\Working Set
+
+# 各プロセスが割り当てた他のプロセスと共有できない物理メモリ使用量
+\Process(プロセス名)\Working Set - Private
+
+# 各プロセスが割り当てた他のプロセスと共有できない仮想メモリの使用量 
+\Process(プロセス名)\Private Bytess
 ```
 
 以下のパフォーマンスモニタを参考に集計メトリックが確認できる。
