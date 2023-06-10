@@ -19,6 +19,8 @@ PRAGMA table_info('テーブル名')
 - [Joinについて](#join)
 - [Unionについて](#union)
 - [Mergeについて](#merge)
+- [CASE句(条件分岐)](#CASE)
+- [Like](#likeAndRegx)
 
 ---
 
@@ -146,4 +148,79 @@ WHEN NOT MATCHED BY TARGET THEN
 -- 🌟BY SOURCE をつけることで利用元テーブルに条件と一致するデータが存在しない場合
 WHEN NOT MATCHED BY SOURCE THEN
     DELETE;
+```
+
+## <a name=CASE>CASE句(条件分岐)について</a>
+
+```sql
+-- 🌟こう書くことでCASE文が使える。
+SELECT
+    CASE
+        WHEN [条件] THEN [条件を満たしたら表示する内容]
+        ELSE [条件を満たしていなかったら表示する内容]
+    END
+FROM [テーブル名];
+
+-- updateはこう
+-- 🌟 [パターン1]80点以上の場合、2倍にして更新,80以下はそのまま
+UPDATE USER
+SET
+    CASE WHEN 80 <= POINT THEN POINT =POINT*2 ELSE 0 END;
+
+-- 🌟 [パターン2]80点以上の場合、2倍にして更新,80以下は0
+UPDATE USER
+SET
+    POINT = CASE WHEN 80 <= POINT THEN POINT*2 ELSE 0 END;
+```
+
+---
+---
+<a name=likeAndRegx>曖昧検索と正規表現</a>
+
+## 曖昧検索
+
+LIKE句は、主に`曖昧検索`を行う場合に使用するクエリです。SQLでLIKE句を使用すると、対象のカラムに対して`文字列検索`をかけることが出来ます。
+
+- 覚えるべきワイルドカード`「%」`と`「_」`
+
+- `%`
+  - 0文字以上の任意の文字列
+
+- `_`
+  - 任意の1文字
+
+```sql
+-- 前方一致
+SELECT user FROM users WHERE user LIKE "山%";
+-- 後方一致
+SELECT user FROM users WHERE user LIKE "%山";
+-- 部分一致
+SELECT user FROM users WHERE user LIKE "%山%";
+-- 部分一致の否定
+SELECT user FROM users WHERE user NOT LIKE "%山%";
+-- 完全一致
+SELECT user FROM users WHERE user LIKE "山";
+```
+
+## 正規表現
+
+- 曖昧検索だけでなく`正規表現`も使える。しかし、SQLサーバごとに使い方が違うらしい。
+
+```sql
+-- MYSQL
+SELECT col_name1 [, col_name2 ...] FROM table_name
+  WHERE col_name REGEXP '<正規表現パターン>'
+
+-- PostgreSQL
+SELECT col_name1 [, col_name2 ...] FROM table_name
+  WHERE col_name ~ '<正規表現パターン>'
+
+-- 🌟Oracel(REGEXP_REPLACE,REGEXP_SUBSTR,REGEXP_COUNT
+-- とか便利関数があるので適宜調べること)
+WHERE REGEXP_LIKE(<Column>, '正規表現パターン')
+
+-- 🚨SQL Server(正規表現ないらしい、、、)
+-- 一応 `[]`で一文字毎のはできるとか、、、(使えねー)
+SELECT name FROM sys.databases
+WHERE name LIKE 'm[n-z]%';/* 2文字目が n~z で引っかかる、、*/
 ```
