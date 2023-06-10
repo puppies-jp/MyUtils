@@ -12,6 +12,8 @@
 - [ネットワーク](#network)  
 - [SQLServerについて](SQLServer)
 - [リソース集計バッチ](#resource)
+- ファイルを開いているプロセス特定方法について
+  - [handle.exe](https://jpwinsup.github.io/blog/2023/05/25/Storage/Management/handle/)
 
 👇いいこと書いてるので、おすすめ時間ある時に読む
 [日本マイクロソフト TechnologySupportBlog](https://jpwinsup.github.io/blog/)
