@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <figure class="highcharts-figure">
+      <div id="container"></div>
+      <p class="highcharts-description">
+        Basic line chart showing trends in a dataset. This chart includes the
+        <code>series-label</code> module, which adds a label to each line for
+        enhanced readability.
+      </p>
+      <div id="container2"></div>
+    </figure>
+    <figure class="highcharts-figure">
+      <div id="container2"></div>
+    </figure>
+    <figure>
+      <canvas id="ctx1"></canvas>
+    </figure>
+    <div id="pdf" hidden="true">PDF</div>
+  </body>
+</html>
+<script src="https://code.highcharts.com/gantt/highcharts-gantt.js"></script>
+<script src="https://code.highcharts.com/gantt/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/gantt/modules/accessibility.js"></script>
+<script src="sample.js"></script>
+<script></script>
+<!--<script src="sample.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+<!-- パン操作・ピンチ操作に対応する場合はHammer.jsを先に読み込む -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<!-- Chartjs-plugin-zoomの読み込み -->
+<script src="sample2.js"></script>
