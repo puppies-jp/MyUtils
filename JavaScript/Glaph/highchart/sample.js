@@ -193,8 +193,11 @@ temp = Highcharts.ganttChart("container", {
         grid: {
             borderWidth: 0
         }, gridLineWidth: 1,
-        minRange: 3600 * 1000, // one hour
+        minRange: 60 * 1000, // one hour
         // 特定の日付に線を入れる
+        minTickInterval: 1,
+        tickInterval: 24 * 3600 * 1000 / 24,
+        //tickPixelInterval: 60,
         plotLines: [
             {
                 value: Date.UTC(2017, 0, 8, 22), color: "green",
