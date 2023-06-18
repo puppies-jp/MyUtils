@@ -1,6 +1,78 @@
-Highcharts.ganttChart("container", {
+plotData = [
+    {
+        pointWidth: undefined,
+        name: "OOXX",
+        data: [{
+            start: Date.UTC(2017, 0, 6, 14),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "red",
+            y: 4,
+            z: 1,
+            status: "running"
+        }, {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "green",
+            z: 1,
+            status: "running"
+
+        }, {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "pink",
+            z: 1,
+            status: "hoge"
+        }, {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            y: 1,
+            color: "blue",
+            status: "fuga"
+        },
+        {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "blue",
+            status: "hogefuga"
+        },
+        {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "yellow",
+            status: "hogefuga"
+        },
+        {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "yellow",
+            status: "hogefuga"
+        },
+        {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "yellow",
+            status: "hogefuga"
+        },
+        {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "yellow",
+            status: "hogefuga"
+        },
+        {
+            start: Date.UTC(2017, 0, 8, 12),
+            end: Date.UTC(2017, 0, 8, 23),
+            color: "yellow"
+            , y: 5
+            , status: "hogefuga"
+        },
+        ]
+    }]
+
+temp = Highcharts.ganttChart("container", {
     lang: {
-        noData: 'NO DATA'
+        noData: 'NO DATA',
+        loading: 'Loading...'
     },
     noData: {
         style: {
@@ -10,7 +82,7 @@ Highcharts.ganttChart("container", {
         }
     },
     title: {
-        text: "Highcharts Gantt Chart",
+        text: ""// "Highcharts Gantt Chart",
     },
     chart: {
         scrollablePlotArea: {
@@ -58,9 +130,22 @@ Highcharts.ganttChart("container", {
         buttonsEnabled: true,
         enabled: true
     },
+    exporting: {
+        csv: {
+            columnHeaderFormatter: function (item, key) {
+                if (!key) {
+                    return 'custom title'
+                }
+                return false
+            }
+        }
+    },
     rangeSelector: {
         enabled: true,
-        selected: 0,
+        allButtonsEnabled: true,
+        selected: 1,
+        inputDateFormat: '%e %b %Y %H:%M',
+        inputEditDateFormat: '%e %b %Y %H:%M',
         buttons: [{
             type: 'hour',
             count: 3,
@@ -71,11 +156,11 @@ Highcharts.ganttChart("container", {
             count: 3,
             text: '3m',
             title: 'View 3 months'
-        }, {
+        }, /*{
             type: 'ytd',
             text: 'YTD',
             title: 'View year to date'
-        }, {
+        }, */{
             type: 'year',
             count: 1,
             text: '1y',
@@ -103,12 +188,12 @@ Highcharts.ganttChart("container", {
         dateTimeLabelFormats: {
             minute: '%H:%M',
             hour: '%H:%M',
-            day: '%e<br><span style="opacity: 0.5; font-size: 0.7em">%a</span>'
+            day: '%e<br><span style="opacity: 0.5; font-size: 0.7em">%a %H:%M</span>'
         },
         grid: {
             borderWidth: 0
         }, gridLineWidth: 1,
-
+        minRange: 3600 * 1000, // one hour
         // 特定の日付に線を入れる
         plotLines: [
             {
@@ -124,91 +209,13 @@ Highcharts.ganttChart("container", {
 
         format: '<span style="color:{point.color}">●</span>{series.name}:' +
             '<b>{point.custom.state}{point.status}</b><br/>' +
-            '{point.start:%e. %b} - {point.end:%e. %b}'
+            '{point.start:%e. %b  %H:%M} - {point.end:%e. %b  %H:%M}'
         ,
         headerFormat: '<span style="color:{point.color}">●</span>{series.name}'
         , pointFormat: '<b>{point.custom.state}</b>'
         , footerFormat: '{point.start:%e. %b} - {point.end:%e. %b}'
     },
-    //series: [{ data: [] }],/*
-    series: [
-        {
-            name: "OOXX",
-            data: [{
-                start: Date.UTC(2017, 0, 8, 14),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test",
-                color: "red",
-                y: 4,
-                status: "running"
-            }, {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test",
-                color: "green",
-                status: "running"
-
-            }, {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test",
-                color: "pink",
-                status: "hoge"
-            }, {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
-                name: "Test1",
-                color: "blue",
-                status: "fuga"
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test2",
-                color: "blue",
-                status: "hogefuga"
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test3",
-                color: "yellow",
-                status: "hogefuga"
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test4",
-                color: "yellow",
-                status: "hogefuga"
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test5",
-                color: "yellow",
-                status: "hogefuga"
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test6",
-                color: "yellow",
-                status: "hogefuga"
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                name: "Test7",
-                color: "yellow"
-                , y: 5
-                , status: "hogefuga"
-            },
-            ]
-
-        },
-    ]
+    series: plotData,
 
 },
 );
