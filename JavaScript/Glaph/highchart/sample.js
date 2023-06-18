@@ -6,19 +6,27 @@ Highcharts.ganttChart("container", {
         style: {
             fontWeight: 'bold',
             fontSize: '15px',
-            color: '#303030'
+            color: 'black'
         }
     },
     title: {
         text: "Highcharts Gantt Chart",
     },
+    chart: {
+        scrollablePlotArea: {
+            minHeight: 600,
+            opacity: 0,
+        }, panning: { enabled: true, type: 'x' },
+        zoomType: "x"
+    },
+
     yAxis: {
         uniqueNames: true,
         grid: {
             borderWidth: 0
         },
-        min: 0,
-        max: 4,
+        //min: 0,
+        //max: 4,
         categories: ["First", "Second", "Third", "Four", "Five", "Six"]
         , scrollbar: {
             enabled: true
@@ -32,8 +40,8 @@ Highcharts.ganttChart("container", {
         liveRedraw: true,
         series: {
             type: 'gantt',
-            //            pointPlacement: 0.5,
-            //            pointPadding: 0.25,
+            //pointPlacement: 0.5,
+            //pointPadding: 0.25,
             accessibility: {
                 enabled: false
             }
@@ -42,16 +50,41 @@ Highcharts.ganttChart("container", {
             min: 0,
             max: 50,
             reversed: true,
-            categories: ["First", "Second", "Third", "Four", "Five", "Six"]
+            categories: []
         }
     },
     scrollbar: {
+        buttonArrowColor: "black",
+        buttonsEnabled: true,
         enabled: true
     },
-
     rangeSelector: {
         enabled: true,
-        selected: 0
+        selected: 0,
+        buttons: [{
+            type: 'hour',
+            count: 3,
+            text: '1h',
+            title: 'View 1 day'
+        }, {
+            type: 'month',
+            count: 3,
+            text: '3m',
+            title: 'View 3 months'
+        }, {
+            type: 'ytd',
+            text: 'YTD',
+            title: 'View year to date'
+        }, {
+            type: 'year',
+            count: 1,
+            text: '1y',
+            title: 'View 1 year'
+        }, {
+            type: 'all',
+            text: 'All',
+            title: 'View all'
+        }]
     },
     legend: {
         enabled: false,
@@ -66,18 +99,31 @@ Highcharts.ganttChart("container", {
                 format: ''
             }
         },
+        panningEnabled: true,
         dateTimeLabelFormats: {
+            minute: '%H:%M',
+            hour: '%H:%M',
             day: '%e<br><span style="opacity: 0.5; font-size: 0.7em">%a</span>'
         },
         grid: {
-            borderWidth: 0.5
-        },
-        tickWidth: 1
+            borderWidth: 0
+        }, gridLineWidth: 1,
+
+        // 特定の日付に線を入れる
+        plotLines: [
+            {
+                value: Date.UTC(2017, 0, 8, 22), color: "green",
+                label: { text: "the day" }, zIndex: 10
+            },
+            //{ color: "blue", events: { click: PlotLineOrBand } }
+        ],
+        // ホバー時に線を表示する
+        crosshair: { snap: false, color: "black", zIndex: 10 },
     }],
     tooltip: {
 
         format: '<span style="color:{point.color}">●</span>{series.name}:' +
-            '<b>{point.custom.state}</b><br/>' +
+            '<b>{point.custom.state}{point.status}</b><br/>' +
             '{point.start:%e. %b} - {point.end:%e. %b}'
         ,
         headerFormat: '<span style="color:{point.color}">●</span>{series.name}'
@@ -89,85 +135,67 @@ Highcharts.ganttChart("container", {
         {
             name: "OOXX",
             data: [{
-                start: Date.UTC(2017, 0, 1),
-                end: Date.UTC(2017, 0, 3),
+                start: Date.UTC(2017, 0, 8, 14),
+                end: Date.UTC(2017, 0, 8, 23),
                 name: "Test",
                 color: "red",
                 y: 4,
-                custom: {
-                    state: "normal"
-                }
+                status: "running"
             }, {
-                start: Date.UTC(2017, 0, 4),
-                end: Date.UTC(2017, 0, 6),
+                start: Date.UTC(2017, 0, 8, 12),
+                end: Date.UTC(2017, 0, 8, 23),
                 name: "Test",
                 color: "green",
-                custom: {
-                    state: "running"
-                }
+                status: "running"
 
             }, {
-                start: Date.UTC(2017, 0, 5),
-                end: Date.UTC(2017, 0, 8),
+                start: Date.UTC(2017, 0, 8, 12),
+                end: Date.UTC(2017, 0, 8, 23),
                 name: "Test",
-                color: "pink"
-                , custom: {
-                    state: "stop"
-                }
+                color: "pink",
+                status: "hoge"
             }, {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 y: 1,
                 name: "Test1",
-                color: "blue"
-                , custom: {
-                    state: 3
-                }
+                color: "blue",
+                status: "fuga"
             },
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 name: "Test2",
-                color: "blue"
-                , custom: {
-                    state: 3
-                }
+                color: "blue",
+                status: "hogefuga"
             },
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 name: "Test3",
-                color: "yellow"
-                , custom: {
-                    state: 3
-                }
+                color: "yellow",
+                status: "hogefuga"
             },
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 name: "Test4",
-                color: "yellow"
-                , custom: {
-                    state: 3
-                }
+                color: "yellow",
+                status: "hogefuga"
             },
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 name: "Test5",
-                color: "yellow"
-                , custom: {
-                    state: 3
-                }
+                color: "yellow",
+                status: "hogefuga"
             },
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 name: "Test6",
-                color: "yellow"
-                , custom: {
-                    state: 3
-                }
+                color: "yellow",
+                status: "hogefuga"
             },
             {
                 start: Date.UTC(2017, 0, 8, 12),
@@ -175,15 +203,13 @@ Highcharts.ganttChart("container", {
                 name: "Test7",
                 color: "yellow"
                 , y: 5
-                , custom: {
-                    state: 3
-                }
+                , status: "hogefuga"
             },
             ]
 
         },
     ]
-    //* /
+
 },
 );
 
