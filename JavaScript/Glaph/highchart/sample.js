@@ -1,4 +1,14 @@
 Highcharts.ganttChart("container", {
+    lang: {
+        noData: 'NO DATA'
+    },
+    noData: {
+        style: {
+            fontWeight: 'bold',
+            fontSize: '15px',
+            color: '#303030'
+        }
+    },
     title: {
         text: "Highcharts Gantt Chart",
     },
@@ -9,11 +19,11 @@ Highcharts.ganttChart("container", {
         },
         min: 0,
         max: 4,
-        scrollbar: {
+        categories: ["First", "Second", "Third", "Four", "Five", "Six"]
+        , scrollbar: {
             enabled: true
         },
     },
-
     credits: {
         enabled: false
     },
@@ -28,12 +38,11 @@ Highcharts.ganttChart("container", {
                 enabled: false
             }
         },
-
         yAxis: {
             min: 0,
             max: 50,
             reversed: true,
-            categories: []
+            categories: ["First", "Second", "Third", "Four", "Five", "Six"]
         }
     },
     scrollbar: {
@@ -61,8 +70,9 @@ Highcharts.ganttChart("container", {
             day: '%e<br><span style="opacity: 0.5; font-size: 0.7em">%a</span>'
         },
         grid: {
-            borderWidth: 0
+            borderWidth: 0.5
         },
+        tickWidth: 1
     }],
     tooltip: {
 
@@ -74,12 +84,7 @@ Highcharts.ganttChart("container", {
         , pointFormat: '<b>{point.custom.state}</b>'
         , footerFormat: '{point.start:%e. %b} - {point.end:%e. %b}'
     },
-    scrollbar: {
-        height: 4,
-        buttonsEnabled: true
-        , showFull: false
-    }
-    ,
+    //series: [{ data: [] }],/*
     series: [
         {
             name: "OOXX",
@@ -88,15 +93,16 @@ Highcharts.ganttChart("container", {
                 end: Date.UTC(2017, 0, 3),
                 name: "Test",
                 color: "red",
+                y: 4,
                 custom: {
                     state: "normal"
                 }
             }, {
                 start: Date.UTC(2017, 0, 4),
-                end: Date.UTC(2017, 0, 5),
+                end: Date.UTC(2017, 0, 6),
                 name: "Test",
-                color: "green"
-                , custom: {
+                color: "green",
+                custom: {
                     state: "running"
                 }
 
@@ -112,7 +118,7 @@ Highcharts.ganttChart("container", {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
                 y: 1,
-                name: "Test",
+                name: "Test1",
                 color: "blue"
                 , custom: {
                     state: 3
@@ -121,7 +127,6 @@ Highcharts.ganttChart("container", {
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
                 name: "Test2",
                 color: "blue"
                 , custom: {
@@ -131,7 +136,6 @@ Highcharts.ganttChart("container", {
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
                 name: "Test3",
                 color: "yellow"
                 , custom: {
@@ -141,9 +145,8 @@ Highcharts.ganttChart("container", {
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
                 name: "Test4",
-                color: "black"
+                color: "yellow"
                 , custom: {
                     state: 3
                 }
@@ -151,9 +154,8 @@ Highcharts.ganttChart("container", {
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
                 name: "Test5",
-                color: "black"
+                color: "yellow"
                 , custom: {
                     state: 3
                 }
@@ -161,9 +163,8 @@ Highcharts.ganttChart("container", {
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
                 name: "Test6",
-                color: "black"
+                color: "yellow"
                 , custom: {
                     state: 3
                 }
@@ -171,19 +172,9 @@ Highcharts.ganttChart("container", {
             {
                 start: Date.UTC(2017, 0, 8, 12),
                 end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
                 name: "Test7",
-                color: "black"
-                , custom: {
-                    state: 3
-                }
-            },
-            {
-                start: Date.UTC(2017, 0, 8, 12),
-                end: Date.UTC(2017, 0, 8, 23),
-                y: 1,
-                name: "Test8",
-                color: "black"
+                color: "yellow"
+                , y: 5
                 , custom: {
                     state: 3
                 }
@@ -192,7 +183,7 @@ Highcharts.ganttChart("container", {
 
         },
     ]
-
+    //* /
 },
 );
 
