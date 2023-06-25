@@ -6,6 +6,8 @@
   - [PowerShellについて](PowerShell)
 - [マクロ](VBA)  
 - [Debugについて](Debug)
+  - [Edge-IEモードでのデバッグ](#edgeIE)
+
 - [CLコマンド](cl)
 
 - [イベントログ](#EventLog)  
@@ -17,6 +19,18 @@
 
 👇いいこと書いてるので、おすすめ時間ある時に読む  
 [日本マイクロソフト TechnologySupportBlog](https://jpwinsup.github.io/blog/)
+
+---
+---
+
+## <a name=edgeIE>Edge-IEモードのデバッグ</a>
+
+EdgeのIEモードは開発者ツールが使えない('F12'で開くやつ)
+`IEChooser.exe`を使えばIEモードのEdgeでも開発者ツールが利用できる。
+
+```bat
+C:\Windows\System32\F12\IEChooser.exe
+```
 
 ---
 ---
