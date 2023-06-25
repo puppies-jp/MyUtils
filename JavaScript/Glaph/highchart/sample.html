@@ -23,6 +23,10 @@
     <figure>
       <canvas id="ctx1"></canvas>
     </figure>
+
+    <div class="myButton">
+      <button onclick="resetZoom()">Reset Zoom</button>
+    </div>
     <div id="pdf" hidden="true">PDF</div>
   </body>
 </html>
@@ -34,8 +38,8 @@
 <script src="sample.js"></script>
 <script></script>
 <!--<script src="sample.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-<!-- パン操作・ピンチ操作に対応する場合はHammer.jsを先に読み込む -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-<!-- Chartjs-plugin-zoomの読み込み 
-<script src="sample2.js"></script>-->
+<script src="https://npmcdn.com/chart.js@3.7.1/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+<script src="https://npmcdn.com/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.min.js"></script>
+<!-- Chartjs-plugin-zoomの読み込み-->
+<script src="sample2.js"></script>

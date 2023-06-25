@@ -22,6 +22,21 @@
 
 ```
 
+---
+---
+
+## CDNについて
+
+「CDN」はContent Delivery Networkの略で、簡単に言うとインターネット経由でファイルを配信する仕組みのこと
+自身のローカルサーバにモジュールを配置することで使うこともできる
+
+```html
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+```
+
+---
+---
+
 ## cssのクラスの継承について
 
 ```css
