@@ -8,7 +8,27 @@
     <title>Document</title>
   </head>
   <body>
+    <div>Chartjs,highchartsのIEサポートについて</div>
+    <div>
+      Chartjsは3.0.0でIE11のサポートを外したらしい。また、zoom
+      pluginは3.0.0以上からしか対応してないとか。。。
+    </div>
+    <div>
+      highchartsは2023/3/1までにサポート終了で"https://code.highcharts.com/es5/"にあるとか
+    </div>
+    <div>
+      <a href="https://www.highcharts.com/changelog/"
+        >ここから古いバージョンをダウンロードできる。</a
+      >
+      <a
+        href="https://www.highcharts.com/blog/post/still-supporting-ie11-action-required/"
+        >公式リンク</a
+      >
+    </div>
+
     <figure class="highcharts-figure">
+      <div id="container_just_chart"></div>
+
       <div id="container" class="test"></div>
       <p class="highcharts-description">
         Basic line chart showing trends in a dataset. This chart includes the
@@ -36,6 +56,20 @@
 <script src="https://code.highcharts.com/modules/no-data-to-display.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="sample.js"></script>
+<script src="https://code.highcharts.com/es5/highcharts.js"></script>
+<script src="https://code.highcharts.com/es5/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/es5/modules/accessibility.js"></script>
+<script>
+  Highcharts.chart("container_just_chart", {
+    series: [
+      {
+        data: [1, 4, 3, 5],
+        type: "column",
+      },
+    ],
+  });
+</script>
+
 <script></script>
 <!--<script src="sample.js"></script>-->
 <script src="https://npmcdn.com/chart.js@3.7.1/dist/chart.min.js"></script>

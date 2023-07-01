@@ -4,6 +4,7 @@
 
 - [GDB使い方](#howToUse)
 - [coreでバグを調査する](#Bug)
+- [GDBでリモートデバッグをする](#remote)
 - [Threadをデバッグする](#thread)
 - [signalを扱う](#signal)
 - [ファイルでマクロ、設定を使い回す](#initFile)
@@ -88,6 +89,30 @@ print <var>
 # 現在のスタックフレーム上のローカル変数を確認できる。
 info locals 
 ```
+
+---
+
+### <a name=remote>GDBでリモートデバッグする</a>
+
+GDBはリモートで動作している側で`gdbserver`を立ち上げることでリモートデバッグができる
+これは`シンボルファイルがリモートになくともローカル側`で持っていればデバッグが可能となるものである。
+
+```sh
+# comm :接続方法
+# 　 シリアルポート通信の場合　（ex: /dev/com1)
+#  　TCP接続 (ex: host:portNo)
+# prog : デバッグ対象のプログラム
+# args... : progの引数
+gdbserver comm prog [args...]
+
+# pid: プロセスIDにアタッチ
+gdbserver --attach comm pid
+
+# 🌟アタッチするプロセス ID を指定せずに "gdbserver" を起動する場合
+gdbserver --multi comm  
+```
+
+- **gdb側の操作は後日書く！**
 
 ---
 
