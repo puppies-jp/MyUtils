@@ -114,6 +114,8 @@ gdbserver --multi comm
 
 - **gdb側の操作は後日書く！**
 
+[参考stackoverflow](https://stackoverflow.com/questions/3512961/remote-gdb-debugging)
+
 ---
 
 ### <a name=thread>thread環境をデバッグする</a>

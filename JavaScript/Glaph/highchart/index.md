@@ -1,6 +1,6 @@
 # Highcharts/chart.jsについてメモってく
 
-# [sample](sample.html)
+[sample](sample.html)
 
 ## Chart.js/highchartsのIE対応状況について
 
