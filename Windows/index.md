@@ -4,6 +4,8 @@
 
 - [cmd,PowerShellの違い](#shell)
   - [PowerShellについて](PowerShell)
+  - [PSによるIP設定まわり](PowerShell/ip_setting)
+
 - [マクロ](VBA)  
 - [Debugについて](Debug)
   - [Edge-IEモードでのデバッグ](#edgeIE)
@@ -168,39 +170,6 @@ arp -a
 # ホスト名 ⇆ IPアドレス
 nslookup {hostname}
 nbtstat -A {IP address}
-```
-
----
----
-
-## VLanIDの設定方法(PowerShell)
-
-- VLANについて(そのうち書く)
-
-    管理者権限で`PowerShell`を起動すること
-
-```powershell
-# 🌟IntelNIC用のモジュールをインポート
-Import-Module -Name “C:\Program Files\Intel\Wired Networking\IntelNetCmdlets”
-
-# 🌟NICの名前(ParentName)を取得
-Get-IntelNetAdapter
-
-# 🌟NICの名前を-ParentName に指定し、追加したいVLANIDを指定
-Add-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
-
-# example: 
-# 複数設定する場合:VLanId1,VLanId2,VLanId3
-# 範囲を指定する場合: (VLanId1..VLanId4)            
-Add-IntelNetVLAN -ParentName “Intel(R) I350 Gigabit Network Connection” -VLANID 300,400,500
-```
-
-```powershell
-# 🌟VLAN名前の変更
-Set-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID> -NewVLANName “<VLAN名>”
-
-# 🌟VLAN Interfaceの削除
-Remove-IntelNetVLAN -ParentName “<NIC名>” -VLANID <VLANID>
 ```
 
 ---

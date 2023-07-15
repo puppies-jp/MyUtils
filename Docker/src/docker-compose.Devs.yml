@@ -42,7 +42,7 @@ services:
   redmine:
     container_name: redmine
     image: redmine
-    restart: always
+    # restart: always
     ports: # Redmine公開port
       - 8081:3000
     environment:
@@ -62,7 +62,7 @@ services:
   redmine-db:
     image: mysql:5.7
     container_name: redmine-db
-    restart: always
+    # restart: always
     environment:
       MYSQL_ROOT_PASSWORD: redminepass
       MYSQL_DATABASE: redmine
@@ -75,7 +75,7 @@ services:
 
   lab:
     image: 'gitlab/gitlab-ee:latest'
-    restart: always
+    # restart: always
     hostname: 'gitlab.my.com'
     container_name: gitlab
     environment:
@@ -98,7 +98,7 @@ services:
         ipv4_address: 172.27.12.4
   runner:
     image: gitlab/gitlab-runner:latest
-    restart: always
+    # restart: always
     container_name: gitlab-runner
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
