@@ -5,6 +5,7 @@
 - [ヒアドキュメント](#here)
 - [PSによるIP/VLAN設定まとめ](ip_setting)
 - [実行結果のファイルなど出力](#output)
+- [プロセスの親子関係](#ParentProcess)
 
 配列、マップ等あるが、長くなるため別ページに書く。
 参考は以下参照  
@@ -184,4 +185,17 @@ $File = Import-CliXml -Path C:\temp\User01.xml
 
 ```ps1
 Get-Mailbox -Identity User01 | Clip
+```
+
+---
+---
+
+## <a name=ParentProcess>プロセスの親子関係</a>
+
+- chatGPT曰く以下で親プロセスが確認できるらしい
+
+```ps1
+Get-WmiObject -Class Win32_Process -Filter "Name='powershell.exe'" |\
+ Select-Object ProcessId,ParentProcessId,CommandLine
+
 ```
