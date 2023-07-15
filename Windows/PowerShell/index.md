@@ -4,6 +4,7 @@
 - [変数/型について](#type)
 - [ヒアドキュメント](#here)
 - [PSによるIP/VLAN設定まとめ](ip_setting)
+- [実行結果のファイルなど出力](#output)
 
 配列、マップ等あるが、長くなるため別ページに書く。
 参考は以下参照  
@@ -51,7 +52,12 @@ PowerShell には、開発環境として `ISE （あいす）`というエデ�
 
 ## <a name=policy>スクリプトを実行できるようにポリシーを変更する</a>
 
-ポリシーを変更するには、 Set-ExecutionPolicy というコマンドレットを使用する。
+PowerShellが動かない場合、以下が考えられる。
+
+1. ポリシー設定が不十分
+2. powershellのバージョンが古い/インストールが壊れている
+
+`ポリシーを変更する`には、 Set-ExecutionPolicy というコマンドレットを使用する。
 RemoteSigned を指定した場合、ローカルで作成されたスクリプトは無条件で実行できるが、ネットワークから入手したスクリプトは署名が無ければ実行できない（Windows Server 2012 R2 はこの設定がデフォルト）。
 
 ```powershell
@@ -129,4 +135,53 @@ hoge
   $fuga
 piyo
 "@
+```
+
+---
+---
+
+## <a name=output>実行結果のファイル出力</a>
+
+- ファイル出力
+
+```ps1
+# | からのOut-File or > でOKらしい
+Get-Mailbox -Identity User01 |Out-File C:\temp\User01.txt
+Get-Mailbox -Identity User01 > C:\temp\User01.txt
+```
+
+- CSV出力(Export-Csv)
+
+  - `-Encoding` エンコード指定
+  - `-NoTypeInformation` 先頭行に型の情報を入れない
+
+```ps1
+Get-Mailbox -Identity User01 | Export-Csv -Path C:\temp\User01.csv -Encoding UTF8 -NoTypeInformation
+
+$Output = Get-Mailbox -Identity User01
+$Output += Get-Mailbox -Identity User02
+$Output | Export-Csv -Path C:\temp\User.csv -Encoding UTF8 -NoTypeInformation
+
+```
+
+- XMLファイル出力 (Export-CliXml)
+
+コマンドの結果をXMLファイルに出力します。
+ひとつのオブジェクトの情報を出力するときによく使います。
+
+設定変更する前の状態をXmlファイルに出力しておけば、
+変更前の値を簡単に参照したり、そこから簡単に戻したりできます。
+
+```ps1
+# 🌟出力はこれ
+Get-Mailbox -Identity User01 | Export-CliXml -Path C:\temp\User01.xml
+
+# 🌟インポートすることでオブジェクトとして扱うことができます。
+$File = Import-CliXml -Path C:\temp\User01.xml
+```
+
+- Clipボードコピー
+
+```ps1
+Get-Mailbox -Identity User01 | Clip
 ```
