@@ -6,6 +6,19 @@
 
 ## とりあえず最初のテンプレート
 
+- 🚨IEを使う場合 `x-ua-compatible`を追加する
+
+```html
+<!--
+  🌟 headerのmetaデータに以下を追記するとIEでの互換性バージョンが指定できる
+  IE以外のブラウザでは、この指定は無視されます。
+  Edgeで利用可能な範囲内で最上位のモードが指定され、
+  IE5 ~ IE11などで特定のバージョンとなる 
+-->
+<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta http-equiv="x-ua-compatible" content="IE=IE11">
+```
+
 ```html
 <!DOCTYPE html>
 <html lang="ja">
