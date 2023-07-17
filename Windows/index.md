@@ -9,6 +9,7 @@
 - [マクロ](VBA)  
 - [Debugについて](Debug)
   - [Edge-IEモードでのデバッグ](#edgeIE)
+  - [CMDから起動中のタスクをチェックする](#tasklist)
 
 - [CLコマンド](cl)
 
@@ -33,6 +34,21 @@ EdgeのIEモードは開発者ツールが使えない('F12'で開くやつ)
 
 ```bat
 C:\Windows\System32\F12\IEChooser.exe
+```
+
+---
+---
+
+## <a name=tasklist>CMDから起動中のタスクをチェックする</a>
+
+```cmd
+tasklist
+
+# 名前でソートする場合(/nh:ヘッダなしにしないとヘッダもソートされる)
+tasklist /nh | sort
+
+# csv形式出力(/fo csv)
+tasklist  /svc /fo csv  > test.csv
 ```
 
 ---
