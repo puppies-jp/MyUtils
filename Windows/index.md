@@ -49,7 +49,21 @@ tasklist /nh | sort
 
 # csv形式出力(/fo csv)
 tasklist  /svc /fo csv  > test.csv
+
+# /V (verbose)
+tasklist  /fi "CPUTIME gt 00:00:10" /V /fo csv
+
 ```
+
+---
+---
+
+## <a name=taskschd>タスクスケジューラの設定</a>
+
+タスクスケジューラはデフォルトで実行優先度が通常より低めに設定される。
+以下のリンクから設定の変更方法を確認することができる。
+
+[TaskSettings.Priority プロパティ](https://learn.microsoft.com/ja-jp/windows/win32/taskschd/tasksettings-priority)
 
 ---
 ---
@@ -200,6 +214,9 @@ typeperf -y -si 5 -o resource.csv "\Processor Information(_total) \%% Processor 
 
 # helpコマンド
 typeperf -?
+
+# CPU/
+tasklist /fi “MEMUSAGE gt 1000000” /fi “CPUTIME gt 00:01:00”
 ```
 
 ### CPU使用率調査有効メトリック
