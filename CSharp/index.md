@@ -10,6 +10,7 @@ mcs async_await.cs #コンパイル
 mono async_await.exe #実行
 ```
 
+- [lambda式](#lambda)
 - [async/awaitまとめ](#async_await)
 
 ## <a name="async_await">async/awaitまとめ</a>
@@ -149,6 +150,9 @@ lock (lockTest)
 
  他
 
+---
+---
+
 - `ReaderWriterLockSlim`
   - その名の通り、Readers/Writer lock  
   ReaderWriterLockもあるが、古いVersionで現在はSlimが推奨
@@ -220,4 +224,26 @@ using( MyFileStream mfs = new MyFileStream( "hoge.txt" ) )
 {
     //処理
 }
+```
+
+---
+---
+
+## <a name=lambda>lambda式</a>
+
+```cs
+Func<int, int> square = x => x * x;
+Console.WriteLine(square(5));
+// Output:
+// 25
+
+var sum = (params int[] values) =>
+{
+    int sum = 0;
+    foreach (var value in values) 
+        sum += value;
+    
+    return sum;
+};
+
 ```
