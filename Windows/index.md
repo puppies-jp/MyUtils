@@ -13,6 +13,7 @@
 
 - [CLコマンド](cl)
 
+- [パフォーマンスについて](performance)
 - [イベントログ](#EventLog)  
 - [ネットワーク(netsh)](#network)  
 - [SQLServerについて](SQLServer)
