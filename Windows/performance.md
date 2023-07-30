@@ -2,6 +2,8 @@
 
 パフォーマンスの改善についてのメモです。
 
+[パフォーマンスログ](#performance_log)
+
 ## 使い方周り
 
 1. SQL Serverの負荷が高い？
@@ -27,6 +29,13 @@
 
 3. 負荷のかかる設定は無効になっているか？
     1. Windows Updateの自動更新
+        [サービスを無効にする手順](https://itojisan.xyz/trouble/13235/)
+        サービス/スタートアップの種類
+        - 自動 :Windows の起動時に自動的に起動
+            「自動(遅延開始)」を選択した場合は、 Windows の起動後に少しだけ待ってから起動
+        - 手動 :「手動」にした場合は自動では起動せずに手動で起動したり他のサービスから起動されるまで開始しません。
+        - 無効 :「自動」や「手動」に切り替えるまでを起動することができません。
+
     2. 配信の最適化 やってないが、問題ないか確認する -> いらないと思う、
         配信の最適化とは、別のPCにローカルネットワーク、またはインターネット経由で更新プログラムやアプリを配信します。 更新プログラムやアプリが必要なPCは、ネットワーク上から既にデータを取得したPCを検出して、データをダウンロードすることができます。
 
@@ -39,5 +48,15 @@
         [Troubleshoot High CPU usage by the "System" process](https://superuser.com/questions/527401/troubleshoot-high-cpu-usage-by-the-system-process)
         - `Process Explorer`で`System`プロセスの重い処理を確認できる
     - sql server
-    - lsass.exe [Lsass.exe が重い場合のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/windows-server/identity/troubleshoot-high-lsass.exe-cpu-utilization)
+    - lsass.exe
+    [Lsass.exe が重い場合のトラブルシューティング](https://learn.microsoft.com/ja-jp/troubleshoot/windows-server/identity/troubleshoot-high-lsass.exe-cpu-utilization)
         - ActiveDirectryで使用するプロセスらしい
+    - svchost
+        [svchost.exe の CPU 高負荷およびメモリー使用量増加の調査](https://jpwinsup.github.io/blog/2021/02/08/Performance/SystemResource/SeparatingSvcHostServices/)
+
+---
+---
+
+## <a name=performance>パフォーマンス ログ収集</a>
+
+[パフォーマンス ログ収集(Microsoft Support)](https://jpwinsup.github.io/blog/2021/06/07/Performance/SystemResource/PerformanceLogging/)
