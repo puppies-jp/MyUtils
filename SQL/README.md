@@ -6,6 +6,9 @@
 - [sqlite3](sqlite3)
 - [SQL Server](sqlserver)
 
+[インデックスについて](AboutIndex)
+[小ネタ](tips)
+
 ```sql
 -- sqlite3 だけ？っぽい
 PRAGMA table_info('テーブル名')
@@ -21,6 +24,7 @@ PRAGMA table_info('テーブル名')
 - [Mergeについて](#merge)
 - [CASE句(条件分岐)](#CASE)
 - [Like](#likeAndRegx)
+- [With句](#with)
 
 ---
 
@@ -223,4 +227,31 @@ WHERE REGEXP_LIKE(<Column>, '正規表現パターン')
 -- 一応 `[]`で一文字毎のはできるとか、、、(使えねー)
 SELECT name FROM sys.databases
 WHERE name LIKE 'm[n-z]%';/* 2文字目が n~z で引っかかる、、*/
+```
+
+## <a name="with">With句の使い方</a>
+
+- こんな感じで副問い合わせができる
+
+```sql
+WITH 
+regional_sales AS (
+    SELECT region, SUM(amount) AS total_sales
+    FROM orders
+    GROUP BY region),
+top_regions AS (
+    SELECT region
+    FROM regional_sales
+    WHERE 
+        /* 🌟ここで上のregional_salesを使う。 */
+        total_sales > (SELECT SUM(total_sales)/10 FROM regional_sales)　
+    )
+SELECT region,
+       product,
+       SUM(quantity) AS product_units,
+       SUM(amount) AS product_sales
+FROM orders
+/* 🌟ここでwith句の2つ目のクエリを実行してる */
+WHERE region IN (SELECT region FROM top_regions )
+GROUP BY region, product;
 ```
