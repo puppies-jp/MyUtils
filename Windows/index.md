@@ -229,12 +229,16 @@ nbtstat -A {IP address}
 ```batch
 # CPU/メモリ使用可能料出力
 # %%はバッチ用エスケープなので、%で読み替えて、
-typeperf -y -si 5 -o resource.csv "\Processor Information(_total) \%% Processor Utility" "\Memory\Available MByte"
+typeperf -y -si 1 -o resource.csv "\Process(*)\%% Processor Time" "\Memory\Available Bytes"
 
 # helpコマンド
 typeperf -?
 
-# CPU/
+# typeperfで確認できるメトリックは以下で確認できる
+typeperf -q
+typeperf -qx
+
+# typeperfでなくともCPU/memory使用率をtasklistで確認することもできる(filter付きで)
 tasklist /fi “MEMUSAGE gt 1000000” /fi “CPUTIME gt 00:01:00”
 ```
 
