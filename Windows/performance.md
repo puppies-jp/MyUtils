@@ -2,7 +2,7 @@
 
 パフォーマンスの改善についてのメモです。
 
-[パフォーマンスログ](#performance_log)
+[パフォーマンスログ](#performance)
 
 ## 使い方周り
 
@@ -60,3 +60,31 @@
 ## <a name=performance>パフォーマンス ログ収集</a>
 
 [パフォーマンス ログ収集(Microsoft Support)](https://jpwinsup.github.io/blog/2021/06/07/Performance/SystemResource/PerformanceLogging/)
+
+---
+---
+
+## <a name=logrotate></a>
+
+[ローテートバッチ参照](https://beyondjapan.com/blog/2023/03/winlogrotate/)
+
+```bat
+@echo off
+setlocal
+ 
+set LOGDIR="C:\Users\testuser\Documents\test"
+ 
+forfiles /P "%LOGDIR%" /M *.log /C "cmd /C Del /S @path" /D -14
+ 
+exit /B 0
+```
+
+```bat
+rem /s フォルダにファイル,ディレクトリがあっても削除する
+rem /q 警告を表示しない
+rd /s /q <フォルダ>
+
+rem フォルダの削除もできるらしい
+rem D:\〇〇〇 パス
+forfiles /P D:\〇〇〇 /d -365 /C "cmd /c IF @isdir==TRUE rmdir /S /Q @file"
+```
