@@ -7,7 +7,7 @@
 
 ## 使い方周り
 
-1. SQL Serverの負荷が高い？
+1. SQL Serverの負荷が高い？ -> 悪いと言えば悪いが、そこまでっぽい
     1. クエリの実行で表領域が大きくなることでパフォーマンスの低下が見られている。
     2. クエリのパフォーマンスを見直すべきだが、主な要因でないかもしれない。
     3. やるべきことは以下
@@ -65,7 +65,7 @@
 ---
 ---
 
-## <a name=logrotate></a>
+## <a name=logrotate>ログのローテート方法(cmd)</a>
 
 [ローテートバッチ参照](https://beyondjapan.com/blog/2023/03/winlogrotate/)
 
@@ -93,7 +93,7 @@ forfiles /P D:\〇〇〇 /d -365 /C "cmd /c IF @isdir==TRUE rmdir /S /Q @file"
 ---
 ---
 
-## <a name=system>systemプロセスの動作が重い場合のたいしょ</a>
+## <a name=system>systemプロセスの動作が重い場合の対処</a>
 
 まず、systemプロセスが重い場合、以下の原因が考えられる。
 
