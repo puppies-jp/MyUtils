@@ -122,14 +122,20 @@ forfiles /P D:\〇〇〇 /d -365 /C "cmd /c IF @isdir==TRUE rmdir /S /Q @file"
 - infファイル ドライバのインストールに使うファイル
 - sysファイル ドライバの本体
 
-```shell
-driverquery /v /fo csv > driverlist.csv
+```bat
+rem /fo [table,csv,list]
+rem 🌟 /v でsysファイルなどの詳細が確認できる
+driverquery /v /fo [任意] > driverlist.txt
 
-# ドライバのアンインストール
+rem 🌟 /SI でinfファイルなどの詳細が確認できる
+driverquery /SI /fo [任意] > driverlist.txt
+
+
+rem ドライバのアンインストール
 pnputil /delete-driver ドライバーのINFファイル名
 pnputil /add-driver ドライバーのINFファイル名
 
-# infファイル名は以下で確認できる、、
+rem infファイル名は以下で確認できる、、
 pnputil /enum-drivers
 ```
 
@@ -152,5 +158,6 @@ pnputil /enum-drivers
         - CPU使用時間のキャプチャが記録される
     3. 十分記録したら **`save`** をクリック
         - **`analyze the generated ETL file`** とか言うのが生成されるらしい。
+        (ファイルが作られるから、確認は別PCでもできる？)
         - **`Windows Performance Analyzer`** で確認できるとか、、
     4. 負荷の高いやつの判定はめんどそうなので、後日書く
