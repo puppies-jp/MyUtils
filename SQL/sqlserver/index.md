@@ -55,7 +55,8 @@ GO
 sp_detach_db [ @dbname= ] 'database_name'
     -- UPDATE STATISTIC をスキップするか実行するか
     [ , [ @skipchecks= ] 'skipchecks' ]
-    -- デタッチされているデータベースに関連付けられているフルテキスト インデックス ファイルが、データベースデタッチ操作中に削除されないことを指定
+    -- デタッチされているデータベースに関連付けられている
+    -- フルテキスト インデックス ファイルが、データベースデタッチ操作中に削除されないことを指定
     [ , [ @keepfulltextindexfile = ] 'KeepFulltextIndexFile' ]
 GO
 ```
