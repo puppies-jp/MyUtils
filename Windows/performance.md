@@ -88,6 +88,18 @@ rd /s /q <フォルダ>
 rem フォルダの削除もできるらしい
 rem D:\〇〇〇 パス
 forfiles /P D:\〇〇〇 /d -365 /C "cmd /c IF @isdir==TRUE rmdir /S /Q @file"
+
+rem 圧縮はこんな感じ(圧縮対象は複数指定可)
+rem -sdel オプションで圧縮後のdeleteができる
+7z.exe a 圧縮結果.zip 圧縮対象
+
+rem 文字列操作
+set V=ABCDEFGHI
+echo %V:~2,3%   #(0から数えて2番目の文字から3文字取得)
+>> "CDE" が出力される
+echo %V:~-2,3%  #(末尾から数えて2番目の文字から3文字取得)
+>> "HI" が出力される
+
 ```
 
 ---
