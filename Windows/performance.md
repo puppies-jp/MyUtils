@@ -91,6 +91,8 @@ forfiles /P D:\〇〇〇 /d -365 /C "cmd /c IF @isdir==TRUE rmdir /S /Q @file"
 
 rem 圧縮はこんな感じ(圧縮対象は複数指定可)
 rem -sdel オプションで圧縮後のdeleteができる
+rem -mx=0 は無圧縮オプション(mx=0~9で高いほど高圧縮になる)(なしでデフォルトの圧縮がされる)
+rem -mmt=on マルチスレッドオプション
 7z.exe a 圧縮結果.zip 圧縮対象
 ```
 
