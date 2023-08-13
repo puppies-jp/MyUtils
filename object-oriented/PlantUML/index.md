@@ -1,7 +1,6 @@
 # PlantUML
 
-- [Sample class](sample/sample_class.pu)
-- [Sample sequence](sample/sample_sequence.pu)
+- [Sample class/sequence](sample)
 
 ## クラスの定義方法
 

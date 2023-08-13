@@ -30,6 +30,7 @@ ossとか環境依存系とか
 - [並行プログラミング戦略](src/pararel/pararel)  
   - [並列ソート処理](src/pthread_sort/sort)
 - [lambda式について](lambda)
+- [ヒアドキュメント](#here)
 
 ---
 
@@ -52,17 +53,44 @@ ossとか環境依存系とか
 
 ---
 
+## <a name=here>ヒアドキュメントの書き方</a>
+
+```cpp
+// 一番見やすいと言えば見やすい
+const char *here1 = "1"
+                  "  2\n"
+                  "    3";
+puts(here1); // "1  2\n    3"
+
+/* \して改行しても文字列としては連結されるので、printf時は以下となる。
+ hogefuga
+  3
+*/
+char *here2 = "hoge\
+fuga\n
+ 3"
+
+// ただし、raw文字列なので、
+// \などのエスケープがされず、そのままの文字列となる。
+char *here3 =
+    R"(hoge
+fuga
+hage
+)";
+
+```
+
 ## <a name=ldd>バイナリの使用するライブラリを確認する(ldd)</a>
 
 ```bash
 (base)root@ubuntu:~# which ls
 /usr/bin/ls
 (base)root@ubuntu:~# ldd /usr/bin/ls
-	linux-vdso.so.1 (0x00007ffd5ff48000)
-	libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007fd86cd1b000)
-	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd86caf3000)
-	libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007fd86ca5c000)
-	/lib64/ld-linux-x86-64.so.2 (0x00007fd86cd73000)
+ linux-vdso.so.1 (0x00007ffd5ff48000)
+ libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x00007fd86cd1b000)
+ libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fd86caf3000)
+ libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007fd86ca5c000)
+ /lib64/ld-linux-x86-64.so.2 (0x00007fd86cd73000)
 
 ```
 
