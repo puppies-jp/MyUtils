@@ -38,6 +38,9 @@ rem 🌟 コマンドの接続に&&でなく^を使ってエスケープして�
 set cmd2=echo @path ^&^& move @path ./driverInfo/
 forfiles /P "%dirPath%" /M %ptn% /D -0 /C "%cmd1% %cmd2%"
 
+rem 🌟 7zipで圧縮する場合はこんな感じで書ける
+set cmd3=7zip a log.zip @path -mx=0 -sdel 
+forfiles /P "%dirPath%" /M %ptn% /D -0 /C "%cmd1% %cmd3%"
 
 ```
 
