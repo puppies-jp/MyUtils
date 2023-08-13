@@ -34,7 +34,7 @@ set dirPath=C:\Users\Administrator\Desktop
 set ptn=*.log
 set cmd1=cmd /c IF @isdir==FALSE 
 
-rem 🌟 コマンドの接続に&&でなくが、文字列なので^(キャレット)を使ってエスケープしている
+rem 🌟 コマンドの接続に&&つなぐ、ただし文字列なので^(キャレット)を使ってエスケープしている
 set cmd2=echo @path ^&^& move @path ./driverInfo/
 forfiles /P "%dirPath%" /M %ptn% /D -0 /C "%cmd1% %cmd2%"
 
