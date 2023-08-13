@@ -10,6 +10,8 @@
 ## 考え方系
 
 - [オブジェクト指向について](object-oriented)
+  - [PlantUML](object-oriented/PlantUML)
+
 - [BinaryHack](BinaryHack)
 - [keyword 備忘録](keywords)
 
@@ -47,7 +49,6 @@
 - [Docker](Docker)
 - [AWS](AWS)
 
-- [PlantUML](PlantUML)
 - [sandpox code pen](sandbox)
 
 ---
