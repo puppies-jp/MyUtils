@@ -1,9 +1,5 @@
 @startuml
 
-/'
-plantUml Sample
-'/
-
 class Hello {
     ' +publicField
     +hello: string 
@@ -26,18 +22,26 @@ Class07 .. Class08
 Class09 -- Class10
 @enduml
 
+' ----------------------------
+' ダイアログの区切りは@startuml ~ @endumlの区切りでできる
+' ----------------------------
 
 @startuml
 class Object << general >>
 Object <|--- ArrayList
 
+' 指定したクラスに付属したノート
 note top of Object : In java, every class\nextends this one.
 
+' floating Note
 note "This is a floating note" as N1
+
+' クラスと接続したノート
 note "This note is connected\nto several objects." as N2
 Object .. N2
 N2 .. ArrayList
 
+' noteは直前のクラスなら指定しなくてもくっつくらしい、、
 class Foo
 note left: On last defined class
 
