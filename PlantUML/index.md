@@ -6,43 +6,24 @@
 ## クラスの定義方法
 
 ```plantuml
-@startuml
+@startuml sample1
 
-class Hello {
-    ' +publicField
-    +hello: string 
-    +countor:int
-    ' -privateField
-    -こんにちわ: string 
-    ' #Protected
-    #goodNight: string
-    ' ~Package
-    ~Package:string
-}
-
-interface World {}
-
-Hello <|-- World
-Class01 <|-- Class02
-Class03 *-- Class04
-Class05 o-- Class06
-Class07 .. Class08
-Class09 -- Class10
-@enduml
-```
-
-```pu
 ' クラス定義
 class Hello {
-    ' +publicField
+    ' +public
     +hello: string 
     +countor:int
-    ' -privateField
+    ' -private
     -こんにちわ: string 
     ' #Protected
     #goodNight: string
     ' ~Package
     ~Package:string
+    ' 関数定義
+    +void method1(string arg1)
+    -int method2(int arg1)
+    #string method3(string arg1)
+    ~int* method4(int* arg1)
 }
 
 'インターフェース定義
@@ -68,4 +49,6 @@ Class05 o-- Class06
 Class07 .. Class08
 '関連(線) クラスが複数あり、それらに何かしらの関係があるとき
 Class09 -- Class10
+
+@enduml
 ```
