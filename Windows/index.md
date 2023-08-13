@@ -3,6 +3,7 @@
 不服だが、仕事上使うのでメモを書いていく
 
 - [cmd,PowerShellの違い](#shell)
+  - [CMDについて](cmd)
   - [PowerShellについて](PowerShell)
   - [PSによるIP設定まわり](PowerShell/ip_setting)
 
