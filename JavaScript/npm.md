@@ -2,7 +2,7 @@
 
 npmについてまとめる
 
-[npm initとは](#init)
+[npm initとは](#init)  
 [ローカルインストール](#localinstall)
 
 ```sh
