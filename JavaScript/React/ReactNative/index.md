@@ -8,6 +8,8 @@ ReactNativeを使ってみる
 画面遷移を使いたたい場合、以下のようにして`react-navigation`を使う。
 React(Nativeじゃない)でも`navigation`で遷移が作られる
 
+- [staticな変数を定義する](#state)
+
 ```bash
 npm install @react-navigation/native @react-navigation/native-stack
 npm install react-native-screens react-native-safe-area-context
@@ -75,4 +77,26 @@ class temp extends Component {
 
 // NavigationContainerのrenderメソッドを持つクラスを渡すことで表示できる。
 AppRegistry.registerComponent(appName, () => temp);
+```
+
+## <a name=state>stateについて</a>
+
+> While you can think of props as arguments you use to configure how components render, state is like a component’s personal data storage. State is useful for handling data that changes over time or that comes from user interaction. State gives your components memory!
+
+つまり、staticな変数のことみたい。
+以下のように定義して使う。
+(🚨なんか関数の中でしか定義できなかった。。。)
+
+```js
+function hoge(){
+    //  [getter,setter] の関係となる。
+    const [count, setCount] = useState(20);
+    ...
+    return(
+        <Text>Home Screen Counter : {count}</Text>    
+        <Button title="Count up Button!"
+                onPress={() => setCount(count + 1)}
+        />
+    )
+}
 ```
