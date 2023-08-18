@@ -8,6 +8,8 @@
   - [Electron](Electron/electron)  
   - [React](React)  
     - [ReactNative](React/ReactNative)  
+  - [Vue](Vue)  
+    - [VueNative](Vue/VueNative) **非推奨となった**
   - [カメラ/マイクアクセス](DeviceAccess)
   - [FireFox拡張機能](Foxextentions)
 
@@ -180,6 +182,14 @@ const f = function(name){
 (num) => {
   return num * 2
 }
+
+// asyncなlambdaもできるみたい、
+const temp = async () => {
+  const cameraPermission = await Camera.getCameraPermissionStatus()
+  const microphonePermission = await Camera.getMicrophonePermissionStatus()
+}
+temp();
+
 ```
 
 ---
