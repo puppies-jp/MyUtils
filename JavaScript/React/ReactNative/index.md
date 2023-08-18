@@ -10,6 +10,13 @@ React(Nativeじゃない)でも`navigation`で遷移が作られる
 
 - [staticな変数を定義する](#state)
 
+- 位置情報を取得する `react-native-community/geolocation`
+- Cameraを使う`react-native-vision-camera`
+
+> 🚨 useState使い方によってレンダリングが遅い場合があるらしい。`React Developer Tools(Chrome拡張機能)`を使うことでレンダリングの状況を確認できる。
+> 変数が新しくなったり、関数が新しくなったりすることで、無関係の部分までレンダリングされるためらしい、、
+> `React.memo`,`useCallback`を使うことで緩和できたりする
+
 ```bash
 npm install @react-navigation/native @react-navigation/native-stack
 npm install react-native-screens react-native-safe-area-context
