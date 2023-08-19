@@ -277,7 +277,7 @@ import {
 +          {NativeSampleModule.reverseString(
 +            'the quick brown fox jumps over the lazy dog'
 +          )}
-+         </Section>;
++         </Section>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
