@@ -45,6 +45,9 @@ npm install -S パッケージ名
 npm install --save-dev パッケージ名
 npm install -D パッケージ名
 
+# アンインストール(これで、package.jsonからも消える)
+npm uninstall -D パッケージ名
+
 # カレントディレクトリにインストールされているモジュールの一覧を出力
 npm list
 # グローバルインストールされているモジュール一覧を出力

@@ -5,10 +5,8 @@ ReactNativeを使ってみる
 んで、コンポーネントの登録で画面を表示する。
 なので、コンポーネントを継承したクラスをjsの別ファイルで作成し、index.jsなどの適切なタイミングで呼べば画面を変えれる
 
-画面遷移を使いたたい場合、以下のようにして`react-navigation`を使う。
-React(Nativeじゃない)でも`navigation`で遷移が作られる
-
-- [staticな変数を定義する](#state)
+- [staticな変数を定義する(useState/useRef)](#state)  
+- [画面遷移を実装する](#navigator)  
 
 - 位置情報を取得する `react-native-community/geolocation`
 - Cameraを使う`react-native-vision-camera`
@@ -16,6 +14,14 @@ React(Nativeじゃない)でも`navigation`で遷移が作られる
 > 🚨 useState使い方によってレンダリングが遅い場合があるらしい。`React Developer Tools(Chrome拡張機能)`を使うことでレンダリングの状況を確認できる。
 > 変数が新しくなったり、関数が新しくなったりすることで、無関係の部分までレンダリングされるためらしい、、
 > `React.memo`,`useCallback`を使うことで緩和できたりする
+
+---
+---
+
+## <a name=navigator>画面遷移を実装する</a>
+
+画面遷移を使いたい場合、以下のようにして`react-navigation`を使う。
+React(Nativeじゃない)でも`navigation`で遷移が作られる
 
 ```bash
 npm install @react-navigation/native @react-navigation/native-stack
@@ -86,13 +92,17 @@ class temp extends Component {
 AppRegistry.registerComponent(appName, () => temp);
 ```
 
-## <a name=state>stateについて</a>
+---
+---
+
+## <a name=state>staticな変数を定義する(useState/useRef)</a>
 
 > While you can think of props as arguments you use to configure how components render, state is like a component’s personal data storage. State is useful for handling data that changes over time or that comes from user interaction. State gives your components memory!
 
 つまり、staticな変数のことみたい。
 以下のように定義して使う。
-(🚨なんか関数の中でしか定義できなかった。。。)
+(🚨この変数を使うと画面の更新も動くみたい。
+`useRef`を使うことでレンダリングの発生しない関数となる。)
 
 ```js
 function hoge(){
@@ -106,4 +116,22 @@ function hoge(){
         />
     )
 }
+
+//🌟 ここで定義しておくことで、外の関数でも使える。
+position = {}
+
+function GetLocation() {
+    position = useRef({});
+    Geolocation.getCurrentPosition(info => {
+        delete info.coords.heading;
+        delete info.coords.altitudeAccuracy;
+        delete info.coords.accuracy;
+
+        // 🌟値の参照/更新できるのはcurrentになる。
+        position.current = info;
+        console.log("Call GetCurrent:" + JSON.stringify(position.current));
+    });
+    return (<Text> position : {JSON.stringify(position.current)}</Text>);
+}
+
 ```
