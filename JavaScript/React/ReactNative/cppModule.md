@@ -252,3 +252,35 @@ CxxTurboModulesGuide
     ├── NativeSampleModule.ts|js
     └── TurboModules.podspec
 ```
+
+App.tsx|jsx更新して `npm start`
+
+```ts
+//...
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+// importして
++ import NativeSampleModule from './tm/NativeSampleModule';
+//...
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
++         <Section title="Cxx TurboModule">
++          NativeSampleModule.reverseString(...) ={' '}
+            // 実行してるだけ
++          {NativeSampleModule.reverseString(
++            'the quick brown fox jumps over the lazy dog'
++          )}
++         </Section>;
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+//...
+```
