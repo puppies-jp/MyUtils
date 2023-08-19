@@ -76,6 +76,7 @@ git reset --soft HEAD^
   例：`git reset --hard HEAD^` →直前のコミットまですべて消す
 
 ---
+---
 
 ## VScodeメモ
 
@@ -88,3 +89,18 @@ git reset --soft HEAD^
 - windows
 
 > Shift + Alt + F
+
+---
+---
+
+## Linuxプロセス サスペンド/復旧メモ
+
+サスペンド
+> cmd + z
+
+停止中のジョブ確認
+> job
+
+復旧(なんか番号を指定するっぽい)
+> fg
+> fg %1

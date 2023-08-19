@@ -22,7 +22,8 @@ ReactNativeを使ってみる
 
 ## <a name=init>React-Nativeプロジェクトを作成する(init)</a>
 
-とりあえず、以下でOK
+とりあえずiOSは以下でOK
+Androidは後日書く
 
 ```bash
 npx react-native@latest init <プロジェクト名>
