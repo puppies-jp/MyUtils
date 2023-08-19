@@ -49,6 +49,22 @@ To create a C++ Turbo Native Module, you need to:
 ### <a name=1>1. Define the JavaScript specification.</a>
 
 Create the following spec inside the tm folder:
+Typescriptの方がわかりやすいからJavascriptで作らない方がいいかも
+
+```ts
+// NativeSampleModule.ts
+import type {TurboModule} from 'react-native/Libraries/TurboModule/RCTExport';
+// import type {TurboModule} from 'react-native'; in future versions
+import {TurboModuleRegistry} from 'react-native';
+
+export interface Spec extends TurboModule {
+  readonly reverseString: (input: string) => string;
+}
+
+export default TurboModuleRegistry.getEnforcing<Spec>(
+  'NativeSampleModule',
+);
+```
 
 ```js
 // NativeSampleModule.js
@@ -253,7 +269,7 @@ CxxTurboModulesGuide
     └── TurboModules.podspec
 ```
 
-App.tsx|jsx更新して `npm start`
+App.tsx,jsxを更新して`npm start`
 
 ```ts
 //...
