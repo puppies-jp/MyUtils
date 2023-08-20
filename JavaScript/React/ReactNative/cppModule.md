@@ -6,6 +6,11 @@
 上記より、React-Nativeは一応C++で作成したモジュールを組み込むことができるらしい。。(まだ、実験的なモジュールで`0.68.0`からの機能らしい)
 > 対象OS: Android,iOS,macOS,Windows
 
+```bash
+# iOSでよく使うので覚えておくこと
+RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
+```
+
 ## まずはC++モジュールを追加用のお試しプロジェクトを作成
 
 ```bash
@@ -13,7 +18,8 @@ npx react-native@latest init <プロジェクト名>
 
 # from `ios` directory
 cd ./<プロジェクト名>/ios
-bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
+bundle install ;
+RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
 
 # Create a tm folder inside the project. 
 # It will contain all C++ TurboModules of your application
@@ -52,7 +58,7 @@ Create the following spec inside the tm folder:
 Typescriptの方がわかりやすいからJavascriptで作らない方がいいかも
 
 ```ts
-// NativeSampleModule.ts
+// @tm folder NativeSampleModule.ts
 import type {TurboModule} from 'react-native/Libraries/TurboModule/RCTExport';
 // import type {TurboModule} from 'react-native'; in future versions
 import {TurboModuleRegistry} from 'react-native';
@@ -67,7 +73,7 @@ export default TurboModuleRegistry.getEnforcing<Spec>(
 ```
 
 ```js
-// NativeSampleModule.js
+// @tm　folder NativeSampleModule.js
 // @flow
 import type {TurboModule} from 'react-native/Libraries/TurboModule/RCTExport';
 // import type {TurboModule} from 'react-native'; in future versions
@@ -82,6 +88,8 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 ): Spec);
 ```
 
+---
+
 ### <a name=2>2. Configure Codegen to generate the scaffolding.</a>
 
 1. `package.json`更新
@@ -89,11 +97,12 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
     ```json
     {
     // ...
-    "description": "React Native with Cxx Turbo Native Modules",
-    "author": "<Your Name> <your_email@your_provider.com> (https://github.com/<your_github_handle>)",
-    "license": "MIT",
-    "homepage": "https://github.com/<your_github_handle>/#readme",
+    // "description": "React Native with Cxx Turbo Native Modules",
+    // "author": "<Your Name> <your_email@your_provider.com> (https://github.com/<your_github_handle>)",
+    // "license": "MIT",
+    // "homepage": "https://github.com/<your_github_handle>/#readme",
     // ...
+    // specファイルの読み込み先が分かればいいので、tm フォルダのパスを通せばOK
     "codegenConfig": {
         "name": "AppSpecs",
         "type": "all",
@@ -112,24 +121,25 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
     ```podspec
     require "json"
 
-    package = JSON.parse(File.read(File.join(__dir__, "../package.json")))
+    # 無理して package.jsonから読まんでもいい
+    # package = JSON.parse(File.read(File.join(__dir__, "../../../../package.json")))
 
     Pod::Spec.new do |s|
-    s.name            = "AppTurboModules"
-    s.version         = package["version"]
-    s.summary         = package["description"]
-    s.description     = package["description"]
-    s.homepage        = package["homepage"]
-    s.license         = package["license"]
-    s.platforms       = { :ios => "12.4" }
-    s.author          = package["author"]
-    s.source          = { :git => package["repository"], :tag => "#{s.version}" }
-    s.source_files    = "**/*.{h,cpp}"
-    s.pod_target_xcconfig = {
+      s.name            = "AppTurboModules"
+      s.version         = "0.0.1"
+      #s.summary         = package["description"]
+      #s.description     = package["description"]
+      #s.homepage        = package["homepage"]
+      #s.license         = package["license"]
+      s.platforms       = { :ios => "12.4" }
+      s.author          = "Anonymous"
+      #s.source          = { :git => package["repository"], :tag => "#{s.version}" }
+      s.source_files    = "**/*.{h,cpp}"
+      s.pod_target_xcconfig = {
         "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
-    }
-    install_modules_dependencies(s)
-    end
+      }
+      install_modules_dependencies(s)
+    end    
     ```
 
     2.2 ios/Podfileに依存関係を追記
@@ -143,6 +153,8 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 
 3. Androidの場合
     後日書く
+
+---
 
 ### <a name=3>3. Register the native module.</a>
 
@@ -189,6 +201,8 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 2. Androidの場合
 
 後日書く
+
+---
 
 ### <a name=4>4. Write the native code to finish implementing the module.</a>
 
