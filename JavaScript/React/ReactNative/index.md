@@ -1,6 +1,10 @@
 # ReactNative
 
 ReactNativeを使ってみる
+ReactNativeはAndroid,iOSに対応しているが、
+`React Native for Windows + macOS`というパッケージもあってWindows,macOSのアプリも作れるらしい。
+(あくまでmacOS環境で作れるのは`macOSアプリ`、Windows環境で作れるのは`Windowsアプリ`らしい。で、`macOS`の開発環境はReactNativeで`iOS`アプリを作るのと依存関係は変わらないらしい。windowsはちょっといろいろあるっぽい)
+
 触った感じの所感、`index.js`でキックされるみたい。
 んで、コンポーネントの登録で画面を表示する。
 なので、コンポーネントを継承したクラスをjsの別ファイルで作成し、index.jsなどの適切なタイミングで呼べば画面を変えれる
