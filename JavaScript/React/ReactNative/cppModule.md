@@ -286,7 +286,7 @@ CxxTurboModulesGuide
 
 App.tsx,jsxを更新して`npm start`
 
-```ts
+```tsx
 //...
 import {
   Colors,
