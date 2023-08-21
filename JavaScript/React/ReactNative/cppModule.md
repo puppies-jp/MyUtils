@@ -197,6 +197,16 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 
     ```bash
     RCT_NEW_ARCH_ENABLED=1 bundle exec pod install
+
+    # AppSpecsJSI.h,AppSpecsJSI-generated.cpp が作成される。
+    user@macbook CxxTurboModulesGuide % tree ./ios/build/generated/ios/App*
+    ./ios/build/generated/ios/AppSpecs
+    ├── AppSpecs-generated.mm
+    └── AppSpecs.h
+    ./ios/build/generated/ios/AppSpecsJSI-generated.cpp
+    ./ios/build/generated/ios/AppSpecsJSI.h
+
+    1 directory, 4 files
     ```
 
 2. Androidの場合
