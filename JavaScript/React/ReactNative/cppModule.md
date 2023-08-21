@@ -147,7 +147,8 @@ export default (TurboModuleRegistry.getEnforcing<Spec>(
 
     ```Podfile
     if ENV['RCT_NEW_ARCH_ENABLED'] == '1'
-        pod 'AppTurboModules', :path => "./../tm"
+      # ここもパスが通っていればOK
+      pod 'AppTurboModules', :path => "./../tm"
     end
     ```
 
