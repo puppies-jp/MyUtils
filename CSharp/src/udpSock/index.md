@@ -1,6 +1,7 @@
 # C# UDP通信
 
-<details><summary>サンプルコード</summary><div>
+<details>
+<summary>サンプルコード</summary><div>
 
 ```cs
 using System;
@@ -31,7 +32,6 @@ public class UdpClass
             new System.Net.IPEndPoint(localAddress, localPort);
         System.Net.Sockets.UdpClient udp =
             new System.Net.Sockets.UdpClient(localEP);
-
 
         for (; ; )
         {
