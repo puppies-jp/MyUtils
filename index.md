@@ -104,3 +104,14 @@ git reset --soft HEAD^
 復旧(なんか番号を指定するっぽい)
 > fg  
 > fg %1
+
+## markdown/html サマリー書き方
+
+```markdown
+<details><summary>サンプルコード</summary><div>
+
+```cpp
+```
+
+</div></details>
+```
