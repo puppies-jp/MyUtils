@@ -110,8 +110,8 @@ git reset --soft HEAD^
 ```markdown
 <details><summary>サンプルコード</summary><div>
 
-```cpp
-```
+\```cpp
+\```
 
 </div></details>
 ```

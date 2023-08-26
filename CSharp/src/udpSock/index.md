@@ -1,7 +1,7 @@
 # C# UDP通信
 
 <details>
-<summary>サンプルコード</summary><div>
+<summary>サンプルコード</summary>
 
 ```cs
 using System;
@@ -85,7 +85,14 @@ public class UdpClass
 }
 ```
 
-</div></details>
+</details>
+
+## 使用するモジュール
+
+```cs
+using System;
+using System.Threading.Tasks;
+```
 
 ## 受信側
 
