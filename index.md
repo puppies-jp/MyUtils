@@ -102,5 +102,5 @@ git reset --soft HEAD^
 > job
 
 復旧(なんか番号を指定するっぽい)
-> fg
+> fg  
 > fg %1
