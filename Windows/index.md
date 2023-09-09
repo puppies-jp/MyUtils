@@ -8,6 +8,7 @@
   - [PSによるIP設定まわり](PowerShell/ip_setting)
   - [net コマンド(network設定まわり)](net)
 
+- [Active Directry](ActiveDirectry)
 - [マクロ](VBA)  
 - [Debugについて](Debug)
   - [Edge-IEモードでのデバッグ](#edgeIE)
@@ -17,7 +18,8 @@
 
 - [パフォーマンスについて](performance)
 - [イベントログ](#EventLog)  
-- [ネットワーク(netsh)](#network)  
+- [ネットワーク(netsh)](#network)
+  - [ダンプしてバックアップする]
 - [SQLServerについて](SQLServer)
 - [リソース集計バッチ](#resource)
 - ファイルを開いているプロセス特定方法について
@@ -207,6 +209,16 @@ netsh interface show interface
 # 🌟IP確認方法
 netsh interface ip show address "ローカル エリア接続"
 netsh interface ip show dns "ローカル エリア接続"
+```
+
+- 設定の保存/復旧
+
+```powershell
+# 🌟これで設定をダンプしてファイルに吐き出せる
+netsh -c "interface ip" dump > xxxxxx.nsh
+
+# 🌟リストアするときはこれ
+netsh -f xxxxxx.nsh
 ```
 
 - ネットワーク確認プロンプト
