@@ -11,7 +11,36 @@
 
 2. pipeできないらしい、、
 3. 実行後コマンドを繋げる
-    > &&
+
+    ```bat
+    :: &&　コマンド1の終了ステータスが0　でコマンド2が　実行される
+    コマンド1 && コマンド2
+
+    :: || コマンド1の終了ステータスが0以外でコマンド2が　実行される
+    コマンド1 || コマンド2 
+
+    コメントは以下でできる。(※remはbat実行時に見えるが、:: は出てこない)
+    rem hogehoge
+    :: hogefuga
+    ```
+
+4. 関数を定義する
+
+    ```bat
+    rem call :label1 で関数を呼べる。
+    call :label1 arg1,arg2
+    exit /b
+
+    rem label1の関数定義はここ 
+    rem exit /bを忘れるとさらに次の処理が実行される。(asmのgotoみたいな感じ？)
+    :label1
+    setlocal
+        :: %1,2で引数を使用している
+        set arg1=%1
+        set arg2=%2 
+    endlocal
+    exit /b
+    ```
 
 <a name=here>ヒアドキュメント書き方</a>
 
@@ -34,11 +63,11 @@ set dirPath=C:\Users\Administrator\Desktop
 set ptn=*.log
 set cmd1=cmd /c IF @isdir==FALSE 
 
-rem 🌟 コマンドの接続に&&つなぐ、ただし文字列なので^(キャレット)を使ってエスケープしている
+:: 🌟 コマンドの接続に&&つなぐ、ただし文字列なので^(キャレット)を使ってエスケープしている
 set cmd2=echo @path ^&^& move @path ./driverInfo/
 forfiles /P "%dirPath%" /M %ptn% /D -0 /C "%cmd1% %cmd2%"
 
-rem 🌟 7zipで圧縮する場合はこんな感じで書ける
+:: 🌟 7zipで圧縮する場合はこんな感じで書ける
 set cmd3=7zip a log.zip @path -mx=0 -sdel 
 forfiles /P "%dirPath%" /M %ptn% /D -0 /C "%cmd1% %cmd3%"
 
