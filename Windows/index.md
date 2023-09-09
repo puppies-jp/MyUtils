@@ -6,6 +6,7 @@
   - [CMDについて](cmd)
   - [PowerShellについて](PowerShell)
   - [PSによるIP設定まわり](PowerShell/ip_setting)
+  - [net コマンド(network設定まわり)](net)
 
 - [マクロ](VBA)  
 - [Debugについて](Debug)
