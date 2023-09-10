@@ -34,6 +34,24 @@ alter session set comtainer = <ORCLPDB>;
 ---
 ---
 
+## ユーザに与えられた権限を確認する
+
+```sql
+
+-- USER_SYS_PRIVSではデータベースに接続しているユーザー自身に直接付与された権限
+SELECT * FROM user_sys_privs;
+-- SESSION_PRIVSではセッションで使用可能な権限（ロール経由で付与されたものを含む）を確認できます。
+SELECT * FROM session_privs;
+
+-- すべてのユーザーの情報を確認するにはDBA_SYS_PRIVSに問い合わせますが、
+-- このビューにアクセスするにはSELECT ANY TABLE権限が必要です。
+-- この権限は、デフォルトでDBAロールに割り当てられます。
+SELECT * FROM dba_sys_privs;
+```
+
+---
+---
+
 ## PDB作成
 
 この辺のDB操作はsysユーザで行うこと

@@ -26,7 +26,7 @@
   - [handle.exe](https://jpwinsup.github.io/blog/2023/05/25/Storage/Management/handle/)
 
 👇いいこと書いてるので、おすすめ時間ある時に読む  
-[日本マイクロソフト TechnologySupportBlog](https://jpwinsup.github.io/blog/)
+[日本マイクロソフト TechnologySupportBlog](https://jpwinsup.github.io/blog/)  
 [gitアカウント](https://github.com/jpwinsup)
 
 ---

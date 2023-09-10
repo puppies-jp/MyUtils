@@ -60,3 +60,19 @@ sp_detach_db [ @dbname= ] 'database_name'
     [ , [ @keepfulltextindexfile = ] 'KeepFulltextIndexFile' ]
 GO
 ```
+
+---
+---
+
+## 権限を確認する
+
+```sql
+--指定したユーザー（ロール）の権限一覧を表示する
+SELECT
+USER_NAME(grantee_principal_id) AS ユーザー
+,OBJECT_NAME(major_id) AS オブジェクト
+,permission_name as 権限名
+,state_desc as 権限の状態
+FROM sys.database_permissions
+WHERE grantee_principal_id = USER_ID('ユーザーの名前かロールの名前')
+```
