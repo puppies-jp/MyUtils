@@ -8,6 +8,7 @@ build周り
 言語仕様系
 
 - [C++について(基本的なやつ)+小ネタ](cpp)
+- [valarray(便利そうだからそのうち書く)]
 - [プリプロセッサ使い方 cheat メモ](preprocessor)
 - [コンストラクト/デストラクト](construct)
 - [C++の安全なリソース解放について](SafeResource)
