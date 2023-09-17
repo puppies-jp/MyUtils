@@ -2,6 +2,9 @@
 
 [mapの使い方](#map)
 
+---
+---
+
 ## <a name=map>Map</a>
 
 久々にC++を使ったらマップの使い方を忘れていたので、簡単にまとめておく、、
@@ -84,6 +87,8 @@ dic.erase(1); // (1,2)は消える
 for (auto const& [k, v] : dic)
     printf("(%d,%d)\n", k, v); 
 ```
+
+---
 
 ### <a name=additional>小ネタ</a>
 
