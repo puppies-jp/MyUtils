@@ -9,12 +9,12 @@
 
 久々にC++を使ったらマップの使い方を忘れていたので、簡単にまとめておく、、
 
-[基本的な使い方](#map_basic)
-[挿入削除](#insert_delete)
-[小ネタ](#additional)
+[基本的な使い方](#map_basic)  
+[挿入削除](#insert_delete)  
+[小ネタ](#additional)  
 
-[map cpprefjp](https://cpprefjp.github.io/reference/map/map.html)
-[参考：std::mapまとめ](https://qiita.com/_EnumHack/items/f462042ec99a31881a81)
+[map cpprefjp](https://cpprefjp.github.io/reference/map/map.html)  
+[参考：std::mapまとめ](https://qiita.com/_EnumHack/items/f462042ec99a31881a81)  
 
 ### <a name=map_basic>基本的な使い方</a>
 
@@ -68,6 +68,7 @@ for (const auto& [key, value] : dictionary){
 ### <a name=insert_delete> mapの挿入/削除</a>
 
 ```cpp
+// 🌟　insertにはstd::make_pair(,) を作って入れる
 std::map<int,int> dic{};
 dic.insert(std::make_pair(1,3));
 
