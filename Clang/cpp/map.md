@@ -1,17 +1,10 @@
-# C++についての簡易めも
-
-[mapの使い方](#map)
-
----
----
-
-## <a name=map>Map</a>
+# C++(map)についての簡易めも
 
 久々にC++を使ったらマップの使い方を忘れていたので、簡単にまとめておく、、
 
 [基本的な使い方](#map_basic)  
 [挿入削除](#insert_delete)  
-[小ネタ](#additional)  
+[小ネタ](#additional_tips)  
 
 [map cpprefjp](https://cpprefjp.github.io/reference/map/map.html)  
 [参考：std::mapまとめ](https://qiita.com/_EnumHack/items/f462042ec99a31881a81)  
@@ -27,33 +20,37 @@ salary["John"] = 1400;
 salary["Tom"] = 1000;
 salary["Harry"] = 0;
 
-int a = salary["John"]; // 1400
-int b = salary["Tom"]; // 1000
-int c = salary["Harry"]; // 0
+int a = salary["John"];   // 1400
+int b = salary["Tom"];    // 1000
+int c = salary["Harry"];  // 0
 
 
 /// 🚨参照しただけで追加されるので注意がいる。
 std::map<int,int> m{};
 cout << m.size() << endl; // 何も要素を追加していないので当然 0
-cout << m[1] << endl; // 要素は存在しない, 自動で0が追加される
+cout << m[1] << endl;     // 要素は存在しない, 自動で0が追加される
 cout << m.size() << endl; // 自動で要素が追加されているので 1
 
 /// 🚨keyを指定して参照(atでkeyがない場合、例外が発生するので注意)
 std::map<int,int> m{};
 cout << m.size() << endl; // 何も要素を追加していないので当然 0
-cout << m.at(1) << endl; // 要素は存在しない, Abort! out_of_range
+cout << m.at(1) << endl;  // 要素は存在しない, Abort! out_of_range
 
 
 /// 🌟[]で自動的に値を挿入させず、例外も出さずにキーの指定をする場合
-/// 🌟ifの中身はcountでもいける。なければ0あれば1となるので。   dictionary.count("hoge")
 std::map<std::string, unsigned> dictionary{
     {"John", 1000},{"Tom", 1400},{"Harry", 800}
 };
 
+/// 🌟ifの中身はcountでもいける。なければ0あれば1となるので。 
+/// しかし、findとcountでは意味合いが違うので可読性を考えて使うこと
 // if ( dictionary.count("hoge") == 1 ) 
 if ( auto iter = dictionary.find("hoge"); iter != end(dictionary) ) 
-{std::cout << iter->second << std::endl;} 
-else {std::cout << "not exists" << std::endl;}
+{
+  std::cout << iter->second << std::endl;
+} else {
+  std::cout << "not exists" << std::endl;
+}
 
 /// 🌟マップのイテレーション(順番はless<Key>の順となる)
 for (const auto& [key, value] : dictionary){
@@ -91,7 +88,7 @@ for (auto const& [k, v] : dic)
 
 ---
 
-### <a name=additional>小ネタ</a>
+### <a name=additional_tips>小ネタ</a>
 
 #### 文字列比較のコストを下げる
 
@@ -156,7 +153,7 @@ struct MyInt {
   int value;
 };
 
-　　// C++20から <=>で比較演算子が定義できるようになったらしい。(どう比較してるかは知らん、、)
+ // C++20から <=>で比較演算子が定義できるようになったらしい。(どう比較してるかは知らん、、)
  //friend auto operator<=>(const MyInt&, const MyInt&) = default;
  bool operator<(const MyInt& a, const MyInt& b) noexcept {
   return a.value < b.value;
