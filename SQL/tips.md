@@ -2,13 +2,15 @@
 
 [数列の作成方法](#sequence)
 
-<a name=sequence>数列を作る方法</a>
+---
+
+## <a name=sequence>数列を作る方法</a>
 
 ```sql
 
 DECLARE @Count   INT = 100;
 
-;WITH NumberTable (SeqNo)
+WITH NumberTable (SeqNo)
 AS
 (
      SELECT 1
