@@ -106,11 +106,11 @@ ON A.object_id = B.object_id
 ```sql
 --再構築(作り直し 再構築がひとつのトランザクションでインデックスを完全に再作成する)
 ALTER INDEX index_name
-ON database_name.schema_name.table_or_view_name
+ON <Table名,スキーマ名,ビュー名>
 REBUILD
 
 --再構成( 再構成は処理単位ごと (処理単位はページ) にトランザクションが分割されていて、リーフページ間でインデックス行を移動させることで行を前に詰めて断片化を解消している)
 ALTER INDEX index_name
-ON database_name.schema_name.table_or_view_name
+ON <Table名,スキーマ名,ビュー名>
 REORGANIZE
 ```

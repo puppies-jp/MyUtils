@@ -6,8 +6,8 @@
 - [sqlite3](sqlite3)
 - [SQL Server](sqlserver)
 
-[インデックスについて](AboutIndex)
-[小ネタ](tips)
+- [インデックスについて](AboutIndex)
+- [小ネタ](tips)
 
 ```sql
 -- sqlite3 だけ？っぽい
