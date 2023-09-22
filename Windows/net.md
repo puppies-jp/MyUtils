@@ -4,9 +4,31 @@
 使うたびその都度書いていく。
 **※ 実行は管理者権限で実行してください**
 
+[MTUサイズを確認/変更する](#mtu)
 [net share で共有フォルダを設定する](#share)
 [net use で共有フォルダをドライブに割り当てる](#use)
 [他後日使用の都度追加予定の機能](#etc)
+
+## <a name=mtu>MTUサイズを確認/変更する</a>
+
+```bat
+# 現在のMTUサイズ、インターフェースID,インターフェース名などをチェックする
+netsh interface ipv4 show interface
+
+# idを指定してMTUサイズを変更する
+netsh interface ipv4 set interface <interfaceId> mtu=<mtu size>
+
+# MTU変更の疎通確認(MTUサイズ=1500の場合)
+:: 1473+28 = 1500 byte
+ping -f -l 1472 -n 1 <IP>
+
+:: 1473+28 = 1501 byte
+ping -f -l 1473 -n 1 <IP>
+
+|ping指定長       |
+|IP      (20byte)|
+|Ethernet( 8byte)|
+```
 
 ## <a name=share >net share で共有フォルダを設定する</a>
 
