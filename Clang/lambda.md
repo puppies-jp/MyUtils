@@ -49,6 +49,18 @@ int main() {
   auto f = [i](int j) {
     cout << "i = " << i << endl;
     cout << "j = " << j << endl;
+
+    // 🌟戻り値の型は推論で判定してもらう,,,
+    // returnがなきゃvoidになるっぽい
+    return i+j;
+  };
+
+  // 🌟 []() ->type{} で戻り値の型を指定する
+  auto f2 = [i](int j) -> int {
+    cout << "i = " << i << endl;
+    cout << "j = " << j << endl;
+
+    return i+j;
   };
 
   i = 1;
@@ -80,6 +92,8 @@ void foo(int(*fp)(int, int))
 
 int main()
 {
-  foo([](int a, int b) { return a + b; });
+  // lambda式を関数ポインタとして扱う
+  auto lmbd = [](int a, int b) { return a + b; }
+  foo(lmbd);
 }
 ```
