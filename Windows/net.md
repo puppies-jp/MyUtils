@@ -4,10 +4,86 @@
 使うたびその都度書いていく。
 **※ 実行は管理者権限で実行してください**
 
+[ネットワーク設定コマンド](#network)
 [MTUサイズを確認/変更する](#mtu)
 [net share で共有フォルダを設定する](#share)
 [net use で共有フォルダをドライブに割り当てる](#use)
 [他後日使用の都度追加予定の機能](#etc)
+
+## <a name=network>ネットワーク設定バッチ</a>
+
+- 外部向けIP設定
+
+```powershell
+# 🌟 ファイアウォール有効
+netsh advfirewall set allprofiles state on
+
+# 🌟固定IPアドレス/デフォルトゲートウェイ有り
+netsh interface ip set address "ローカル エリア接続" static 192.168.xxx.xxx 255.255.255.0 192.168.yyy.yyy
+# 🌟2番目のIPアドレスを設定する場合
+netsh interface ip add address name="ローカル エリア接続" addr=10.0.0.1 255.255.255.224
+# 🌟追加したIPを削除する
+netsh interface ip delete address name="ローカル エリア接続" addr=10.0.0.1 mask=255.255.255.224
+
+# 🌟DNS 指定有り
+netsh interface ip set dns "ローカル エリア接続" static 192.168.aaa.aaa primary validate=no
+netsh interface ip set dns "ローカル エリア接続" static 192.168.bbb.bbb validate=no
+
+# 🌟NIC名称変更
+netsh interface set interface name="旧名称" newname="新名称"
+
+# 🌟DHCPにする場合
+netsh interface ip set address "ローカル エリア接続" dhcp
+
+# 🌟VLANIDの設定方法
+netsh bridge set vlanid "接続名" "VLAN ID"
+```
+
+- 内部向けIP設定
+
+```powershell
+# 固定IPアドレス/デフォルトゲートウェイ無し
+netsh interface ip set address "ローカル エリア接続" static 192.168.xxx.xxx 255.255.255.0 none
+# 🌟DNS 無効
+netsh interface ip set dns "ローカル エリア接続" none
+# ファイアウォール無効
+netsh advfirewall set allprofiles state off
+```
+
+- 設定内容確認
+
+```powershell
+# 🌟NIC名確認方法
+netsh interface show interface
+# 🌟IP確認方法
+netsh interface ip show address "ローカル エリア接続"
+netsh interface ip show dns "ローカル エリア接続"
+```
+
+- 設定の保存/復旧
+
+```powershell
+# 🌟これで設定をダンプしてファイルに吐き出せる
+netsh -c "interface ip" dump > xxxxxx.nsh
+
+# 🌟リストアするときはこれ
+netsh -f xxxxxx.nsh
+```
+
+- ネットワーク確認プロンプト
+
+```powershell
+# 接続ポートを確認
+netstat -aon
+netstat /a  # すべて表示、待ち受けのポートも表示
+
+# MACアドレスキャッシュ一覧
+arp -a
+
+# ホスト名 ⇆ IPアドレス
+nslookup {hostname}
+nbtstat -A {IP address}
+```
 
 ## <a name=mtu>MTUサイズを確認/変更する</a>
 
