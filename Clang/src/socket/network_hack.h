@@ -27,7 +27,7 @@ void decode_ethernet(const unsigned char *packet)
     for (int i = 1; i < ETHER_ADDR_LEN; i++)
         printf(":%02X", hdr->ether_src_addr[i]);
 
-    printf("\t[宛先　]: %02X", hdr->ether_dest_addr[0]);
+    printf("\t[宛先 ]: %02X", hdr->ether_dest_addr[0]);
     for (int i = 1; i < ETHER_ADDR_LEN; i++)
         printf(":%02X", hdr->ether_dest_addr[i]);
     printf("\t [type: %hu]\n", hdr->ether_type);

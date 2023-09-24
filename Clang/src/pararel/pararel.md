@@ -16,7 +16,7 @@
 2. process間機能  
 [セマフォ](#semapho)  
 [共有メモリ](#share_mem)
-
+[プロセス間通信について](InterProc)
     - [参考](https://qiita.com/MoriokaReimen/items/5c4256ef620499a88bb3)
 
 3. 実行効率計測ツール周り
