@@ -31,7 +31,7 @@ ossとか環境依存系とか
 - [共有メモリについて](src/sharedMem)
 - [並行プログラミング戦略](src/pararel/pararel)  
   - [並列ソート処理](src/pthread_sort/sort)
-- [lambda式について](lambda)
+- [lambda式/関数ポインタについて](lambda)
 - [ヒアドキュメント](#here)
 
 ---
