@@ -18,6 +18,7 @@ int main()
     lseek(fd, 0, SEEK_SET);
     /* Create the memory mapping. */
     char *const file_memory = reinterpret_cast<char *>(mmap(0, FILE_LENGTH, PROT_WRITE, MAP_SHARED, fd, 0));
+    // char *const file_memory = reinterpret_cast<char *>(mmap(0, FILE_LENGTH, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0));
     close(fd);
     /* Write a random integer to memory-mapped area. */
     sprintf(file_memory, "%s", "Hello World!!!!");
