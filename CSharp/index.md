@@ -11,8 +11,44 @@ mono async_await.exe #実行
 ```
 
 - [UDP Socket](src/udpSock/)
+- [Classのプロパティに文字列でアクセスする](#property)
 - [lambda式](#lambda)
 - [async/awaitまとめ](#async_await)
+
+---
+---
+
+## <a name=property>Classのプロパティに文字列でアクセスする</a>
+
+classのプロパティを文字列でアクセスする
+
+```cs
+class Program
+{
+
+    static void Main(string[] args)
+    {
+        var MyData = new MyData();
+
+        for (int i = 0; i < 3; i++)
+        {
+            MyData.GetType().GetProperty("Data" + (i + 1)).SetValue(MyData, i);
+            //typeof(MyData).GetProperty("Age").GetValue();
+        }
+
+        Console.WriteLine($"OriginalProperty : {MyData.Data1}, {MyData.Data2}, {MyData.Data3}");
+    }
+}
+
+public class MyData
+{
+    public double Data1 { get; set; } = 0.0;
+    public double Data2 { get; set; } = 0.0;
+    public double Data3 { get; set; } = 0.0;
+}
+```
+
+---
 
 ## <a name="async_await">async/awaitまとめ</a>
 
