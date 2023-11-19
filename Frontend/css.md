@@ -2,6 +2,7 @@
 
 - [id/class/要素 を指定した書き方について](#tag)
 - [変数(ぽいもの)を扱ってみる](#valiable)
+- [keyframe](#keyframe)
 
 ## <a name=tag>id/class/要素 を指定した書き方について</a>
 
@@ -67,4 +68,29 @@ div { color: yellow;}
 </body>
 
 </html>
+```
+
+## <a name=keyframe>keyframeについて</a>
+
+```css
+@keyframes bnr-animation{
+  0% {width: 60px; background-color: #6cb371; }
+  50% {width: 234px; height: 60px; background-color: #ffd700; }
+  100% {width: 234px; height: 234px; background-color: #ff1493; }
+}
+
+@keyframes animation{
+  from{
+    /*アニメーションを開始するときのCSSを記述*/
+  }
+
+  to{
+    /*アニメーションを終了するときのCSSを記述*/
+  }
+}
+
+.box{
+  width: 60px; height: 60px; background: #6cb371;
+  animation-name: bnr-animation;
+  animation-duration: 10s;}
 ```
