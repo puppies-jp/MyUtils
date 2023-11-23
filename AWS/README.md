@@ -5,7 +5,8 @@ awsについてまとめるためのメモ
 [コントロールプレーン](#control)  
 [データプレーン](#data)  
 [AWS Lambda/AWS Runner について](#lambda)  
-    - [EC2/Lambda入門](Lambda)
+    - [Lambda入門](Lambda)  
+    - [EC2について](EC2)  
 
 [AWS S3](S3backet)
 
