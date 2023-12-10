@@ -106,13 +106,28 @@ GDBはリモートで動作している側で`gdbserver`を立ち上げること
 gdbserver comm prog [args...]
 
 # pid: プロセスIDにアタッチ
-gdbserver --attach comm pid
+gdbserver --attach {comm} {pid}
 
 # 🌟アタッチするプロセス ID を指定せずに "gdbserver" を起動する場合
-gdbserver --multi comm  
+gdbserver --multi {comm}  
 ```
 
-- **gdb側の操作は後日書く！**
+- クライアント側では以下を実行することで接続できる
+
+```bash
+gdb
+
+# gdb起動後、以下のコマンドで接続
+target extended-remote {IP}:{Port}
+
+# ファイルを指定して実行する場合
+set remote exec-file {ファイル名}
+run
+
+# プロセスIDを指定して実行
+attach {PID}
+continue
+```
 
 [参考stackoverflow](https://stackoverflow.com/questions/3512961/remote-gdb-debugging)
 
