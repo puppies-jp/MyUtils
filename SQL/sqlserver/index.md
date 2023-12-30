@@ -69,9 +69,22 @@ GO
 ```sql
 alter database [DB名] add file 
 (NAME=N'(論理名)',FILENAME=N'FilePath',SIZE=XXXMB,FILEGROWTH=YYYMB),
-(,~追加で他のファイルもあるなら~~)
+(,~追加で他のファイルもあるなら~~),
+    ・・・
 TO FILEGROUP [ファイルグループ]
 
+```
+
+## ファイルグループを指定してテーブルを追加する
+
+なければ`デフォルト`のグループに指定される
+
+```sql
+CREATE TABLE [dbo].[TableName](
+    [columnA] [int] NULL,
+    [columnB] [nvarchar](50) NULL,
+    ・・・
+) ON [グループ名]
 ```
 
 ---
