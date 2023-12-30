@@ -76,6 +76,13 @@ Where table_B.scheup_data = ~~
 
 ```sql
 Delete from テーブル名 where 条件 
+
+-- トランケート(全件削除)
+trancate table <tableName>
+
+-- テーブル削除
+DROP TABLE <tablename>
+
 ```
 
 ---

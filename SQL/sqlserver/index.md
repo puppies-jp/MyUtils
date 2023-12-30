@@ -64,6 +64,19 @@ GO
 ---
 ---
 
+## DBファイルを追加する
+
+```sql
+alter database [DB名] add file 
+(NAME=N'(論理名)',FILENAME=N'FilePath',SIZE=XXXMB,FILEGROWTH=YYYMB),
+(,~追加で他のファイルもあるなら~~)
+TO FILEGROUP [ファイルグループ]
+
+```
+
+---
+---
+
 ## 権限を確認する
 
 ```sql
