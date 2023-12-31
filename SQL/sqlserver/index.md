@@ -3,6 +3,8 @@
 [コマンドライン接続/csv出力](#connect)
 [アタッチ/デタッチ](#attach)
 [パフォーマンスを調査する](./performance.md)
+[ファイルグループを追加する](#addFileGroup)
+[ファイルグループを指定してテーブル/indexを追加する](#addTableOnGroup)
 
 ---
 ---
@@ -64,27 +66,40 @@ GO
 ---
 ---
 
-## DBファイルを追加する
+## <a name=addFileGroup>DBにファイルグループ/ファイルを追加する</a>
 
 ```sql
+ALTER DATABASE [DB名]
+ADD FILEGROUP [ファイルグループ];
+
+-- ファイルを追加する
 alter database [DB名] add file 
-(NAME=N'(論理名)',FILENAME=N'FilePath',SIZE=XXXMB,FILEGROWTH=YYYMB),
+(NAME=N'論理名',FILENAME=N'FilePath',SIZE=XXXMB,FILEGROWTH=YYYMB),
 (,~追加で他のファイルもあるなら~~),
     ・・・
 TO FILEGROUP [ファイルグループ]
 
 ```
 
-## ファイルグループを指定してテーブルを追加する
+## <a name=addTableOnGroup>ファイルグループを指定してテーブル/indexを追加する</a>
 
 なければ`デフォルト`のグループに指定される
 
 ```sql
+-- create table on filegroup
 CREATE TABLE [dbo].[TableName](
     [columnA] [int] NULL,
     [columnB] [nvarchar](50) NULL,
     ・・・
 ) ON [グループ名]
+
+-- create index on filegroup
+CREATE UNIQUE CLUSTERED INDEX <index_name>
+ON <table_name> (<column_name>)
+-- 以下を追加することで、既存のやつのindexの削除もされる
+-- WITH (DROP_EXISTING = ON)
+ON [グループ名];
+
 ```
 
 ---
