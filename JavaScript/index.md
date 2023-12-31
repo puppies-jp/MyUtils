@@ -3,6 +3,7 @@
 - とりあえず、環境について
   - Ubuntu(on Docker(Xなどのウィンドウなし、完全にUbuntuのものだけ))
   - node.jsでやってみる
+  - [httpサーバを立ち上げる](#httpserver)
 
 - [モジュール管理について](npm)
   - [Electron](Electron/electron)  
@@ -89,6 +90,19 @@ sudo npm update -g npm
 
 3. **`以上`**
    クラスとかメイン関数とか気にしないで試せるのは楽かも？
+
+---
+---
+
+## <a name=httpserver>nodeでhttpサーバを立ち上げる</a>
+
+```bash
+# これでhttp-serverを実行できる
+npm install -g http-server
+
+# これを叩くことでhttpサーバが起動する
+http-server
+```
 
 ---
 ---

@@ -3,6 +3,8 @@
 - [sample](sample)
 - [sample2](sample2)
 
+- [shaderについて](shader)
+
 ```html
 <!doctype html>
 <html lang="ja">
