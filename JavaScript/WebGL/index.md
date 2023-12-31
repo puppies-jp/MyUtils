@@ -1,6 +1,7 @@
 # WebGLについて書いてみる
 
-- [sample](sample.html)
+- [sample](sample)
+- [sample2](sample2)
 
 ```html
 <!doctype html>
