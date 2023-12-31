@@ -1,10 +1,10 @@
 # SQL ServerについてTips
 
-[コマンドライン接続/csv出力](#connect)
-[アタッチ/デタッチ](#attach)
-[パフォーマンスを調査する](./performance.md)
-[ファイルグループを追加する](#addFileGroup)
-[ファイルグループを指定してテーブル/indexを追加する](#addTableOnGroup)
+- [コマンドライン接続/csv出力](#connect)
+- [アタッチ/デタッチ](#attach)
+- [パフォーマンスを調査する](./performance.md)
+- [ファイルグループを追加する](#addFileGroup)
+- [ファイルグループを指定してテーブル/indexを追加する](#addTableOnGroup)
 
 ---
 ---
@@ -78,6 +78,11 @@ alter database [DB名] add file
 (,~追加で他のファイルもあるなら~~),
     ・・・
 TO FILEGROUP [ファイルグループ]
+
+-- ファイルの拡張オプションの変更は以下
+ALTER DATABASE <database_name>
+MODIFY FILE (<file_name>)
+{ SIZE = <new_size> | MAXSIZE = <max_size> | FILEGROWTH = <growth_size> }
 
 ```
 
