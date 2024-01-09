@@ -1,6 +1,7 @@
 # shaderについて書いてみる
 
-[sample](sample)
+- [GLSLについて](GLSL)
+- [sample](sample)
 
 ## shaderとは
 
