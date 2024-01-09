@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="gl-matrix-min.js" crossorigin="anonymous"></script>
+
+    <script id="vertshader" type="x-shader/vertshader">
+
+        #ifdef GL_ES
+        precision mediump float;
+      #endif
+              attribute vec3 vertPos;
+      attribute vec4 vertColor;
+      uniform mat4 mvMatrix;
+      uniform mat4 pjMatrix;
+      uniform float u_time;
+      varying lowp vec4 vColor;
+      void main(void){
+          gl_Position=pjMatrix*mvMatrix*vec4(vertPos,+1.);
+          vColor=vertColor;
+      }
+    </script>
+
+    <script id="fragshader" type="x-shader/fragshader">
+
+        #ifdef GL_ES
+        precision mediump float;
+      #endif
+
+      uniform vec2 u_resolution;
+      uniform vec2 u_mouse;
+      uniform float u_time;
+        varying lowp vec4 vColor;
+        void main(void) {
+          gl_FragColor = vColor+u_time;
+        }
+    </script>
+    <script>
+      var gl = null;
+      var vertBuffer, colorBuffer;
+      var shaderProg,
+        shaderVertexPositionAttribute,
+        shaderVertexColorAttribute,
+        shaderProjectionMatrixUniform,
+        shaderModelViewMatrixUniform;
+      var modelViewMatrix, rotationAxis, projectionMatrix;
+
+      function init() {
+        // WebGLコンテキストの取得
+        var canvas = document.getElementById("canvas");
+        gl = canvas.getContext("webgl");
+
+        // ビューポートの設定
+        gl.viewport(0, 0, canvas.width, canvas.height);
+
+        // 頂点バッファの作成
+        vertBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertBuffer);
+        var verts = [
+          0.0, 1.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0,
+          1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0,
+          1.0, 0.0, 0.0, 0.0, -1.0, -1.0, 0.0, 0.0,
+        ];
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
+
+        // カラーバッファの作成
+        colorBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        var faceColors = [
+          [0.0, 0.0, 1.0, 1.0], // front (blue)
+          [1.0, 1.0, 0.0, 1.0], // right (yellow)
+          [0.0, 1.0, 0.0, 1.0], // back  (green)
+          [1.0, 0.0, 0.0, 1.0], // left  (red)
+        ];
+        var vertColors = [];
+        faceColors.forEach(function (color) {
+          [0, 1].forEach(function () {
+            vertColors = vertColors.concat(color);
+          });
+          vertColors = vertColors.concat([1.0, 1.0, 1.0, 1.0]);
+        });
+        gl.bufferData(
+          gl.ARRAY_BUFFER,
+          new Float32Array(vertColors),
+          gl.STATIC_DRAW
+        );
+
+        // シェーダーコンパイル結果のチェック用関数
+        var checkShader = function (shader, type) {
+          if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            var errmes =
+              type + " shader compile failed: " + gl.getShaderInfoLog(shader);
+            throw new Error(errmes);
+          }
+        };
+
+        // 頂点シェーダー
+        //FileReaderの作成
+        const reader = new FileReader();
+        //テキスト形式で読み込む
+        var vertShaderSource =
+          document.getElementById("vertshader").textContent;
+        console.log(vertShaderSource);
+
+        var vertShader = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vertShader, vertShaderSource);
+        gl.compileShader(vertShader);
+        checkShader(vertShader, "vertex");
+
+        // フラグメントシェーダー
+        var fragShaderSource =
+          document.getElementById("fragshader").textContent;
+        var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fragShader, fragShaderSource);
+        gl.compileShader(fragShader);
+        checkShader(fragShader, "fragment");
+
+        // シェーダーのリンク
+        shaderProg = gl.createProgram();
+        gl.attachShader(shaderProg, vertShader);
+        gl.attachShader(shaderProg, fragShader);
+        gl.linkProgram(shaderProg);
+
+        // シェーダーのリンクのチェック
+        if (!gl.getProgramParameter(shaderProg, gl.LINK_STATUS)) {
+          var errmes = "failed to initialize shader with data matrices";
+          throw new Error(errmes);
+        }
+
+        // シェーダーパラメータの設定
+        shaderVertexPositionAttribute = gl.getAttribLocation(
+          shaderProg,
+          "vertPos"
+        );
+        gl.enableVertexAttribArray(shaderVertexPositionAttribute);
+        shaderVertexColorAttribute = gl.getAttribLocation(
+          shaderProg,
+          "vertColor"
+        );
+        gl.enableVertexAttribArray(shaderVertexColorAttribute);
+        shaderProjectionMatrixUniform = gl.getUniformLocation(
+          shaderProg,
+          "pjMatrix"
+        );
+        shaderModelViewMatrixUniform = gl.getUniformLocation(
+          shaderProg,
+          "mvMatrix"
+        );
+
+        // マトリクス
+        modelViewMatrix = mat4.create();
+        mat4.translate(modelViewMatrix, modelViewMatrix, [0, 0, -3]);
+        projectionMatrix = mat4.create();
+        mat4.perspective(
+          projectionMatrix,
+          Math.PI / 4,
+          canvas.width / canvas.height,
+          1,
+          100
+        );
+
+        // 回転軸
+        rotationAxis = vec3.create();
+        vec3.normalize(rotationAxis, [0, 1, 0]);
+
+        requestAnimationFrame(update);
+      }
+
+      function draw() {
+        gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        gl.enable(gl.DEPTH_TEST);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        gl.useProgram(shaderProg);
+
+        // 頂点属性の位置情報の設定
+        gl.bindBuffer(gl.ARRAY_BUFFER, vertBuffer);
+        gl.vertexAttribPointer(
+          shaderVertexPositionAttribute,
+          3,
+          gl.FLOAT,
+          false,
+          0,
+          0
+        );
+        gl.bindBuffer(gl.ARRAY_BUFFER, colorBuffer);
+        gl.vertexAttribPointer(
+          shaderVertexColorAttribute,
+          4,
+          gl.FLOAT,
+          false,
+          0,
+          0
+        );
+
+        // 行列の設定
+        gl.uniformMatrix4fv(
+          shaderProjectionMatrixUniform,
+          false,
+          projectionMatrix
+        );
+        gl.uniformMatrix4fv(
+          shaderModelViewMatrixUniform,
+          false,
+          modelViewMatrix
+        );
+
+        // 描画
+        gl.drawArrays(gl.TRIANGLES, 0, 12 /* num of vertex */);
+      }
+
+      var lastTime = null;
+      function update(time) {
+        requestAnimationFrame(update);
+
+        var elapsedTime = lastTime ? time - lastTime : 0;
+        lastTime = time;
+
+        // 回転
+        var angle = (Math.PI * elapsedTime) / 10000;
+        mat4.rotate(modelViewMatrix, modelViewMatrix, angle, rotationAxis);
+
+        draw();
+      }
+
+      window.addEventListener("load", init);
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="320" height="240"></canvas>
+  </body>
+</html>
