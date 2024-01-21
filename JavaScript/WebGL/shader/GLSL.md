@@ -19,6 +19,12 @@ GLSLについては詳しくないのでkeywordからまとめていく
 - varying変数
   - `VertexShader`から`FragmentShader`に変数を渡すときに使う
 
+- GPGPU
+  - `General-Purpose Computing on graphics Processing Units`の略
+  GPUを描画以外の計算にも利用してやろうって事
+  webGL2.0が有効化され，transformFeedbackという関数が使用できるようになり頂点シェーダでの計算結果をバッファにバインドできるようになった。
+  つまりこいつを使うとGPGPUができます！
+
 ## 組み込み変数一覧
 
 |変数名|shader|使い方|
@@ -31,6 +37,9 @@ GLSLについては詳しくないのでkeywordからまとめていく
 |gl_InstanceID|?| インスタンスのインデックスを格納する変数。|
 |gl_TextureCoord|?| テクスチャ座標を格納する変数。|
 |gl_Normal|?| 法線ベクトルを格納する変数。|
+
+---
+---
 
 ## uniform,attributeで変数を渡すケース(各頂点で共通のパラメータを渡す)
 
