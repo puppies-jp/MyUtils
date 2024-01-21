@@ -2,6 +2,9 @@
 
 GLSLについては詳しくないのでkeywordからまとめていく
 
+[sample2](sample2/)
+[sample3](sample3/)
+
 - uniform変数
   - グローバル変数を入れる
   - アプリから情報を受け取る
