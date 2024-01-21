@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>WebGL デモ</title>
+    <script src="./gl-matrix-min.js"></script>
+  </head>
+  <script id="vs" type="x-shader/x-vertex">
+    attribute vec3 position;
+    attribute vec4 color;
+    uniform float utime;
+    varying lowp vec4 vColor;
+    attribute float fIndex;
+    void main ()
+    {
+        gl_Position = vec4(position+(0,utime), 1.0);
+        if(fIndex== 1.0) vColor = vec4(1.,0.,0.,1);
+        else if(fIndex== 2.0) vColor = vec4(0.,1.,0.,1);
+        else if(fIndex== 3.0) vColor = vec4(0.,0.,1.,1);
+    }
+  </script>
+  <script id="fs" type="x-shader/x-fragment">
+    precision mediump float;
+    varying lowp vec4 vColor;
+    void main ()
+    {
+        gl_FragColor = vColor;
+    }
+  </script>
+
+  <body>
+    <canvas id="glcanvas" width="640" height="480"></canvas>
+  </body>
+  <script src="./script.js" type="text/javascript"></script>
+</html>
