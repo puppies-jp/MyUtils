@@ -5,6 +5,8 @@ GLSLについては詳しくないのでkeywordからまとめていく
 - [sample2](sample2/)
 - [sample3](sample3/)
 
+## キーワード
+
 - uniform変数
   - グローバル変数を入れる
   - アプリから情報を受け取る
@@ -14,12 +16,21 @@ GLSLについては詳しくないのでkeywordからまとめていく
   - 「頂点から情報を受け取る」方法でシェーダに情報を伝えている。`(フラグメントシェーダに頂点がないので、使えないことに注意)`
   - positionはそれぞれの頂点で異なる値を保持
 
-- varying
+- varying変数
   - `VertexShader`から`FragmentShader`に変数を渡すときに使う
 
-## 使い方
+## 組み込み変数一覧
 
-uniform,attribute両方とも
+|変数名|shader|使い方|
+|--|--|--|
+|gl_Position|vertex| 頂点の座標を格納する変数。|
+|gl_FragCoord|frag| フラグメントの座標を格納する変数。|
+|gl_FragColor|frag| フラグメントの色を格納する変数。|
+|gl_PointSize|vertex| 描画するポイントのサイズを格納する変数。|
+|gl_VertexID|vertex| 頂点のインデックスを格納する変数。|
+|gl_InstanceID|?| インスタンスのインデックスを格納する変数。|
+|gl_TextureCoord|?| テクスチャ座標を格納する変数。|
+|gl_Normal|?| 法線ベクトルを格納する変数。|
 
 ## uniform,attributeで変数を渡すケース(各頂点で共通のパラメータを渡す)
 
