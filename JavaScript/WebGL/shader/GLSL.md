@@ -2,8 +2,8 @@
 
 GLSLについては詳しくないのでkeywordからまとめていく
 
-[sample2](sample2/)
-[sample3](sample3/)
+- [sample2](sample2/)
+- [sample3](sample3/)
 
 - uniform変数
   - グローバル変数を入れる
@@ -55,4 +55,52 @@ gl.vertexAttrib1f(myAttributeLocation, 1.0);
 var myArrayLocation = gl.getAttribLocation(program, "myArray");
 // Set the value of the attribute variable
 gl.vertexAttrib3f(myArrayLocation, 1.0, 2.0, 3.0);
+```
+
+## Vertex毎の情報を渡すケース
+
+```GLSL
+attribute vec3 position;
+attribute vec4 color;
+uniform float utime;
+varying lowp vec4 vColor;
+// 🌟ここのfIndexに点毎のデータを渡される
+attribute float fIndex;
+void main ()
+{
+  gl_PointSize=30.0;
+  //gl_Position = vec4(position+(0,utime), 1.0);
+  gl_Position = vec4(position, 1.0);
+  if(fIndex== 1.0) vColor = vec4(1.,0.+utime,0.,1)+color;
+    else if(fIndex== 2.0) vColor = vec4(0.,1.,0.,1);
+    else if(fIndex== 3.0) vColor = vec4(0.,0.,1.,1);
+  }
+
+```
+
+```js
+// 🌟準備段階（バッファ作成）
+// 適当バッファ
+var indexBuffer = gl.createBuffer();
+// 生成したバッファをバインドする
+gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
+// 各色を定義
+var indexes = [
+    1.0, 2.0, 3.
+];
+// バインドされたバッファに色をセットする
+gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(indexes), gl.STATIC_DRAW);
+// バインド解除
+gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+
+// 🌟レンダリング時
+// 色のバッファをバインド
+gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
+// シェーダのアドレスを保持
+var indexAddress = gl.getAttribLocation(program, "fIndex");
+// 頂点属性の有効化
+gl.enableVertexAttribArray(indexAddress);
+// 頂点属性に頂点データを設定
+gl.vertexAttribPointer(indexAddress, 1, gl.FLOAT, true, 0, 0);
 ```

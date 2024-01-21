@@ -111,7 +111,7 @@ function render() {
     // 頂点属性に頂点データを設定する
     gl.vertexAttribPointer(positionAddress, 3, gl.FLOAT, false, 0, 0);
 
-    /*
+
     // 色のバッファをバインド
     gl.bindBuffer(gl.ARRAY_BUFFER, verticesColorBuffer);
     // シェーダのアドレスを保持
@@ -120,7 +120,7 @@ function render() {
     gl.enableVertexAttribArray(vertexColorAddress);
     // 頂点属性に頂点データを設定
     gl.vertexAttribPointer(vertexColorAddress, 4, gl.FLOAT, false, 0, 0);
-    */
+
 
     // 色のバッファをバインド
     gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
@@ -137,9 +137,10 @@ function render() {
     utime = (utime + 0.2) % 1;
 
     //描画
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+    gl.drawArrays(gl.POINTS, 0, 3);
+    //gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
     //gl.drawArrays(gl.LINE_LOOP, 0, 3);
     //gl.drawArrays(gl.LINE, 0, 3);
 
-    //requestAnimationFrame(render);
+    requestAnimationFrame(render);
 }
