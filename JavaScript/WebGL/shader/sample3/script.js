@@ -90,7 +90,7 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(indexes), gl.STATIC_DRAW);
 // バインド解除
 gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-
+var frame = 0;
 render();
 
 function render() {
@@ -136,11 +136,24 @@ function render() {
     gl.uniform1f(vertexTimeAddr, utime);
     utime = (utime + 0.2) % 1;
 
+    // 錐台行列の生成
+    frame++;
+
+    var proj_mat = mat4.create();
+    mat4.frustum(proj_mat, -1, 1, -1, 1, 3, 10);
+    // 移動回転行列の生成
+    var mv_mat = mat4.create();
+    mat4.translate(mv_mat, mv_mat, [0, 0, -6]);
+    mat4.rotate(mv_mat, mv_mat, frame * 0.01, [0, 1, 0]);
+    // uniformでShaderに送信
+    gl.uniformMatrix4fv(gl.getUniformLocation(program, "projectionMatrix"), false, proj_mat);
+    gl.uniformMatrix4fv(gl.getUniformLocation(program, "modelviewMatrix"), false, mv_mat);
+
     //描画
-    gl.drawArrays(gl.POINTS, 0, 3);
-    //gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
+    //gl.drawArrays(gl.POINTS, 0, 3);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 3);
     //gl.drawArrays(gl.LINE_LOOP, 0, 3);
     //gl.drawArrays(gl.LINE, 0, 3);
-
-    requestAnimationFrame(render);
+    // 一定時間ごと処理をループ
+    setTimeout(render, 10);
 }

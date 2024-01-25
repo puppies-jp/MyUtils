@@ -77,6 +77,9 @@ var myArrayLocation = gl.getAttribLocation(program, "myArray");
 gl.vertexAttrib3f(myArrayLocation, 1.0, 2.0, 3.0);
 ```
 
+---
+---
+
 ## Vertex毎の情報を渡すケース
 
 ```GLSL

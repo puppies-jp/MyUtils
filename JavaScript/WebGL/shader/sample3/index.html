@@ -11,25 +11,45 @@
     uniform float utime;
     varying lowp vec4 vColor;
     attribute float fIndex;
+
+    // 平行起動回転行列
+    uniform mat4 modelviewMatrix;
+    // 錐台変換行列
+    uniform mat4 projectionMatrix;
+    // 頂点の法線ベクトル
+    //attribute vec3 normal;
+    // 法線ベクトルと平行移動回転行列との積
+    varying vec3 e_normal;
+
     void main ()
     {
-      gl_PointSize=30.0;
+      //gl_PointSize=30.0;
       //gl_Position = vec4(position+(0,utime), 1.0);
-      gl_Position = vec4(position, 1.0);
+      //gl_Position = vec4(position, 1.0);
+      // 頂点座標をクリッピング座標系に変換
+      gl_Position = projectionMatrix * modelviewMatrix * vec4(position, 1.0);
+      // 法線ベクトルを世界座標系に変換
+      e_normal = vec3(modelviewMatrix * vec4(1,1,1, 0.0));
 
       //float idx = gl_VertexID;
       float idx = fIndex;
-      if(idx== 1.0) {vColor = vec4(1.,0.+utime,0.,1)+color;}
-        else if(idx== 2.0) {vColor = vec4(0.,1.,0.,1);}
-        else{ vColor = vec4(0.,0.,1.,1);}
+      if(idx== 1.0) {vColor = vec4(1.,0.,0.,1)+color;}
+      //if(idx== 1.0) {vColor = vec4(1.,0.+utime,0.,1)+color;}
+      else if(idx== 2.0) {vColor = vec4(0.,1.,0.,1);}
+      else{ vColor = vec4(0.,0.,1.,1);}
     }
   </script>
   <script id="fs" type="x-shader/x-fragment">
     precision mediump float;
+    varying vec3 e_normal;
     varying lowp vec4 vColor;
     void main ()
     {
-        gl_FragColor = vColor;
+      // 法線ベクトルを正規化
+      vec3 n = normalize(e_normal);
+      // 法線ベクトルと光ベクトルとの内積で光量を決定
+      float l = abs(dot(n, normalize(vec3(-1, 1, 1))));
+      gl_FragColor = vColor;
     }
   </script>
 
