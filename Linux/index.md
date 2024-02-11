@@ -13,6 +13,8 @@ Linuxについてのあれこれをメモってく
   - [ファイル転送(rsync)](#rsync)
   - [ssh接続について](#ssh)
 
+- [deb/rpmファイルをインストールする](#pkgInstall)
+
 ---
 
 ## <a name=usefull>便利コマンドメモ</a>
@@ -141,4 +143,38 @@ Restart=always
 # 🌟UnitセクションのWant/Requiredと同じらしい
 WantedBy=sysinit.target
 RequiredBy=sysinit.target
+```
+
+## <a name=pkgInstall>deb/rpmファイルをインストールする</a>
+
+- dpkg(Debian系(apt))
+
+```bash
+sudo apt install --download-only パッケージ名
+sudo apt install ./ファイル名.deb
+sudo apt remove パッケージ名
+
+# install
+dpkg -i ファイル名.deb
+# 削除
+dpkg -r パッケージ名
+```
+
+- rpm(RedHat系(yum))
+
+```bash
+# yumでパッケージをダウンロードする
+yum install パッケージ --downloadonly --downloaddir=ダウンロードしたrpmの格納先パス
+
+# ファイルを指定した場合、yumは依存するパッケージはオンラインで取ろうとしてしまうのに注意
+yum localinstall ファイル名.rpm
+yum localinstall ダウンロードしたrpmの格納先パス/*
+
+# -i :インストール,-v :詳細表示,-h :進捗表示  
+# -test : 実際にはインストールやアップデートを行わず、コマンドのテストを行う
+rpm -ivh [–test] パッケージファイル名
+# -U: 更新する
+rpm -Uvh [–test] ファイル名
+# パッケージをアンインストールする
+rpm -evh パッケージ名
 ```
