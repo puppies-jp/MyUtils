@@ -53,6 +53,9 @@ ossとか環境依存系とか
   - [ダイレクトパラメータアクセス](#direct)
   - [ソースコードに直でブレークポイントを貼る](#breakPoint)
 
+- 忘れがちな事
+  - [前置/後置インクリメントの違い](#increment)
+
 ---
 
 ## <a name=here>ヒアドキュメントの書き方</a>
@@ -538,4 +541,28 @@ int main(int argc, char **argv)
     printf("password = '%s' , salt = '%s'\n", argv[1], argv[2]);
     printf("hash => '%s'\n", crypt(argv[1], argv[2]));
 }
+```
+
+## <a name=increment>前置/後置インクリメントの違い</a>
+
+- 前置インクリメント(y=++x)
+  - yにはx増加後の値が代入される
+- 後置インクリメント(y=x++)
+  - yにはx増加前の値が代入される
+
+```cpp
+int x = 2;
+int y;
+// 🌟前置インクリメント
+y = ++x;
+std::cout << "x=" << x << ", y=" << y << std::endl;
+// x=3 , y=3
+
+// 🌟後置インクリメント
+x=2;
+y=0;
+y=x++;
+std::cout << "x=" << x << ", y=" << y << std::endl;
+// x=3 , y=2
+
 ```
