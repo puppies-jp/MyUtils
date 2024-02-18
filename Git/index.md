@@ -29,3 +29,5 @@ git remote add origin <bareリポジトリパス>/<リポジトリ名>.git
 git remote update
 git push --set-upstream origin master
 ```
+
+
