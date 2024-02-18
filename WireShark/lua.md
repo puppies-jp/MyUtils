@@ -22,6 +22,21 @@ tcp_table = DissectorTable.get("tcp.port") -- TCPポートのテーブルを取�
 tcp_table:add(777,myproto) -- TCPの777番ポートとプロトコルの紐付けする
 ```
 
+## 値の変換について
+
+```lua
+-- リトルエンディアンのバイト列
+local byteData = "\x01\x02\x03\x04"
+
+-- リトルエンディアンでint値を取得(0x04030201)
+local intValue = byteData:le_uint()
+print("リトルエンディアンでのint値: " .. intValue)
+
+-- ビッグエンディアンでint値を取得(0x01020304)
+local bintValue = byteData:uint()
+print("ビッグエンディアンでのint値: " .. bintValue)
+```
+
 ## ビット操作について
 
 |操作|関数|使い方|
