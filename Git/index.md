@@ -17,6 +17,8 @@ git commit -m 最初のコミット
 
 ## <a name=2>2. プロジェクトのクローン（ベア）を共有フォルダ上に作る</a>
 
+- ここのベアリポジトリを指定した別環境からクローンすることも、コミットもできる。
+
 ```sh
 # 🌟共有フォルダ上で実行すること
 git clone --bare <initを実行したディレクトリ> <リポジトリ名>.git
@@ -29,5 +31,3 @@ git remote add origin <bareリポジトリパス>/<リポジトリ名>.git
 git remote update
 git push --set-upstream origin master
 ```
-
-
