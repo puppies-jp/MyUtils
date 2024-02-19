@@ -345,16 +345,45 @@ end
 | データレジスタ                 |             edx |                 |                                                                                                                        |
 | ベースレジスタ                 |             ebx |                 |                                                                                                                        |
 
-- 命令則
+---
+---
 
-```assembly
-命令語 <操作対象> <参照元>
+## アセンブラ記法
+
+- 書き方
+
+```asm
+;Intel記法
+命令語 <操作対象>, <参照元>
+
+;AT&T記法
+;(数値であることを示すのに$,レジスタを示すのに%のプレフィックスをつける。)
+命令語 <参照元>, <操作対象> 
+```
+
+- アドレスのアクセス
+
+```asm
+;Intel記法
+mov  ebx , eax ; eaxの値をebxに書き込む
+mov [ebx], eax ; eaxの値をebxのアドレスの先に書き込む
+mov [ebx+4], eax ; eaxの値を(ebx)のアドレス+4のアドレスに書き込む
+
+;バイト数を指定して数値を扱う
+; WORD(2byte) -> DWORD(4byte)
+mov DWORD PTR eax , 0 ; eaxを(DWORD(4byte)で0にする)
+
+;AT&T記法
+mov %eax, %ebx  ; eaxの値をebxに書き込む
+mov %eax, (%ebx); eaxの値をebxのアドレスの先に書き込む
+mov %eax,4(%ebx); eaxの値をebxのアドレス+4のアドレスに書き込む
+movl $5, %eax ; movlのlはlongを意味する。
 ```
 
 - 例
   - $rbp +4 バイトのアドレスを+1 する。
 
-```assembly
+```asm
 addl   $0x1,-0x4(%rbp)
 ```
 
