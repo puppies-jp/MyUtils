@@ -128,6 +128,7 @@ Low Addr
 
 # 逆アセンブリ結果を表示
 (gdb) set disassembly-flavor intel
+(gdb) set disassembly-flavor att
 (gdb) disassemble main
 ```
 
