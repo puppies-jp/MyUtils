@@ -2,7 +2,7 @@
 
 ## ここでは BinaryHacks を読んだ内容をざっくりとまとめる
 
-- [バイナリ解析](./バイナリ解析_asm)
+- [バイナリ解析](./BinaryAnalysisASM/)
 - [ELF とは](#ELF)
 - [00_GDB と Assembly](00_GDB_ASSEMBLA)
 - [01_RAII なロッククラス実装](01_ThreadSafe_Mutex)
