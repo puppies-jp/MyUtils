@@ -6,6 +6,7 @@
 - [css](css)
 
 - よく使う系スニペット
+- [小ネタ](tips)
 
 ```html
 <!DOCTYPE html>
