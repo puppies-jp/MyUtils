@@ -375,11 +375,15 @@ mov [ebx+4], eax ; eaxの値を(ebx)のアドレス+4のアドレスに書き込
 ;バイト数を指定して数値を扱う
 ; WORD(2byte) -> DWORD(4byte)
 mov DWORD PTR eax , 0 ; eaxを(DWORD(4byte)で0にする)
+```
 
+```nasm
 ;AT&T記法
 mov %eax, %ebx  ; eaxの値をebxに書き込む
 mov %eax, (%ebx); eaxの値をebxのアドレスの先に書き込む
 mov %eax,4(%ebx); eaxの値をebxのアドレス+4のアドレスに書き込む
+
+;バイト数を指定して数値を扱う
 movl $5, %eax ; movlのlはlongを意味する。
 ```
 
