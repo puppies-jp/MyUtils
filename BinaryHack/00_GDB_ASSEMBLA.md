@@ -366,7 +366,7 @@ end
 
 - アドレスのアクセス
 
-```asm
+```nasm
 ;Intel記法
 mov  ebx , eax ; eaxの値をebxに書き込む
 mov [ebx], eax ; eaxの値をebxのアドレスの先に書き込む
@@ -386,7 +386,7 @@ movl $5, %eax ; movlのlはlongを意味する。
 - 例
   - $rbp +4 バイトのアドレスを+1 する。
 
-```asm
+```nasm
 addl   $0x1,-0x4(%rbp)
 ```
 
