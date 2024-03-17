@@ -54,6 +54,7 @@
 - [AWS](AWS)
 
 - [sandpox code pen](sandbox)
+- [hostsでルーティング](#hosts)
 
 ---
 
@@ -118,4 +119,16 @@ git reset --soft HEAD^
 \```
 
 </div></details>
+```
+
+## <a name=hosts>hostsファイルでルーティング</a>
+
+- 各OSのhosts格納先
+
+```sh
+# windowsのパス
+C:\Windows\System32\drivers\etc
+
+# Linuxのパス
+/etc
 ```
