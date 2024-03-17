@@ -5,3 +5,4 @@ CMakeCache.txt
 *.out
 *.exe
 .DS_Store
+*.s
