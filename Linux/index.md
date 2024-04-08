@@ -2,6 +2,8 @@
 
 Linuxについてのあれこれをメモってく
 
+[基礎知識](./Basic/)
+
 - [filesystemについて](filesystem)
 - [ソケットファイルについて](socketfile)
 - [FireWallについて](FireWall/Firewall)
