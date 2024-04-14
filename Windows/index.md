@@ -30,6 +30,18 @@
 ---
 ---
 
+## <a name=link>ハードリンク/シンボリックリンクの作成方法</a>
+
+```bat
+# ハードリンク
+mklink /H "C:\path\to\new\link.txt" "C:\path\to\original\file.txt"
+
+# ソフトリンク
+# /Dオプションでディレクトリのシンボリックリンク作成ができる
+mklink "D:\path\to\new\link.txt" "C:\path\to\original\file.txt"
+mklink /D "D:\temp\newlink.txt" "C:\myfolder\test.txt"
+```
+
 ## <a name=edgeIE>Edge-IEモードのデバッグ</a>
 
 EdgeのIEモードは開発者ツールが使えない('F12'で開くやつ)
@@ -44,7 +56,7 @@ C:\Windows\System32\F12\IEChooser.exe
 
 ## <a name=tasklist>CMDから起動中のタスクをチェックする</a>
 
-```cmd
+```bat
 tasklist
 
 # 名前でソートする場合(/nh:ヘッダなしにしないとヘッダもソートされる)
@@ -156,7 +168,6 @@ Export-Csv -Encoding Default -NoTypeInformation -Path (
 
 [Get-WinEvent使い方](https://forsenergy.com/ja-jp/windowspowershellhelp/html/62e7642c-51d4-47d1-97fe-62b08197896a.htm)
 [🌟イベントログ -> CSVファイル出力](https://qiita.com/hara_power/items/073fa6079e633f084412)
-
 
 ---
 ---
