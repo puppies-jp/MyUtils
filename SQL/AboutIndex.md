@@ -18,6 +18,11 @@ SELECT * FROM [dbo].[Person] WITH(INDEX ([IdxName]))WHERE [Name] = 'Tanaka'
 SELECT * FROM [dbo].[Person] WITH(INDEX ([IdxAge]))WHERE [Age] > 30
 ```
 
+検索の効率はインデックスに依存する
+
+- index seek だと効率的
+- index scan は非効率となる
+
 ---
 ---
 
