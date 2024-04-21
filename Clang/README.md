@@ -4,6 +4,7 @@ build周り
 
 - [gcc/Cmake について](./CMakeTips/Cmake)
 - [Makefile描き方サンプル](./CMakeTips/MakeFile)
+- [ライブラリを使う(.so/.dylib/.dll)](./library/)
 
 言語仕様系
 
