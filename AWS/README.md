@@ -8,7 +8,9 @@ awsについてまとめるためのメモ
     - [Lambda入門](Lambda)  
     - [EC2について](EC2)  
 
-[AWS S3](S3backet)
+- [AWS S3](S3backet)
+- [CloudFormationについて](./CloudFormation)
+  - AWSのリソースをコードから生成するサービス
 
 - オーケストレータ
   - [ECS(Amazon Elastic Container Service)について](#ECS)  
