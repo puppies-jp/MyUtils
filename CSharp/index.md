@@ -10,7 +10,7 @@ mcs async_await.cs #コンパイル
 mono async_await.exe #実行
 ```
 
-- [C/C++のso/dllライブラリをC#から実行する](CxxLib)
+- [C/C++のso/dllライブラリをC#から実行する](./src/CxxLib/)
 - [UDP Socket](src/udpSock/)
 - [Classのプロパティに文字列でアクセスする](#property)
 - [lambda式](#lambda)
