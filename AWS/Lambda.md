@@ -15,6 +15,13 @@ AWS Lambdaについて書いてみる
 aws configure
 ```
 
+## Lambda Functionの実行フローを可視化する
+
+AWS Step Functions は、Lambda 関数を ステートマシンと呼ばれるサーバーレスワークフローに接続できるオーケストレーションサービス
+
+- Step Functionsを使うことで複数のLambdaのフローを可視化できる
+- Lambda関数を連結、再実行、並列、分岐とフローを制御できる。
+
 ## ユーザにLambda関数の実行権限を割り当てる
 
 おそらく、CLIからも実行できる
