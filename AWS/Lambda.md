@@ -22,6 +22,8 @@ AWS Step Functions は、Lambda 関数を ステートマシンと呼ばれる�
 - Step Functionsを使うことで複数のLambdaのフローを可視化できる
 - Lambda関数を連結、再実行、並列、分岐とフローを制御できる。
 
+[AWS Step Functionsについて](https://docs.aws.amazon.com/ja_jp/step-functions/latest/dg/welcome.html)
+
 ## ユーザにLambda関数の実行権限を割り当てる
 
 おそらく、CLIからも実行できる
