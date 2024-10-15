@@ -7,6 +7,7 @@
 - [00_GDB と Assembly](00_GDB_ASSEMBLA)
 - [01_RAII なロッククラス実装](01_ThreadSafe_Mutex)
 - [05\_ランタイム Hack](05_ランタイムHack)
+- [99_バイナリファイルの調べ方](./99_バイナリファイル解析)
 
 - Hacking: 美しき策謀 読書メモ
   - [00_Hacking基礎](Hacking/00_Hacking基礎)
