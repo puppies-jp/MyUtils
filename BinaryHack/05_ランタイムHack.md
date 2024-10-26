@@ -16,7 +16,14 @@
 
 ## <a name="PRELOAD">共有ライブラリを差し替える(LD_PRELOAD)</a>
 
-- 共有ライブラリを差し替えて実行する方法をまとめる。
+[LD系機能まとめ](./Hacking/04_LDLibrary)
+
+- `LD_PRELOAD`を使用することで、プログラム起動前に共有ライブラリを読み込むことができる
+
+```bash
+//NOTE： 以下のようにすることで、共有ライブラリを指定できる
+LD_PRELOAD=./libHoge.so  fuga.exe 
+```
 
 ## <a name="unwind">unwind についてまとめる</a>
 
