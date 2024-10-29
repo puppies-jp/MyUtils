@@ -21,7 +21,14 @@ less /proc/sys/net/ipv4/i
 
 ```cmd
 netsh int ipv4 show dynamicport tcp
+
+// windowsでエフェメラルポートが枯渇している場合、以下のコマンドで確認できる
+netstat -an | find "TIME_WAIT"
 ```
+
+`タスクマネージャ`でハンドル数が多いものは枯渇の可能性が疑われるらしい
+
+[エフェメラルポートの枯渇について](https://learn.microsoft.com/ja-jp/troubleshoot/windows-client/networking/tcp-ip-port-exhaustion-troubleshooting)
 
 ---
 
