@@ -8,6 +8,23 @@ PC間での通信はネットワークインターフェースを通して行わ
 
 ---
 
+## エフェメラルポート調べ方
+
+- Linux
+
+```sh
+# このファイルに書いてある
+less /proc/sys/net/ipv4/i
+```
+
+- Windows
+
+```cmd
+netsh int ipv4 show dynamicport tcp
+```
+
+---
+
 ## 名前解決を行う
 
 - Linuxコマンドは以下
