@@ -16,6 +16,8 @@
 
 - まず、Linux において通常のプログラムが main 関数に辿り着くまで
 
+---
+
 ## <a name="PRELOAD">共有ライブラリを差し替える(LD_PRELOAD)</a>
 
 [LD系機能まとめ](./Hacking/04_LDLibrary)
@@ -26,6 +28,8 @@
 //NOTE： 以下のようにすることで、共有ライブラリを指定できる
 LD_PRELOAD=./libHoge.so  fuga.exe 
 ```
+
+---
 
 ## <a name="unwind">unwind についてまとめる</a>
 
@@ -44,6 +48,9 @@ LD_PRELOAD=./libHoge.so  fuga.exe
 ## <a name="livepatch">実行中のプロセスにパッチを当てる</a>
 
 - livepatch
+
+---
+---
 
 ## <a name="bindmount">特定のプロセスに見せるファイルを置き換える</a>
 
