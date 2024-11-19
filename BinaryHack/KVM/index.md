@@ -34,7 +34,14 @@ VMで処理できない命令(センシティブ命令(IO命令/マップドIO�
 |KVM_GET_VCPU_MMAP_SIZE|`KVM_RUN`で使用する`vCPU`毎のメモリサイズを取得する|
 |KVM_GET_REGS/KVM_SET_REGS|VMの汎用レジスタの値を設定/取得する|
 |KVM_GET_SREGS/KVM_SET_SREGS|VMのセグメントレジスタの値を設定/取得する|
-|KVM_RUN|VMを実行する。vmexitが起こるまでブロック|
+|KVM_RUN|VMを実行する。vmexit(センシティブ命令)が起こるまでブロック|
+
+|exit_reason|概要|
+|:--|:--|
+|KVM_EXIT_IO|ゲストがI/O命令を実行した|
+|KVM_EXIT_MMIO|ゲストがメモリマップドI/O命令を実行した|
+|KVM_EXIT_HLT|ゲストがHLT命令を実行した|
+|KVM_EXIT_INTERNAL_ERROR|VM実行中にエラーが発生した|
 
 ```cpp
 int dev = open("/dev/kvm",O_RDWR);

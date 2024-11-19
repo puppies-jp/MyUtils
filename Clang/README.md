@@ -39,6 +39,7 @@ ossとか環境依存系とか
 
 - よく使うソース群
   - [メモリ操作系](#mem)
+    - [mmap](#mmap)
   - [shared pointer](#sharedPointer)
   - [popenで標準出力/戻り値を取得する](#popen)
   - [エラー出力について](#error)
@@ -117,6 +118,35 @@ void *memcpy(void *buf1, const void *buf2, size_t n);
 // 🚨buf1 と buf2 が重なっているときでもbuf1の値からbuf2の値に上書きされる。
 void *memmove(void *buf1, const void *buf2, size_t n);
 ```
+
+---
+---
+
+## <a name=mmap>mmapの使い方</a>
+
+ファイルシステムとメモリー領域をマッピングしてくれる関数ぐらいの感覚でOK
+
+```cpp
+#include <sys/mman.h>
+
+/*
+# 引数
+void *address ,size_t length
+int protect,int flags,int fd,off_t offset
+#戻り値
+成功：マップされたメモリの先頭アドレス/失敗:MAP_FAILED(-1)
+*/
+void *mmap(void *address, size_t length, int protect, int flags, int fd,off_t offset)
+```
+
+|引数|説明|
+|:--|--|
+|void *address|マップするメモリの先頭アドレス<br>(NULLの場合、普通にメモリを確保/NULLでない場合、addressをヒントにメモリを確保)|
+|size_t length|マップするメモリの長さ(バイト単位)|
+|int protect|`PROT_READ`(読込可),<br>`PROT_WRITE`(書込可),<br>`PROT_EXEC`(実行可),<br>`PROT_NONE`(アクセス不可)|
+|int flags|`MAP_PRIVATE`(メモリに書き込んでも、ファイルには書き込まれない)<br>/`MAP_SHARED`(ファイルをマップしていれば、メモリに書き込むとファイルにも書き込まれる)|
+|int fd|マップするファイル・デバイスのファイルディスクリプタ|
+|off_t offset|ファイルにマッピングする際のオフセット|
 
 ---
 
