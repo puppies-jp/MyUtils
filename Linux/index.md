@@ -8,6 +8,8 @@ Linuxについてのあれこれをメモってく
 - [ソケットファイルについて](socketfile)
 - [FireWallについて](FireWall/Firewall)
 
+- [SAMBAについて](./samba)
+
 - [便利コマンド](#usefull)
   - [プロセス監視](#watch)
   - [systemd ファイル作成](#systemd)

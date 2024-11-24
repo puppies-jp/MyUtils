@@ -28,3 +28,27 @@ chmodで`u+s` or `g+s`でビットを立てれる。
 $ ls -l /usr/bin/passwd
 -rwsr-xr-x. 1 root root  /usr/bin/passwd
 ```
+
+## グループについて
+
+```bash
+# グループ一覧
+cat /etc/group
+
+# ユーザが属するグループを表示する
+groups "ユーザ名"
+
+# グループを作成する
+sudo groupadd "グループ名"
+
+# "主"グループにユーザを追加する
+sudo usermod -g "グループ名" "ユーザ名"
+
+# "副"グループにユーザを追加する
+sudo usermod -aG "グループ名" "ユーザ名"
+
+# グループを削除する
+groupdel グループ名
+sudo gpasswd -d ユーザ名 グループ名
+
+```
