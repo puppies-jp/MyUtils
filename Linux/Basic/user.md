@@ -9,6 +9,9 @@ sudo useradd "ユーザ名" -p "パスワード"
 sudo userdel "ユーザ名" 
 ```
 
+---
+---
+
 ## ファイルのアクセス権について
 
 `chmod`で`rwx`は説明しない。
@@ -28,6 +31,22 @@ chmodで`u+s` or `g+s`でビットを立てれる。
 $ ls -l /usr/bin/passwd
 -rwsr-xr-x. 1 root root  /usr/bin/passwd
 ```
+
+* ファイルやディレクトリのユーザーやグループの所有権を変更するためのコマンド
+
+```bash
+chown [オプション] ユーザーorグループ ファイルorディレクトリ
+
+# ユーザの所有権を変更する場合
+chown user file
+
+# グループの所有権も変更する場合
+chown user:group file
+
+```
+
+---
+---
 
 ## グループについて
 
