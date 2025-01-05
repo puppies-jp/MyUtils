@@ -67,9 +67,7 @@ ip netns exec ns2 ip address add 192.0.2.2/24 dev ns2-veth0
 # 以下で確認できる
 ip netns exec ns1 ip link show ns1-veth0 | grep state
 ip netns exec ns2 ip link show ns2-veth0 | grep state
-```
 
-```bash
 ip netns exec ns1 ip link set ns1-veth0 up
 ip netns exec ns2 ip link set ns2-veth0 up
 ```
