@@ -75,3 +75,94 @@ ip netns exec ns2 ip link show ns2-veth0 | grep state
 ip netns exec ns1 ip link set ns1-veth0 up
 ip netns exec ns2 ip link set ns2-veth0 up
 ```
+
+---
+---
+
+## 作成したnamespace間を繋げる2
+
+- gatewayを複数挟んだ通信の模擬環境を作成する(以下イメージで通信を行う)
+
+![Gateway](png/gateway.png)
+
+- namespaceを作成する
+
+```bash
+# namespaceを全てクリアする
+# ip --all netns delete
+
+# namespaceを作成する
+ip netns add ns1
+ip netns add router1
+ip netns add router2
+ip netns add ns2
+```
+
+- 仮想NICを作成する
+
+```bash
+# Veth作成
+ip link add ns1-veth0 type veth peer name gw1-veth0
+ip link add gw1-veth1 type veth peer name gw2-veth0
+ip link add gw2-veth1 type veth peer name ns2-veth0
+
+# namespaceに接続
+ip link set ns1-veth0 netns ns1
+ip link set gw1-veth0 netns router1
+ip link set gw1-veth1 netns router1
+ip link set gw2-veth0 netns router2
+ip link set gw2-veth1 netns router2
+ip link set ns2-veth0 netns ns2
+
+# Link Up
+ip netns exec ns1 ip link set ns1-veth0 up
+ip netns exec router1 ip link set gw1-veth0 up
+ip netns exec router1 ip link set gw1-veth1 up
+ip netns exec router2 ip link set gw2-veth0 up
+ip netns exec router2 ip link set gw2-veth1 up
+ip netns exec ns2 ip link set ns2-veth0 up
+```
+
+- 仮想NICにIPを割り当てる
+
+```bash
+
+ip netns exec ns1 ip address add 192.0.2.1/24 dev ns1-veth0
+ip netns exec router1 ip address add 192.0.2.254/24 dev gw1-veth0
+
+ip netns exec router1 ip address add 203.0.113.1/24 dev gw1-veth1
+ip netns exec router2 ip address add 203.0.113.2/24 dev gw2-veth0
+
+ip netns exec router2 ip address add 198.51.100.254/24 dev gw2-veth1
+ip netns exec ns2 ip address add 198.51.100.1/24 dev ns2-veth0
+```
+
+- ルーティング設定をする
+
+1. スタティックルーティング 人間が手でルーティングエントリを追加するような方式
+2. ダイナミックルーティング ルータ同士が自律的に自身の知っているルーティング情報を教えあう方式
+
+```bash
+# ns1/ns2のNICにゲートウェイ設定を割り当てる
+# *それぞれ直結したルータ宛となっていることに注意
+# gateway設定しないと、、出力先のNICがわからないのでPingも出て行かない
+ip netns exec ns1 ip route add default via 192.0.2.254
+ip netns exec ns2 ip route add default via 198.51.100.254
+
+# ルータ側のカーネルパラメータを以下のコマンドで変更する
+ip netns exec router1 sysctl net.ipv4.ip_forward=1
+ip netns exec router2 sysctl net.ipv4.ip_forward=1
+
+# 各ルータのネームスペースに対してルーティング設定をする
+# ip route add "宛先のサブネット等" via "ルーティング先IP(ルーティング先IP)"
+# router1/2それぞれ、ルーティング先にrouter2/1を指定していることに注意
+ip netns exec router1 ip route add 198.51.100.0/24 via 203.0.113.2
+ip netns exec router2 ip route add 192.0.2.0/24 via 203.0.113.1
+
+# 一応、以下のようにdefault gateway設定をすることで
+# route1に来たパケットをroute2へ、
+# route2に来たパケットをroute1へといったルーティングできるようになる
+# ip netns exec router1 ip route add default via 203.0.113.2
+# ip netns exec router2 ip route add default via 203.0.113.1
+
+```
