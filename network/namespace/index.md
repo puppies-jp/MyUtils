@@ -43,6 +43,10 @@ ip netns add ns2
 
 - 仮想NICを作成する
 
+  - `ip link`
+    - `ネットワークインタフェース`の作成/リンク状態の確認や、LinkUp/Downの設定に使う
+    仮想Lan/TagVLan等を作成できる
+
 ```bash
 # veth(仮想NICを作成する)
 # ns1-veth0 / ns2-veth0 の仮想NICが作成される。(1対1で繋がってるイメージ？)
