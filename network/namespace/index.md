@@ -165,4 +165,7 @@ ip netns exec router2 ip route add 192.0.2.0/24 via 203.0.113.1
 # ip netns exec router1 ip route add default via 203.0.113.2
 # ip netns exec router2 ip route add default via 203.0.113.1
 
+# VLANにMACアドレスを設定する方法
+# 上位3byte(ベンダー固有値)/下位3byte(ベンダー製品の一意になる値)
+# ip link set dev ns1-veth0 address 00:00:5E:00:53:01
 ```
