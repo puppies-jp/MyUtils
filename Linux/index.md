@@ -17,6 +17,8 @@ Linuxについてのあれこれをメモってく
   - [ファイル転送(rsync)](#rsync)
   - [ssh接続について](#ssh)
 
+- [Linuxネームスペース](./namespace)
+
 - [deb/rpmファイルをインストールする](#pkgInstall)
 
 ---
