@@ -155,6 +155,9 @@ RequiredBy=sysinit.target
 
 ```bash
 sudo apt install --download-only パッケージ名
+# 格納先
+#ls /var/cache/apt/archives/
+
 sudo apt install ./ファイル名.deb
 sudo apt remove パッケージ名
 
