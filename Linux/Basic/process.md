@@ -20,8 +20,7 @@ mount -t proc proc /path/to/your/dir
 |- cmdline,environ,status  (単体ファイル群)
 
 # 特殊なシンボリックリンク
-# 動作しているプロセスIDがセルフに置き換わる。(つまり、)
-# /proc/$$
+# 動作しているプロセスIDがセルフに置き換わる。
 /proc/self 
 
 ```
