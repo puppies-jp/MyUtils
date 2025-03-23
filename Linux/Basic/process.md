@@ -1,5 +1,31 @@
 # プロセスについて
 
+## procfs/sysfs について
+
+`procfs`とは`/proc`にマウントされる擬似マウントシステムのこと
+
+```bash
+# これで好きな場所にマウントできる
+mount -t proc proc /path/to/your/dir
+
+# /procについて
+|-1/,2/,            (プロセス関係ディレクトリ)
+|-fs/,tty/,sys/     (PIDに対応しないその他ディレクトリ)
+|-self,thread-self, (シンボリックリンク)
+|-uptime,version,   (単体ファイル群)
+
+# /proc/<PID>の構成について
+|- fd/,attr/,task/         (ディレクトリ群)
+|- exe,cwd                 (シンボリックリンク群)
+|- cmdline,environ,status  (単体ファイル群)
+
+# 特殊なシンボリックリンク
+# 動作しているプロセスIDがセルフに置き換わる。(つまり、)
+# /proc/$$
+/proc/self 
+
+```
+
 ## プロセスの状態について
 
 linuxのプロセスにはいくつかの状態がある。
