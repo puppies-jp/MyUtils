@@ -28,7 +28,7 @@ git checkout -b <branch名>　# ブランチ切替、作成もやってくれる
 # 1.編集中のブランチをマージ先に切り替える
 git checkout master
 
-# 2.マージ元のブランチを指定してマージを行う
+# 2.マージ元のブランチ(取り込みたいブランチ)を指定してマージを行う
 git merge branch1
 
 
@@ -45,6 +45,14 @@ git merge --abort
 
 # 4.マージ結果をプッシュする
 git push
+```
+
+- マージ済のコミットを差し戻す
+
+```sh
+# 1:マージで取り込んだブランチのheadに戻す
+# 2:取り込まれたブランチのheadに戻す
+git revert -m 1 <merge commit hash>
 ```
 
 ## リベース(rebase)
