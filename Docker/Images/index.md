@@ -6,7 +6,8 @@
 docker pull tensorflow/tensorflow:latest  # Download latest stable image
 docker run -it -d --privileged --name tensorJupyter -p 8888:8888 tensorflow/tensorflow:latest-jupyter 
 
-# NOTE 後日、GPUを使う方法もまとめて追記する
+# NOTE 後日、GPUを使う方法もまとめて追記する(一応、Nvidia-containor- toolkitが必要らしい)
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 
 # jupyterでパスワードを設定する方法
 # 1.コマンドで変更する(再起動で反映されるはず、起動中に反映されなかった)
