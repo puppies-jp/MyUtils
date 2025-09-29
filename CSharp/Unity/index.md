@@ -2,6 +2,12 @@
 
 Unityについてまとめる
 
+MVCモデルの置き換えにおいて、
+
+Model -> `ScriptableObject` 
+View -> `Monobehaviour`,`GameObject`
+Controller -> `△Monobehaviour`
+
 ## 🧠MonoBehaviour（モノビヘイビア）
 MonoBehaviour（モノビヘイビア）とは、Unityのスクリプトの基本クラスであり、GameObjectに機能を追加するための土台です。UnityでC#スクリプトを書くとき、ほとんどの場合このMonoBehaviourを継承して使います。
 
@@ -24,6 +30,8 @@ MonoBehaviourの役割
 - 複数オブジェクト間で使い回すデータ
 
 🧩 例：ScriptableObjectでアイテムデータを定義
+
+```cs
 [CreateAssetMenu(fileName = "NewItem", menuName = "Game/Item")]
 public class ItemData : ScriptableObject
 {
@@ -31,7 +39,7 @@ public class ItemData : ScriptableObject
     public int power;
     public Sprite icon;
 }
-
+```
 
 このようにして作ったScriptableObjectは、Projectビューにアセットとして保存され、複数のGameObjectから参照できます。
 
