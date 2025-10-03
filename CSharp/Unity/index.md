@@ -4,9 +4,9 @@ Unityについてまとめる
 
 MVCモデルの置き換えにおいて、
 
-Model -> `ScriptableObject` 
-View -> `Monobehaviour`,`GameObject`
-Controller -> `△Monobehaviour`
+- Model -> `ScriptableObject` 
+- View -> `Monobehaviour`,`GameObject`
+- Controller -> `△Monobehaviour`
 
 ## 🧠MonoBehaviour（モノビヘイビア）
 MonoBehaviour（モノビヘイビア）とは、Unityのスクリプトの基本クラスであり、GameObjectに機能を追加するための土台です。UnityでC#スクリプトを書くとき、ほとんどの場合このMonoBehaviourを継承して使います。
