@@ -32,6 +32,8 @@
 - [モジュール作成](#module)
 - [演算子のオーバーロードについて](#overload)
 
+- [技術のキャッチアップ](https://javascriptweekly.com/issues/755)
+
 ---
 ---
 
