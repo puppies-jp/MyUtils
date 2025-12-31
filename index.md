@@ -5,6 +5,8 @@
 - Tensorflow 周りのめも(別のページのリンク)
   - [Tensorflow お勉強関連](https://puppies-jp.github.io/TensorflowDevLearn/)
 
+- [PMP勉強](./PMP/index.md)
+
 ---
 
 ## 考え方系
