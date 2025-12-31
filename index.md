@@ -20,15 +20,15 @@
 
 ## 言語系
 
-- [Python🐍](Python)
+- [Python🐍](Lang/Python)
 - [Clang 系](Clang)
   - [GDB](BinaryHack/00_GDB_ASSEMBLA.md)
-- [C# CSharp](CSharp)
-  - [Blazor](CSharp/blazor)
-  - [Unity](CSharp/Unity)
+- [C# CSharp](Lang/CSharp)
+  - [Blazor](Lang/CSharp/blazor)
+  - [Unity](Lang/CSharp/Unity)
 
-- [Java/jsp](Java)
-- [JavaScript](JavaScript)
+- [Java/jsp](Lang/Java)
+- [JavaScript](Lang/JavaScript)
 - [html/javascript/css 勉強用](Frontend)
 
 - [SQL](SQL)  
