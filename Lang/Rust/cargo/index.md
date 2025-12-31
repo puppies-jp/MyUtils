@@ -4,18 +4,20 @@
 
 ## プロジェクト作成
 
-以下、オプションを付けることで、バイナリとライブラリを切り替えられる
-`--bin` : デフォルトでonなので付けないでOK
-`--lib` : ライブラリ作成用
+以下、オプションを付けることで、バイナリとライブラリを切り替えられる  
+`--bin` : デフォルトでonなので付けないでOK  
+`--lib` : ライブラリ作成用  
 
 ```bash
 # hello_worldフォルダを作成し、以下の以下のファイルを作る
 $ cargo new hello_world
+# ライブラリ作成時は以下
+$ cargo new hello --lib
 
 $ cd hello_world
 $ tree .
 .
-├── Cargo.toml
+├── Cargo.toml #依存関係を管理するファイル
 └── src
     └── main.rs
 
