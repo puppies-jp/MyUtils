@@ -5,6 +5,8 @@ Rustが話題なので勉強する
 - [構文](./grammar.md)
 - [パッケージ作成](./cargo/index.md)
 
+---
+
 ## 環境構築
 
 - [インストール手順(公式)](https://rust-lang.org/ja/tools/install/)
@@ -30,6 +32,9 @@ export PATH=$HOME/.cargo/bin:$PATH
 rustup update
 ```
 
+---
+---
+
 ## 各種ツール
 
 |ツール|機能|
@@ -39,6 +44,8 @@ rustup update
 |rustdoc|Rustのソースからドキュメントを作るらしい|
 
 [公式](https://rust-lang.org/ja/learn/)
+
+---
 
 ## コンパイル
 
