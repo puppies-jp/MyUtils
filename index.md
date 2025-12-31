@@ -18,7 +18,7 @@
 - [networkについて](network)
   - [セキュリティについて](secure)
 
-## 言語系
+## [言語系](./Lang/index.md)
 
 - [Python🐍](Lang/Python)
 - [Clang 系](Clang)

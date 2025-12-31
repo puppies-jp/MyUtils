@@ -1,0 +1,10 @@
+target/debug/*
+target/release/*
+*.json
+*.TAG
+*.lock
+*.d
+*.o
+*.timestamp
+*.bin
+.cargo-lock
