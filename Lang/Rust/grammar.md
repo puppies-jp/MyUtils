@@ -156,4 +156,5 @@ fn main() {
     p.translate(1.0, 2.0);
     let t = p.into_tuple();
     println!("{:?}", t);
-}```
+}
+```
