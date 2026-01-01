@@ -15,6 +15,7 @@
   - [PlantUML](object-oriented/PlantUML)
 
 - [BinaryHack](BinaryHack)
+  - [GDB](BinaryHack/00_GDB_ASSEMBLA.md)
 - [keyword 備忘録](keywords)
 - [Bit演算](bitOp)
 - [networkについて](network)
@@ -22,11 +23,7 @@
 
 ## [言語系](./Lang/index.md)
 
-- [Clang 系](Clang)
-  - [GDB](BinaryHack/00_GDB_ASSEMBLA.md)
-
 - [html/javascript/css 勉強用](Frontend)
-
 - [SQL](SQL)  
 
 - [html template](html)
