@@ -95,6 +95,9 @@ for x in &array[1..2]
 
 ## 構造体
 
+構造体としてはCとほぼ同じだが、構造体名と同名の`impl`を定義することで、
+クラスメソッドのような関数を定義することができる。
+
 ```rust
 struct User {
     username: String,
@@ -115,3 +118,42 @@ let mut user1 = User {
 
 user1.email = String::from("anotheremail@example.com");
 ```
+
+```rust
+// 同じモジュールで struct と impl を定義するのが通常
+pub struct Point {
+    x: f64, // モジュール外からは private
+    y: f64,
+}
+
+impl Point {
+    // 関連関数（コンストラクタ）
+    pub fn new(x: f64, y: f64) -> Self {
+        Self { x, y }
+    }
+
+    // 不変参照のメソッド
+    pub fn distance_from_origin(&self) -> f64 {
+        (self.x * self.x + self.y * self.y).sqrt()
+    }
+
+    // 可変参照のメソッド
+    pub fn translate(&mut self, dx: f64, dy: f64) {
+        self.x += dx;
+        self.y += dy;
+    }
+
+    // 所有権を取るメソッド（消費）
+    // 🌟x,yが所有権を取られるので以降、使えなくなる
+    pub fn into_tuple(self) -> (f64, f64) {
+        (self.x, self.y)
+    }
+}
+
+fn main() {
+    let mut p = Point::new(3.0, 4.0);
+    println!("{}", p.distance_from_origin()); // 5.0
+    p.translate(1.0, 2.0);
+    let t = p.into_tuple();
+    println!("{:?}", t);
+}```
