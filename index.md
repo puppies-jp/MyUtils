@@ -22,15 +22,9 @@
 
 ## [言語系](./Lang/index.md)
 
-- [Python🐍](Lang/Python)
 - [Clang 系](Clang)
   - [GDB](BinaryHack/00_GDB_ASSEMBLA.md)
-- [C# CSharp](Lang/CSharp)
-  - [Blazor](Lang/CSharp/blazor)
-  - [Unity](Lang/CSharp/Unity)
 
-- [Java/jsp](Lang/Java)
-- [JavaScript](Lang/JavaScript)
 - [html/javascript/css 勉強用](Frontend)
 
 - [SQL](SQL)  
