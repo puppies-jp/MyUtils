@@ -24,6 +24,19 @@ $ tree .
 1 directory, 2 files
 ```
 
+- 依存関係パッケージ追加
+
+```bash
+cargo add regex
+cargo add [options] crate…
+cargo add [options] --path path
+cargo add [options] --git url [crate…]
+
+# 正規表現
+cargo add regex
+cargo add rand
+```
+
 ## ビルド&実行
 
 デフォルトで`debug`でビルドされる。
