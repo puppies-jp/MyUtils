@@ -10,13 +10,14 @@ Rustではメモリをコンパイル段階でメモリ安全を担保するた�
 2. `いかなる時も所有者は一つ`である。  
    (所有者が変われば、元所有者は触れない。)
 3. 所有者がスコープから外れたら、値は破棄される。
-   (所有者を一つにすることで、二重解放を避ける)
+   `(所有者を一つにすることで、二重解放を避ける)`
 
 ## データ操作まとめ
 
 - [move](#move)
 - [clone/copy](#clone)
 - [関数による所有権移動](#function)
+- [構造体の所有権](#struct)
 
 ## <a name="move">データと変数の相互作用(move)</a>
 
@@ -137,5 +138,36 @@ fn main() {
 fn calculate_length(s: String) -> (String, usize) {
     let length = s.len(); // len()メソッドは、Stringの長さを返します
     return (s, length)
+}
+```
+
+## <a name=struct>構造体の所有権</a>
+
+基本的に何も指定しなければ`move`となる。
+
+- `derive`アノテーションをつけることで、`copy`,`clone`の実装をコンパイラでやってくれるらしい、`debug`をつけるとfmtで表示するときに自動でメンバ変数の表示とかを作ってくれる。
+
+```rust
+// 🌟deriveでコンパイラが、Debug,Clone,Copyが実装する。
+#[derive(Debug, Clone, Copy)]
+struct Point { x: i32, y: i32 } // 全フィールドが Copy なら derive できる
+
+// i32 は Copy だが、Point は自動で Copy にならない
+#[derive(Debug)]
+struct Point2 { x: i32, y: i32 } 
+
+fn main() {    
+    let p1 = Point { x: 1, y: 2 };
+    let p2 = p1; // コピーされる（ムーブではない）
+    println!("{:?}", p1); // 問題なく使える
+    println!("{:?}", p2);
+
+    //🌟 Tip:こういう書き方をすると、取り出す各フィールドが Copy ならコピーされ、Copy でなければムーブされます。
+    let Point { x, y } = p;
+
+    //deriveでcopyがない場合
+    let p1 = Point2 { x: 1, y: 2 };
+    let p2 = p1; // p1 はムーブされる（Point2 が Copy でないため）
+    // println!("{:?}", p1); // コンパイルエラー: use of moved value: `p1`
 }
 ```

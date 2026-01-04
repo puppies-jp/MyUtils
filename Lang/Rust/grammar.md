@@ -5,6 +5,7 @@ Rustの構文についてまとめる
 [型](#type)
 [配列](#array)
 [構造体](#struct)
+[参照/借用](#reference)
 
 ---
 
@@ -110,7 +111,10 @@ for x in &array[1..2]
 構造体としてはCとほぼ同じだが、構造体名と同名の`impl`を定義することで、
 クラスメソッドのような関数を定義することができる。
 
+- `derive`アノテーションをつけることで、`copy`,`clone`の実装をコンパイラでやってくれるらしい、`debug`をつけるとfmtで表示するときに自動でメンバ変数の表示とかを作ってくれる。
+
 ```rust
+#[derive(Debug,Clone, Copy)]
 struct User {
     username: String,
     email: String,
@@ -170,3 +174,9 @@ fn main() {
     println!("{:?}", t);
 }
 ```
+
+---
+
+## <a name=reference>参照/借用</a>
+
+参照と借用について語る。
