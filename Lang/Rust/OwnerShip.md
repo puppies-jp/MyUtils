@@ -123,7 +123,9 @@ fn takes_and_gives_back(a_string: String) -> String { // a_stringがスコープ
 ```
 
 - 🌟毎回所有権を移動し、引数の所有権移動されるのではうざいが、
-  `tuple`で返り値にすることで回避する手法もある。
+  `tuple`で返り値にすることで回避する手法もあるが、
+  参照で回避できる。
+  参照については *[#reference](./grammar.md#reference)* で語る。
 
 ```rust
 fn main() {

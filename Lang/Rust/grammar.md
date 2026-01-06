@@ -84,14 +84,20 @@ fn main() {
 
 ### <a name=array>配列スライス</a>
 
+- 🌟スライスは後述する、`参照`なので使い方に注意すること
+
 ```rust
 let mut array: [i32; 4] = [0; 4];
 array[1] = 1;
 array[2] = 2;
-        
+
 assert_eq!([1, 2], &array[1..3]);//1番目から3番目まで
 assert_eq!([1, 2,0], &array[1..4]);//1から4番目まで
 assert_eq!([1, 2,0], &array[1..]);//1から最後まで
+
+// 🌟変数スライス
+let len = s.len();
+assert_eq!([0,1, 2,0], &array[..len]);//0から最後まで
 
 // This loop prints: 0 1 2
 for x in array {
@@ -179,4 +185,81 @@ fn main() {
 
 ## <a name=reference>参照/借用</a>
 
-参照と借用について語る。
+- `&` 参照:参照先で変更不可
+
+- `&mut` 可変参照:参照先で変更可
+  可変参照で同じスコープ内で一つしか作れない
+
+`関数の引数に参照を取ること`を`借用`と呼びます
+
+```rust
+fn main() {
+
+    // 🌟Case1
+    // &で渡すことで、関数内で所有権を渡されずに、参照のみが許可される
+    let s1 = String::from("hello");
+    let len = calculate_length(&s1);
+    println!("The length of '{}' is {}.", s1, len);
+    
+    // 🌟Case2
+    //関数の実行先で変更するには定義時にmutableにしないといけない
+    let mut s2 = String::from("hello");
+    change(&mut s2);
+    println!("changed to '{}'.", s1);
+
+        
+    // 🌟Case3
+    //同じ可変参照をスコープないで持つとコンパイルエラーとなる
+    let mut s = String::from("hello");
+    let r1 = &mut s;//問題なし
+    let r2 = &mut s;//問題あり
+
+    // 🌟Case4
+    // 同じスコープ内で可変参照と不変の参照を共同で定義もできない
+    // 不変はいくつでも定義できる
+    let mut s = String::from("hello");
+    let r1 = &s; // 問題なし
+    let r2 = &s; // 問題なし
+    let r3 = &mut s; // 大問題！
+}
+
+// 🌟参照
+fn calculate_length(s: &String) -> usize {
+    //変更はできない(compile error)
+    //some_string.push_str(", world");    
+    s.len()
+}
+
+// 🌟可変参照
+fn change(s: &mut String){
+    some_string.push_str(", world");    
+}
+```
+
+- ダングリングポインタ
+
+ポインタのある言語では、誤ってダングリングポインタを生成してしまいやすいです。ダングリングポインタとは、 他人に渡されてしまった可能性のあるメモリを指すポインタのことであり、その箇所へのポインタを保持している間に、 メモリを解放してしまうことで発生します。
+Rustではコンパイル時にエラーとなり、参照ではなく所有権そのものを返り値とするから、ライフタイムを与えることで回避できる。
+
+```rust
+fn main() {
+    let reference_to_nothing = dangle();
+}
+
+//🌟ダングリングポインタはコンパイルでエラーとなる
+fn dangle() -> &String {
+    // 🌟スコープを抜けるときに本体はメモリが解放されるが、
+    // 参照が返されるので無効な参照が返り値となる。
+    // ダングリングポインタ
+    let s = String::from("hello");
+    &s
+}
+
+//🌟上記と違って、所有権を渡して呼び出し元が
+// メモリ解放するので、ダングリングポインタとならない
+fn not_dangle() -> String {
+    let s = String::from("hello");
+    s
+}
+
+```
