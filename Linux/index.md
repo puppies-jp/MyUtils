@@ -19,6 +19,7 @@ Linuxについてのあれこれをメモってく
 
 - [Linuxネームスペース](./namespace)
 
+- [OSインストール後便利コマンド](./install)
 - [deb/rpmファイルをインストールする](#pkgInstall)
 
 ---
