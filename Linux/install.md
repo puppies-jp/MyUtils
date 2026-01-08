@@ -23,3 +23,12 @@ sudo dpkg-reconfigure libdvd-pkg
 # fix broken package
 sudo apt-get install -f
 ```
+
+## Nvidia Driver
+
+インストール後よくおかしくなるので、まとめる
+
+```bash
+#TODO:後で書く、メモ
+nvidia-driver-580 
+```
