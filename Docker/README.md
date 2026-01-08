@@ -2,6 +2,8 @@
 
 \[TODO]:`compose`とかと整理が煩雑になってきてるからそのうち整理する！！
 
+[install](./install)
+
 - 大まかな流れを以下にまとめる
 
   1. Docker Hub からイメージを検索／取得する。(search/pull)
