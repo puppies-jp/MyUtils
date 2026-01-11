@@ -2,6 +2,8 @@
 
 Unityについてまとめる
 
+- [Linuxインストール](./index.md)
+
 MVCモデルの置き換えにおいて、
 
 - Model -> `ScriptableObject` 
