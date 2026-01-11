@@ -2,7 +2,7 @@
 
 Unityについてまとめる
 
-- [Linuxインストール](./index.md)
+- [Linuxインストール](./install.md)
 
 MVCモデルの置き換えにおいて、
 
