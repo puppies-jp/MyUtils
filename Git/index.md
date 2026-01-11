@@ -2,7 +2,7 @@
 
 [よく使うコマンド備忘録](howToUseGit)
 
-[github設定系](./github.md)
+[github設定系](./github)
 
 GitはGitHub/GitLabだけでなく`共有フォルダ`でも他者と共有することができる。
 今回は共有フォルダでの設定方法を記す。
