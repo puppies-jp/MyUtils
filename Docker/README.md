@@ -2,7 +2,7 @@
 
 \[TODO]:`compose`とかと整理が煩雑になってきてるからそのうち整理する！！
 
-[install](./install)
+[install手順](./install)
 
 - 大まかな流れを以下にまとめる
 
