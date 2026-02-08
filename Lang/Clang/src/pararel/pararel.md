@@ -29,14 +29,40 @@
 
 ## <a name=pthread>pthreadについて</a>
 
+- pthread: POSIXスレッド（C向け、POSIX準拠）。低レベルで細かい制御が可能。
+- std::thread: C++11で導入された標準のスレッドクラス。C++の言語機能（RAII、ラムダ、例外、stdライブラリ）と統合。
+
 🚨 `pthread_create`した後は必ず`join`,`detach`がいる。
 
 - `pthread_create`でスレッドを作成した場合、
   `join`もしくは、`detach`しなければなりません。 pthread_detachは、メインスレッドからスレッドを切り離す機能を提供します。
   `pthread_create`で作ったスレッドが終了したとき、`join`で終了を回収せずに、`pthread_create`だけを呼び出して、`プログラムを動かしているとメモリリーク`します。
 
-[pthread Cサンプル](https://github.com/puppies-jp/MyUtils/blob/gh-pages/Clang/src/pararel/pthread/pthreadSample.cpp)  
-[pthread std C++サンプル](https://github.com/puppies-jp/MyUtils/blob/gh-pages/Clang/src/pararel/pthread/SimpleThread.cpp)  
+[pthread Cサンプル](./pthread/pthreadSample.cpp)  
+[pthread std C++サンプル](./pthread/SimpleThread.cpp)
+
+```cpp
+#include <pthread.h>
+#include <iostream>
+
+void* threadFunc(void* arg){
+  std::cout << "Hello from pthread\n";
+  return nullptr;
+}
+
+int main(){
+  pthread_t t;
+  pthread_create(&t, nullptr, threadFunc, nullptr);
+    pthread_join(t, nullptr);
+    
+  // 
+  std::thread t(
+    [](){
+        std::cout << "Hello from std::thread\n";
+    });
+    t.join();
+}
+```
 
 ## <a name='mutex'>mutex</a>
 
