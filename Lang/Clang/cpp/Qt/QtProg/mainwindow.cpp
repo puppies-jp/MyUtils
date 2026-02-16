@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QVulkanInstance>
-#include <thread>>
+#include <thread>
 #include <chrono>
 #include <ctime>
 
