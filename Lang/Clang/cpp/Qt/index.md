@@ -39,7 +39,7 @@ C#のmethodinvokerのような機能はQtにはないが、以下ようにスレ
 ```cpp
 /*
 これらのヘッダは必要に応じてインクルードしてください。
-#include <thread>>
+#include <thread>
 #include <chrono>
 #include <ctime>
 */
