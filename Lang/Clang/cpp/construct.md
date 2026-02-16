@@ -1,8 +1,35 @@
 # cpp におけるコンストラクト/デストラクトについてまとめる
 
+0. [標準的な書き方](#default)
 1. [コピーコンストラクタ/コピー代入演算子について](#copy)
 
 ---
+
+## <a name=default>標準的な書き方</a>
+
+以下のように`QMainWindow`を継承した`MainWindow`クラスのコンストラクタで継承元の初期化、
+メンバ変数の初期化を行う書き方ができる。
+
+```cpp
+//header ファイル
+class MainWindow : public QMainWindow
+{
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private:
+    Ui::MainWindow *ui;
+};
+
+// src ファイル
+// MainWindow クラスのコンストラクタ
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)      // 親クラスの初期化
+, ui(new Ui::MainWindow)   // UIの初期化
+{
+    ui->setupUi(this);
+}
+```
 
 ## <a name=copy>コピーコンストラクタ/コピー代入演算子について</a>
 

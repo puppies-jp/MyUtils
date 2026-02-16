@@ -8,14 +8,12 @@ build周り
 
 言語仕様系
 
-- [C++について(基本的なやつ)+小ネタ](cpp)
-- [valarray(便利そうだからそのうち書く)]
-- [プリプロセッサ使い方 cheat メモ](preprocessor)
-- [コンストラクト/デストラクト](construct)
-- [C++の安全なリソース解放について](SafeResource)
-- [引数について](FunctionParameter)
-- [inline調査](inline#inline)
-- [オペレータの定義について](inline#operator)
+- [C++について](cpp)
+  - [valarray(便利そうだからそのうち書く)]
+  - [プリプロセッサ使い方 cheat メモ](preprocessor)
+  - [引数について](FunctionParameter)
+  - [inline調査](inline#inline)
+  - [オペレータの定義について](inline#operator)
 
 ossとか環境依存系とか
 
@@ -32,7 +30,6 @@ ossとか環境依存系とか
 - [共有メモリについて](src/sharedMem)
 - [並行プログラミング戦略](src/pararel/pararel)  
   - [並列ソート処理](src/pthread_sort/sort)
-- [lambda式/関数ポインタについて](lambda)
 - [ヒアドキュメント](#here)
 
 ---

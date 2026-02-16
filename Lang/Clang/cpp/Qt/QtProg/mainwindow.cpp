@@ -7,9 +7,9 @@
 
 auto flg = true;
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+//class MainWindow : public QMainWindow
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent)
+, ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
