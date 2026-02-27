@@ -6,3 +6,4 @@ CMakeCache.txt
 *.exe
 .DS_Store
 *.s
+.vs
