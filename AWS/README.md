@@ -12,6 +12,7 @@ awsについてまとめるためのメモ
 - [CloudFormationについて](./CloudFormation)
   - AWSのリソースをコードから生成するサービス
 
+- [AWSのネットワーク構成(VPC)](VPC)
 - オーケストレータ
   - [ECS(Amazon Elastic Container Service)について](#ECS)  
   - [EKS(Amazon Elastic Kubernetes Service)について](#EKS)
