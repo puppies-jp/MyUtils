@@ -85,13 +85,13 @@ export default function UserList() {
                     <Link
                     // hrefにpathnameとqueryを指定することで、
                     // クエリパラメータをつけて遷移することができる
-                        href={{
+                        href={
                         pathname: "/Hello",
                         query: {
                             name: user.name ,
                             id: user.id,
                         }
-                        }}>
+                        }>
                      Id.{user.id}/{user.name}のページへ
                     </Link>
                 </li>
