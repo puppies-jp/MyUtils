@@ -2,6 +2,9 @@
 
 流行りに乗ってReactについてまとめる
 
+
+[画面遷移](page)
+
 ```bash
 # プロジェクト作成
 npx create-react-app myapp
@@ -9,6 +12,28 @@ npx create-react-app myapp
 cd myapp
 npm start
 ```
+
+## docker 立ち上げ方
+
+```bash
+# myappというプロジェクトを作成する
+npx create-react-app myapp
+# サーバ立ち上げ
+cd myapp
+npm start
+```
+
+```dockerfile
+FROM node:16-alpine
+WORKDIR  /myapp
+# npxで作成したプロジェクトをコピーするため、パス、フォルダ名は適宜変更すること
+COPY myapp /myapp 
+EXPOSE 3000
+CMD ["npm", "start"]
+
+
+```
+
 
 ## Tagに変数をつけて実行する
 
