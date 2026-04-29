@@ -7,6 +7,7 @@ Rustが話題なので勉強する
 - [構文](./grammar.md)
 - [所有権と参照/借用](OwnerShip)
 - [パッケージ作成](./cargo/index.md)
+- [他基本構文](./basic/)
 
 ---
 
