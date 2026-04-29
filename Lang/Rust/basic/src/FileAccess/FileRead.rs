@@ -3,11 +3,10 @@ use std::fs::File;
 use std::io::{ BufRead, BufReader};
 
 fn main() -> Result<(), Box<dyn std::error::Error>>{
-    read_all()
+    read_all();
     .expect("Failed to read file");
-
+    
     println!("----------------------------");
-
     read_lines().expect("Failed to read file");
 
     Ok(())
@@ -27,3 +26,4 @@ fn read_lines() -> Result<(), Box<dyn std::error::Error>> {
     }
     Ok(())
 }
+
