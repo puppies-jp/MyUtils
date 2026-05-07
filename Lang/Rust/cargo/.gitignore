@@ -1,5 +1,6 @@
-target/debug/*
-target/release/*
+*/target/debug/*
+*/target/release/*
+*/.idea/*
 *.json
 *.TAG
 *.lock

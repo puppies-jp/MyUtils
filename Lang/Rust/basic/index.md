@@ -36,6 +36,7 @@ None => println!("Failed to parse"),
 Rustのエラーハンドリングは、`Result型`で行われる。
 `Result型`は、成功した場合は`Ok(T)`、失敗した場合は`Err(E)`を返す列挙型である。
 このため、エラー処理は、`match`式や`unwrap`メソッドなどを使用して行われる。
+また、`?`演算子を使用することで、エラーを簡単に伝播させることもできる。
 
 `unwarp`は、失敗したことで以後の処理ができない場合に使用することが多い。
 例えば、`設定ファイル`が読み込めなかった場合などは、`unwarp`,`except`を使用してエラーを処理することが多い。
@@ -64,9 +65,13 @@ fn error_example() {
         println!("Parsed number: {}", num);
     } else  if let Err(ref e) = result {
         println!("Failed to parse: {}", e);
-    }
-}
+    }    
 
+    // 直接値を取り出す場合
+    let result = num_str.parse()?;
+    println!("Parsed number: {}", result);
+
+}
 ```
 
 - `unwrap`, `expect`を使用したエラー処理の例
