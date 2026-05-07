@@ -8,6 +8,7 @@ Rustが話題なので勉強する
 - [所有権と参照/借用](OwnerShip)
 - [パッケージ作成](./cargo/index.md)
 - [他基本構文](./basic/)
+- [MySQLクレート](./cargo/mysql/index.md)
 
 ---
 
