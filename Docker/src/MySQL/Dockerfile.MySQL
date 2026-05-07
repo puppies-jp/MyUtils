@@ -1,0 +1,20 @@
+# Cmmmand to build the image:
+# docker build -t dev/mysql -f Dockerfile.MySQL .
+From mysql
+
+
+# Set environment variables for MySQL
+ENV MYSQL_ROOT_PASSWORD=rootpassword
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=admin
+ENV MYSQL_PASSWORD=password
+
+# Expose the default MySQL port
+# EXPOSE 3306:3306
+
+# Copy the SQL initialization script to the container
+# COPY init.sql /docker-entrypoint-initdb.d/
+
+# Start the MySQL server
+# mysql -u admin -ppassword -h localhost  -P 53306 --protocol=tcp
+CMD ["mysqld"]
