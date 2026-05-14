@@ -41,3 +41,17 @@ SpringBootはJavaのWebアプリケーションで多く使われるフレーム
 - Applicateion
     - form
     - Controller
+
+
+# SQLサーバにアクセスする
+
+
+`url`に指定するDBまで指定すること
+
+```
+spring.datasource.url=jdbc:mysql://localhost:53306/mydatabase
+spring.datasource.username=admin
+spring.datasource.password=password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+```
