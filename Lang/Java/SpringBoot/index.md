@@ -29,3 +29,15 @@ SpringBootはJavaのWebアプリケーションで多く使われるフレーム
        以下のイメージ
        - 画面遷移(URLのマッピング)
        - データの受け渡しに関する内容を記述(Viewからドメイン層にデータを渡すみたいな。。。)
+
+
+なんとなくこんな感じの建付け
+
+- Model
+- Repository
+- Service
+    - Interface
+    - InterfaceMode
+- Applicateion
+    - form
+    - Controller
