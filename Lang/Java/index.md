@@ -1,8 +1,8 @@
 # Javaを動かす
 
-[JSP(tomcat)を使ってみる](Jsp)
-
-[Gradleとは](#gradle)
+[JSP(tomcat)を使ってみる](Jsp)  
+[SpringBootを使ってみる](./SpringBoot/)  
+[Gradleとは](#gradle)  
 [mavenとは](#maven)
 
 ## ubuntu環境構築
