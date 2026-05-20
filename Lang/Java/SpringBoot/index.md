@@ -122,7 +122,7 @@ public interface SampleCrudRepository extends CrudRepository<Sample, Integer> {
 
 <details>
 <summary>
-interface/interface実装
+interface(impl)
 </summary>
 
 ```java
@@ -150,8 +150,8 @@ public interface SampleService {
     /* データを更新する */
     void UpdateSample(Sample sample);
 }
-
 ```
+
 </details>
 
 <details>
@@ -191,6 +191,7 @@ public class SampleServiceImpl implements SampleService {
 	}
 }
 ```
+
 </details>
 
 ### コントローラ層
