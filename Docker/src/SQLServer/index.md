@@ -1,0 +1,20 @@
+# SQLServer
+
+```bash
+docker pull mcr.microsoft.com/mssql/server:latest
+```
+
+- dockerfile
+
+```dockerfile
+FROM mcr.microsoft.com/mssql/server:latest
+
+ENV ACCEPT_EULA=Y
+# SQLServerのパスワードにはある程度の複雑さが必要で、
+# 大文字、小文字、数字、記号を含む8文字以上を設定してください。
+ENV MSSQL_SA_PASSWORD=P@ssword!
+ENV TZ=Asia/Tokyo
+
+# docker build -t dev/sqlserver -f Dockerfile.SQLServer .
+# docker run -d -p 51433:1433 --name sqlserver-container dev/sqlserver
+```
