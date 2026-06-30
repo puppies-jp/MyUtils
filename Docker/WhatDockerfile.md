@@ -145,3 +145,15 @@ COPY --from=builder /go/src/github.com/alexellis/href-counter/app ./
 CMD ["./app"]
 
 ```
+
+## Locale系設定スニペット
+
+```dockerfile
+# Time Zone
+ENV TZ Asia/Tokyo
+
+# Language
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:ja
+ENV LC_ALL ja_JP.UTF-8
+```
